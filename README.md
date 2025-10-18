@@ -55,7 +55,7 @@ Key sections:
 |--------------|---------|
 | `paths`      | File locations for the style catalog, SQLite database, JSONL score log, and output directory. Paths are resolved relative to the repository root. |
 | `prompting`  | Required style terms and template IDs used by the scene builder when crafting Ollama payloads. |
-| `ollama`     | Endpoint, model name, default temperature, and `top_p` for caption generation. |
+| `ollama`     | Endpoint, model name, default temperature, `top_p`, and `manual_mode` flag for controlling automatic Ollama lifecycle management. |
 | `imagen`     | Imagen model identifier, person-generation mode, and guidance scale. |
 | `scoring`    | DualScorer device, batch size, tau, calibration ranges, dynamic weight profiles, and optional auto-weight tuning. |
 | `fitness`    | Weights applied to style and NSFW scores when computing fitness. |
