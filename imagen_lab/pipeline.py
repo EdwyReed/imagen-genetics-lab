@@ -14,6 +14,7 @@ from scorer import DualScorer
 from .catalog import Catalog
 from .config import PipelineConfig
 from .scoring import DEFAULT_STYLE_WEIGHTS, WeightProfileTable
+from .learning import StyleFeedback
 from .ga import GeneSet, crossover_genes, load_best_gene_sets, mutate_gene
 from .prompting import (
     REQUIRED_STYLE_TERMS,
@@ -24,7 +25,7 @@ from .prompting import (
     system_prompt_for,
     system_prompt_hash,
 )
-from .scene_builder import SceneBuilder
+from .scene_builder import SceneBuilder, short_readable
 from .embeddings import EmbeddingCache, EmbeddingHistoryConfig
 from .storage import ArtifactWriter, PromptLogger, save_and_score
 from .utils import OllamaServiceError, OllamaServiceManager
@@ -39,6 +40,7 @@ class PipelineServices:
     writer: ArtifactWriter
     client: genai.Client
     history: EmbeddingCache
+    feedback: Optional[StyleFeedback]
 
 
 @dataclass
@@ -90,6 +92,7 @@ def _prepare_services(config: PipelineConfig, output_dir: Optional[Path] = None)
     logger = PromptLogger(config.paths.database)
     writer = ArtifactWriter(output_dir or config.paths.output_dir)
     client = genai.Client()
+    feedback = StyleFeedback(config.feedback) if config.feedback.enabled else None
     return PipelineServices(
         scorer=scorer,
         catalog=catalog,
@@ -98,6 +101,7 @@ def _prepare_services(config: PipelineConfig, output_dir: Optional[Path] = None)
         writer=writer,
         client=client,
         history=history_cache,
+        feedback=feedback,
     )
 
 
@@ -206,6 +210,7 @@ def run_plain(
     scorer = services.scorer
     builder = services.builder
     client = services.client
+    feedback = services.feedback
 
     session_id = f"plain-{int(time.time())}"
     logger.log_run(
@@ -236,7 +241,11 @@ def run_plain(
                         time.sleep(sleep_s)
                         continue
 
-                scene = builder.build_scene(sfw_level=sfw_level, temperature=temperature)
+                scene = builder.build_scene(
+                    sfw_level=sfw_level,
+                    temperature=temperature,
+                    feedback=feedback,
+                )
                 try:
                     caption = ollama_generate(
                         config.ollama.url,
@@ -321,6 +330,21 @@ def run_plain(
                     best = batch.best(w_style, w_nsfw)
                     if best is not None:
                         print(f"   [best] {best.path.name}  style={best.style} nsfw={best.nsfw}")
+                        if feedback is not None:
+                            style_metrics = batch.metrics.get("style", {}) if isinstance(batch.metrics, dict) else {}
+                            style_weights = None
+                            if isinstance(style_metrics, dict):
+                                weights = style_metrics.get("weights")
+                                if isinstance(weights, dict):
+                                    style_weights = weights
+                            feedback.update(
+                                gene_ids=dict(scene.gene_ids),
+                                template_id=scene.template_id,
+                                summary=short_readable(scene),
+                                batch_metrics=batch.metrics,
+                                best_image=best,
+                                weights=style_weights,
+                            )
                     metrics_line = _format_metrics(batch.metrics)
                     if metrics_line:
                         print(f"   [metrics] {metrics_line}")
@@ -338,6 +362,8 @@ def _seed_population(
     db_path: Path,
     session_id: Optional[str],
     seed_resume: bool,
+    *,
+    feedback: Optional[StyleFeedback] = None,
 ) -> List[GeneSet]:
     population: List[GeneSet] = []
     if seed_resume:
@@ -352,7 +378,11 @@ def _seed_population(
                 population.append(child)
             print(f"[resume] seeded from DB: {len(seed_genes)} genes (session={session_id or 'ANY'})")
     while len(population) < settings.pop:
-        scene = builder.build_scene(sfw_level=sfw_level, temperature=temperature)
+        scene = builder.build_scene(
+            sfw_level=sfw_level,
+            temperature=temperature,
+            feedback=feedback,
+        )
         population.append(dict(scene.gene_ids))
     return population
 
@@ -404,6 +434,7 @@ def run_evolve(
     builder = services.builder
     catalog = services.catalog
     client = services.client
+    feedback = services.feedback
 
     session_id = f"evolve-{int(time.time())}"
     logger.log_run(
@@ -439,6 +470,7 @@ def run_evolve(
         config.paths.database,
         resume_session,
         resume_best,
+        feedback=feedback,
     )
 
     service_manager = OllamaServiceManager(manual_mode=config.ollama.manual_mode)
@@ -458,7 +490,12 @@ def run_evolve(
                             time.sleep(sleep_s)
                             continue
 
-                    scene = builder.rebuild_from_genes(genes, sfw_level=sfw_level, temperature=temperature)
+                    scene = builder.rebuild_from_genes(
+                        genes,
+                        sfw_level=sfw_level,
+                        temperature=temperature,
+                        feedback=feedback,
+                    )
                     try:
                         caption = ollama_generate(
                             config.ollama.url,
@@ -550,6 +587,21 @@ def run_evolve(
                         if best is not None:
                             fitness = w_style * best.style + w_nsfw * best.nsfw
                             scored.append((fitness, genes, best.path, best.style, best.nsfw))
+                            if feedback is not None:
+                                style_metrics = batch.metrics.get("style", {}) if isinstance(batch.metrics, dict) else {}
+                                style_weights = None
+                                if isinstance(style_metrics, dict):
+                                    weights = style_metrics.get("weights")
+                                    if isinstance(weights, dict):
+                                        style_weights = weights
+                                feedback.update(
+                                    gene_ids=dict(scene.gene_ids),
+                                    template_id=scene.template_id,
+                                    summary=short_readable(scene),
+                                    batch_metrics=batch.metrics,
+                                    best_image=best,
+                                    weights=style_weights,
+                                )
                         metrics_line = _format_metrics(batch.metrics)
                         if metrics_line:
                             print(f"   [metrics] {metrics_line}")

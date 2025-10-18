@@ -24,7 +24,8 @@ def system_prompt_for(sfw_level: float) -> str:
         "Include: model, pose, wardrobe, accessories; camera angle and framing ratio; lighting; background; mood. Keep it SFW-level proportional to "
         f"{sfw_level:.2f} ({tone_desc}).\n\n"
         "Mandatory words (use naturally): illustration, watercolor, glossy, paper, pastel.\n"
-        "No lists. One or two sentences. Cinematic, juicy, coherent."
+        "No lists. One or two sentences. Cinematic, juicy, coherent.\n"
+        "The JSON payload includes style_profile (weights, boost/cooldown lists), scene_summary, and feedback_notes. Read them carefully, emphasize boost components, ease off cooldown components, and align the caption with scene_summary and feedback notes."
     )
 
 

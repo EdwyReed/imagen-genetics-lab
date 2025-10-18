@@ -150,6 +150,33 @@ class GAConfig:
 
 
 @dataclass
+class FeedbackConfig:
+    enabled: bool = True
+    component_alpha: float = 0.25
+    gene_alpha: float = 0.35
+    bias_floor: float = 0.7
+    bias_ceiling: float = 1.6
+    component_margin: float = 0.12
+    history: int = 6
+    top_k: int = 3
+
+    @classmethod
+    def from_mapping(cls, raw: Dict[str, Any] | None) -> "FeedbackConfig":
+        if not raw:
+            return cls()
+        return cls(
+            enabled=bool(raw.get("enabled", True)),
+            component_alpha=float(raw.get("component_alpha", 0.25)),
+            gene_alpha=float(raw.get("gene_alpha", 0.35)),
+            bias_floor=float(raw.get("bias_floor", 0.7)),
+            bias_ceiling=float(raw.get("bias_ceiling", 1.6)),
+            component_margin=float(raw.get("component_margin", 0.12)),
+            history=int(raw.get("history", 6)),
+            top_k=int(raw.get("top_k", 3)),
+        )
+
+
+@dataclass
 class PipelineConfig:
     paths: PathsConfig
     prompting: PromptConfig
@@ -160,6 +187,7 @@ class PipelineConfig:
     fitness: FitnessWeights
     defaults: RunDefaults
     ga: GAConfig
+    feedback: FeedbackConfig
 
     @classmethod
     def from_dict(cls, raw: Dict[str, Any]) -> "PipelineConfig":
@@ -172,6 +200,7 @@ class PipelineConfig:
         fitness_data = raw.get("fitness", {})
         defaults_data = raw.get("defaults", {})
         ga_data = raw.get("ga", {})
+        feedback_data = raw.get("feedback", {})
 
         paths = PathsConfig(
             catalog=Path(paths_data.get("catalog", "jelly-pin-up.json")),
@@ -258,6 +287,8 @@ class PipelineConfig:
             resume_mix=float(ga_data.get("resume_mix", 0.10)),
         )
 
+        feedback = FeedbackConfig.from_mapping(feedback_data)
+
         return cls(
             paths=paths,
             prompting=prompting,
@@ -268,6 +299,7 @@ class PipelineConfig:
             fitness=fitness,
             defaults=defaults,
             ga=ga,
+            feedback=feedback,
         )
 
 

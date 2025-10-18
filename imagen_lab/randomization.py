@@ -61,7 +61,7 @@ class WeightedSelector:
     def pick(self, seq: Sequence[T]) -> T:
         if not seq:
             raise ValueError("WeightedSelector.pick() received an empty sequence")
-        weights = self._weights(seq)
+        weights = self.weights(seq)
         return random.choices(seq, weights=weights, k=1)[0]
 
     def sample(self, seq: Sequence[T], k: int) -> List[T]:
@@ -77,6 +77,9 @@ class WeightedSelector:
             out.append(choice)
             pool.remove(choice)
         return out
+
+    def weights(self, seq: Sequence[T]) -> List[float]:
+        return self._weights(seq)
 
 
 def pick_from_ids(seq: Iterable[dict], item_id: str | None):
