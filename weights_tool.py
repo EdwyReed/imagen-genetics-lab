@@ -71,8 +71,8 @@ def calibrate_from_directory(
 
     components: List[List[float]] = []
     for img_path in images:
-        _, _, clip_s, spec, illu = scorer.score_one(img_path)
-        components.append([clip_s, spec, illu])
+        result = scorer.score_one(img_path)
+        components.append([result.clip_style, result.specular, result.illu_bias])
 
     matrix = np.asarray(components, dtype=float)
     target_vec = np.full((matrix.shape[0],), target, dtype=float)
