@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 import random
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
 from .catalog import Catalog
 from .randomization import WeightedSelector, maybe, pick_from_ids, pick_one
+from .learning import StyleFeedback
 
 
 @dataclass
@@ -20,6 +21,9 @@ class PromptPayload:
     background: str
     style: Dict[str, Any]
     required_terms: List[str]
+    style_profile: Dict[str, Any]
+    scene_summary: str = ""
+    feedback_notes: List[str] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -33,6 +37,9 @@ class PromptPayload:
             "background": self.background,
             "style": self.style,
             "required_terms": list(self.required_terms),
+            "style_profile": dict(self.style_profile),
+            "scene_summary": self.scene_summary,
+            "feedback_notes": list(self.feedback_notes),
         }
 
 
@@ -92,17 +99,80 @@ class SceneBuilder:
         self.required_terms = required_terms
         self.template_ids = template_ids
 
+    def _pick_template(self, template_id: Optional[str], feedback: Optional[StyleFeedback]) -> str:
+        if template_id:
+            return template_id
+        if not self.template_ids:
+            raise ValueError("No caption templates configured")
+        if feedback is None:
+            return random.choice(self.template_ids)
+        base_weights = [1.0] * len(self.template_ids)
+        biased = feedback.apply_bias("template", self.template_ids, base_weights)
+        total = sum(biased)
+        if total <= 0:
+            biased = base_weights
+        return random.choices(self.template_ids, weights=biased, k=1)[0]
+
+    def _pick_with_feedback(
+        self,
+        selector: WeightedSelector,
+        seq: List[dict],
+        slot: str,
+        feedback: Optional[StyleFeedback],
+    ):
+        if not seq:
+            raise ValueError(f"Sequence for slot '{slot}' is empty")
+        weights = selector.weights(seq)
+        if feedback is not None:
+            weights = feedback.apply_bias(slot, seq, weights)
+        total = sum(weights)
+        if total <= 0:
+            weights = [1.0] * len(seq)
+        return random.choices(seq, weights=weights, k=1)[0]
+
+    def _sample_with_feedback(
+        self,
+        selector: WeightedSelector,
+        seq: List[dict],
+        slot: str,
+        k: int,
+        feedback: Optional[StyleFeedback],
+    ) -> List[dict]:
+        k = min(int(k), len(seq))
+        if k <= 0:
+            return []
+        pool = list(seq)
+        out: List[dict] = []
+        for _ in range(k):
+            if not pool:
+                break
+            weights = selector.weights(pool)
+            if feedback is not None:
+                weights = feedback.apply_bias(slot, pool, weights)
+            total = sum(weights)
+            if total <= 0:
+                weights = [1.0] * len(pool)
+            choice = random.choices(pool, weights=weights, k=1)[0]
+            out.append(choice)
+            pool.remove(choice)
+        return out
+
     def build_scene(
-        self, sfw_level: float, temperature: float, template_id: Optional[str] = None
+        self,
+        sfw_level: float,
+        temperature: float,
+        template_id: Optional[str] = None,
+        *,
+        feedback: Optional[StyleFeedback] = None,
     ) -> SceneStruct:
         selector = WeightedSelector(sfw_level=sfw_level, temperature=temperature)
         palettes = self.catalog.section("palettes")
         lighting_presets = self.catalog.section("lighting_presets")
         backgrounds = self.catalog.section("backgrounds")
 
-        palette = pick_one(palettes)
-        lighting = pick_one(lighting_presets)
-        background = pick_one(backgrounds)
+        palette = self._pick_with_feedback(selector, palettes, "palette", feedback)
+        lighting = self._pick_with_feedback(selector, lighting_presets, "lighting", feedback)
+        background = self._pick_with_feedback(selector, backgrounds, "background", feedback)
 
         camera = self.catalog.raw.get("camera", {})
         camera_angles = camera.get("angles", [])
@@ -122,19 +192,19 @@ class SceneBuilder:
             }
         ]
 
-        cam_angle = selector.pick(camera_angles)
-        cam_frame = selector.pick(camera_framing)
-        cam_lens = selector.pick(camera_lenses)
-        cam_depth = selector.pick(camera_depths)
+        cam_angle = self._pick_with_feedback(selector, camera_angles, "camera_angle", feedback)
+        cam_frame = self._pick_with_feedback(selector, camera_framing, "camera_framing", feedback)
+        cam_lens = self._pick_with_feedback(selector, camera_lenses, "lens", feedback)
+        cam_depth = self._pick_with_feedback(selector, camera_depths, "depth", feedback)
 
         moods = self.catalog.section("moods")
         poses = self.catalog.section("poses")
         actions = self.catalog.section("actions")
         model_desc = pick_one(self.catalog.section("model_descriptions"))
 
-        mood = selector.pick(moods)
-        pose = selector.pick(poses)
-        action = selector.pick(actions)
+        mood = self._pick_with_feedback(selector, moods, "mood", feedback)
+        pose = self._pick_with_feedback(selector, poses, "pose", feedback)
+        action = self._pick_with_feedback(selector, actions, "action", feedback)
 
         wardrobe_groups = self.catalog.wardrobe_groups()
         wardrobe_sets = self.catalog.wardrobe_sets()
@@ -148,7 +218,7 @@ class SceneBuilder:
             return desc or item_id
 
         if wardrobe_sets and maybe(0.55):
-            chosen_set = selector.pick(wardrobe_sets)
+            chosen_set = self._pick_with_feedback(selector, wardrobe_sets, "wardrobe_set", feedback)
             ids = chosen_set.get("items", [])
             readable = [(iid, readable_desc(iid)) for iid in ids]
             priority = [("dresses",), ("one_piece",), ("tops", "bottoms")]
@@ -217,23 +287,24 @@ class SceneBuilder:
             pools = [item for item in pools if allowed_extra(item.get("desc", ""))]
             if pools:
                 take = random.choice([1, 2, 3])
-                extras = [item.get("desc", "") for item in selector.sample(pools, take)]
+                sampled = self._sample_with_feedback(selector, pools, "wardrobe_extra", take, feedback)
+                extras = [item.get("desc", "") for item in sampled]
 
         props = self.catalog.section("props")
         chosen_props: List[str] = []
         if props and maybe(0.45):
-            first_prop = selector.pick(props)
+            first_prop = self._pick_with_feedback(selector, props, "prop", feedback)
             chosen_props.append(first_prop.get("desc", ""))
             if props and maybe(0.2):
                 remaining = [p for p in props if p is not first_prop]
                 if remaining:
-                    second = selector.pick(remaining)
+                    second = self._pick_with_feedback(selector, remaining, "prop", feedback)
                     chosen_props.append(second.get("desc", ""))
 
         rules = self.catalog.rules()
         bounds = rules.get("caption_length", {"min_words": 18, "max_words": 48})
 
-        template = template_id or random.choice(self.template_ids)
+        template = self._pick_template(template_id, feedback)
         aspect_ratio = cam_frame.get("ratio", "3:4")
 
         style = self.catalog.style_controller()
@@ -249,6 +320,7 @@ class SceneBuilder:
         if chosen_props:
             wardrobe_text += "; props: " + ", ".join(chosen_props)
 
+        style_snapshot = feedback.snapshot() if feedback is not None else StyleFeedback.baseline_snapshot()
         payload = PromptPayload(
             mood=mood_selection,
             model=model_desc,
@@ -268,6 +340,8 @@ class SceneBuilder:
                 "palette_preference": style.get("palette_preference"),
             },
             required_terms=self.required_terms,
+            style_profile=style_snapshot,
+            feedback_notes=list(style_snapshot.get("notes", [])),
         )
 
         gene_ids = {
@@ -281,9 +355,10 @@ class SceneBuilder:
             "mood": mood.get("id"),
             "pose": pose.get("id"),
             "action": action.get("id"),
+            "template": template,
         }
 
-        return SceneStruct(
+        scene = SceneStruct(
             template_id=template,
             palette=palette,
             lighting=lighting,
@@ -304,11 +379,18 @@ class SceneBuilder:
             gene_ids=gene_ids,
             payload=payload,
         )
+        scene.payload.scene_summary = short_readable(scene)
+        return scene
 
     def rebuild_from_genes(
-        self, genes: Dict[str, Optional[str]], sfw_level: float, temperature: float
+        self,
+        genes: Dict[str, Optional[str]],
+        sfw_level: float,
+        temperature: float,
+        *,
+        feedback: Optional[StyleFeedback] = None,
     ) -> SceneStruct:
-        base = self.build_scene(sfw_level=sfw_level, temperature=temperature)
+        base = self.build_scene(sfw_level=sfw_level, temperature=temperature, feedback=feedback)
         palette = pick_from_ids(self.catalog.section("palettes"), genes.get("palette")) or base.palette
         lighting = pick_from_ids(self.catalog.section("lighting_presets"), genes.get("lighting")) or base.lighting
         background = pick_from_ids(self.catalog.section("backgrounds"), genes.get("background")) or base.background
@@ -332,6 +414,7 @@ class SceneBuilder:
         if action:
             base.action = action
 
+        base.template_id = genes.get("template", base.template_id) or base.template_id
         base.palette = palette
         base.lighting = lighting
         base.background = background
@@ -351,6 +434,7 @@ class SceneBuilder:
         if base.props:
             wardrobe_text += "; props: " + ", ".join(base.props)
 
+        style_snapshot = feedback.snapshot() if feedback is not None else StyleFeedback.baseline_snapshot()
         base.payload = PromptPayload(
             mood=mood_selection,
             model=base.model,
@@ -362,7 +446,10 @@ class SceneBuilder:
             background=base.background.get("desc", ""),
             style=base.payload.style,
             required_terms=self.required_terms,
+            style_profile=style_snapshot,
+            feedback_notes=list(style_snapshot.get("notes", [])),
         )
+        base.payload.scene_summary = short_readable(base)
         return base
 
 def short_readable(scene: SceneStruct) -> str:
