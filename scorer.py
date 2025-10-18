@@ -16,6 +16,8 @@ from PIL import Image
 from skimage import color, filters
 import open_clip
 
+from imagen_lab.pose import PoseAnalysis, PoseAnalyzer
+
 from imagen_lab.scoring import (
     DEFAULT_STYLE_WEIGHTS,
     ClipTextHeadsConfig,
@@ -47,7 +49,7 @@ W_CLIP, W_SPEC, W_ILLU = (
 )
 
 # Версия схемы логов для SQLite/JSONL. Увеличивайте при изменении структуры записей.
-SCORES_SCHEMA_VERSION = 2
+SCORES_SCHEMA_VERSION = 3
 
 
 @dataclass
@@ -96,6 +98,7 @@ class ScoreResult:
     embedding: Optional[np.ndarray] = None
     style_contributions: Dict[str, float] = field(default_factory=dict)
     style_weights: Dict[str, float] = field(default_factory=dict)
+    pose_metrics: PoseAnalysis = field(default_factory=PoseAnalysis.empty)
 
 
 @dataclass
@@ -113,6 +116,13 @@ class ScoredImage:
     illu_bias_raw: float = 0.0
     style_contributions: Dict[str, float] = field(default_factory=dict)
     style_weights: Dict[str, float] = field(default_factory=dict)
+    pose_class: str = "unknown"
+    pose_confidence: int = 0
+    body_curve: int = 0
+    gaze_direction: str = "forward"
+    gaze_confidence: int = 0
+    coverage: int = 0
+    skin_ratio: int = 0
 
     def fitness(self, w_style: float, w_nsfw: float) -> float:
         return float(w_style * float(self.style) + w_nsfw * float(self.nsfw))
@@ -564,6 +574,7 @@ class DualScorer:
 
         # backend
         self.clip = _load_clip(self.device)
+        self.pose_analyzer = PoseAnalyzer(device=self.device)
 
         # storage
         self.db = Path(db_path)
@@ -688,6 +699,7 @@ class DualScorer:
         spec_metrics = specular_index(img)
         spec = spec_metrics.score
         nsfw = nsfw_score(path)
+        pose_metrics = self.pose_analyzer.analyze(img)
         composition = self.style_mixer.compose(clip_style, spec, illu_bias)
         style = composition.total
         self._update_auto_weights(clip_style, spec, illu_bias)
@@ -713,6 +725,7 @@ class DualScorer:
             embedding=embedding_vec,
             style_contributions=composition.contributions,
             style_weights=composition.weights,
+            pose_metrics=pose_metrics,
         )
 
     # ---- batch & save ----
@@ -736,16 +749,17 @@ class DualScorer:
                 except Exception:
                     # если картинка битая/не читается
                     result = ScoreResult(
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        {},
-                        SpecularMetrics.empty(),
-                        None,
-                        {},
-                        {},
+                        nsfw=0.0,
+                        style=0.0,
+                        clip_style=0.0,
+                        specular=0.0,
+                        illu_bias=0.0,
+                        clip_heads={},
+                        specular_metrics=SpecularMetrics.empty(),
+                        embedding=None,
+                        style_contributions={},
+                        style_weights={},
+                        pose_metrics=PoseAnalysis.empty(),
                     )
 
                 nsfw100 = int(round(result.nsfw * 100))
@@ -776,6 +790,7 @@ class DualScorer:
                     ),
                     "style_weights": result.style_weights,
                     "style_contributions": result.style_contributions,
+                    "pose_metrics": result.pose_metrics.to_payload(),
                     "notes": notes,
                 }
                 jf.write(json.dumps(rec, ensure_ascii=False) + "\n")
@@ -811,6 +826,13 @@ class DualScorer:
                         illu_bias_raw=float(result.illu_bias),
                         style_contributions=dict(result.style_contributions),
                         style_weights=dict(result.style_weights),
+                        pose_class=result.pose_metrics.pose_class,
+                        pose_confidence=int(round(result.pose_metrics.pose_confidence * 100)),
+                        body_curve=int(round(result.pose_metrics.body_curve * 100)),
+                        gaze_direction=result.pose_metrics.gaze_direction,
+                        gaze_confidence=int(round(result.pose_metrics.gaze_confidence * 100)),
+                        coverage=int(round(result.pose_metrics.coverage * 100)),
+                        skin_ratio=int(round(result.pose_metrics.skin_ratio * 100)),
                     )
                 )
 
