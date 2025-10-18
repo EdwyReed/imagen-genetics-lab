@@ -5,9 +5,9 @@ import json
 import math
 import sqlite3
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 import opennsfw2 as n2
@@ -78,6 +78,7 @@ class ScoreResult:
     specular: float
     illu_bias: float
     clip_heads: Dict[str, Dict[str, Any]]
+    specular_metrics: SpecularMetrics
 
 # =========================
 # SQLite helpers
@@ -118,32 +119,222 @@ def _insert_db(db_path: Path, rows: List[Tuple]):
 # Specular / Wetness index
 # =========================
 
-def specular_index(img: Image.Image) -> float:
+@dataclass(frozen=True)
+class MaskRange:
+    lower: Tuple[float, float, float]
+    upper: Tuple[float, float, float]
+
+
+@dataclass
+class MaskDefinition:
+    name: str
+    space: str = "hsv"
+    ranges: Tuple[MaskRange, ...] = ()
+    min_coverage: float = 0.0
+
+    def build_mask(self, spaces: Dict[str, np.ndarray]) -> np.ndarray:
+        if not self.ranges:
+            rgb_data = spaces.get("rgb")
+            if rgb_data is None:
+                raise ValueError("RGB space must be provided for default mask")
+            return np.ones(rgb_data.shape[:2], dtype=np.float32)
+        if self.space not in spaces:
+            raise ValueError(f"Unsupported color space '{self.space}' for mask '{self.name}'")
+        data = spaces[self.space]
+        mask = np.zeros(data.shape[:2], dtype=bool)
+        for rng in self.ranges:
+            lower = np.array(rng.lower, dtype=np.float32)
+            upper = np.array(rng.upper, dtype=np.float32)
+            cond = np.all((data >= lower) & (data <= upper), axis=-1)
+            mask |= cond
+        return mask.astype(np.float32)
+
+
+@dataclass
+class SpecularZoneMetrics:
+    coverage: float = 0.0
+    highlight_ratio: float = 0.0
+    highlight_density: float = 0.0
+    sharpness: float = 0.0
+    score: float = 0.0
+
+    def to_payload(self) -> Dict[str, float]:
+        return {
+            "coverage": float(self.coverage),
+            "highlight_ratio": float(self.highlight_ratio),
+            "highlight_density": float(self.highlight_density),
+            "sharpness": float(self.sharpness),
+            "score": float(self.score),
+        }
+
+
+@dataclass
+class SpecularAggregate:
+    weighted_score: float = 0.0
+    mean_score: float = 0.0
+    coverage: float = 0.0
+
+    def to_payload(self) -> Dict[str, float]:
+        return {
+            "weighted_score": float(self.weighted_score),
+            "mean_score": float(self.mean_score),
+            "coverage": float(self.coverage),
+        }
+
+
+@dataclass
+class SpecularMetrics:
+    score: float
+    highlight_ratio: float
+    sharpness: float
+    zones: Dict[str, SpecularZoneMetrics] = field(default_factory=dict)
+    aggregate: SpecularAggregate = field(default_factory=SpecularAggregate)
+
+    def to_payload(self) -> Dict[str, Any]:
+        return {
+            "score": float(self.score),
+            "highlight_ratio": float(self.highlight_ratio),
+            "sharpness": float(self.sharpness),
+            "zones": {name: zone.to_payload() for name, zone in self.zones.items()},
+            "aggregate": self.aggregate.to_payload(),
+        }
+
+    @classmethod
+    def empty(cls) -> "SpecularMetrics":
+        return cls(0.0, 0.0, 0.0, {}, SpecularAggregate())
+
+
+DEFAULT_SPECULAR_MASKS: Tuple[MaskDefinition, ...] = (
+    MaskDefinition(
+        name="skin",
+        space="hsv",
+        ranges=(
+            MaskRange(lower=(0.0, 0.2, 0.2), upper=(0.14, 0.75, 0.97)),
+            MaskRange(lower=(0.94, 0.2, 0.2), upper=(1.0, 0.75, 0.97)),
+        ),
+    ),
+    MaskDefinition(
+        name="fabric",
+        space="lab",
+        ranges=(
+            MaskRange(lower=(20.0, -40.0, -40.0), upper=(95.0, 60.0, 60.0)),
+        ),
+    ),
+    MaskDefinition(
+        name="background",
+        space="hsv",
+        ranges=(
+            MaskRange(lower=(0.0, 0.0, 0.0), upper=(1.0, 0.35, 0.9)),
+        ),
+    ),
+)
+
+
+def specular_index(
+    img: Image.Image,
+    masks: Optional[Sequence[MaskDefinition]] = None,
+    highlight_quantile: float = 0.97,
+) -> SpecularMetrics:
     """
-    Индекс «влажности/бликов» (0..1):
+    Индекс «влажности/бликов» (0..1) и зональные показатели:
       - Берём яркостный канал V из HSV.
-      - Порог по верхнему квантили (p=0.97) → маска бликов.
+      - Порог по верхнему квантили (по умолчанию p=0.97) → маска бликов.
       - Доля маски + локальная резкость по Лапласу (на бликах).
+      - Для указанных масок (кожа, ткань, фон) считаем показатели и агрегаты.
     Эмпирические нормировки подобраны для постеров ~1–4K.
     """
     arr = np.asarray(img.convert("RGB"), dtype=np.float32) / 255.0
     hsv = color.rgb2hsv(arr)
+    lab = color.rgb2lab(arr)
+    spaces = {"rgb": arr, "hsv": hsv, "lab": lab}
+
     V = hsv[..., 2]
-    thr = np.quantile(V, 0.97)
-    mask = (V >= thr).astype(np.float32)
+    thr = np.quantile(V, highlight_quantile)
+    highlight_mask = (V >= thr).astype(np.float32)
 
-    # Доля пикселей бликов
-    ratio = float(mask.mean())  # обычно ~0.0..0.05
+    ratio = float(highlight_mask.mean())  # обычно ~0.0..0.05
 
-    # Резкость бликов
     lap = filters.laplace(V, ksize=3)
-    sharp = float((np.abs(lap) * mask).mean())
+    lap_abs = np.abs(lap)
+    sharp = float((lap_abs * highlight_mask).mean())
 
-    # Нормализация
     ratio_n = min(ratio / 0.04, 1.0)   # saturate на 4% площади бликов
     sharp_n = min(sharp * 12.0, 1.0)   # эмпирика
     score = 0.6 * ratio_n + 0.4 * sharp_n
-    return float(max(0.0, min(1.0, score)))
+
+    zones: Dict[str, SpecularZoneMetrics] = {}
+    zone_stats: List[Tuple[float, float]] = []
+    masks_to_use = masks or DEFAULT_SPECULAR_MASKS
+
+    total_pixels = float(arr.shape[0] * arr.shape[1])
+
+    for mask_def in masks_to_use:
+        try:
+            zone_mask = mask_def.build_mask(spaces)
+        except ValueError:
+            continue
+
+        coverage = float(zone_mask.mean())
+        if coverage <= max(mask_def.min_coverage, 1e-5):
+            zones[mask_def.name] = SpecularZoneMetrics(coverage=coverage)
+            continue
+
+        zone_pixels = float(zone_mask.sum())
+        zone_highlight = highlight_mask * zone_mask
+        highlight_pixels = float(zone_highlight.sum())
+
+        if zone_pixels <= 1.0 or highlight_pixels <= 0.0:
+            zones[mask_def.name] = SpecularZoneMetrics(
+                coverage=coverage,
+                highlight_ratio=0.0,
+                highlight_density=0.0,
+                sharpness=0.0,
+                score=0.0,
+            )
+            zone_stats.append((coverage, 0.0))
+            continue
+
+        highlight_ratio_zone = highlight_pixels / zone_pixels
+        highlight_density = highlight_pixels / total_pixels
+        zone_sharp = float((lap_abs * zone_highlight).sum() / zone_pixels)
+
+        zone_ratio_n = min(highlight_ratio_zone / 0.04, 1.0)
+        zone_sharp_n = min(zone_sharp * 12.0, 1.0)
+        zone_score = float(max(0.0, min(1.0, 0.6 * zone_ratio_n + 0.4 * zone_sharp_n)))
+
+        zone_metric = SpecularZoneMetrics(
+            coverage=coverage,
+            highlight_ratio=float(highlight_ratio_zone),
+            highlight_density=float(highlight_density),
+            sharpness=float(zone_sharp),
+            score=zone_score,
+        )
+        zones[mask_def.name] = zone_metric
+        zone_stats.append((coverage, zone_score))
+
+    if zone_stats:
+        covered = sum(c for c, _ in zone_stats if c > 0)
+        weighted = (
+            sum(c * s for c, s in zone_stats if c > 0) / covered
+            if covered > 0
+            else 0.0
+        )
+        mean = sum(s for _, s in zone_stats) / len(zone_stats)
+        aggregate = SpecularAggregate(
+            weighted_score=float(weighted),
+            mean_score=float(mean),
+            coverage=float(covered),
+        )
+    else:
+        aggregate = SpecularAggregate()
+
+    return SpecularMetrics(
+        score=float(max(0.0, min(1.0, score))),
+        highlight_ratio=float(ratio),
+        sharpness=float(sharp),
+        zones=zones,
+        aggregate=aggregate,
+    )
 
 
 # =========================
@@ -432,7 +623,8 @@ class DualScorer:
             if positive:
                 illu_bias = head_probs.get(illu_head.key, {}).get(positive, 0.0)
 
-        spec = specular_index(img)
+        spec_metrics = specular_index(img)
+        spec = spec_metrics.score
         nsfw = nsfw_score(path)
         style = self.style_from_components(clip_style, spec, illu_bias)
         self._update_auto_weights(clip_style, spec, illu_bias)
@@ -452,6 +644,7 @@ class DualScorer:
             specular=spec,
             illu_bias=illu_bias,
             clip_heads=clip_head_payload,
+            specular_metrics=spec_metrics,
         )
 
     # ---- batch & save ----
@@ -474,7 +667,7 @@ class DualScorer:
                     result = self.score_one(p)
                 except Exception:
                     # если картинка битая/не читается
-                    result = ScoreResult(0.0, 0.0, 0.0, 0.0, 0.0, {})
+                    result = ScoreResult(0.0, 0.0, 0.0, 0.0, 0.0, {}, SpecularMetrics.empty())
 
                 nsfw100 = int(round(result.nsfw * 100))
                 style100 = int(round(result.style * 100))
@@ -482,6 +675,11 @@ class DualScorer:
                 sp100 = int(round(result.specular * 100))
                 ib100 = int(round(result.illu_bias * 100))
 
+                spec_payload = result.specular_metrics.to_payload()
+                zone_scores = {
+                    name: int(round(zone.get("score", 0.0) * 100))
+                    for name, zone in spec_payload.get("zones", {}).items()
+                }
                 rec = {
                     "path": str(p),
                     "ts": t,
@@ -491,6 +689,11 @@ class DualScorer:
                     "specular": sp100,
                     "illu_bias": ib100,
                     "clip_heads": result.clip_heads,
+                    "specular_details": spec_payload,
+                    "specular_zones": zone_scores,
+                    "specular_zonal_weighted": int(
+                        round(spec_payload.get("aggregate", {}).get("weighted_score", 0.0) * 100)
+                    ),
                     "notes": notes,
                 }
                 jf.write(json.dumps(rec, ensure_ascii=False) + "\n")
