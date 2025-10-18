@@ -37,6 +37,51 @@ class ImagenConfig:
 
 
 @dataclass
+class AutoWeightsConfig:
+    enabled: bool = False
+    ema_alpha: float = 0.25
+    momentum: float = 0.35
+    target: float = 0.85
+    min_component: float = 0.05
+    min_weight: float = 0.05
+    max_weight: float = 0.9
+    min_gain: float = 0.4
+    max_gain: float = 2.5
+    initial_level: float = 0.7
+
+    @classmethod
+    def from_mapping(cls, raw: Dict[str, Any] | None) -> "AutoWeightsConfig":
+        if not raw:
+            return cls()
+        return cls(
+            enabled=bool(raw.get("enabled", False)),
+            ema_alpha=float(raw.get("ema_alpha", 0.25)),
+            momentum=float(raw.get("momentum", 0.35)),
+            target=float(raw.get("target", 0.85)),
+            min_component=float(raw.get("min_component", 0.05)),
+            min_weight=float(raw.get("min_weight", 0.05)),
+            max_weight=float(raw.get("max_weight", 0.9)),
+            min_gain=float(raw.get("min_gain", 0.4)),
+            max_gain=float(raw.get("max_gain", 2.5)),
+            initial_level=float(raw.get("initial_level", 0.7)),
+        )
+
+    def as_dict(self) -> Dict[str, Any]:
+        return {
+            "enabled": self.enabled,
+            "ema_alpha": self.ema_alpha,
+            "momentum": self.momentum,
+            "target": self.target,
+            "min_component": self.min_component,
+            "min_weight": self.min_weight,
+            "max_weight": self.max_weight,
+            "min_gain": self.min_gain,
+            "max_gain": self.max_gain,
+            "initial_level": self.initial_level,
+        }
+
+
+@dataclass
 class ScoringConfig:
     device: str = "auto"
     batch_size: int = 4
@@ -44,6 +89,7 @@ class ScoringConfig:
     cal_style: Optional[tuple[float, float]] = None
     cal_illu: Optional[tuple[float, float]] = None
     weights: Dict[str, float] = field(default_factory=lambda: {"clip": 0.55, "spec": 0.35, "illu": 0.10})
+    auto_weights: "AutoWeightsConfig" = field(default_factory=lambda: AutoWeightsConfig())
 
 
 @dataclass
@@ -129,6 +175,7 @@ class PipelineConfig:
             cal_style=_tuple_or_none(scoring_data.get("cal_style")),
             cal_illu=_tuple_or_none(scoring_data.get("cal_illu")),
             weights=dict(scoring_data.get("weights", {"clip": 0.55, "spec": 0.35, "illu": 0.10})),
+            auto_weights=AutoWeightsConfig.from_mapping(scoring_data.get("auto_weights")),
         )
 
         fitness = FitnessWeights(

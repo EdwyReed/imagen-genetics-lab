@@ -38,6 +38,11 @@ scoring:
     clip: 0.55
     spec: 0.35
     illu: 0.10
+  auto_weights:
+    enabled: true
+    target: 0.88
+    ema_alpha: 0.25
+    momentum: 0.35
 
 fitness:
   style: 0.7

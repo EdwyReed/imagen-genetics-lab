@@ -7,7 +7,7 @@ import sqlite3
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import opennsfw2 as n2
@@ -66,6 +66,38 @@ DEFAULT_CAL_ILLU: Optional[Tuple[float, float]] = None  # например (0.45
 
 # Веса итоговой style-метрики (композиция из трёх компонент)
 W_CLIP, W_SPEC, W_ILLU = 0.55, 0.35, 0.10
+
+
+@dataclass
+class AutoWeightsSettings:
+    enabled: bool = False
+    ema_alpha: float = 0.25
+    momentum: float = 0.35
+    target: float = 0.85
+    min_component: float = 0.05
+    min_weight: float = 0.05
+    max_weight: float = 0.9
+    min_gain: float = 0.4
+    max_gain: float = 2.5
+    initial_level: float = 0.7
+
+    @classmethod
+    def from_dict(cls, raw: Optional[Dict[str, Any]] | None) -> "AutoWeightsSettings":
+        if not raw:
+            return cls()
+        return cls(
+            enabled=bool(raw.get("enabled", False)),
+            ema_alpha=float(raw.get("ema_alpha", 0.25)),
+            momentum=float(raw.get("momentum", 0.35)),
+            target=float(raw.get("target", 0.85)),
+            min_component=float(raw.get("min_component", 0.05)),
+            min_weight=float(raw.get("min_weight", 0.05)),
+            max_weight=float(raw.get("max_weight", 0.9)),
+            min_gain=float(raw.get("min_gain", 0.4)),
+            max_gain=float(raw.get("max_gain", 2.5)),
+            initial_level=float(raw.get("initial_level", 0.7)),
+        )
+
 
 
 # =========================
@@ -287,6 +319,7 @@ class DualScorer:
         tau: Optional[float] = None,
         cal_style: Optional[Tuple[float, float]] = None,
         cal_illu: Optional[Tuple[float, float]] = None,
+        auto_weights: Optional[Dict[str, float]] | None = None,
     ):
         # device
         if device == "auto":
@@ -303,15 +336,66 @@ class DualScorer:
         _ensure_db(self.db)
 
         # weights & params
-        self.w = weights or {"clip": W_CLIP, "spec": W_SPEC, "illu": W_ILLU}
+        self.w = self._normalize_weights(weights or {"clip": W_CLIP, "spec": W_SPEC, "illu": W_ILLU})
         self.tau = float(tau) if tau is not None else DEFAULT_TAU
         self.cal_style = cal_style if cal_style is not None else DEFAULT_CAL_STYLE
         self.cal_illu = cal_illu if cal_illu is not None else DEFAULT_CAL_ILLU
+        self._base_w = dict(self.w)
+        self._auto = AutoWeightsSettings.from_dict(auto_weights)
+        self._ema = {k: self._auto.initial_level for k in ("clip", "spec", "illu")}
+        if self._auto.enabled:
+            self._apply_weight_bounds()
+
+    def _normalize_weights(self, weights: Dict[str, float]) -> Dict[str, float]:
+        total = sum(max(v, 0.0) for v in weights.values())
+        if total <= 0:
+            return {"clip": W_CLIP, "spec": W_SPEC, "illu": W_ILLU}
+        normed = {k: max(v, 0.0) / total for k, v in weights.items()}
+        return {k: normed.get(k, 0.0) for k in ("clip", "spec", "illu")}
+
+    def _apply_weight_bounds(self) -> None:
+        if not self._auto.enabled:
+            return
+        for key in ("clip", "spec", "illu"):
+            self.w[key] = max(self._auto.min_weight, min(self._auto.max_weight, self.w[key]))
+        total = sum(self.w.values())
+        if total > 0:
+            for key in self.w:
+                self.w[key] /= total
+
+    def _update_auto_weights(self, clip_style: float, specular: float, illu_bias: float) -> None:
+        if not self._auto.enabled:
+            return
+        alpha = max(0.0, min(1.0, self._auto.ema_alpha))
+        values = {"clip": clip_style, "spec": specular, "illu": illu_bias}
+        for key, value in values.items():
+            self._ema[key] = (1 - alpha) * self._ema[key] + alpha * value
+
+        raw: Dict[str, float] = {}
+        for key in ("clip", "spec", "illu"):
+            ema = max(self._ema[key], self._auto.min_component)
+            gain = self._auto.target / ema if ema > 0 else self._auto.max_gain
+            gain = max(self._auto.min_gain, min(self._auto.max_gain, gain))
+            raw[key] = self._base_w[key] * gain
+
+        total_raw = sum(raw.values())
+        if total_raw <= 0:
+            return
+        normalized = {k: raw[k] / total_raw for k in raw}
+
+        mu = max(0.0, min(1.0, self._auto.momentum))
+        for key in normalized:
+            self.w[key] = (1 - mu) * self.w[key] + mu * normalized[key]
+
+        self._apply_weight_bounds()
 
     # ---- composition ----
     def style_from_components(self, clip_style: float, specular: float, illu_bias: float) -> float:
         v = self.w["clip"] * clip_style + self.w["spec"] * specular + self.w["illu"] * illu_bias
         return float(max(0.0, min(1.0, v)))
+
+    def current_weights(self) -> Dict[str, float]:
+        return dict(self.w)
 
     # ---- single image ----
     def score_one(self, path: Path) -> Tuple[float, float, float, float, float]:
@@ -330,6 +414,7 @@ class DualScorer:
         spec = specular_index(img)
         nsfw = nsfw_score(path)
         style = self.style_from_components(clip_style, spec, illu_bias)
+        self._update_auto_weights(clip_style, spec, illu_bias)
         return nsfw, style, clip_style, spec, illu_bias
 
     # ---- batch & save ----
