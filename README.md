@@ -135,6 +135,17 @@ All CLI options default to the values declared in `config.yaml`. See `python sma
 * If you change GPU/CPU availability, adjust `scoring.device` and `scoring.batch_size` in `config.yaml`.
 * The SQLite database (`scores.sqlite`) and JSONL log (`scores.jsonl`) grow over time; archive or prune them periodically.
 
+### Log schema versioning
+
+Every score record now includes an explicit schema version to make downstream parsing safer:
+
+* **SQLite (`scores.sqlite`, table `scores`)** — new column `schema_version` (integer, defaults to `1` for historical rows, new
+  writes use `2`).
+* **JSONL (`scores.jsonl`)** — each object adds the `schema_version` field with the same integer value.
+
+Pipelines consuming these logs should branch on `schema_version` when reading older exports and can fail fast if an unexpected
+version appears.
+
 Happy experimenting!
 
 ## Adaptive style weighting

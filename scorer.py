@@ -35,6 +35,9 @@ DEFAULT_CAL_ILLU: Optional[Tuple[float, float]] = None  # например (0.45
 # Веса итоговой style-метрики (композиция из трёх компонент)
 W_CLIP, W_SPEC, W_ILLU = 0.55, 0.35, 0.10
 
+# Версия схемы логов для SQLite/JSONL. Увеличивайте при изменении структуры записей.
+SCORES_SCHEMA_VERSION = 2
+
 
 @dataclass
 class AutoWeightsSettings:
@@ -112,9 +115,16 @@ def _ensure_db(db_path: Path):
       clip_style REAL,
       specular REAL,
       illu_bias REAL,
-      notes TEXT
+      notes TEXT,
+      schema_version INTEGER NOT NULL DEFAULT 1
     )
     """)
+    cur.execute("PRAGMA table_info(scores)")
+    existing_columns = {row[1] for row in cur.fetchall()}
+    if "schema_version" not in existing_columns:
+        cur.execute(
+            "ALTER TABLE scores ADD COLUMN schema_version INTEGER NOT NULL DEFAULT 1"
+        )
     conn.commit()
     conn.close()
 
@@ -123,8 +133,8 @@ def _insert_db(db_path: Path, rows: List[Tuple]):
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     cur.executemany("""
-    INSERT OR REPLACE INTO scores(path, ts, nsfw, style, clip_style, specular, illu_bias, notes)
-    VALUES(?,?,?,?,?,?,?,?)
+    INSERT OR REPLACE INTO scores(path, ts, nsfw, style, clip_style, specular, illu_bias, notes, schema_version)
+    VALUES(?,?,?,?,?,?,?,?,?)
     """, rows)
     conn.commit()
     conn.close()
@@ -715,6 +725,7 @@ class DualScorer:
                 rec = {
                     "path": str(p),
                     "ts": t,
+                    "schema_version": SCORES_SCHEMA_VERSION,
                     "nsfw": nsfw100,
                     "style": style100,
                     "clip_style": cs100,
@@ -729,7 +740,19 @@ class DualScorer:
                     "notes": notes,
                 }
                 jf.write(json.dumps(rec, ensure_ascii=False) + "\n")
-                rows_db.append((str(p), t, nsfw100, style100, cs100, sp100, ib100, notes))
+                rows_db.append(
+                    (
+                        str(p),
+                        t,
+                        nsfw100,
+                        style100,
+                        cs100,
+                        sp100,
+                        ib100,
+                        notes,
+                        SCORES_SCHEMA_VERSION,
+                    )
+                )
                 embedding = None
                 if result.embedding is not None:
                     embedding = np.asarray(result.embedding, dtype=np.float32).copy()
