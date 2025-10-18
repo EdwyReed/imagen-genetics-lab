@@ -27,6 +27,7 @@ from .prompting import (
 from .scene_builder import SceneBuilder
 from .embeddings import EmbeddingCache, EmbeddingHistoryConfig
 from .storage import ArtifactWriter, PromptLogger, save_and_score
+from .utils import OllamaServiceError, OllamaServiceManager
 
 
 @dataclass
@@ -204,96 +205,110 @@ def run_plain(
     system_prompt = system_prompt_for(sfw_level)
     sys_hash = system_prompt_hash(system_prompt)
 
-    for idx in range(1, cycles + 1):
-        scene = builder.build_scene(sfw_level=sfw_level, temperature=temperature)
-        try:
-            caption = ollama_generate(
-                config.ollama.url,
-                config.ollama.model,
-                system_prompt,
-                scene.ollama_payload(),
-                temperature=temperature,
-                top_p=config.ollama.top_p,
-                seed=seed,
-            )
-            caption = enforce_once(
-                config.ollama.url,
-                config.ollama.model,
-                system_prompt,
-                scene.ollama_payload(),
-                caption,
-                required_terms=_required_terms(config),
-                temperature=max(0.45, temperature - 0.05),
-                seed=seed,
-            )
-        except Exception as exc:  # pragma: no cover - network interaction
-            print(f"[{idx:02d}/{cycles}] Ollama error: {exc}")
-            time.sleep(sleep_s)
-            continue
+    service_manager = OllamaServiceManager(manual_mode=config.ollama.manual_mode)
 
-        bounds = scene.caption_bounds
-        final_prompt = enforce_bounds(
-            caption,
-            int(bounds.get("min_words", 18)),
-            int(bounds.get("max_words", 60)),
-        )
+    try:
+        with service_manager:
+            for idx in range(1, cycles + 1):
+                if service_manager.enabled:
+                    try:
+                        service_manager.ensure_running()
+                    except OllamaServiceError as exc:
+                        print(f"[{idx:02d}/{cycles}] Ollama start error: {exc}")
+                        time.sleep(sleep_s)
+                        continue
 
-        try:
-            response = imagen_call(
-                client,
-                config.imagen.model,
-                final_prompt,
-                scene.aspect_ratio,
-                per_cycle,
-                config.imagen.person_mode,
-                guidance_scale=config.imagen.guidance_scale,
-            )
-        except Exception as exc:  # pragma: no cover - API call
-            print(f"[{idx:02d}/{cycles}] Imagen error: {exc}")
-            time.sleep(sleep_s)
-            continue
+                scene = builder.build_scene(sfw_level=sfw_level, temperature=temperature)
+                try:
+                    caption = ollama_generate(
+                        config.ollama.url,
+                        config.ollama.model,
+                        system_prompt,
+                        scene.ollama_payload(),
+                        temperature=temperature,
+                        top_p=config.ollama.top_p,
+                        seed=seed,
+                    )
+                    caption = enforce_once(
+                        config.ollama.url,
+                        config.ollama.model,
+                        system_prompt,
+                        scene.ollama_payload(),
+                        caption,
+                        required_terms=_required_terms(config),
+                        temperature=max(0.45, temperature - 0.05),
+                        seed=seed,
+                    )
+                except Exception as exc:  # pragma: no cover - network interaction
+                    print(f"[{idx:02d}/{cycles}] Ollama error: {exc}")
+                    time.sleep(sleep_s)
+                    continue
 
-        cycle_id = f"rnd-{idx:03d}"
-        meta_base = {
-            "id": cycle_id,
-            "model_imagen": config.imagen.model,
-            "person_mode": config.imagen.person_mode,
-            "variants": per_cycle,
-            "seed": seed,
-            "ollama": {
-                "url": config.ollama.url,
-                "model": config.ollama.model,
-                "temperature": temperature,
-                "top_p": config.ollama.top_p,
-                "system_hash": sys_hash,
-                "sfw_level": sfw_level,
-                "style_mode": "inline+required_terms",
-            },
-        }
+                bounds = scene.caption_bounds
+                final_prompt = enforce_bounds(
+                    caption,
+                    int(bounds.get("min_words", 18)),
+                    int(bounds.get("max_words", 60)),
+                )
 
-        batch = save_and_score(
-            response,
-            writer,
-            logger,
-            scorer,
-            meta_base,
-            final_prompt,
-            scene,
-            session_id,
-            gen=None,
-            indiv=None,
-            w_style=w_style,
-            w_nsfw=w_nsfw,
-        )
+                try:
+                    response = imagen_call(
+                        client,
+                        config.imagen.model,
+                        final_prompt,
+                        scene.aspect_ratio,
+                        per_cycle,
+                        config.imagen.person_mode,
+                        guidance_scale=config.imagen.guidance_scale,
+                    )
+                except Exception as exc:  # pragma: no cover - API call
+                    print(f"[{idx:02d}/{cycles}] Imagen error: {exc}")
+                    time.sleep(sleep_s)
+                    continue
 
-        if not batch.is_empty():
-            best = batch.best(w_style, w_nsfw)
-            if best is not None:
-                print(f"   [best] {best.path.name}  style={best.style} nsfw={best.nsfw}")
-            metrics_line = _format_metrics(batch.metrics)
-            if metrics_line:
-                print(f"   [metrics] {metrics_line}")
-        time.sleep(sleep_s)
+                cycle_id = f"rnd-{idx:03d}"
+                meta_base = {
+                    "id": cycle_id,
+                    "model_imagen": config.imagen.model,
+                    "person_mode": config.imagen.person_mode,
+                    "variants": per_cycle,
+                    "seed": seed,
+                    "ollama": {
+                        "url": config.ollama.url,
+                        "model": config.ollama.model,
+                        "temperature": temperature,
+                        "top_p": config.ollama.top_p,
+                        "system_hash": sys_hash,
+                        "sfw_level": sfw_level,
+                        "style_mode": "inline+required_terms",
+                    },
+                }
+
+                batch = save_and_score(
+                    response,
+                    writer,
+                    logger,
+                    scorer,
+                    meta_base,
+                    final_prompt,
+                    scene,
+                    session_id,
+                    gen=None,
+                    indiv=None,
+                    w_style=w_style,
+                    w_nsfw=w_nsfw,
+                )
+
+                if not batch.is_empty():
+                    best = batch.best(w_style, w_nsfw)
+                    if best is not None:
+                        print(f"   [best] {best.path.name}  style={best.style} nsfw={best.nsfw}")
+                    metrics_line = _format_metrics(batch.metrics)
+                    if metrics_line:
+                        print(f"   [metrics] {metrics_line}")
+                time.sleep(sleep_s)
+    except OllamaServiceError as exc:
+        print(f"[plain] Ollama service error: {exc}")
 
 
 def _seed_population(
@@ -408,131 +423,146 @@ def run_evolve(
         resume_best,
     )
 
-    for gen_idx in range(1, gens + 1):
-        print(f"\n===== Generation {gen_idx}/{gens} =====")
-        scored: List[Tuple[float, GeneSet, Path, int, int]] = []
+    service_manager = OllamaServiceManager(manual_mode=config.ollama.manual_mode)
 
-        for indiv_idx, genes in enumerate(population, start=1):
-            scene = builder.rebuild_from_genes(genes, sfw_level=sfw_level, temperature=temperature)
-            try:
-                caption = ollama_generate(
-                    config.ollama.url,
-                    config.ollama.model,
-                    system_prompt,
-                    scene.ollama_payload(),
-                    temperature=temperature,
-                    top_p=config.ollama.top_p,
-                    seed=seed,
+    try:
+        with service_manager:
+            for gen_idx in range(1, gens + 1):
+                print(f"\n===== Generation {gen_idx}/{gens} =====")
+                scored: List[Tuple[float, GeneSet, Path, int, int]] = []
+
+                for indiv_idx, genes in enumerate(population, start=1):
+                    if service_manager.enabled:
+                        try:
+                            service_manager.ensure_running()
+                        except OllamaServiceError as exc:
+                            print(f"[G{gen_idx} I{indiv_idx}] Ollama start error: {exc}")
+                            time.sleep(sleep_s)
+                            continue
+
+                    scene = builder.rebuild_from_genes(genes, sfw_level=sfw_level, temperature=temperature)
+                    try:
+                        caption = ollama_generate(
+                            config.ollama.url,
+                            config.ollama.model,
+                            system_prompt,
+                            scene.ollama_payload(),
+                            temperature=temperature,
+                            top_p=config.ollama.top_p,
+                            seed=seed,
+                        )
+                        caption = enforce_once(
+                            config.ollama.url,
+                            config.ollama.model,
+                            system_prompt,
+                            scene.ollama_payload(),
+                            caption,
+                            required_terms=_required_terms(config),
+                            temperature=max(0.45, temperature - 0.05),
+                            seed=seed,
+                        )
+                    except Exception as exc:  # pragma: no cover - network interaction
+                        print(f"[G{gen_idx} I{indiv_idx}] Ollama error: {exc}")
+                        time.sleep(sleep_s)
+                        continue
+
+                    bounds = scene.caption_bounds
+                    final_prompt = enforce_bounds(
+                        caption,
+                        int(bounds.get("min_words", 18)),
+                        int(bounds.get("max_words", 60)),
+                    )
+
+                    try:
+                        response = imagen_call(
+                            client,
+                            config.imagen.model,
+                            final_prompt,
+                            scene.aspect_ratio,
+                            variants=1,
+                            person_mode=config.imagen.person_mode,
+                            guidance_scale=config.imagen.guidance_scale,
+                        )
+                    except Exception as exc:  # pragma: no cover - API call
+                        print(f"[G{gen_idx} I{indiv_idx}] Imagen error: {exc}")
+                        time.sleep(sleep_s)
+                        continue
+
+                    if not getattr(response, "generated_images", None):
+                        print(f"[G{gen_idx} I{indiv_idx}] WARN: no image")
+                        time.sleep(sleep_s)
+                        continue
+
+                    indiv_id = f"G{gen_idx:02d}-I{indiv_idx:02d}"
+                    meta_base = {
+                        "id": indiv_id,
+                        "model_imagen": config.imagen.model,
+                        "person_mode": config.imagen.person_mode,
+                        "variants": 1,
+                        "seed": seed,
+                        "ollama": {
+                            "url": config.ollama.url,
+                            "model": config.ollama.model,
+                            "temperature": temperature,
+                            "top_p": config.ollama.top_p,
+                            "system_hash": sys_hash,
+                            "sfw_level": sfw_level,
+                            "style_mode": "inline",
+                        },
+                    }
+
+                    batch = save_and_score(
+                        response,
+                        writer,
+                        logger,
+                        scorer,
+                        meta_base,
+                        final_prompt,
+                        scene,
+                        session_id,
+                        gen=gen_idx,
+                        indiv=indiv_idx,
+                        w_style=w_style,
+                        w_nsfw=w_nsfw,
+                    )
+                    time.sleep(sleep_s)
+
+                    if not batch.is_empty():
+                        best = batch.best(w_style, w_nsfw)
+                        if best is not None:
+                            fitness = w_style * best.style + w_nsfw * best.nsfw
+                            scored.append((fitness, genes, best.path, best.style, best.nsfw))
+                        metrics_line = _format_metrics(batch.metrics)
+                        if metrics_line:
+                            print(f"   [metrics] {metrics_line}")
+
+                if not scored:
+                    print("[evolve] no scored individuals; stopping.")
+                    break
+
+                scored.sort(key=lambda record: record[0], reverse=True)
+                elite_n = max(1, int(round(keep * len(scored))))
+                elites = scored[:elite_n]
+                best = elites[0]
+                print(
+                    f"[evolve] elite={elite_n}, best_fitness={best[0]:.2f}, style={best[3]}, nsfw={best[4]}"
                 )
-                caption = enforce_once(
-                    config.ollama.url,
-                    config.ollama.model,
-                    system_prompt,
-                    scene.ollama_payload(),
-                    caption,
-                    required_terms=_required_terms(config),
-                    temperature=max(0.45, temperature - 0.05),
-                    seed=seed,
-                )
-            except Exception as exc:  # pragma: no cover - network interaction
-                print(f"[G{gen_idx} I{indiv_idx}] Ollama error: {exc}")
-                time.sleep(sleep_s)
-                continue
 
-            bounds = scene.caption_bounds
-            final_prompt = enforce_bounds(
-                caption,
-                int(bounds.get("min_words", 18)),
-                int(bounds.get("max_words", 60)),
-            )
-
-            try:
-                response = imagen_call(
-                    client,
-                    config.imagen.model,
-                    final_prompt,
-                    scene.aspect_ratio,
-                    variants=1,
-                    person_mode=config.imagen.person_mode,
-                    guidance_scale=config.imagen.guidance_scale,
-                )
-            except Exception as exc:  # pragma: no cover - API call
-                print(f"[G{gen_idx} I{indiv_idx}] Imagen error: {exc}")
-                time.sleep(sleep_s)
-                continue
-
-            if not getattr(response, "generated_images", None):
-                print(f"[G{gen_idx} I{indiv_idx}] WARN: no image")
-                time.sleep(sleep_s)
-                continue
-
-            indiv_id = f"G{gen_idx:02d}-I{indiv_idx:02d}"
-            meta_base = {
-                "id": indiv_id,
-                "model_imagen": config.imagen.model,
-                "person_mode": config.imagen.person_mode,
-                "variants": 1,
-                "seed": seed,
-                "ollama": {
-                    "url": config.ollama.url,
-                    "model": config.ollama.model,
-                    "temperature": temperature,
-                    "top_p": config.ollama.top_p,
-                    "system_hash": sys_hash,
-                    "sfw_level": sfw_level,
-                    "style_mode": "inline",
-                },
-            }
-
-            batch = save_and_score(
-                response,
-                writer,
-                logger,
-                scorer,
-                meta_base,
-                final_prompt,
-                scene,
-                session_id,
-                gen=gen_idx,
-                indiv=indiv_idx,
-                w_style=w_style,
-                w_nsfw=w_nsfw,
-            )
-            time.sleep(sleep_s)
-
-            if not batch.is_empty():
-                best = batch.best(w_style, w_nsfw)
-                if best is not None:
-                    fitness = w_style * best.style + w_nsfw * best.nsfw
-                    scored.append((fitness, genes, best.path, best.style, best.nsfw))
-                metrics_line = _format_metrics(batch.metrics)
-                if metrics_line:
-                    print(f"   [metrics] {metrics_line}")
-
-        if not scored:
-            print("[evolve] no scored individuals; stopping.")
-            break
-
-        scored.sort(key=lambda record: record[0], reverse=True)
-        elite_n = max(1, int(round(keep * len(scored))))
-        elites = scored[:elite_n]
-        best = elites[0]
-        print(
-            f"[evolve] elite={elite_n}, best_fitness={best[0]:.2f}, style={best[3]}, nsfw={best[4]}"
-        )
-
-        new_population: List[GeneSet] = [dict(genes) for _, genes, _, _, _ in elites]
-        while len(new_population) < pop:
-            if random.random() < xover and len(elites) >= 2:
-                parent_a = random.choice(elites)[1]
-                parent_b = random.choice(elites)[1]
-                child = crossover_genes(parent_a, parent_b)
-            else:
-                child = dict(random.choice(elites)[1])
-            for key in list(child.keys()):
-                if random.random() < mut:
-                    child[key] = mutate_gene(catalog, key, child.get(key), sfw_level, temperature)
-            new_population.append(child)
-        population = new_population[:pop]
+                new_population: List[GeneSet] = [dict(genes) for _, genes, _, _, _ in elites]
+                while len(new_population) < pop:
+                    if random.random() < xover and len(elites) >= 2:
+                        parent_a = random.choice(elites)[1]
+                        parent_b = random.choice(elites)[1]
+                        child = crossover_genes(parent_a, parent_b)
+                    else:
+                        child = dict(random.choice(elites)[1])
+                    for key in list(child.keys()):
+                        if random.random() < mut:
+                            child[key] = mutate_gene(catalog, key, child.get(key), sfw_level, temperature)
+                    new_population.append(child)
+                population = new_population[:pop]
+    except OllamaServiceError as exc:
+        print(f"[evolve] Ollama service error: {exc}")
+        return
 
     print("\n[evolve] done.")

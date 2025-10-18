@@ -22,6 +22,7 @@ ollama:
   model: qwen2.5:3b
   temperature: 0.55
   top_p: 0.9
+  manual_mode: false
 
 imagen:
   model: imagen-3.0-generate-002

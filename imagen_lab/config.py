@@ -31,6 +31,7 @@ class OllamaConfig:
     model: str
     temperature: float
     top_p: float
+    manual_mode: bool = True
 
 
 @dataclass
@@ -175,6 +176,7 @@ class PipelineConfig:
             model=str(ollama_data.get("model", "qwen2.5:3b")),
             temperature=float(ollama_data.get("temperature", 0.55)),
             top_p=float(ollama_data.get("top_p", 0.9)),
+            manual_mode=bool(ollama_data.get("manual_mode", True)),
         )
 
         imagen = ImagenConfig(
