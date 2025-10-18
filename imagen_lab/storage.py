@@ -251,6 +251,32 @@ def save_and_score(
         "history": {**history_metrics, "size": len(cache) if isinstance(cache, EmbeddingCache) else 0},
     }
 
+    if scored_images:
+        denom = float(len(scored_images))
+        mean_total = sum(float(img.style_raw) for img in scored_images) / denom
+        mean_components = {
+            "clip": sum(float(img.clip_style_raw) for img in scored_images) / denom,
+            "spec": sum(float(img.specular_raw) for img in scored_images) / denom,
+            "illu": sum(float(img.illu_bias_raw) for img in scored_images) / denom,
+        }
+        contrib_totals: Dict[str, float] = {}
+        for img in scored_images:
+            for key, value in img.style_contributions.items():
+                contrib_totals[key] = contrib_totals.get(key, 0.0) + float(value)
+        mean_contributions = {k: v / denom for k, v in contrib_totals.items()}
+        style_weights = scored_images[0].style_weights if scored_images[0].style_weights else {}
+        if not style_weights and hasattr(scorer, "current_weights"):
+            try:
+                style_weights = dict(scorer.current_weights())  # type: ignore[call-arg]
+            except Exception:
+                style_weights = {}
+        metrics["style"] = {
+            "mean_total": mean_total,
+            "mean_components": mean_components,
+            "mean_contributions": mean_contributions,
+            "weights": style_weights,
+        }
+
     for idx, scored in enumerate(scored_images):
         image_path = scored.path
         nsfw100 = scored.nsfw
@@ -277,6 +303,16 @@ def save_and_score(
                     "self_min_distance": per_image_history[idx],
                     "history_size": len(cache) if isinstance(cache, EmbeddingCache) else 0,
                 },
+            },
+            "style_breakdown": {
+                "aggregate": float(scored.style_raw),
+                "components": {
+                    "clip": float(scored.clip_style_raw),
+                    "spec": float(scored.specular_raw),
+                    "illu": float(scored.illu_bias_raw),
+                },
+                "contributions": {k: float(v) for k, v in scored.style_contributions.items()},
+                "weights": scored.style_weights,
             },
         })
         sidecar.write_text(json.dumps(side_meta, ensure_ascii=False, indent=2), encoding="utf-8")

@@ -7,7 +7,7 @@ import sqlite3
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
 import opennsfw2 as n2
@@ -16,7 +16,14 @@ from PIL import Image
 from skimage import color, filters
 import open_clip
 
-from imagen_lab.scoring import ClipTextHeadsConfig, load_clip_text_heads
+from imagen_lab.scoring import (
+    DEFAULT_STYLE_WEIGHTS,
+    ClipTextHeadsConfig,
+    StyleComposition,
+    StyleMixer,
+    WeightProfileTable,
+    load_clip_text_heads,
+)
 
 # =========================
 # Config & Text Anchors
@@ -33,7 +40,14 @@ DEFAULT_CAL_STYLE: Optional[Tuple[float, float]] = None  # например (0.3
 DEFAULT_CAL_ILLU: Optional[Tuple[float, float]] = None  # например (0.45, 0.85)
 
 # Веса итоговой style-метрики (композиция из трёх компонент)
-W_CLIP, W_SPEC, W_ILLU = 0.55, 0.35, 0.10
+W_CLIP, W_SPEC, W_ILLU = (
+    DEFAULT_STYLE_WEIGHTS["clip"],
+    DEFAULT_STYLE_WEIGHTS["spec"],
+    DEFAULT_STYLE_WEIGHTS["illu"],
+)
+
+# Версия схемы логов для SQLite/JSONL. Увеличивайте при изменении структуры записей.
+SCORES_SCHEMA_VERSION = 2
 
 
 @dataclass
@@ -80,6 +94,8 @@ class ScoreResult:
     clip_heads: Dict[str, Dict[str, Any]]
     specular_metrics: SpecularMetrics
     embedding: Optional[np.ndarray] = None
+    style_contributions: Dict[str, float] = field(default_factory=dict)
+    style_weights: Dict[str, float] = field(default_factory=dict)
 
 
 @dataclass
@@ -91,6 +107,12 @@ class ScoredImage:
     specular: int
     illu_bias: int
     embedding: Optional[np.ndarray] = None
+    style_raw: float = 0.0
+    clip_style_raw: float = 0.0
+    specular_raw: float = 0.0
+    illu_bias_raw: float = 0.0
+    style_contributions: Dict[str, float] = field(default_factory=dict)
+    style_weights: Dict[str, float] = field(default_factory=dict)
 
     def fitness(self, w_style: float, w_nsfw: float) -> float:
         return float(w_style * float(self.style) + w_nsfw * float(self.nsfw))
@@ -112,9 +134,16 @@ def _ensure_db(db_path: Path):
       clip_style REAL,
       specular REAL,
       illu_bias REAL,
-      notes TEXT
+      notes TEXT,
+      schema_version INTEGER NOT NULL DEFAULT 1
     )
     """)
+    cur.execute("PRAGMA table_info(scores)")
+    existing_columns = {row[1] for row in cur.fetchall()}
+    if "schema_version" not in existing_columns:
+        cur.execute(
+            "ALTER TABLE scores ADD COLUMN schema_version INTEGER NOT NULL DEFAULT 1"
+        )
     conn.commit()
     conn.close()
 
@@ -123,8 +152,8 @@ def _insert_db(db_path: Path, rows: List[Tuple]):
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     cur.executemany("""
-    INSERT OR REPLACE INTO scores(path, ts, nsfw, style, clip_style, specular, illu_bias, notes)
-    VALUES(?,?,?,?,?,?,?,?)
+    INSERT OR REPLACE INTO scores(path, ts, nsfw, style, clip_style, specular, illu_bias, notes, schema_version)
+    VALUES(?,?,?,?,?,?,?,?,?)
     """, rows)
     conn.commit()
     conn.close()
@@ -518,11 +547,14 @@ class DualScorer:
         batch: int = 4,
         db_path: Path | str = "scores.sqlite",
         jsonl_path: Path | str = "scores.jsonl",
-        weights: Dict[str, float] | None = None,
+        weights: Mapping[str, float] | None = None,
         tau: Optional[float] = None,
         cal_style: Optional[Tuple[float, float]] = None,
         cal_illu: Optional[Tuple[float, float]] = None,
         auto_weights: Optional[Dict[str, float]] | None = None,
+        weight_table: Optional[WeightProfileTable] = None,
+        weight_profile: str = "default",
+        persist_profile_updates: bool = False,
     ):
         # device
         if device == "auto":
@@ -539,7 +571,15 @@ class DualScorer:
         _ensure_db(self.db)
 
         # weights & params
-        self.w = self._normalize_weights(weights or {"clip": W_CLIP, "spec": W_SPEC, "illu": W_ILLU})
+        self._persist_weights = bool(persist_profile_updates)
+        self.style_mixer = StyleMixer(
+            weights=weights,
+            defaults=DEFAULT_STYLE_WEIGHTS,
+            weight_table=weight_table,
+            profile=weight_profile,
+            persist_updates=self._persist_weights,
+        )
+        self.w = dict(self.style_mixer.weights)
         self.tau = float(tau) if tau is not None else DEFAULT_TAU
         self.cal_style = cal_style if cal_style is not None else DEFAULT_CAL_STYLE
         self.cal_illu = cal_illu if cal_illu is not None else DEFAULT_CAL_ILLU
@@ -550,13 +590,6 @@ class DualScorer:
             self._apply_weight_bounds()
         self.embedding_cache = None
 
-    def _normalize_weights(self, weights: Dict[str, float]) -> Dict[str, float]:
-        total = sum(max(v, 0.0) for v in weights.values())
-        if total <= 0:
-            return {"clip": W_CLIP, "spec": W_SPEC, "illu": W_ILLU}
-        normed = {k: max(v, 0.0) / total for k, v in weights.items()}
-        return {k: normed.get(k, 0.0) for k in ("clip", "spec", "illu")}
-
     def _apply_weight_bounds(self) -> None:
         if not self._auto.enabled:
             return
@@ -566,6 +599,10 @@ class DualScorer:
         if total > 0:
             for key in self.w:
                 self.w[key] /= total
+        self._sync_style_weights(persist=self._persist_weights)
+
+    def _sync_style_weights(self, *, persist: bool = False) -> None:
+        self.w = self.style_mixer.set_weights(self.w, persist=persist)
 
     def _update_auto_weights(self, clip_style: float, specular: float, illu_bias: float) -> None:
         if not self._auto.enabled:
@@ -595,8 +632,13 @@ class DualScorer:
 
     # ---- composition ----
     def style_from_components(self, clip_style: float, specular: float, illu_bias: float) -> float:
-        v = self.w["clip"] * clip_style + self.w["spec"] * specular + self.w["illu"] * illu_bias
-        return float(max(0.0, min(1.0, v)))
+        composition = self.style_mixer.compose(clip_style, specular, illu_bias)
+        return composition.total
+
+    def compose_style(
+        self, clip_style: float, specular: float, illu_bias: float
+    ) -> StyleComposition:
+        return self.style_mixer.compose(clip_style, specular, illu_bias)
 
     def current_weights(self) -> Dict[str, float]:
         return dict(self.w)
@@ -646,7 +688,8 @@ class DualScorer:
         spec_metrics = specular_index(img)
         spec = spec_metrics.score
         nsfw = nsfw_score(path)
-        style = self.style_from_components(clip_style, spec, illu_bias)
+        composition = self.style_mixer.compose(clip_style, spec, illu_bias)
+        style = composition.total
         self._update_auto_weights(clip_style, spec, illu_bias)
 
         clip_head_payload: Dict[str, Dict[str, Any]] = {}
@@ -668,6 +711,8 @@ class DualScorer:
             clip_heads=clip_head_payload,
             specular_metrics=spec_metrics,
             embedding=embedding_vec,
+            style_contributions=composition.contributions,
+            style_weights=composition.weights,
         )
 
     # ---- batch & save ----
@@ -699,6 +744,8 @@ class DualScorer:
                         {},
                         SpecularMetrics.empty(),
                         None,
+                        {},
+                        {},
                     )
 
                 nsfw100 = int(round(result.nsfw * 100))
@@ -715,6 +762,7 @@ class DualScorer:
                 rec = {
                     "path": str(p),
                     "ts": t,
+                    "schema_version": SCORES_SCHEMA_VERSION,
                     "nsfw": nsfw100,
                     "style": style100,
                     "clip_style": cs100,
@@ -726,10 +774,24 @@ class DualScorer:
                     "specular_zonal_weighted": int(
                         round(spec_payload.get("aggregate", {}).get("weighted_score", 0.0) * 100)
                     ),
+                    "style_weights": result.style_weights,
+                    "style_contributions": result.style_contributions,
                     "notes": notes,
                 }
                 jf.write(json.dumps(rec, ensure_ascii=False) + "\n")
-                rows_db.append((str(p), t, nsfw100, style100, cs100, sp100, ib100, notes))
+                rows_db.append(
+                    (
+                        str(p),
+                        t,
+                        nsfw100,
+                        style100,
+                        cs100,
+                        sp100,
+                        ib100,
+                        notes,
+                        SCORES_SCHEMA_VERSION,
+                    )
+                )
                 embedding = None
                 if result.embedding is not None:
                     embedding = np.asarray(result.embedding, dtype=np.float32).copy()
@@ -743,6 +805,12 @@ class DualScorer:
                         specular=sp100,
                         illu_bias=ib100,
                         embedding=embedding,
+                        style_raw=float(result.style),
+                        clip_style_raw=float(result.clip_style),
+                        specular_raw=float(result.specular),
+                        illu_bias_raw=float(result.illu_bias),
+                        style_contributions=dict(result.style_contributions),
+                        style_weights=dict(result.style_weights),
                     )
                 )
 
