@@ -35,9 +35,9 @@ scoring:
   cal_style:
   cal_illu:
   weights:
-    clip: 0.55
-    spec: 0.35
-    illu: 0.10
+  weight_profiles_path: imagen_lab/scoring/weight_profiles.yaml
+  weight_profile: default
+  persist_profile_updates: false
   auto_weights:
     enabled: true
     target: 0.88

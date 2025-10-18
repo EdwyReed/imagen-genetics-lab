@@ -7,6 +7,10 @@ from typing import Any, Dict, Optional
 import yaml
 
 
+DEFAULT_WEIGHT_PROFILE_PATH = Path(__file__).with_name("scoring").joinpath("weight_profiles.yaml")
+DEFAULT_INLINE_WEIGHTS: Dict[str, float] = {"clip": 0.55, "spec": 0.35, "illu": 0.10}
+
+
 @dataclass
 class PathsConfig:
     catalog: Path
@@ -88,8 +92,11 @@ class ScoringConfig:
     tau: float = 0.07
     cal_style: Optional[tuple[float, float]] = None
     cal_illu: Optional[tuple[float, float]] = None
-    weights: Dict[str, float] = field(default_factory=lambda: {"clip": 0.55, "spec": 0.35, "illu": 0.10})
+    weights: Dict[str, float] | None = field(default_factory=lambda: dict(DEFAULT_INLINE_WEIGHTS))
     auto_weights: "AutoWeightsConfig" = field(default_factory=lambda: AutoWeightsConfig())
+    weight_profiles_path: Optional[Path] = DEFAULT_WEIGHT_PROFILE_PATH
+    weight_profile: str = "default"
+    persist_profile_updates: bool = False
 
 
 @dataclass
@@ -176,14 +183,31 @@ class PipelineConfig:
             guidance_scale=float(imagen_data.get("guidance_scale", 0.5)),
         )
 
+        weight_profiles_raw = scoring_data.get("weight_profiles_path", scoring_data.get("weight_profiles"))
+        if "weight_profiles_path" in scoring_data or "weight_profiles" in scoring_data:
+            if weight_profiles_raw in (None, "", False):
+                weight_profiles_path = None
+            else:
+                weight_profiles_path = Path(str(weight_profiles_raw))
+        else:
+            weight_profiles_path = DEFAULT_WEIGHT_PROFILE_PATH
+
+        weights_value = scoring_data.get("weights")
+        weights = dict(weights_value) if isinstance(weights_value, dict) else None
+        if weights is None and weights_value not in (None, "", False):
+            weights = dict(DEFAULT_INLINE_WEIGHTS)
+
         scoring = ScoringConfig(
             device=str(scoring_data.get("device", "auto")),
             batch_size=int(scoring_data.get("batch_size", 4)),
             tau=float(scoring_data.get("tau", 0.07)),
             cal_style=_tuple_or_none(scoring_data.get("cal_style")),
             cal_illu=_tuple_or_none(scoring_data.get("cal_illu")),
-            weights=dict(scoring_data.get("weights", {"clip": 0.55, "spec": 0.35, "illu": 0.10})),
+            weights=weights,
             auto_weights=AutoWeightsConfig.from_mapping(scoring_data.get("auto_weights")),
+            weight_profiles_path=weight_profiles_path,
+            weight_profile=str(scoring_data.get("weight_profile", "default")),
+            persist_profile_updates=bool(scoring_data.get("persist_profile_updates", False)),
         )
 
         history = HistoryConfig(

@@ -13,6 +13,7 @@ import numpy as np
 import yaml
 
 from imagen_lab.config import load_config
+from imagen_lab.scoring import DEFAULT_STYLE_WEIGHTS, WeightProfileTable
 from scorer import DualScorer, W_CLIP, W_SPEC, W_ILLU
 
 SUPPORTED_EXTS = {".jpg", ".jpeg", ".png", ".webp"}
@@ -38,11 +39,28 @@ def _load_yaml(path: Path) -> Dict:
 
 
 def reset_weights(path: Path) -> None:
+    config = load_config(path)
+    table_path = getattr(config.scoring, "weight_profiles_path", None)
+    profile_name = getattr(config.scoring, "weight_profile", "default")
+    defaults = config.scoring.weights or DEFAULT_STYLE_WEIGHTS
+    if table_path:
+        table = WeightProfileTable.load(table_path, defaults=defaults, create=True)
+        table.update_profile(profile_name, DEFAULT_STYLE_WEIGHTS, persist=True)
+
     data = _load_yaml(path)
     scoring = data.setdefault("scoring", {})
-    scoring["weights"] = {"clip": W_CLIP, "spec": W_SPEC, "illu": W_ILLU}
+    scoring["weights"] = dict(DEFAULT_STYLE_WEIGHTS)
+    if table_path:
+        scoring["weight_profiles_path"] = str(table_path)
+        scoring["weight_profile"] = profile_name
     _write_config(path, data)
-    print(json.dumps({"status": "reset", "weights": scoring["weights"]}, ensure_ascii=False, indent=2))
+    print(
+        json.dumps(
+            {"status": "reset", "weights": scoring["weights"], "profile": profile_name},
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
 
 
 def calibrate_from_directory(
@@ -53,6 +71,14 @@ def calibrate_from_directory(
     dry_run: bool,
 ) -> None:
     config = load_config(config_path)
+    weight_table = None
+    if getattr(config.scoring, "weight_profiles_path", None):
+        weight_table = WeightProfileTable.load(
+            config.scoring.weight_profiles_path,
+            defaults=config.scoring.weights or DEFAULT_STYLE_WEIGHTS,
+            create=True,
+        )
+
     scorer = DualScorer(
         device=config.scoring.device,
         batch=config.scoring.batch_size,
@@ -63,6 +89,8 @@ def calibrate_from_directory(
         cal_style=config.scoring.cal_style,
         cal_illu=config.scoring.cal_illu,
         auto_weights={"enabled": False},
+        weight_table=weight_table,
+        weight_profile=getattr(config.scoring, "weight_profile", "default"),
     )
 
     images = _collect_images(reference_dir)
@@ -97,11 +125,30 @@ def calibrate_from_directory(
         print(json.dumps({"status": "calculated", "weights": weights}, ensure_ascii=False, indent=2))
         return
 
+    table_path = getattr(config.scoring, "weight_profiles_path", None)
+    profile_name = getattr(config.scoring, "weight_profile", "default")
+    if table_path and not dry_run:
+        table = WeightProfileTable.load(
+            table_path,
+            defaults=config.scoring.weights or DEFAULT_STYLE_WEIGHTS,
+            create=True,
+        )
+        table.update_profile(profile_name, weights, persist=True)
+
     data = _load_yaml(config_path)
     scoring = data.setdefault("scoring", {})
     scoring["weights"] = weights
+    if table_path:
+        scoring["weight_profiles_path"] = str(table_path)
+        scoring["weight_profile"] = profile_name
     _write_config(config_path, data)
-    print(json.dumps({"status": "updated", "weights": weights}, ensure_ascii=False, indent=2))
+    print(
+        json.dumps(
+            {"status": "updated", "weights": weights, "profile": profile_name},
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
 
 
 def build_parser() -> argparse.ArgumentParser:

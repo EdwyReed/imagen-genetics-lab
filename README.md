@@ -57,7 +57,7 @@ Key sections:
 | `prompting`  | Required style terms and template IDs used by the scene builder when crafting Ollama payloads. |
 | `ollama`     | Endpoint, model name, default temperature, and `top_p` for caption generation. |
 | `imagen`     | Imagen model identifier, person-generation mode, and guidance scale. |
-| `scoring`    | DualScorer device, batch size, tau, calibration ranges, component weights, and optional auto-weight tuning. |
+| `scoring`    | DualScorer device, batch size, tau, calibration ranges, dynamic weight profiles, and optional auto-weight tuning. |
 | `fitness`    | Weights applied to style and NSFW scores when computing fitness. |
 | `defaults`   | Baseline values for SFW level, caption temperature, number of cycles, etc. |
 | `ga`         | Population size, number of generations, elite fraction, mutation/crossover rates, and resume strategy for genetic runs. |
@@ -118,7 +118,7 @@ All CLI options default to the values declared in `config.yaml`. See `python sma
 
 4. **Scoring & storage** (`scorer.DualScorer`, `imagen_lab.storage`)
    * Saves JPEG + JSON + TXT sidecars (with EXIF notes when `piexif` is installed).
-   * Calculates NSFW/style scores, writes them to SQLite/JSONL, and logs metadata for later analysis.
+  * Calculates NSFW/style scores, writes them to SQLite/JSONL, logs metadata, and persists per-component style breakdowns plus aggregated batch metrics.
 
 5. **Genetic evolution** (`imagen_lab.ga`, `imagen_lab.pipeline`)
    * Maintains populations of gene IDs, applies crossover/mutation, and optionally seeds from the highest-fitness prompts found in prior runs.
@@ -158,9 +158,6 @@ instead of abrupt jumps and keeps the overall style score aligned with the desir
 ```yaml
 scoring:
   weights:
-    clip: 0.55
-    spec: 0.35
-    illu: 0.10
   auto_weights:
     enabled: true
     target: 0.88
@@ -168,12 +165,13 @@ scoring:
     momentum: 0.35
 ```
 
-Tune the parameters to match your dataset; higher `momentum` reacts faster, while a smaller `ema_alpha` favours long-term stabilit
-y.
+Profiles are normalised automatically and persisted in `weight_profiles.yaml`. Use the bundled `notebooks/style_weight_profiles.ipynb` report to compare how each profile influences the weighted style score for representative component values.
+
+Tune the controller parameters to match your dataset; higher `momentum` reacts faster, while a smaller `ema_alpha` favours long-term stability.
 
 ## Calibrating or resetting weights
 
-Use `weights_tool.py` to manage the persisted weights in `config.yaml`:
+Use `weights_tool.py` to manage the active profile and inline fallback weights:
 
 ```bash
 # Reset to factory defaults
@@ -182,10 +180,8 @@ python weights_tool.py --reset
 # Estimate weights from a directory of reference images (dry run)
 python weights_tool.py --reference-dir ./golden_samples --dry-run
 
-# Solve weights and write them back to config.yaml
+# Solve weights and update the selected profile + config.yaml
 python weights_tool.py --reference-dir ./golden_samples --target 0.92
 ```
 
-The calibration pass scores every image in the directory, solves a least-squares problem so the references approach the desired st
-yle score, and writes the normalised weights back to the YAML file. Combine this with the adaptive controller for a feedback loop t
-hat converges quickly and remains steady across long runs.
+The calibration pass scores every image in the directory, solves a least-squares problem so the references approach the desired style score, and writes the normalised weights back to both the configuration file and the selected profile entry. Combine this with the adaptive controller for a feedback loop that converges quickly and remains steady across long runs.
