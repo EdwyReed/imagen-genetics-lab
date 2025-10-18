@@ -57,7 +57,7 @@ Key sections:
 | `prompting`  | Required style terms and template IDs used by the scene builder when crafting Ollama payloads. |
 | `ollama`     | Endpoint, model name, default temperature, and `top_p` for caption generation. |
 | `imagen`     | Imagen model identifier, person-generation mode, and guidance scale. |
-| `scoring`    | DualScorer device, batch size, tau, calibration ranges, and component weights. |
+| `scoring`    | DualScorer device, batch size, tau, calibration ranges, component weights, and optional auto-weight tuning. |
 | `fitness`    | Weights applied to style and NSFW scores when computing fitness. |
 | `defaults`   | Baseline values for SFW level, caption temperature, number of cycles, etc. |
 | `ga`         | Population size, number of generations, elite fraction, mutation/crossover rates, and resume strategy for genetic runs. |
@@ -136,3 +136,45 @@ All CLI options default to the values declared in `config.yaml`. See `python sma
 * The SQLite database (`scores.sqlite`) and JSONL log (`scores.jsonl`) grow over time; archive or prune them periodically.
 
 Happy experimenting!
+
+## Adaptive style weighting
+
+The `scoring.auto_weights` section enables an exponential moving-average controller that keeps the CLIP, specular and illustration
+signals in balance. When `enabled` is `true`, the scorer monitors recent batches and nudges the component weights toward the targ
+et value while respecting the configured bounds (`min_weight`, `max_weight`, etc.). This produces stable, incremental corrections
+instead of abrupt jumps and keeps the overall style score aligned with the desired glossy watercolor look.
+
+```yaml
+scoring:
+  weights:
+    clip: 0.55
+    spec: 0.35
+    illu: 0.10
+  auto_weights:
+    enabled: true
+    target: 0.88
+    ema_alpha: 0.25
+    momentum: 0.35
+```
+
+Tune the parameters to match your dataset; higher `momentum` reacts faster, while a smaller `ema_alpha` favours long-term stabilit
+y.
+
+## Calibrating or resetting weights
+
+Use `weights_tool.py` to manage the persisted weights in `config.yaml`:
+
+```bash
+# Reset to factory defaults
+python weights_tool.py --reset
+
+# Estimate weights from a directory of reference images (dry run)
+python weights_tool.py --reference-dir ./golden_samples --dry-run
+
+# Solve weights and write them back to config.yaml
+python weights_tool.py --reference-dir ./golden_samples --target 0.92
+```
+
+The calibration pass scores every image in the directory, solves a least-squares problem so the references approach the desired st
+yle score, and writes the normalised weights back to the YAML file. Combine this with the adaptive controller for a feedback loop t
+hat converges quickly and remains steady across long runs.

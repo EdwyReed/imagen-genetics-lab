@@ -59,6 +59,7 @@ def _prepare_services(config: PipelineConfig, output_dir: Optional[Path] = None)
         tau=config.scoring.tau,
         cal_style=config.scoring.cal_style,
         cal_illu=config.scoring.cal_illu,
+        auto_weights=config.scoring.auto_weights.as_dict(),
     )
     catalog = Catalog.load(config.paths.catalog)
     builder = SceneBuilder(catalog, required_terms=_required_terms(config), template_ids=config.prompting.template_ids)
