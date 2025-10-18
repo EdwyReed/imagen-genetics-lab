@@ -1,0 +1,184 @@
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any, Dict, Optional
+
+import yaml
+
+
+@dataclass
+class PathsConfig:
+    catalog: Path
+    database: Path
+    scores_jsonl: Path
+    output_dir: Path
+
+
+@dataclass
+class PromptConfig:
+    required_terms: list[str]
+    template_ids: list[str]
+
+
+@dataclass
+class OllamaConfig:
+    url: str
+    model: str
+    temperature: float
+    top_p: float
+
+
+@dataclass
+class ImagenConfig:
+    model: str
+    person_mode: str
+    guidance_scale: float = 0.5
+
+
+@dataclass
+class ScoringConfig:
+    device: str = "auto"
+    batch_size: int = 4
+    tau: float = 0.07
+    cal_style: Optional[tuple[float, float]] = None
+    cal_illu: Optional[tuple[float, float]] = None
+    weights: Dict[str, float] = field(default_factory=lambda: {"clip": 0.55, "spec": 0.35, "illu": 0.10})
+
+
+@dataclass
+class FitnessWeights:
+    style: float = 0.7
+    nsfw: float = 0.3
+
+
+@dataclass
+class RunDefaults:
+    sfw_level: float = 0.6
+    temperature: float = 0.55
+    per_cycle: int = 2
+    cycles: int = 10
+    sleep_s: float = 1.0
+    seed: Optional[int] = None
+
+
+@dataclass
+class GAConfig:
+    pop: int = 16
+    gens: int = 4
+    keep: float = 0.25
+    mut: float = 0.15
+    xover: float = 0.30
+    resume_best: bool = False
+    resume_k: int = 0
+    resume_session: Optional[str] = None
+    resume_mix: float = 0.10
+
+
+@dataclass
+class PipelineConfig:
+    paths: PathsConfig
+    prompting: PromptConfig
+    ollama: OllamaConfig
+    imagen: ImagenConfig
+    scoring: ScoringConfig
+    fitness: FitnessWeights
+    defaults: RunDefaults
+    ga: GAConfig
+
+    @classmethod
+    def from_dict(cls, raw: Dict[str, Any]) -> "PipelineConfig":
+        paths_data = raw.get("paths", {})
+        prompting_data = raw.get("prompting", {})
+        ollama_data = raw.get("ollama", {})
+        imagen_data = raw.get("imagen", {})
+        scoring_data = raw.get("scoring", {})
+        fitness_data = raw.get("fitness", {})
+        defaults_data = raw.get("defaults", {})
+        ga_data = raw.get("ga", {})
+
+        paths = PathsConfig(
+            catalog=Path(paths_data.get("catalog", "jelly-pin-up.json")),
+            database=Path(paths_data.get("database", "scores.sqlite")),
+            scores_jsonl=Path(paths_data.get("scores_jsonl", "scores.jsonl")),
+            output_dir=Path(paths_data.get("output_dir", "output")),
+        )
+
+        prompting = PromptConfig(
+            required_terms=list(prompting_data.get("required_terms", [])),
+            template_ids=list(prompting_data.get("template_ids", ["caption_v1", "caption_v2", "caption_v3", "caption_v4"])),
+        )
+
+        ollama = OllamaConfig(
+            url=str(ollama_data.get("url", "http://localhost:11434")),
+            model=str(ollama_data.get("model", "qwen2.5:3b")),
+            temperature=float(ollama_data.get("temperature", 0.55)),
+            top_p=float(ollama_data.get("top_p", 0.9)),
+        )
+
+        imagen = ImagenConfig(
+            model=str(imagen_data.get("model", "imagen-3.0-generate-002")),
+            person_mode=str(imagen_data.get("person_mode", "allow_adult")),
+            guidance_scale=float(imagen_data.get("guidance_scale", 0.5)),
+        )
+
+        scoring = ScoringConfig(
+            device=str(scoring_data.get("device", "auto")),
+            batch_size=int(scoring_data.get("batch_size", 4)),
+            tau=float(scoring_data.get("tau", 0.07)),
+            cal_style=_tuple_or_none(scoring_data.get("cal_style")),
+            cal_illu=_tuple_or_none(scoring_data.get("cal_illu")),
+            weights=dict(scoring_data.get("weights", {"clip": 0.55, "spec": 0.35, "illu": 0.10})),
+        )
+
+        fitness = FitnessWeights(
+            style=float(fitness_data.get("style", 0.7)),
+            nsfw=float(fitness_data.get("nsfw", 0.3)),
+        )
+
+        defaults = RunDefaults(
+            sfw_level=float(defaults_data.get("sfw_level", 0.6)),
+            temperature=float(defaults_data.get("temperature", 0.55)),
+            per_cycle=int(defaults_data.get("per_cycle", 2)),
+            cycles=int(defaults_data.get("cycles", 10)),
+            sleep_s=float(defaults_data.get("sleep_s", 1.0)),
+            seed=defaults_data.get("seed"),
+        )
+
+        ga = GAConfig(
+            pop=int(ga_data.get("pop", 16)),
+            gens=int(ga_data.get("gens", 4)),
+            keep=float(ga_data.get("keep", 0.25)),
+            mut=float(ga_data.get("mut", 0.15)),
+            xover=float(ga_data.get("xover", 0.30)),
+            resume_best=bool(ga_data.get("resume_best", False)),
+            resume_k=int(ga_data.get("resume_k", 0)),
+            resume_session=ga_data.get("resume_session"),
+            resume_mix=float(ga_data.get("resume_mix", 0.10)),
+        )
+
+        return cls(
+            paths=paths,
+            prompting=prompting,
+            ollama=ollama,
+            imagen=imagen,
+            scoring=scoring,
+            fitness=fitness,
+            defaults=defaults,
+            ga=ga,
+        )
+
+
+def _tuple_or_none(value: Any) -> Optional[tuple[float, float]]:
+    if value is None:
+        return None
+    if isinstance(value, (list, tuple)) and len(value) == 2:
+        return float(value[0]), float(value[1])
+    return None
+
+
+def load_config(path: Path) -> PipelineConfig:
+    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError("Configuration file must contain a mapping at the top level")
+    return PipelineConfig.from_dict(data)

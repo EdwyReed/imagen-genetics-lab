@@ -58,11 +58,11 @@ PHOTO_TEXTS = [
 _CLIP_ARCH = ("ViT-B-32", "openai")  # компактная и дружелюбная к VRAM
 
 # Температура softmax для повышения контраста классов (ниже — контрастнее)
-TAU: float = 0.07
+DEFAULT_TAU: float = 0.07
 
 # Калибровка распределений (опционально). Можно проставить (p20, p80) после быстрых измерений.
-CAL_STYLE: Optional[Tuple[float, float]] = None  # например (0.35, 0.75)
-CAL_ILLU: Optional[Tuple[float, float]] = None  # например (0.45, 0.85)
+DEFAULT_CAL_STYLE: Optional[Tuple[float, float]] = None  # например (0.35, 0.75)
+DEFAULT_CAL_ILLU: Optional[Tuple[float, float]] = None  # например (0.45, 0.85)
 
 # Веса итоговой style-метрики (композиция из трёх компонент)
 W_CLIP, W_SPEC, W_ILLU = 0.55, 0.35, 0.10
@@ -218,7 +218,13 @@ def _calibrate(p: float, cal: Optional[Tuple[float, float]]) -> float:
 
 
 @torch.inference_mode()
-def clip_style_and_illu(clip: ClipBackend, img: Image.Image) -> Tuple[float, float]:
+def clip_style_and_illu(
+    clip: ClipBackend,
+    img: Image.Image,
+    tau: float = DEFAULT_TAU,
+    cal_style: Optional[Tuple[float, float]] = DEFAULT_CAL_STYLE,
+    cal_illu: Optional[Tuple[float, float]] = DEFAULT_CAL_ILLU,
+) -> Tuple[float, float]:
     """
     Возвращает:
       clip_style ∈ [0..1] — вероятность «watercolor glossy pin-up» против анти-анкоров,
@@ -228,13 +234,13 @@ def clip_style_and_illu(clip: ClipBackend, img: Image.Image) -> Tuple[float, flo
     with torch.amp.autocast('cuda', enabled=True, cache_enabled=True):
         sp = (im @ clip.style_pos.T)           # (1, Ks)
         sn = (im @ clip.style_neg.T)           # (1, Kn)
-        cs = _softmax_prob(sp, sn, TAU)
-        cs = _calibrate(cs, CAL_STYLE)
+        cs = _softmax_prob(sp, sn, tau)
+        cs = _calibrate(cs, cal_style)
 
         ip = (im @ clip.illu_pos.T)            # (1, Ki)
         ineg = (im @ clip.illu_neg.T)          # (1, Kj)
-        ib = _softmax_prob(ip, ineg, TAU)
-        ib = _calibrate(ib, CAL_ILLU)
+        ib = _softmax_prob(ip, ineg, tau)
+        ib = _calibrate(ib, cal_illu)
 
     return cs, ib
 
@@ -297,13 +303,10 @@ class DualScorer:
         _ensure_db(self.db)
 
         # weights & params
-        global TAU, CAL_STYLE, CAL_ILLU
         self.w = weights or {"clip": W_CLIP, "spec": W_SPEC, "illu": W_ILLU}
-        self.tau = float(tau) if tau is not None else TAU
-        # локальная переустановка глобалок (если заданы)
-        TAU = self.tau
-        CAL_STYLE = cal_style if cal_style is not None else CAL_STYLE
-        CAL_ILLU = cal_illu if cal_illu is not None else CAL_ILLU
+        self.tau = float(tau) if tau is not None else DEFAULT_TAU
+        self.cal_style = cal_style if cal_style is not None else DEFAULT_CAL_STYLE
+        self.cal_illu = cal_illu if cal_illu is not None else DEFAULT_CAL_ILLU
 
     # ---- composition ----
     def style_from_components(self, clip_style: float, specular: float, illu_bias: float) -> float:
@@ -317,7 +320,13 @@ class DualScorer:
           nsfw, style, clip_style, specular, illu_bias   (все — 0..1)
         """
         img = Image.open(path).convert("RGB")
-        clip_style, illu_bias = clip_style_and_illu(self.clip, img)
+        clip_style, illu_bias = clip_style_and_illu(
+            self.clip,
+            img,
+            tau=self.tau,
+            cal_style=self.cal_style,
+            cal_illu=self.cal_illu,
+        )
         spec = specular_index(img)
         nsfw = nsfw_score(path)
         style = self.style_from_components(clip_style, spec, illu_bias)
