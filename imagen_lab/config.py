@@ -98,6 +98,7 @@ class ScoringConfig:
     weight_profiles_path: Optional[Path] = DEFAULT_WEIGHT_PROFILE_PATH
     weight_profile: str = "default"
     persist_profile_updates: bool = False
+    composition_metrics: bool = True
 
 
 @dataclass
@@ -210,6 +211,7 @@ class PipelineConfig:
             weight_profiles_path=weight_profiles_path,
             weight_profile=str(scoring_data.get("weight_profile", "default")),
             persist_profile_updates=bool(scoring_data.get("persist_profile_updates", False)),
+            composition_metrics=bool(scoring_data.get("composition_metrics", True)),
         )
 
         history = HistoryConfig(

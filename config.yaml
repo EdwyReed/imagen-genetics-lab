@@ -44,6 +44,7 @@ scoring:
     target: 0.88
     ema_alpha: 0.25
     momentum: 0.35
+  composition_metrics: true
 
 history:
   enabled: true
