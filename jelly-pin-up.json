@@ -1,0 +1,409 @@
+{
+  "version": "2.6-gloss",
+  "purpose": "Master object for building glossy, jelly-art watercolor pin-up captions in a hyper-specular, cover-girl vibe. Output 1–2 concise sentences; restate only concrete scene details.",
+  "style_controller": {
+    "aesthetic": "Lacquered watercolor jelly-art with chrome-wet speculars",
+    "paper_texture": true,
+    "watercolor": { "blooms": "tight", "backruns": "subtle", "edge_darkening": "pearl ring" },
+    "highlights": { "broad_shine": true, "micro_seeds": true, "rim_wet": true, "flare_sparkles": "tiny, frequent" },
+    "subsurface_glow": ["ears","cheeks","fingers","knees","shoulders"],
+    "palette_preference": "sherbet pastels with neon or pearlescent accents",
+    "sfw": true,
+    "background_norm": "clean, uncluttered, airy",
+    "glam_level_hint": "ultra studio gloss, boudoir-safe, magazine pin-up",
+    "gloss_pipeline": {
+      "specular_intensity": "high",
+      "highlight_count": "many",
+      "hotspot_size": "small-to-medium",
+      "wet_sheen_layer": "enabled",
+      "bokeh_droplets": "enabled",
+      "caustic_ripples": "soft"
+    }
+  },
+
+  "palettes": [
+    { "id":"sherbet_core","name":"Sherbet Core","colors":[
+      {"name":"Mint","hex":"#7FE7C6"},{"name":"Peach","hex":"#FFC2A1"},
+      {"name":"Coral","hex":"#FF7F7F"},{"name":"Bubble-gum Pink","hex":"#FFA7D1"}], "notes":"default pastel-neon split" },
+    { "id":"ice_pop","name":"Ice Pop","colors":[
+      {"name":"Aqua","hex":"#6FE3E1"},{"name":"Lemon","hex":"#FFE471"},
+      {"name":"Raspberry","hex":"#FF5C8A"},{"name":"Lavender","hex":"#B9A8FF"}], "notes":"cooler brights" },
+    { "id":"tropical_soda","name":"Tropical Soda","colors":[
+      {"name":"Lime","hex":"#7EE36B"},{"name":"Mango","hex":"#FFB547"},
+      {"name":"Dragonfruit","hex":"#FF3F9E"},{"name":"Blue Curaçao","hex":"#1EC1FF"}], "notes":"high-contrast candy" },
+    { "id":"cotton_candy","name":"Cotton Candy","colors":[
+      {"name":"Powder Pink","hex":"#F7C7D9"},{"name":"Baby Blue","hex":"#B7E0FF"},
+      {"name":"Cream","hex":"#FFF0D9"},{"name":"Pearlescent","hex":"#F7F9FB"}], "notes":"soft airy" },
+    { "id":"sunset_fizz","name":"Sunset Fizz","colors":[
+      {"name":"Apricot","hex":"#FFB08A"},{"name":"Rose","hex":"#FF7AAE"},
+      {"name":"Orchid","hex":"#C07CFF"},{"name":"Teal","hex":"#2BC2C6"}], "notes":"warm-cool split" },
+    { "id":"blush_noir","name":"Blush Noir","colors":[
+      {"name":"Mauve Smoke","hex":"#C9A0B3"},{"name":"Dusty Rose","hex":"#DA9AA8"},
+      {"name":"Ink","hex":"#1E2230"},{"name":"Pearl Mist","hex":"#F3F6F9"}], "notes":"moody romantic" },
+    { "id":"sour_candy","name":"Sour Candy","colors":[
+      {"name":"Electric Lime","hex":"#B6FF2E"},{"name":"Shock Pink","hex":"#FF2EBF"},
+      {"name":"Pop Orange","hex":"#FF7A00"},{"name":"Blue Ice","hex":"#66D1FF"}], "notes":"neon punch" },
+    { "id":"rose_milk","name":"Rose Milk","colors":[
+      {"name":"Blush","hex":"#F2BAC9"},{"name":"Milk","hex":"#FFF6F0"},
+      {"name":"Tea","hex":"#E6C4A8"},{"name":"Pistachio","hex":"#CFE8C3"}], "notes":"dessert softs" },
+    { "id":"chrome_sherbet","name":"Chrome Sherbet","colors":[
+      {"name":"Pearl White","hex":"#F5F8FB"},{"name":"Opal","hex":"#E8F0FF"},
+      {"name":"Candy Pink","hex":"#FF9BC4"},{"name":"Citrus Pop","hex":"#FFD166"}], "notes":"pearlescent base for high speculars" }
+  ],
+
+  "lighting_presets": [
+    {"id":"softbox_front","desc":"broad soft key from camera front; faint wet rim"},
+    {"id":"rim_duo","desc":"dim key; bright bilateral rim lights that pop gloss"},
+    {"id":"window_morning","desc":"warm high-left window key; cool low-right bounce"},
+    {"id":"top_pool","desc":"top-down butter pool; specular cluster on shoulders/cheeks"},
+    {"id":"back_glow","desc":"backlit halo through translucent fabric; gentle front fill"},
+    {"id":"back_rim_haze","desc":"low backlight through haze; soft contour shimmer"},
+    {"id":"warm_dusk","desc":"late-sun amber wash; slow falloff"},
+    {"id":"neon_reflect","desc":"pastel neon edge reflections; glossy accents"},
+    {"id":"candle_fill","desc":"flicker-like warm fill; deep velvety shadows"},
+    {"id":"silver_bounce","desc":"silver card bounce from below; luminous cheek pop"},
+    {"id":"side_slit","desc":"narrow side slit-light; ribbon highlight along arms"},
+    {"id":"rainy_window","desc":"cool backlight through wet glass; sparkly bokeh"},
+    {"id":"gel_duotone","desc":"two-gel split, warm/cool; subtle sheen"},
+    {"id":"soft_top_cone","desc":"soft cone from above; collarbone emphasis"},
+    {"id":"nightbar","desc":"bar-style practicals; glossy lips catchlight"},
+    {"id":"beauty_dish_low","desc":"low beauty dish; punchy catchlights; creamy falloff"},
+    {"id":"prism_scatter","desc":"hard key through prism; candy flares"},
+    {"id":"lcd_glow","desc":"screen-blue fill; magenta rim; nocturnal vibe"},
+    { "id":"ring_triplet", "desc":"triple ringlight stack; multiple catchlights; liquid pop" },
+    { "id":"oil_spill_specular", "desc":"polarized key on glossy skin; rainbow edges; micro hotspots" },
+    { "id":"caustic_ripples", "desc":"water caustics projected; moving highlights; dewy lift" },
+    { "id":"mirror_box", "desc":"soft key into mirror box; dense specular clusters" }
+  ],
+
+  "backgrounds": [
+    {"id":"clean_air","desc":"smooth gradient; faint droplets/bokeh only"},
+    {"id":"poster_blank","desc":"flat pastel wall; single floor line"},
+    {"id":"studio_cyclo","desc":"seamless cyclorama; soft falloff vignette"},
+    {"id":"sunstrip","desc":"single diagonal window-shadow bar on blank set"},
+    {"id":"sheer_curtain","desc":"sun through sheer curtain; milky haze"},
+    {"id":"rain_window","desc":"wet window glass; soft city blur"},
+    {"id":"neon_wall","desc":"pastel neon sign glow; abstract letters"},
+    {"id":"silk_drape","desc":"folded silk drape; pearly gradient"},
+    {"id":"paper_fans","desc":"oversized paper fans; airy folds"},
+    {"id":"powder_cloud","desc":"cosmetic powder haze; soft grain"},
+    {"id":"mirror_slice","desc":"narrow mirror strip; reflections only"},
+    {"id":"shoji_light","desc":"backlit shoji grid; warm paper glow"},
+    {"id":"frosted_panel","desc":"frosted acrylic panel; soft silhouettes"},
+    {"id":"confetti_soft","desc":"slow confetti drift; shallow depth"},
+    {"id":"bubble_bath","desc":"macro bubble bokeh; pearly spheres"},
+    { "id":"chrome_tiles", "desc":"small chrome tiles; liquid reflections" },
+    { "id":"wet_acrylic", "desc":"wet acrylic sheet; pearly streaks and flares" },
+    { "id":"candy_grad", "desc":"high-key gradient with candy brights; glossy vignette" }
+  ],
+
+  "camera": {
+    "angles": [
+      {"id":"eye_34","desc":"eye-level, three-quarter view","nsfw":0.22},
+      {"id":"slightly_above","desc":"slightly above eye level for cute emphasis","nsfw":0.24},
+      {"id":"low_glam","desc":"low angle for leg elongation","nsfw":0.45},
+      {"id":"top_34","desc":"top-down three-quarter, compact pose","nsfw":0.28},
+      {"id":"over_shoulder_low","desc":"over-shoulder with low camera; elongated lines","nsfw":0.42},
+      {"id":"floor_peek","desc":"from floor height; long silhouette","nsfw":0.48},
+      {"id":"close_canted","desc":"slight dutch tilt; dynamic crop","nsfw":0.38},
+      {"id":"profile_near","desc":"tight side profile; soft background","nsfw":0.30},
+      {"id":"waist_high","desc":"camera at waist height; assertive stance","nsfw":0.40},
+      {"id":"hip_line","desc":"angle along hip line; tapered perspective","nsfw":0.50}
+    ],
+    "framing": [
+      {"id":"close_43","ratio":"4:3","desc":"close portrait or waist-up","nsfw":0.30},
+      {"id":"medium_34","ratio":"3:4","desc":"medium/full three-quarter","nsfw":0.38},
+      {"id":"wide_169","ratio":"16:9","desc":"cinematic wide with negative space","nsfw":0.18},
+      {"id":"tall_916","ratio":"9:16","desc":"full-height mobile poster","nsfw":0.42},
+      {"id":"square_11","ratio":"1:1","desc":"centered composition","nsfw":0.20},
+      {"id":"macro_detail","ratio":"4:3","desc":"tight macro on lips, earrings, collarbone or hands over fabric","nsfw":0.42}
+    ],
+    "lenses": [
+      {"id":"portrait_85","desc":"85mm equivalent; creamy compression","nsfw":0.30},
+      {"id":"standard_50","desc":"50mm equivalent; natural proportion","nsfw":0.22},
+      {"id":"mild_tele_105","desc":"105mm; extra gloss separation","nsfw":0.34},
+      {"id":"wide_35","desc":"35mm; energetic perspective","nsfw":0.36}
+    ],
+    "depth": [
+      {"id":"cream_f1_8","desc":"very shallow depth; eyelashes sharp; background jelly","nsfw":0.36},
+      {"id":"soft_f2_8","desc":"soft background; sparkling speculars","nsfw":0.32},
+      {"id":"crisp_f4","desc":"balanced subject isolation; readable props","nsfw":0.22}
+    ]
+  },
+
+  "moods": [
+    {"id":"playful_fresh","words":["playful","fresh","flirty","sunlit"],"nsfw":0.28},
+    {"id":"sweet_cool","words":["sweet","cool","breezy","sparkling"],"nsfw":0.22},
+    {"id":"retro_chic","words":["retro","chic","poster-ready","clean"],"nsfw":0.26},
+    {"id":"sporty_cute","words":["sporty","cute","upbeat","bright"],"nsfw":0.24},
+    {"id":"soft_glow","words":["soft","intimate","warm","dreamy"],"nsfw":0.36},
+    {"id":"midnight_charm","words":["moody","magnetic","slow","sultry"],"nsfw":0.44},
+    {"id":"after_rain","words":["fresh","dewy","translucent","calm"],"nsfw":0.24},
+    {"id":"tease_light","words":["cheeky","witty","bold","sparkly"],"nsfw":0.42},
+    {"id":"powder_room","words":["velvet","powdery","hushed","glossy"],"nsfw":0.32},
+    {"id":"candy_heat","words":["juicy","tempting","bold","lickable"],"nsfw":0.48},
+    {"id":"noir_mousse","words":["mysterious","creamy","magnetic","slow-burn"],"nsfw":0.46},
+    {"id":"covergirl_wink","words":["cover-ready","charming","teasing","classy"],"nsfw":0.30}
+  ],
+
+  "actions": [
+    {"id":"adjust_sunglasses","desc":"adjusting sunglasses at temple","nsfw":0.16},
+    {"id":"peace_near_cheek","desc":"peace sign close to cheek with wink","nsfw":0.18},
+    {"id":"tie_sneaker","desc":"tying a sneaker lace; glance up","nsfw":0.26},
+    {"id":"sip_straw","desc":"holding bottle with striped straw near lips","nsfw":0.36},
+    {"id":"hem_hold","desc":"holding skirt hem against a breeze (tasteful)","nsfw":0.38},
+    {"id":"blow_kiss","desc":"small air-kiss gesture","nsfw":0.28},
+    {"id":"lip_bite","desc":"gentle lip bite; sidelong glance","nsfw":0.44},
+    {"id":"neckline_adjust","desc":"adjusting neckline strap, casual","nsfw":0.40},
+    {"id":"collarbone_trace","desc":"fingertips tracing collarbone","nsfw":0.42},
+    {"id":"button_pause","desc":"pausing with a finger near button","nsfw":0.34},
+    {"id":"zip_pull","desc":"pulling zipper tab slightly; playful","nsfw":0.42},
+    {"id":"skirt_swish","desc":"swishing skirt edge","nsfw":0.34},
+    {"id":"strap_settle","desc":"settling a narrow strap on shoulder","nsfw":0.36},
+    {"id":"glasses_lower","desc":"lowering sunglasses; direct eye contact","nsfw":0.36},
+    {"id":"ribbon_tease","desc":"pulling at a bow tail; coy grin","nsfw":0.38},
+    {"id":"tug_hem","desc":"tugging hem down against breeze; playful","nsfw":0.40},
+    {"id":"off_shoulder_shrug","desc":"shifting jacket off one shoulder; composed","nsfw":0.44},
+    {"id":"garter_snap_over_tights","desc":"snapping decorative garter strap worn over opaque tights","nsfw":0.48},
+    {"id":"zip_slide_back","desc":"sliding side/back zipper up while looking over shoulder","nsfw":0.46},
+    {"id":"robe_cinch","desc":"cinching sheer robe belt over opaque base","nsfw":0.42},
+    { "id":"spritz_mist", "desc":"spritzing fine face mist; droplets sparkle", "nsfw":0.26 },
+    { "id":"umbrella_clear", "desc":"tilting a clear umbrella; playful glance", "nsfw":0.22 }
+  ],
+
+  "poses": [
+    {"id":"stool_cross_leg","desc":"seated on high stool; legs crossed at knee; one hand on seat","nsfw":0.32},
+    {"id":"recline_elbow","desc":"recline on one elbow; upper leg crossed forward","nsfw":0.40},
+    {"id":"kneel_profile","desc":"kneeling side profile; hips on heels; torso twist to camera","nsfw":0.38},
+    {"id":"contrapposto","desc":"standing contrapposto; front toe pointed; hand on hip","nsfw":0.34},
+    {"id":"cube_s_curve","desc":"S-curve sit on cube; lean back on palms","nsfw":0.40},
+    {"id":"barstool_hook","desc":"bar stool; heel on lower rung; forearm on thigh","nsfw":0.38},
+    {"id":"arch_back_half_kneel","desc":"half-kneel with arched back; hands brushing hair","nsfw":0.44},
+    {"id":"sit_forward_touch","desc":"seated forward lean; fingertips resting on thigh","nsfw":0.42},
+    {"id":"fingertip_trace","desc":"one hand tracing neckline; relaxed","nsfw":0.40},
+    {"id":"fabric_pull","desc":"lightly pulling hem in playful motion","nsfw":0.40},
+    {"id":"floor_sprawl","desc":"on back, knees up; one arm behind head","nsfw":0.44},
+    {"id":"ankle_reach","desc":"standing, reaching to adjust ankle strap","nsfw":0.38},
+    {"id":"lounge_arc","desc":"lounging sideways; spine arc; support on forearm","nsfw":0.42},
+    {"id":"chair_reverse","desc":"straddling chair back; folded arms over top","nsfw":0.40},
+    {"id":"heel_dip","desc":"seated; dipping heel out of shoe","nsfw":0.38},
+    {"id":"handrail_arc","desc":"light hold on rail; back arch; glance sideways","nsfw":0.40},
+    {"id":"mirror_turn","desc":"half-turn to mirror; head toward camera","nsfw":0.36},
+    {"id":"palm_brace","desc":"leaning forward; palms on tabletop","nsfw":0.42},
+    {"id":"back_on_wall_slide","desc":"back slide on wall; chin tilt","nsfw":0.40},
+    {"id":"floor_catstretch","desc":"knees and elbows; long cat stretch; head tilt","nsfw":0.46},
+    {"id":"jacket_off_shoulders","desc":"standing; jacket draped off both shoulders; composed posture","nsfw":0.46},
+    {"id":"bridge_arc","desc":"supine mini-bridge; gentle arch; composed face","nsfw":0.48},
+    {"id":"chaise_centerfold","desc":"lounging on chaise; one knee up; torso twist to camera","nsfw":0.46},
+    {"id":"doorframe_lean","desc":"leaning in a doorway; one foot to jamb; shoulders back","nsfw":0.42},
+    { "id":"knees_together_sit","desc":"seated, knees together, hands on lap; demure pin-up","nsfw":0.26 }
+  ],
+
+  "props": [
+    {"id":"vanity_mirror","desc":"small vanity mirror; chrome edge","nsfw":0.30},
+    {"id":"bead_curtain","desc":"beaded curtain strands","nsfw":0.34},
+    {"id":"fan_hand","desc":"folding hand fan","nsfw":0.24},
+    {"id":"silk_ribbon","desc":"long silk ribbon to play with","nsfw":0.28},
+    {"id":"pearls_loop","desc":"loop of pearls; hands entwined","nsfw":0.32},
+    {"id":"mirror_tile","desc":"small mirror tile for reflections","nsfw":0.34},
+    {"id":"lollipop_big","desc":"oversized lollipop; candy cue","nsfw":0.36},
+    {"id":"soda_bottle","desc":"retro soda bottle with striped straw","nsfw":0.30},
+    {"id":"soda_can_condense","desc":"cold can with condensation beads","nsfw":0.34},
+    {"id":"powder_puff","desc":"oversize powder puff prop","nsfw":0.18},
+    {"id":"stool_acrylic","desc":"clear acrylic stool","nsfw":0.20},
+    { "id":"clear_umbrella", "desc":"clear bubble umbrella; raindrop bokeh", "nsfw":0.18 },
+    { "id":"chrome_ball", "desc":"small chrome sphere for reflections", "nsfw":0.22 },
+    { "id":"lip_gloss_tube", "desc":"tiny gloss tube; shine cue", "nsfw":0.20 }
+  ],
+
+  "wardrobe": {
+    "tops": [
+      {"id":"cami_satin","desc":"satin camisole with narrow straps","nsfw":0.36},
+      {"id":"mesh_overlay","desc":"light mesh overlay top over bralette","nsfw":0.38},
+      {"id":"wrap_cropped","desc":"cropped wrap top; v-neck; clingy jersey","nsfw":0.36},
+      {"id":"off_shoulder_knit","desc":"off-shoulder knit; snug cuffs","nsfw":0.36},
+      {"id":"bustier_soft","desc":"soft structured top with smooth seams","nsfw":0.40},
+      {"id":"corset_gentle","desc":"gentle corset-inspired top; modest coverage","nsfw":0.40},
+      {"id":"one_shoulder_jersey","desc":"one-shoulder jersey top; clean line","nsfw":0.32},
+      {"id":"wetlook_tee_over_bra","desc":"thin tee with wet-look effect over opaque bra","nsfw":0.44},
+      {"id":"sheer_robe_over_cami","desc":"sheer robe worn over opaque camisole","nsfw":0.40},
+      {"id":"balconette_opaque","desc":"opaque balconette-style top; secure cups","nsfw":0.44},
+      {"id":"corset_cups_opaque","desc":"structured corset-style top with opaque cups","nsfw":0.46},
+      {"id":"latex_panel_bustier","desc":"fashion bustier with latex shine panels; opaque","nsfw":0.46}
+    ],
+    "bottoms": [
+      {"id":"wrap_skirt","desc":"light wrap skirt with slit suggestion","nsfw":0.38},
+      {"id":"silk_shorts","desc":"silky shorts; gentle sheen","nsfw":0.34},
+      {"id":"flippy_skirt","desc":"flippy mini skirt; clean hem","nsfw":0.38},
+      {"id":"pleated_skater","desc":"pleated skater skirt","nsfw":0.34},
+      {"id":"slit_midi_suggest","desc":"midi skirt; suggestion of side slit; tasteful","nsfw":0.34},
+      {"id":"maxi_thigh_suggest","desc":"flowy maxi with high-slit suggestion; secure lining","nsfw":0.40},
+      {"id":"satin_shorts_highcut","desc":"high-cut satin shorts; lined; secure","nsfw":0.42}
+    ],
+    "dresses": [
+      {"id":"wrap_dress","desc":"wrap dress with soft V-neck","nsfw":0.34},
+      {"id":"slip_dress","desc":"flowy satin slip dress, knee length, soft shine","nsfw":0.36},
+      {"id":"halter_dress","desc":"halter dress; retro waistline","nsfw":0.32},
+      {"id":"ruched_midi","desc":"ruched jersey midi; hugs curves tastefully","nsfw":0.34},
+      {"id":"backless_modest","desc":"modest backless dress with secure front coverage","nsfw":0.38},
+      {"id":"plunge_secure","desc":"deep plunge dress with fashion tape; opaque coverage","nsfw":0.46}
+    ],
+    "one_piece": [
+      {"id":"retro_swimsuit","desc":"retro one-piece swimsuit","nsfw":0.38},
+      {"id":"bodysuit_satin","desc":"satin bodysuit under sheer shirt","nsfw":0.40},
+      {"id":"leotard_modest","desc":"modest dance leotard; matte","nsfw":0.28},
+      {"id":"onepiece_cutout_safe","desc":"one-piece with safe side cutouts over opaque mesh","nsfw":0.44},
+      {"id":"teddy_opaque","desc":"opaque teddy-style one-piece; fashion seams","nsfw":0.46},
+      {"id":"bikini_highwaist_opaque","desc":"high-waist bikini set with structured opaque top","nsfw":0.48}
+    ],
+    "outerwear": [
+      {"id":"windbreaker_translucent","desc":"translucent windbreaker; pastel gradient","nsfw":0.28},
+      {"id":"shawl_silk","desc":"silk shawl draped","nsfw":0.26},
+      {"id":"feather_bolero","desc":"soft feather bolero; hint of glamour","nsfw":0.28},
+      {"id":"coat_off_shoulders","desc":"coat draped off shoulders; arms free","nsfw":0.42},
+      {"id":"robe_sheer_glam","desc":"sheer chiffon robe, tied over opaque base","nsfw":0.42},
+      { "id":"vinyl_trench_opaque","desc":"opaque vinyl trench; mirror shine", "nsfw":0.30 }
+    ],
+    "footwear": [
+      {"id":"ankle_strap_heels","desc":"ankle-strap heels; delicate buckle","nsfw":0.24},
+      {"id":"kitten_slingback","desc":"kitten-heel slingbacks; petite","nsfw":0.18},
+      {"id":"stiletto_min","desc":"minimal stiletto heel; elegant","nsfw":0.28},
+      {"id":"mules_slide","desc":"slide mules; low heel","nsfw":0.16}
+    ],
+    "hosiery": [
+      {"id":"stockings_sheer","desc":"sheer stockings with garter hint","nsfw":0.42},
+      {"id":"back_seam_tights","desc":"retro back-seam tights","nsfw":0.40},
+      {"id":"fishnet_microfine","desc":"micro-fishnet tights; tasteful density","nsfw":0.42},
+      {"id":"garter_over_tights","desc":"decorative garter straps worn over opaque tights","nsfw":0.48},
+      {"id":"stayups_opaque_band","desc":"opaque stay-up stockings with satin band","nsfw":0.46}
+    ],
+    "gloves": [
+      {"id":"mesh_gloves","desc":"sheer mesh gloves; wrist length","nsfw":0.28},
+      {"id":"opera_gloves","desc":"long satin gloves","nsfw":0.26},
+      {"id":"lace_gloves","desc":"lace gloves; delicate pattern; modest","nsfw":0.28},
+      {"id":"latex_gloves_fashion","desc":"fashion latex gloves; glossy; wrist length","nsfw":0.34}
+    ],
+    "headwear": [
+      {"id":"veil_dot","desc":"small dotted veil","nsfw":0.28},
+      {"id":"visor_clear","desc":"clear visor; glossy edge highlights","nsfw":0.18},
+      {"id":"bunny_headband_clean","desc":"clean satin bow headband (pin-up nod)","nsfw":0.36}
+    ],
+    "jewelry": [
+      {"id":"choker_ribbon","desc":"thin ribbon choker","nsfw":0.30},
+      {"id":"anklet_delicate","desc":"delicate anklet","nsfw":0.26},
+      {"id":"body_chain_subtle","desc":"very subtle body chain over fabric","nsfw":0.30},
+      {"id":"waist_chain_over_dress","desc":"waist chain draped over opaque dress","nsfw":0.32}
+    ],
+    "belts": [
+      {"id":"chain_belt","desc":"light chain belt; drape","nsfw":0.26},
+      {"id":"corset_belt_soft","desc":"soft corset belt; fabric; non-revealing","nsfw":0.26},
+      {"id":"garter_belt_over_tights","desc":"decorative garter belt worn over opaque tights","nsfw":0.48}
+    ],
+    "scarves": [
+      {"id":"neck_scarf","desc":"thin neck scarf","nsfw":0.12},
+      {"id":"silk_square","desc":"silk square scarf; loose knot","nsfw":0.12}
+    ]
+  },
+
+  "wardrobe_sets": [
+    {"id":"centerfold_classy","items":["balconette_opaque","waist_chain_over_dress","back_seam_tights","stiletto_min","bead_curtain"],"note":"glossy studio glam; opaque cups","nsfw":0.46},
+    {"id":"wet_satin_suite","items":["wetlook_tee_over_bra","maxi_thigh_suggest","stiletto_min","choker_ribbon","mirror_tile"],"note":"wet gloss, safe layering","nsfw":0.44},
+    {"id":"boudoir_robe","items":["teddy_opaque","robe_sheer_glam","stayups_opaque_band","ankle_strap_heels","vanity_mirror"],"note":"boudoir-safe, fully covered with opaque base","nsfw":0.48},
+    {"id":"playroom_pinup","items":["corset_cups_opaque","satin_shorts_highcut","garter_over_tights","latex_gloves_fashion","pearls_loop"],"note":"editorial pin-up, no nudity","nsfw":0.48},
+    {"id":"daylight_beach_poster","items":["bikini_highwaist_opaque","sheer_robe_over_cami","visor_clear","stiletto_min","soda_can_condense"],"note":"sunlit siren; opaque swim","nsfw":0.48},
+    { "id":"cover_siren", "items":["vinyl_trench_opaque","wrap_dress","opera_gloves","ankle_strap_heels","chrome_ball"], "note":"mirror gloss, cover-ready", "nsfw":0.34 },
+    { "id":"rain_gloss_pinup", "items":["slip_dress","sheer_robe_over_cami","clear_umbrella","back_seam_tights","lip_gloss_tube"], "note":"raindrop bokeh, jelly shine", "nsfw":0.36 }
+  ],
+
+  "beauty": {
+    "makeup": [
+      { "id":"gloss_lips","desc":"high-gloss lips; jelly highlight","nsfw":0.34 },
+      { "id":"peach_blush","desc":"peach cream blush; diffused","nsfw":0.12 },
+      { "id":"catliner_soft","desc":"soft cat-eye liner; gentle wing","nsfw":0.18 },
+      { "id":"wet_lid","desc":"wet-look lids; pearly wash","nsfw":0.30 },
+      { "id":"freckles_kissed","desc":"light faux freckles; sun-kissed","nsfw":0.10 },
+      { "id":"neon_inner","desc":"neon inner-corner pop; candy spark","nsfw":0.18 },
+      { "id":"smudged_liner","desc":"intentionally smudged liner; lived-in smoky effect","nsfw":0.28 },
+      { "id":"smudged_lipstain","desc":"blotted lip stain with gentle feathering; just-kissed effect","nsfw":0.32 },
+      { "id":"overlined_cupid","desc":"softly overlined cupid's bow; lacquer finish","nsfw":0.30 },
+      { "id":"vinyl_lip","desc":"vinyl lacquer lips; mirror catchlights","nsfw":0.32 }
+    ],
+    "hair": [
+      {"id":"loose_waves","desc":"loose waves; airy volume","nsfw":0.16},
+      {"id":"wet_hair_towel","desc":"glossy wet hair under soft towel wrap","nsfw":0.30},
+      {"id":"sleek_high_pony","desc":"sleek high ponytail; polished","nsfw":0.14}
+    ],
+    "nails": [
+      {"id":"milky","desc":"milky sheer manicure","nsfw":0.08},
+      {"id":"glitter_wash","desc":"fine glitter wash","nsfw":0.10},
+      {"id":"mirror_chrome","desc":"mirror chrome manicure","nsfw":0.12}
+    ],
+    "skin_fx": [
+      {"id":"dew_sheen","desc":"dew on collarbone and cheeks","nsfw":0.28},
+      {"id":"oil_gloss_safe","desc":"fashion oil gloss on arms and legs; clothing stays opaque","nsfw":0.34},
+      {"id":"water_beads","desc":"micro water beads catching light on shoulders","nsfw":0.26}
+    ]
+  },
+
+  "textures": [
+    {"id":"satin_gloss","desc":"satin with pearly speculars","nsfw":0.22},
+    {"id":"tulle_soft","desc":"soft tulle; airy translucence","nsfw":0.28},
+    {"id":"latex_hint","desc":"hint of latex shine; minimal area; fashion","nsfw":0.32},
+    {"id":"mesh_fine","desc":"fine mesh over opaque base","nsfw":0.30},
+    {"id":"wet_silk_over_opaque","desc":"wet silk layer over opaque under-layer","nsfw":0.36},
+    { "id":"raindrop_beads","desc":"visible droplets on fabric; highlight sparkle","nsfw":0.22 },
+    { "id":"chrome_reflect","desc":"chrome-like reflections in props/fabric","nsfw":0.20 }
+  ],
+
+  "rules": {
+    "sfw": "suggestive_only",
+    "age_and_context": [
+      "Models are adults (21+) in editorial/fashion contexts.",
+      "No sexual acts; flirtatious fashion only."
+    ],
+    "coverage": [
+      "Underwear may be visible but never requested directly; no nudity.",
+      "Sheer/mesh/wet effects appear only over opaque base layers.",
+      "Avoid anatomical close-ups with sexual focus."
+    ],
+    "nsfw_tuning": {
+      "global_clamp_min": 0.12,
+      "global_clamp_max": 0.50,
+      "context_bonus_sfw": ["wide_169","square_11","poster_blank","clean_air"],
+      "context_penalty_nsfw": ["macro_detail","hip_line","floor_catstretch"],
+      "apply_order": ["clamp","context"]
+    },
+    "compat": [
+      { "pair":["garter_over_tights"], "with":["back_seam_tights","fishnet_microfine","stayups_opaque_band"], "note":"worn over opaque hosiery only" },
+      { "pair":["wet_silk_over_opaque"], "with":["slip_dress","onepiece_cutout_safe","sheer_robe_over_cami"] },
+      { "pair":["balconette_opaque"], "with":["back_seam_tights","stiletto_min","pearls_loop"] },
+      { "pair":["corset_cups_opaque"], "with":["satin_shorts_highcut","latex_gloves_fashion","chain_belt"] },
+      { "pair":["teddy_opaque"], "with":["robe_sheer_glam","stayups_opaque_band","ankle_strap_heels"] },
+      { "pair":["bikini_highwaist_opaque"], "with":["robe_sheer_glam","visor_clear"] },
+      { "pair":["plunge_secure"], "with":["waist_chain_over_dress","opera_gloves"] },
+      { "pair":["garter_belt_over_tights"], "with":["back_seam_tights"] }
+    ],
+    "caption_length": { "min_words": 18, "max_words": 100 }
+  },
+
+  "model_descriptions": [
+    "playful smiling model",
+    "retro-chic model",
+    "fresh sunlit look",
+    "sporty cute model",
+    "magnetic midnight look",
+    "powder-soft glamour look",
+    "noir-sweet siren look",
+    "candy-crush cool girl",
+    "centerfold-classy glam look",
+    "cover-girl wink look"
+  ],
+
+  "templates": {
+    "caption_v1": "Glossy pin-up of a {model} in {pose}, {action}, wearing {wardrobe_main} with {wardrobe_extras}; {camera_angle} and {framing_ratio}; {lighting}; {background}.",
+    "caption_v2": "{mood} pin-up — {model} {action} in {pose}, styled in {wardrobe_set}; shot {camera_angle} ({framing_ratio}) with {lighting} on {background}.",
+    "caption_v3": "{model} in {pose}, {action}; {mood} vibe. Outfit: {wardrobe_main} + {wardrobe_extras}. Lens {lens}, depth {depth}, {lighting}, {background}.",
+    "caption_v4": "Cover-ready gloss: {model} {action} in {pose}, all in {wardrobe_set}; {lighting} over {background}, framed {framing_ratio} from {camera_angle}.",
+    "render_instructions": "Keep wording concrete (pose, action, wardrobe, camera, light, background, beauty). Style injected via style_controller; stay non-explicit."
+  }
+}
