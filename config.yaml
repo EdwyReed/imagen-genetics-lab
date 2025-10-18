@@ -44,6 +44,10 @@ scoring:
     ema_alpha: 0.25
     momentum: 0.35
 
+history:
+  enabled: true
+  max_embeddings: 512
+
 fitness:
   style: 0.7
   nsfw: 0.3

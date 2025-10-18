@@ -79,6 +79,21 @@ class ScoreResult:
     illu_bias: float
     clip_heads: Dict[str, Dict[str, Any]]
     specular_metrics: SpecularMetrics
+    embedding: Optional[np.ndarray] = None
+
+
+@dataclass
+class ScoredImage:
+    path: Path
+    nsfw: int
+    style: int
+    clip_style: int
+    specular: int
+    illu_bias: int
+    embedding: Optional[np.ndarray] = None
+
+    def fitness(self, w_style: float, w_nsfw: float) -> float:
+        return float(w_style * float(self.style) + w_nsfw * float(self.nsfw))
 
 # =========================
 # SQLite helpers
@@ -434,12 +449,13 @@ def clip_head_probabilities(
     img: Image.Image,
     tau: float = DEFAULT_TAU,
     calibration_overrides: Optional[CalibrationOverrides] = None,
+    embedding: Optional[torch.Tensor] = None,
 ) -> Dict[str, Dict[str, float]]:
     """
     Рассчитывает вероятности для всех текстовых голов, определённых в конфиге.
     Возвращает словарь {head_key: {label: prob}}.
     """
-    im = _image_emb(clip, img)  # (1, d)
+    im = embedding if embedding is not None else _image_emb(clip, img)  # (1, d)
     overrides = calibration_overrides or {}
 
     results: Dict[str, Dict[str, float]] = {}
@@ -532,6 +548,7 @@ class DualScorer:
         self._ema = {k: self._auto.initial_level for k in ("clip", "spec", "illu")}
         if self._auto.enabled:
             self._apply_weight_bounds()
+        self.embedding_cache = None
 
     def _normalize_weights(self, weights: Dict[str, float]) -> Dict[str, float]:
         total = sum(max(v, 0.0) for v in weights.values())
@@ -604,11 +621,14 @@ class DualScorer:
             if positive:
                 calibration_overrides[(illu_head.key, positive)] = self.cal_illu
 
+        image_embedding = _image_emb(self.clip, img)
+
         head_probs = clip_head_probabilities(
             self.clip,
             img,
             tau=self.tau,
             calibration_overrides=calibration_overrides,
+            embedding=image_embedding,
         )
 
         clip_style = 0.0
@@ -637,6 +657,8 @@ class DualScorer:
                 "probabilities": dict(head_probs.get(key, {})),
             }
 
+        embedding_vec = image_embedding.detach().float().cpu().numpy().reshape(-1)
+
         return ScoreResult(
             nsfw=nsfw,
             style=style,
@@ -645,19 +667,20 @@ class DualScorer:
             illu_bias=illu_bias,
             clip_heads=clip_head_payload,
             specular_metrics=spec_metrics,
+            embedding=embedding_vec,
         )
 
     # ---- batch & save ----
-    def score_and_save(self, paths: List[Path], notes: str = "") -> List[Tuple[Path, int, int]]:
+    def score_and_save(self, paths: List[Path], notes: str = "") -> List[ScoredImage]:
         """
         Считает метрики для списка путей, пишет в SQLite и JSONL,
-        возвращает список (path, nsfw100, style100).
+        возвращает список структур ScoredImage.
         """
         if not paths:
             return []
 
         rows_db: List[Tuple] = []
-        out_triplets: List[Tuple[Path, int, int]] = []
+        out_images: List[ScoredImage] = []
         t = _ts()
 
         # простая последовательная обработка (GPU/CPU-агностично)
@@ -667,7 +690,16 @@ class DualScorer:
                     result = self.score_one(p)
                 except Exception:
                     # если картинка битая/не читается
-                    result = ScoreResult(0.0, 0.0, 0.0, 0.0, 0.0, {}, SpecularMetrics.empty())
+                    result = ScoreResult(
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        {},
+                        SpecularMetrics.empty(),
+                        None,
+                    )
 
                 nsfw100 = int(round(result.nsfw * 100))
                 style100 = int(round(result.style * 100))
@@ -698,7 +730,21 @@ class DualScorer:
                 }
                 jf.write(json.dumps(rec, ensure_ascii=False) + "\n")
                 rows_db.append((str(p), t, nsfw100, style100, cs100, sp100, ib100, notes))
-                out_triplets.append((p, nsfw100, style100))
+                embedding = None
+                if result.embedding is not None:
+                    embedding = np.asarray(result.embedding, dtype=np.float32).copy()
+
+                out_images.append(
+                    ScoredImage(
+                        path=p,
+                        nsfw=nsfw100,
+                        style=style100,
+                        clip_style=cs100,
+                        specular=sp100,
+                        illu_bias=ib100,
+                        embedding=embedding,
+                    )
+                )
 
         if rows_db:
             _insert_db(self.db, rows_db)
@@ -707,4 +753,4 @@ class DualScorer:
         if self.device == "cuda":
             torch.cuda.empty_cache()
 
-        return out_triplets
+        return out_images

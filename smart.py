@@ -50,6 +50,26 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--resume-best", dest="resume_best", action="store_true", help="Seed GA population from DB")
     parser.add_argument("--no-resume-best", dest="resume_best", action="store_false", help="Disable DB seeding")
 
+    parser.set_defaults(history_enabled=None)
+    parser.add_argument(
+        "--history",
+        dest="history_enabled",
+        action="store_true",
+        help="Enable embedding history cache",
+    )
+    parser.add_argument(
+        "--no-history",
+        dest="history_enabled",
+        action="store_false",
+        help="Disable embedding history cache",
+    )
+    parser.add_argument(
+        "--history-size",
+        type=int,
+        default=None,
+        help="Override embedding history cache size",
+    )
+
     return parser
 
 
@@ -69,6 +89,11 @@ def main() -> None:
         config.ollama.model = args.ollama_model
     if args.ollama_top_p is not None:
         config.ollama.top_p = args.ollama_top_p
+
+    if args.history_enabled is not None:
+        config.history.enabled = bool(args.history_enabled)
+    if args.history_size is not None:
+        config.history.max_embeddings = max(0, int(args.history_size))
 
     sfw_level = clamp(args.sfw, 0.0, 1.0) if args.sfw is not None else None
     outdir = _optional_path(args.outdir)

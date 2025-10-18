@@ -4,7 +4,7 @@ import random
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 
 from dotenv import load_dotenv
 from google import genai
@@ -24,6 +24,7 @@ from .prompting import (
     system_prompt_hash,
 )
 from .scene_builder import SceneBuilder
+from .embeddings import EmbeddingCache, EmbeddingHistoryConfig
 from .storage import ArtifactWriter, PromptLogger, save_and_score
 
 
@@ -35,6 +36,7 @@ class PipelineServices:
     logger: PromptLogger
     writer: ArtifactWriter
     client: genai.Client
+    history: EmbeddingCache
 
 
 @dataclass
@@ -50,6 +52,11 @@ def _required_terms(config: PipelineConfig) -> List[str]:
 
 
 def _prepare_services(config: PipelineConfig, output_dir: Optional[Path] = None) -> PipelineServices:
+    history_cfg = EmbeddingHistoryConfig(
+        enabled=config.history.enabled,
+        max_embeddings=config.history.max_embeddings,
+    )
+    history_cache = EmbeddingCache(history_cfg)
     scorer = DualScorer(
         device=config.scoring.device,
         batch=config.scoring.batch_size,
@@ -61,12 +68,63 @@ def _prepare_services(config: PipelineConfig, output_dir: Optional[Path] = None)
         cal_illu=config.scoring.cal_illu,
         auto_weights=config.scoring.auto_weights.as_dict(),
     )
+    setattr(scorer, "embedding_cache", history_cache)
     catalog = Catalog.load(config.paths.catalog)
     builder = SceneBuilder(catalog, required_terms=_required_terms(config), template_ids=config.prompting.template_ids)
     logger = PromptLogger(config.paths.database)
     writer = ArtifactWriter(output_dir or config.paths.output_dir)
     client = genai.Client()
-    return PipelineServices(scorer=scorer, catalog=catalog, builder=builder, logger=logger, writer=writer, client=client)
+    return PipelineServices(
+        scorer=scorer,
+        catalog=catalog,
+        builder=builder,
+        logger=logger,
+        writer=writer,
+        client=client,
+        history=history_cache,
+    )
+
+
+def _format_metrics(metrics: Dict[str, object]) -> Optional[str]:
+    if not metrics:
+        return None
+    pieces: List[str] = []
+    batch = metrics.get("batch", {}) if isinstance(metrics, dict) else {}
+    history = metrics.get("history", {}) if isinstance(metrics, dict) else {}
+
+    try:
+        pairwise_mean = batch.get("pairwise_mean")  # type: ignore[assignment]
+        if pairwise_mean is not None:
+            pieces.append(f"batch_mean={float(pairwise_mean):.3f}")
+    except Exception:
+        pass
+    try:
+        pairwise_min = batch.get("pairwise_min")  # type: ignore[assignment]
+        if pairwise_min is not None:
+            pieces.append(f"batch_min={float(pairwise_min):.3f}")
+    except Exception:
+        pass
+    try:
+        history_mean = history.get("mean_distance")  # type: ignore[assignment]
+        if history_mean is not None:
+            pieces.append(f"history_mean={float(history_mean):.3f}")
+    except Exception:
+        pass
+    try:
+        history_min = history.get("min_distance")  # type: ignore[assignment]
+        if history_min is not None:
+            pieces.append(f"history_min={float(history_min):.3f}")
+    except Exception:
+        pass
+    size = history.get("size") if isinstance(history, dict) else None
+    if size:
+        try:
+            pieces.append(f"history_size={int(size)}")
+        except Exception:
+            pass
+    if not pieces:
+        return None
+    return " ".join(pieces)
 
 
 def run_plain(
@@ -185,7 +243,7 @@ def run_plain(
             },
         }
 
-        triplets = save_and_score(
+        batch = save_and_score(
             response,
             writer,
             logger,
@@ -200,9 +258,13 @@ def run_plain(
             w_nsfw=w_nsfw,
         )
 
-        if triplets:
-            best_path, nsfw100, style100 = triplets[0]
-            print(f"   [best] {best_path.name}  style={style100} nsfw={nsfw100}")
+        if not batch.is_empty():
+            best = batch.best(w_style, w_nsfw)
+            if best is not None:
+                print(f"   [best] {best.path.name}  style={best.style} nsfw={best.nsfw}")
+            metrics_line = _format_metrics(batch.metrics)
+            if metrics_line:
+                print(f"   [metrics] {metrics_line}")
         time.sleep(sleep_s)
 
 
@@ -394,7 +456,7 @@ def run_evolve(
                 },
             }
 
-            triplets = save_and_score(
+            batch = save_and_score(
                 response,
                 writer,
                 logger,
@@ -410,10 +472,14 @@ def run_evolve(
             )
             time.sleep(sleep_s)
 
-            if triplets:
-                best_path, nsfw100, style100 = triplets[0]
-                fitness = w_style * style100 + w_nsfw * nsfw100
-                scored.append((fitness, genes, best_path, style100, nsfw100))
+            if not batch.is_empty():
+                best = batch.best(w_style, w_nsfw)
+                if best is not None:
+                    fitness = w_style * best.style + w_nsfw * best.nsfw
+                    scored.append((fitness, genes, best.path, best.style, best.nsfw))
+                metrics_line = _format_metrics(batch.metrics)
+                if metrics_line:
+                    print(f"   [metrics] {metrics_line}")
 
         if not scored:
             print("[evolve] no scored individuals; stopping.")
