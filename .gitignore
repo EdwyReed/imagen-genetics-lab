@@ -1,0 +1,10 @@
+output/
+ollama*/
+evol*/
+alpha*/
+.venv/
+.ipynb_checkpoints/
+.env
+.idea
+refs/
+run_summary.json

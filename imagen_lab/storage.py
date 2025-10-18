@@ -175,6 +175,8 @@ class ArtifactWriter:
             exif_line = f"{short_readable(scene)} | prompt={final_prompt}"
             write_exif_text(path, exif_line)
 
+            print(f"[imagen-lab] saved image {path.name} -> {path.parent}")
+
             meta = dict(meta_base)
             meta["id"] = f"{meta_base['id']}_{variant_index}"
             meta["final_prompt"] = final_prompt
@@ -212,6 +214,8 @@ def save_and_score(
     w_style: float,
     w_nsfw: float,
 ) -> ScoredBatch:
+    if not response or not response.generated_images:
+        return ScoredBatch(images=[], metrics={})
     images = list(extract_image_bytes(response))
     if not images:
         return ScoredBatch(images=[], metrics={})

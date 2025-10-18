@@ -1,0 +1,62 @@
+[
+  {
+    "model": "openpose-lite",
+    "resolution": 256,
+    "batch_size": 1,
+    "dtype": "torch.float16",
+    "avg_latency_ms": 5.50931999925524,
+    "throughput_fps": 181.51060387401384,
+    "parameter_memory_mb": 1.0909175872802734,
+    "activation_memory_mb": 66.1875,
+    "estimated_vram_mb": 67.27841758728027,
+    "peak_vram_mb": 41.728515625
+  },
+  {
+    "model": "blazepose",
+    "resolution": 256,
+    "batch_size": 1,
+    "dtype": "torch.float16",
+    "avg_latency_ms": 2.6339619999635033,
+    "throughput_fps": 379.65619853811717,
+    "parameter_memory_mb": 0.08710289001464844,
+    "activation_memory_mb": 72.0011100769043,
+    "estimated_vram_mb": 72.08821296691895,
+    "peak_vram_mb": 14.724609375
+  },
+  {
+    "model": "yolo-pose",
+    "resolution": 320,
+    "batch_size": 1,
+    "dtype": "torch.float16",
+    "avg_latency_ms": 1.3054090007790364,
+    "throughput_fps": 766.0434388021106,
+    "parameter_memory_mb": 1.177713394165039,
+    "activation_memory_mb": 12.62969970703125,
+    "estimated_vram_mb": 13.807413101196289,
+    "peak_vram_mb": 15.46435546875
+  },
+  {
+    "model": "selfie-segmentation",
+    "resolution": 256,
+    "batch_size": 1,
+    "dtype": "torch.float16",
+    "avg_latency_ms": 1.3787059977767058,
+    "throughput_fps": 725.3177991628345,
+    "parameter_memory_mb": 0.020723342895507812,
+    "activation_memory_mb": 15.875,
+    "estimated_vram_mb": 15.895723342895508,
+    "peak_vram_mb": 12.033203125
+  },
+  {
+    "model": "human-matting",
+    "resolution": 320,
+    "batch_size": 1,
+    "dtype": "torch.float16",
+    "avg_latency_ms": 4.733858001127373,
+    "throughput_fps": 211.24419020634946,
+    "parameter_memory_mb": 0.4019794464111328,
+    "activation_memory_mb": 42.7734375,
+    "estimated_vram_mb": 43.17541694641113,
+    "peak_vram_mb": 20.94140625
+  }
+]

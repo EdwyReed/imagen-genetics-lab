@@ -83,11 +83,9 @@
     {"id":"sunstrip","desc":"single diagonal window-shadow bar on blank set"},
     {"id":"sheer_curtain","desc":"sun through sheer curtain; milky haze"},
     {"id":"rain_window","desc":"wet window glass; soft city blur"},
-    {"id":"neon_wall","desc":"pastel neon sign glow; abstract letters"},
     {"id":"silk_drape","desc":"folded silk drape; pearly gradient"},
     {"id":"paper_fans","desc":"oversized paper fans; airy folds"},
     {"id":"powder_cloud","desc":"cosmetic powder haze; soft grain"},
-    {"id":"mirror_slice","desc":"narrow mirror strip; reflections only"},
     {"id":"shoji_light","desc":"backlit shoji grid; warm paper glow"},
     {"id":"frosted_panel","desc":"frosted acrylic panel; soft silhouettes"},
     {"id":"confetti_soft","desc":"slow confetti drift; shallow depth"},
@@ -286,7 +284,7 @@
     "headwear": [
       {"id":"veil_dot","desc":"small dotted veil","nsfw":0.28},
       {"id":"visor_clear","desc":"clear visor; glossy edge highlights","nsfw":0.18},
-      {"id":"bunny_headband_clean","desc":"clean satin bow headband (pin-up nod)","nsfw":0.36}
+      {"id":"bunny_headband_clean","desc":"clean headband (pin-up nod)","nsfw":0.36}
     ],
     "jewelry": [
       {"id":"choker_ribbon","desc":"thin ribbon choker","nsfw":0.30},
@@ -325,7 +323,6 @@
       { "id":"neon_inner","desc":"neon inner-corner pop; candy spark","nsfw":0.18 },
       { "id":"smudged_liner","desc":"intentionally smudged liner; lived-in smoky effect","nsfw":0.28 },
       { "id":"smudged_lipstain","desc":"blotted lip stain with gentle feathering; just-kissed effect","nsfw":0.32 },
-      { "id":"overlined_cupid","desc":"softly overlined cupid's bow; lacquer finish","nsfw":0.30 },
       { "id":"vinyl_lip","desc":"vinyl lacquer lips; mirror catchlights","nsfw":0.32 }
     ],
     "hair": [

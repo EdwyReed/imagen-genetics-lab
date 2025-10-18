@@ -1,14 +1,14 @@
 default: default
 profiles:
   default:
-    clip: 0.55
-    spec: 0.35
-    illu: 0.1
+    clip: 0.3414902120385106
+    illu: 0.04644296840063542
+    spec: 0.6120668195608541
   illustration_plus:
     clip: 0.45
-    spec: 0.3
     illu: 0.25
+    spec: 0.3
   specular_focus:
     clip: 0.4
-    spec: 0.45
     illu: 0.15
+    spec: 0.45
