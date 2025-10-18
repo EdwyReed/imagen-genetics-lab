@@ -129,7 +129,7 @@ def _skin_mask(rgb: np.ndarray) -> np.ndarray:
     s = hsv[..., 1]
     v = hsv[..., 2]
     skin = (h > 0.0) & (h < 0.15) & (s > 0.23) & (s < 0.68) & (v > 0.35) & (v < 0.95)
-    return skin.astype(np.float32)
+    return skin
 
 
 def _pose_from_mask(mask: np.ndarray) -> Tuple[str, float, float]:
@@ -233,7 +233,10 @@ class PoseAnalyzer:
         skin_mask = _skin_mask(np_img)
         foreground = subject_mask > 0.5
         if foreground.sum() > 0:
-            skin_ratio = float(np.clip((skin_mask & foreground).sum() / foreground.sum(), 0.0, 1.0))
+            skin_on_foreground = np.logical_and(skin_mask, foreground)
+            skin_ratio = float(
+                np.clip(skin_on_foreground.sum() / foreground.sum(), 0.0, 1.0)
+            )
         else:
             skin_ratio = 0.0
 
