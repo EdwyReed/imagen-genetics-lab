@@ -18,6 +18,7 @@ from .learning import StyleFeedback
 from .ga import GeneSet, crossover_genes, load_best_gene_sets, mutate_gene
 from .prompting import (
     REQUIRED_STYLE_TERMS,
+    append_required_terms,
     enforce_bounds,
     enforce_once,
     imagen_call,
@@ -272,10 +273,17 @@ def run_plain(
                     continue
 
                 bounds = scene.caption_bounds
+                min_words = int(bounds.get("min_words", 18))
+                max_words = int(bounds.get("max_words", 60))
                 final_prompt = enforce_bounds(
                     caption,
-                    int(bounds.get("min_words", 18)),
-                    int(bounds.get("max_words", 60)),
+                    min_words,
+                    max_words,
+                )
+                final_prompt = append_required_terms(
+                    final_prompt,
+                    _required_terms(config),
+                    max_words=max_words,
                 )
 
                 try:
