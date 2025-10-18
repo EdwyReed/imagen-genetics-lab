@@ -35,7 +35,7 @@ imagen-genetics-lab/
 ## Prerequisites
 
 * Python 3.10+
-* Required Python packages: `google-genai`, `requests`, `python-dotenv`, `open-clip-torch`, `opennsfw2`, `numpy`, `torch`, `Pillow`, `scikit-image`, and `piexif` (optional, for EXIF comments).
+* Required Python packages: `google-genai`, `requests`, `python-dotenv`, `open-clip-torch`, `opennsfw2`, `numpy`, `torch`, `Pillow`, `scikit-image`, `ultralytics`, and `piexif` (optional, for EXIF comments).
 * Access to a running Ollama instance with the desired caption model.
 * Access to Google Imagen 3 via the `google-genai` SDK.
 
@@ -117,7 +117,7 @@ All CLI options default to the values declared in `config.yaml`. See `python sma
    * Sends the caption to Imagen 3 with the configured aspect ratio and person settings.
 
 4. **Scoring & storage** (`scorer.DualScorer`, `imagen_lab.storage`)
-   * Saves JPEG + JSON + TXT sidecars (with EXIF notes when `piexif` is installed).
+   * Calculates NSFW/style scores, composition metrics (cropping tightness, rule-of-thirds alignment, negative space), writes them to SQLite/JSONL, logs metadata, and persists per-component style breakdowns plus aggregated batch metrics.
 
 ## Pose & segmentation benchmarks
 

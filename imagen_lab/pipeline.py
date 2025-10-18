@@ -82,6 +82,7 @@ def _prepare_services(config: PipelineConfig, output_dir: Optional[Path] = None)
         weight_table=weight_table,
         weight_profile=getattr(config.scoring, "weight_profile", "default"),
         persist_profile_updates=getattr(config.scoring, "persist_profile_updates", False),
+        composition_enabled=getattr(config.scoring, "composition_metrics", True),
     )
     setattr(scorer, "embedding_cache", history_cache)
     catalog = Catalog.load(config.paths.catalog)
@@ -107,6 +108,7 @@ def _format_metrics(metrics: Dict[str, object]) -> Optional[str]:
     batch = metrics.get("batch", {}) if isinstance(metrics, dict) else {}
     history = metrics.get("history", {}) if isinstance(metrics, dict) else {}
     style = metrics.get("style", {}) if isinstance(metrics, dict) else {}
+    composition = metrics.get("composition", {}) if isinstance(metrics, dict) else {}
 
     try:
         pairwise_mean = batch.get("pairwise_mean")  # type: ignore[assignment]
@@ -149,6 +151,22 @@ def _format_metrics(metrics: Dict[str, object]) -> Optional[str]:
         try:
             contrib_bits = [f"{key}:{float(val):.3f}" for key, val in sorted(contributions.items())]
             pieces.append(f"style_contribs={'/'.join(contrib_bits)}")
+        except Exception:
+            pass
+    if isinstance(composition, dict) and composition:
+        try:
+            crop = composition.get("mean_cropping_tightness")
+            thirds = composition.get("mean_thirds_alignment")
+            neg = composition.get("mean_negative_space")
+            comp_bits = []
+            if crop is not None:
+                comp_bits.append(f"crop={float(crop):.3f}")
+            if thirds is not None:
+                comp_bits.append(f"thirds={float(thirds):.3f}")
+            if neg is not None:
+                comp_bits.append(f"neg_space={float(neg):.3f}")
+            if comp_bits:
+                pieces.append(f"composition({' '.join(comp_bits)})")
         except Exception:
             pass
     if not pieces:

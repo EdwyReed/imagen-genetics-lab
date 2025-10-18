@@ -274,12 +274,31 @@ def save_and_score(
                 style_weights = dict(scorer.current_weights())  # type: ignore[call-arg]
             except Exception:
                 style_weights = {}
+        comp_totals = {
+            "cropping_tightness": 0.0,
+            "thirds_alignment": 0.0,
+            "negative_space": 0.0,
+        }
+        comp_counts = 0
+        for img in scored_images:
+            comp = getattr(img, "composition_raw", {}) or {}
+            if comp and (comp.get("num_detections", 0) or comp.get("primary_bbox")):
+                comp_counts += 1
+                for key in comp_totals:
+                    comp_totals[key] += float(comp.get(key, 0.0))
+        comp_means = {k: (comp_totals[k] / comp_counts) for k in comp_totals} if comp_counts else {}
         metrics["style"] = {
             "mean_total": mean_total,
             "mean_components": mean_components,
             "mean_contributions": mean_contributions,
             "weights": style_weights,
         }
+        if comp_means:
+            metrics["composition"] = {
+                "mean_cropping_tightness": comp_means["cropping_tightness"],
+                "mean_thirds_alignment": comp_means["thirds_alignment"],
+                "mean_negative_space": comp_means["negative_space"],
+            }
 
     for idx, scored in enumerate(scored_images):
         image_path = scored.path
@@ -318,6 +337,7 @@ def save_and_score(
                 "contributions": {k: float(v) for k, v in scored.style_contributions.items()},
                 "weights": scored.style_weights,
             },
+            "composition_metrics": scored.composition_raw,
         })
         sidecar.write_text(json.dumps(side_meta, ensure_ascii=False, indent=2), encoding="utf-8")
 

@@ -17,6 +17,7 @@ from skimage import color, filters
 import open_clip
 
 from imagen_lab.pose import PoseAnalysis, PoseAnalyzer
+from imagen_lab.composition import CompositionAnalyzer, CompositionMetrics
 
 from imagen_lab.scoring import (
     DEFAULT_STYLE_WEIGHTS,
@@ -49,7 +50,7 @@ W_CLIP, W_SPEC, W_ILLU = (
 )
 
 # Версия схемы логов для SQLite/JSONL. Увеличивайте при изменении структуры записей.
-SCORES_SCHEMA_VERSION = 3
+SCORES_SCHEMA_VERSION = 4
 
 
 @dataclass
@@ -99,6 +100,7 @@ class ScoreResult:
     style_contributions: Dict[str, float] = field(default_factory=dict)
     style_weights: Dict[str, float] = field(default_factory=dict)
     pose_metrics: PoseAnalysis = field(default_factory=PoseAnalysis.empty)
+    composition_metrics: CompositionMetrics = field(default_factory=CompositionMetrics.empty)
 
 
 @dataclass
@@ -123,6 +125,10 @@ class ScoredImage:
     gaze_confidence: int = 0
     coverage: int = 0
     skin_ratio: int = 0
+    cropping_tightness: int = 0
+    thirds_alignment: int = 0
+    negative_space: int = 100
+    composition_raw: Dict[str, object] = field(default_factory=dict)
 
     def fitness(self, w_style: float, w_nsfw: float) -> float:
         return float(w_style * float(self.style) + w_nsfw * float(self.nsfw))
@@ -565,6 +571,7 @@ class DualScorer:
         weight_table: Optional[WeightProfileTable] = None,
         weight_profile: str = "default",
         persist_profile_updates: bool = False,
+        composition_enabled: bool = True,
     ):
         # device
         if device == "auto":
@@ -600,6 +607,14 @@ class DualScorer:
         if self._auto.enabled:
             self._apply_weight_bounds()
         self.embedding_cache = None
+        self._composition_enabled = bool(composition_enabled)
+        self.composition_analyzer: Optional[CompositionAnalyzer]
+        if self._composition_enabled:
+            self.composition_analyzer = CompositionAnalyzer(device=self.device)
+            if not self.composition_analyzer.available:
+                self.composition_analyzer = None
+        else:
+            self.composition_analyzer = None
 
     def _apply_weight_bounds(self) -> None:
         if not self._auto.enabled:
@@ -700,6 +715,9 @@ class DualScorer:
         spec = spec_metrics.score
         nsfw = nsfw_score(path)
         pose_metrics = self.pose_analyzer.analyze(img)
+        composition_metrics = CompositionMetrics.empty()
+        if self.composition_analyzer is not None:
+            composition_metrics = self.composition_analyzer.analyze(img)
         composition = self.style_mixer.compose(clip_style, spec, illu_bias)
         style = composition.total
         self._update_auto_weights(clip_style, spec, illu_bias)
@@ -726,6 +744,7 @@ class DualScorer:
             style_contributions=composition.contributions,
             style_weights=composition.weights,
             pose_metrics=pose_metrics,
+            composition_metrics=composition_metrics,
         )
 
     # ---- batch & save ----
@@ -760,6 +779,7 @@ class DualScorer:
                         style_contributions={},
                         style_weights={},
                         pose_metrics=PoseAnalysis.empty(),
+                        composition_metrics=CompositionMetrics.empty(),
                     )
 
                 nsfw100 = int(round(result.nsfw * 100))
@@ -791,6 +811,7 @@ class DualScorer:
                     "style_weights": result.style_weights,
                     "style_contributions": result.style_contributions,
                     "pose_metrics": result.pose_metrics.to_payload(),
+                    "composition": result.composition_metrics.to_payload(),
                     "notes": notes,
                 }
                 jf.write(json.dumps(rec, ensure_ascii=False) + "\n")
@@ -833,6 +854,10 @@ class DualScorer:
                         gaze_confidence=int(round(result.pose_metrics.gaze_confidence * 100)),
                         coverage=int(round(result.pose_metrics.coverage * 100)),
                         skin_ratio=int(round(result.pose_metrics.skin_ratio * 100)),
+                        cropping_tightness=int(round(result.composition_metrics.cropping_tightness * 100)),
+                        thirds_alignment=int(round(result.composition_metrics.thirds_alignment * 100)),
+                        negative_space=int(round(result.composition_metrics.negative_space * 100)),
+                        composition_raw=result.composition_metrics.to_payload(),
                     )
                 )
 
