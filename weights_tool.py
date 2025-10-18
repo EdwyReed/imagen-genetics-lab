@@ -14,7 +14,7 @@ import yaml
 
 from imagen_lab.config import load_config
 from imagen_lab.scoring import DEFAULT_STYLE_WEIGHTS, WeightProfileTable
-from scorer import DualScorer, W_CLIP, W_SPEC, W_ILLU
+from scorer import DualScorer
 
 SUPPORTED_EXTS = {".jpg", ".jpeg", ".png", ".webp"}
 
@@ -97,10 +97,18 @@ def calibrate_from_directory(
     if not images:
         raise SystemExit(f"No reference images found in {reference_dir}")
 
+    component_keys: List[str] = []
     components: List[List[float]] = []
     for img_path in images:
         result = scorer.score_one(img_path)
-        components.append([result.clip_style, result.specular, result.illu_bias])
+        if not component_keys:
+            component_keys = list(result.style_components.keys()) or list(
+                scorer.style_mixer.weights.keys()
+            )
+        components.append([float(result.style_components.get(k, 0.0)) for k in component_keys])
+
+    if not component_keys:
+        raise SystemExit("No style components available for calibration")
 
     matrix = np.asarray(components, dtype=float)
     target_vec = np.full((matrix.shape[0],), target, dtype=float)
@@ -115,11 +123,7 @@ def calibrate_from_directory(
         raise SystemExit("Computed weights are degenerate; try a different target or dataset")
     normalized = clipped / clipped.sum()
 
-    weights = {
-        "clip": float(normalized[0]),
-        "spec": float(normalized[1]),
-        "illu": float(normalized[2]),
-    }
+    weights = {key: float(normalized[idx]) for idx, key in enumerate(component_keys)}
 
     if dry_run:
         print(json.dumps({"status": "calculated", "weights": weights}, ensure_ascii=False, indent=2))

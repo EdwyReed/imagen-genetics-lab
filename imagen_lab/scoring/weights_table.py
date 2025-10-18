@@ -7,14 +7,27 @@ from typing import Dict, Iterable, Mapping, Optional, Tuple
 
 import yaml
 
-STYLE_COMPONENT_KEYS: Tuple[str, ...] = ("clip", "spec", "illu")
-DEFAULT_STYLE_WEIGHTS: Dict[str, float] = {"clip": 0.55, "spec": 0.35, "illu": 0.10}
+DEFAULT_STYLE_WEIGHTS: Dict[str, float] = {
+    "clip": 0.20,
+    "spec": 0.15,
+    "illu": 0.08,
+    "retro": 0.10,
+    "medium": 0.10,
+    "sensual": 0.10,
+    "pose": 0.08,
+    "camera": 0.05,
+    "color": 0.05,
+    "accessories": 0.04,
+    "composition": 0.03,
+    "skin_glow": 0.02,
+}
+STYLE_COMPONENT_KEYS: Tuple[str, ...] = tuple(DEFAULT_STYLE_WEIGHTS.keys())
 
 
 def normalize_weights(
     weights: Mapping[str, float],
     *,
-    keys: Iterable[str] = STYLE_COMPONENT_KEYS,
+    keys: Optional[Iterable[str]] = None,
     defaults: Optional[Mapping[str, float]] = None,
 ) -> Dict[str, float]:
     """Normalize a mapping of weights while clamping negatives to zero.
@@ -29,6 +42,15 @@ def normalize_weights(
         Fallback weights used when the provided mapping is degenerate.
     """
 
+    if keys is None:
+        if defaults:
+            keys = tuple(defaults.keys())
+        elif weights:
+            keys = tuple(weights.keys())
+        else:
+            keys = STYLE_COMPONENT_KEYS
+    keys = tuple(keys)
+
     total = 0.0
     cleaned: Dict[str, float] = {}
     for key in keys:
@@ -40,7 +62,10 @@ def normalize_weights(
             cleaned[key] = 0.0
 
     if total <= 0 and defaults:
-        return {key: float(defaults.get(key, 0.0)) for key in keys}
+        return {
+            key: float(defaults.get(key, 0.0))
+            for key in keys
+        }
 
     if total <= 0:
         uniform = 1.0 / float(len(tuple(keys))) if keys else 0.0
@@ -210,24 +235,30 @@ class StyleMixer:
 
     def compose(
         self,
-        clip_style: float,
-        specular: float,
-        illu_bias: float,
+        components: Mapping[str, float] | None = None,
+        **kwargs: float,
     ) -> StyleComposition:
-        components = {
-            "clip": max(0.0, min(1.0, float(clip_style))),
-            "spec": max(0.0, min(1.0, float(specular))),
-            "illu": max(0.0, min(1.0, float(illu_bias))),
-        }
-        contributions = {
-            key: components.get(key, 0.0) * self._weights.get(key, 0.0)
-            for key in STYLE_COMPONENT_KEYS
-        }
+        raw_components: Dict[str, float] = {}
+        if components:
+            raw_components.update({str(k): float(v) for k, v in components.items()})
+        if kwargs:
+            raw_components.update({str(k): float(v) for k, v in kwargs.items()})
+
+        component_keys = set(self._weights.keys()) | set(raw_components.keys())
+        normalized_components: Dict[str, float] = {}
+        for key in component_keys:
+            value = raw_components.get(key, 0.0)
+            normalized_components[str(key)] = max(0.0, min(1.0, float(value)))
+
+        contributions: Dict[str, float] = {}
+        for key, weight in self._weights.items():
+            contributions[key] = normalized_components.get(key, 0.0) * weight
+
         total = sum(contributions.values())
         total = max(0.0, min(1.0, total))
         return StyleComposition(
             total=total,
-            components=dict(components),
-            contributions=dict(contributions),
+            components=normalized_components,
+            contributions=contributions,
             weights=dict(self._weights),
         )
