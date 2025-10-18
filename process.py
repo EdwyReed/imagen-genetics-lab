@@ -179,6 +179,19 @@ def load_prompt_for(image_path: Path) -> Optional[str]:
             final_prompt = data.get("final_prompt") or data.get("prompt")
             if isinstance(final_prompt, str) and final_prompt.strip():
                 return final_prompt.strip()
+    try:
+        with Image.open(image_path) as img:
+            exif = img.getexif()
+    except (OSError, ValueError):
+        exif = None
+    if exif:
+        description = exif.get(270)  # ImageDescription
+        if isinstance(description, bytes):
+            description = description.decode("utf-8", "ignore")
+        if isinstance(description, str):
+            cleaned = description.strip().strip("\x00")
+            if cleaned:
+                return cleaned
     return None
 
 
