@@ -1,0 +1,63 @@
+paths:
+  catalog: jelly-pin-up.json
+  database: scores.sqlite
+  scores_jsonl: scores.jsonl
+  output_dir: output
+
+prompting:
+  required_terms:
+    - illustration
+    - watercolor
+    - glossy
+    - paper
+    - pastel
+  template_ids:
+    - caption_v1
+    - caption_v2
+    - caption_v3
+    - caption_v4
+
+ollama:
+  url: http://localhost:11434
+  model: qwen2.5:3b
+  temperature: 0.55
+  top_p: 0.9
+
+imagen:
+  model: imagen-3.0-generate-002
+  person_mode: allow_adult
+  guidance_scale: 0.5
+
+scoring:
+  device: auto
+  batch_size: 4
+  tau: 0.07
+  cal_style:
+  cal_illu:
+  weights:
+    clip: 0.55
+    spec: 0.35
+    illu: 0.10
+
+fitness:
+  style: 0.7
+  nsfw: 0.3
+
+defaults:
+  sfw_level: 0.6
+  temperature: 0.55
+  per_cycle: 2
+  cycles: 10
+  sleep_s: 1.0
+  seed:
+
+ga:
+  pop: 16
+  gens: 4
+  keep: 0.25
+  mut: 0.15
+  xover: 0.3
+  resume_best: false
+  resume_k: 0
+  resume_session:
+  resume_mix: 0.1
