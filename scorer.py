@@ -16,46 +16,14 @@ from PIL import Image
 from skimage import color, filters
 import open_clip
 
+from imagen_lab.scoring import ClipTextHeadsConfig, load_clip_text_heads
 
 # =========================
 # Config & Text Anchors
 # =========================
 
-# Позитивные описания целевого стиля
-STYLE_POS = [
-    "2D watercolor pin-up illustration, glossy highlights, wet sheen, soft paper texture, pastel palette",
-    "glossy watercolor poster art, dewy reflections, rim light, smooth gradients, paper grain",
-    "stylized pin-up drawing with wet shine and jellylike speculars, elegant composition",
-    "soft pastel watercolor character art, luminous highlights, dewy wet gloss on surfaces",
-    "retro pin-up poster, watercolor wash, glossy finish, paper texture visible",
-    "anime-style watercolor illustration with wet speculars and pastel tones"
-]
-
-# Антикласс (от чего отталкиваемся)
-STYLE_NEG = [
-    "photorealistic photo of a person, camera shot, skin pores, natural lighting",
-    "3D render, physically based rendering, CGI",
-    "oil painting, thick impasto, visible brush strokes",
-    "hard-ink comic with flat cel shading and heavy outlines",
-    "noisy scan, low quality snapshot, candid photo",
-    "sketch pencil drawing, rough lines",
-    "vector flat infographic, icon style"
-]
-
-# Иллюстрация vs Фото (для иллюстративного сдвига)
-ILLU_TEXTS = [
-    "clean 2D illustration, stylized drawing, graphic lines",
-    "digital painting, character illustration",
-    "anime illustration, toon shading"
-]
-PHOTO_TEXTS = [
-    "realistic photograph of a person",
-    "studio photo, DSLR, lens bokeh",
-    "street candid photo, natural skin texture"
-]
-
-# Модель CLIP по умолчанию
-_CLIP_ARCH = ("ViT-B-32", "openai")  # компактная и дружелюбная к VRAM
+_CLIP_TEXT_HEADS: ClipTextHeadsConfig = load_clip_text_heads()
+_CLIP_ARCH = _CLIP_TEXT_HEADS.clip_model
 
 # Температура softmax для повышения контраста классов (ниже — контрастнее)
 DEFAULT_TAU: float = 0.07
@@ -99,6 +67,17 @@ class AutoWeightsSettings:
         )
 
 
+
+
+
+@dataclass
+class ScoreResult:
+    nsfw: float
+    style: float
+    clip_style: float
+    specular: float
+    illu_bias: float
+    clip_heads: Dict[str, Dict[str, Any]]
 
 # =========================
 # SQLite helpers
@@ -180,15 +159,22 @@ def _encode_texts(model, tok, device, texts):
 
 
 @dataclass
+class ClipHeadAnchors:
+    key: str
+    display_name: Optional[str]
+    primary: Optional[str]
+    calibration: Dict[str, Tuple[float, float]]
+    embeddings: Dict[str, torch.Tensor]
+    labels: List[str]
+
+
+@dataclass
 class ClipBackend:
     device: str
-    model: any
-    preprocess: any
-    tok: any
-    style_pos: torch.Tensor
-    style_neg: torch.Tensor
-    illu_pos: torch.Tensor
-    illu_neg: torch.Tensor
+    model: Any
+    preprocess: Any
+    tok: Any
+    heads: Dict[str, ClipHeadAnchors]
 
 
 def _load_clip(device: str = "auto") -> ClipBackend:
@@ -201,39 +187,38 @@ def _load_clip(device: str = "auto") -> ClipBackend:
     tok = open_clip.get_tokenizer(name)
     model.eval()
 
+    heads: Dict[str, ClipHeadAnchors] = {}
+    for head_cfg in _CLIP_TEXT_HEADS.heads:
+        embeddings = {
+            group.label: _encode_texts(model, tok, device, group.prompts)
+            for group in head_cfg.groups
+        }
+        labels = [group.label for group in head_cfg.groups]
+        heads[head_cfg.key] = ClipHeadAnchors(
+            key=head_cfg.key,
+            display_name=head_cfg.display_name,
+            primary=head_cfg.primary,
+            calibration=dict(head_cfg.calibration),
+            embeddings=embeddings,
+            labels=labels,
+        )
+
     return ClipBackend(
         device=device,
         model=model,
         preprocess=preprocess,
         tok=tok,
-        style_pos=_encode_texts(model, tok, device, STYLE_POS),
-        style_neg=_encode_texts(model, tok, device, STYLE_NEG),
-        illu_pos=_encode_texts(model, tok, device, ILLU_TEXTS),
-        illu_neg=_encode_texts(model, tok, device, PHOTO_TEXTS),
+        heads=heads,
     )
 
 
 @torch.inference_mode()
 def _image_emb(clip: ClipBackend, img: Image.Image) -> torch.Tensor:
     x = clip.preprocess(img.convert("RGB")).unsqueeze(0).to(clip.device)
-    with torch.amp.autocast('cuda', enabled=True, cache_enabled=True):
+    with torch.amp.autocast('cuda', enabled=(clip.device == "cuda"), cache_enabled=True):
         im = clip.model.encode_image(x)
         im = im / im.norm(dim=-1, keepdim=True)
     return im  # (1, d)
-
-
-def _softmax_prob(sim_pos: torch.Tensor, sim_neg: torch.Tensor, tau: float) -> float:
-    """
-    Вероятность класса 'pos' против 'neg' через softmax c температурой.
-    sim_*: (1, K) — косинусные сходства с каждым анкором в классе.
-    Берём max по классу, чтобы «лучший матч» доминировал.
-    """
-    # max по каждому классу
-    p = sim_pos.max(dim=1).values  # (1,)
-    n = sim_neg.max(dim=1).values  # (1,)
-    logits = torch.cat([p, n], dim=0) / max(tau, 1e-6)
-    probs = torch.softmax(logits, dim=0)
-    return float(probs[0].item())  # P(pos)
 
 
 def _calibrate(p: float, cal: Optional[Tuple[float, float]]) -> float:
@@ -249,32 +234,43 @@ def _calibrate(p: float, cal: Optional[Tuple[float, float]]) -> float:
     return float(max(0.0, min(1.0, (p - lo) / (hi - lo))))
 
 
+CalibrationOverrides = Dict[Tuple[str, str], Tuple[float, float]]
+
+
 @torch.inference_mode()
-def clip_style_and_illu(
+def clip_head_probabilities(
     clip: ClipBackend,
     img: Image.Image,
     tau: float = DEFAULT_TAU,
-    cal_style: Optional[Tuple[float, float]] = DEFAULT_CAL_STYLE,
-    cal_illu: Optional[Tuple[float, float]] = DEFAULT_CAL_ILLU,
-) -> Tuple[float, float]:
+    calibration_overrides: Optional[CalibrationOverrides] = None,
+) -> Dict[str, Dict[str, float]]:
     """
-    Возвращает:
-      clip_style ∈ [0..1] — вероятность «watercolor glossy pin-up» против анти-анкоров,
-      illu_bias  ∈ [0..1] — вероятность «illustration» против «photo».
+    Рассчитывает вероятности для всех текстовых голов, определённых в конфиге.
+    Возвращает словарь {head_key: {label: prob}}.
     """
-    im = _image_emb(clip, img)                 # (1, d)
-    with torch.amp.autocast('cuda', enabled=True, cache_enabled=True):
-        sp = (im @ clip.style_pos.T)           # (1, Ks)
-        sn = (im @ clip.style_neg.T)           # (1, Kn)
-        cs = _softmax_prob(sp, sn, tau)
-        cs = _calibrate(cs, cal_style)
+    im = _image_emb(clip, img)  # (1, d)
+    overrides = calibration_overrides or {}
 
-        ip = (im @ clip.illu_pos.T)            # (1, Ki)
-        ineg = (im @ clip.illu_neg.T)          # (1, Kj)
-        ib = _softmax_prob(ip, ineg, tau)
-        ib = _calibrate(ib, cal_illu)
-
-    return cs, ib
+    results: Dict[str, Dict[str, float]] = {}
+    with torch.amp.autocast('cuda', enabled=(clip.device == "cuda"), cache_enabled=True):
+        for key, head in clip.heads.items():
+            logits: List[torch.Tensor] = []
+            for label in head.labels:
+                sims = im @ head.embeddings[label].T  # (1, K)
+                logits.append(sims.max(dim=1).values)  # (1,)
+            if not logits:
+                continue
+            logits_tensor = torch.stack(logits).squeeze(-1) / max(tau, 1e-6)
+            probs = torch.softmax(logits_tensor, dim=0)
+            head_probs: Dict[str, float] = {}
+            for idx, label in enumerate(head.labels):
+                prob = float(probs[idx].item())
+                cal = overrides.get((key, label))
+                if cal is None:
+                    cal = head.calibration.get(label)
+                head_probs[label] = _calibrate(prob, cal)
+            results[key] = head_probs
+    return results
 
 
 # =========================
@@ -398,24 +394,65 @@ class DualScorer:
         return dict(self.w)
 
     # ---- single image ----
-    def score_one(self, path: Path) -> Tuple[float, float, float, float, float]:
+    def score_one(self, path: Path) -> ScoreResult:
         """
-        Возвращает tuple:
-          nsfw, style, clip_style, specular, illu_bias   (все — 0..1)
+        Считает метрики для одного изображения и возвращает развёрнутый результат.
         """
         img = Image.open(path).convert("RGB")
-        clip_style, illu_bias = clip_style_and_illu(
+
+        calibration_overrides: CalibrationOverrides = {}
+        style_head = self.clip.heads.get("style")
+        if style_head and self.cal_style:
+            positive = style_head.primary or (style_head.labels[0] if style_head.labels else None)
+            if positive:
+                calibration_overrides[(style_head.key, positive)] = self.cal_style
+
+        illu_head = self.clip.heads.get("illustration")
+        if illu_head and self.cal_illu:
+            positive = illu_head.primary or (illu_head.labels[0] if illu_head.labels else None)
+            if positive:
+                calibration_overrides[(illu_head.key, positive)] = self.cal_illu
+
+        head_probs = clip_head_probabilities(
             self.clip,
             img,
             tau=self.tau,
-            cal_style=self.cal_style,
-            cal_illu=self.cal_illu,
+            calibration_overrides=calibration_overrides,
         )
+
+        clip_style = 0.0
+        if style_head:
+            positive = style_head.primary or (style_head.labels[0] if style_head.labels else None)
+            if positive:
+                clip_style = head_probs.get(style_head.key, {}).get(positive, 0.0)
+
+        illu_bias = 0.0
+        if illu_head:
+            positive = illu_head.primary or (illu_head.labels[0] if illu_head.labels else None)
+            if positive:
+                illu_bias = head_probs.get(illu_head.key, {}).get(positive, 0.0)
+
         spec = specular_index(img)
         nsfw = nsfw_score(path)
         style = self.style_from_components(clip_style, spec, illu_bias)
         self._update_auto_weights(clip_style, spec, illu_bias)
-        return nsfw, style, clip_style, spec, illu_bias
+
+        clip_head_payload: Dict[str, Dict[str, Any]] = {}
+        for key, head in self.clip.heads.items():
+            clip_head_payload[key] = {
+                "display_name": head.display_name or key,
+                "primary": head.primary,
+                "probabilities": dict(head_probs.get(key, {})),
+            }
+
+        return ScoreResult(
+            nsfw=nsfw,
+            style=style,
+            clip_style=clip_style,
+            specular=spec,
+            illu_bias=illu_bias,
+            clip_heads=clip_head_payload,
+        )
 
     # ---- batch & save ----
     def score_and_save(self, paths: List[Path], notes: str = "") -> List[Tuple[Path, int, int]]:
@@ -434,16 +471,16 @@ class DualScorer:
         with self.jsonl.open("a", encoding="utf-8") as jf:
             for p in paths:
                 try:
-                    nsfw, style, clip_s, spec, illu = self.score_one(p)
+                    result = self.score_one(p)
                 except Exception:
                     # если картинка битая/не читается
-                    nsfw = style = clip_s = spec = illu = 0.0
+                    result = ScoreResult(0.0, 0.0, 0.0, 0.0, 0.0, {})
 
-                nsfw100 = int(round(nsfw * 100))
-                style100 = int(round(style * 100))
-                cs100 = int(round(clip_s * 100))
-                sp100 = int(round(spec * 100))
-                ib100 = int(round(illu * 100))
+                nsfw100 = int(round(result.nsfw * 100))
+                style100 = int(round(result.style * 100))
+                cs100 = int(round(result.clip_style * 100))
+                sp100 = int(round(result.specular * 100))
+                ib100 = int(round(result.illu_bias * 100))
 
                 rec = {
                     "path": str(p),
@@ -453,6 +490,7 @@ class DualScorer:
                     "clip_style": cs100,
                     "specular": sp100,
                     "illu_bias": ib100,
+                    "clip_heads": result.clip_heads,
                     "notes": notes,
                 }
                 jf.write(json.dumps(rec, ensure_ascii=False) + "\n")

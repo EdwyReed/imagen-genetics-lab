@@ -1,0 +1,102 @@
+model:
+  name: ViT-B-32
+  pretrained: openai
+
+heads:
+  - key: style
+    display_name: Watercolor Gloss Style
+    primary: style
+    calibration:
+      style: [0.35, 0.75]
+    groups:
+      - label: style
+        prompts:
+          - "2D watercolor pin-up illustration, glossy highlights, wet sheen, soft paper texture, pastel palette"
+          - "glossy watercolor poster art, dewy reflections, rim light, smooth gradients, paper grain"
+          - "stylized pin-up drawing with wet shine and jellylike speculars, elegant composition"
+          - "soft pastel watercolor character art, luminous highlights, dewy wet gloss on surfaces"
+          - "retro pin-up poster, watercolor wash, glossy finish, paper texture visible"
+          - "anime-style watercolor illustration with wet speculars and pastel tones"
+      - label: anti
+        prompts:
+          - "photorealistic photo of a person, camera shot, skin pores, natural lighting"
+          - "3D render, physically based rendering, CGI"
+          - "oil painting, thick impasto, visible brush strokes"
+          - "hard-ink comic with flat cel shading and heavy outlines"
+          - "noisy scan, low quality snapshot, candid photo"
+          - "sketch pencil drawing, rough lines"
+          - "vector flat infographic, icon style"
+
+  - key: illustration
+    display_name: Illustration Bias
+    primary: illustration
+    calibration:
+      illustration: [0.45, 0.85]
+    groups:
+      - label: illustration
+        prompts:
+          - "clean 2D illustration, stylized drawing, graphic lines"
+          - "digital painting, character illustration"
+          - "anime illustration, toon shading"
+      - label: photo
+        prompts:
+          - "realistic photograph of a person"
+          - "studio photo, DSLR, lens bokeh"
+          - "street candid photo, natural skin texture"
+
+  - key: decade
+    display_name: Decade Genre
+    groups:
+      - label: fifties
+        prompts:
+          - "1950s retro pin-up poster, mid-century design, bold serif typography, pastel background"
+          - "vintage 50s advertising illustration, classic diner palette, chrome accents"
+          - "classic 1950s glamour illustration, coiffed hair, hourglass silhouette, muted tones"
+      - label: eighties
+        prompts:
+          - "1980s neon synthwave poster, chrome logo, electric grid, hot pink and cyan"
+          - "80s glam rock magazine cover, vibrant gradients, big hair, shoulder pads"
+          - "retro 80s airbrush art, neon glow, vaporwave sunset, shiny latex outfit"
+      - label: nineties
+        prompts:
+          - "1990s grunge fashion editorial, film grain, muted palette, distressed textures"
+          - "90s pop magazine illustration, playful stickers, bright primary colors"
+          - "late 90s anime aesthetic, cel shading, techno accessories, bold outlines"
+
+  - key: mood
+    display_name: Mood Tone
+    groups:
+      - label: romantic
+        prompts:
+          - "soft romantic lighting, warm blush tones, tender gaze, intimate atmosphere"
+          - "dreamy pastel ambiance, gentle smile, floating petals"
+          - "sentimental watercolor scene, delicate highlights, affectionate pose"
+      - label: playful
+        prompts:
+          - "playful upbeat energy, bright candy colors, cheerful expression"
+          - "whimsical composition, lively gestures, bubbly personality"
+          - "fun, energetic illustration, sparkles, joyful laughter"
+      - label: dramatic
+        prompts:
+          - "dramatic chiaroscuro lighting, intense gaze, high contrast shadows"
+          - "moody cinematic moment, stormy palette, suspenseful tension"
+          - "powerful emotional pose, dark saturated colors, serious expression"
+
+  - key: pose_energy
+    display_name: Pose Expressiveness
+    groups:
+      - label: static
+        prompts:
+          - "calm standing pose, minimal movement, composed posture"
+          - "relaxed seated pose, gentle curves, serene energy"
+          - "still figure study, balanced weight, subtle gesture"
+      - label: dynamic
+        prompts:
+          - "dynamic action pose, flowing motion lines, energetic stance"
+          - "mid-motion spin, dramatic fabric sweep, kinetic energy"
+          - "athletic leap, strong diagonal composition, sense of speed"
+      - label: expressive
+        prompts:
+          - "expressive theatrical pose, exaggerated gesture, stage presence"
+          - "dramatic arm sweep, emotive body language, storytelling"
+          - "bold expressive posture, emphasis on attitude, confident flair"
