@@ -3,7 +3,9 @@ from __future__ import annotations
 import json
 import sqlite3
 import time
+import uuid
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
@@ -165,8 +167,14 @@ class ArtifactWriter:
         images: Iterable[Tuple[int, bytes]],
     ) -> List[Path]:
         saved: List[Path] = []
+        timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%S%fZ")
+        unique_id = uuid.uuid4().hex
+        base_label = str(meta_base.get("id", "image"))
+        base_prefix = f"{timestamp}_{unique_id}_{base_label}"
         for variant_index, image_bytes in images:
-            path = self.output_dir / f"{meta_base['id']}_{variant_index}.jpg"
+            variant_suffix = f"{variant_index}"
+            base_name = f"{base_prefix}_{variant_suffix}"
+            path = self.output_dir / f"{base_name}.jpg"
             json_sidecar = path.with_suffix(".json")
             txt_sidecar = path.with_suffix(".txt")
 
@@ -178,7 +186,10 @@ class ArtifactWriter:
             print(f"[imagen-lab] saved image {path.name} -> {path.parent}")
 
             meta = dict(meta_base)
-            meta["id"] = f"{meta_base['id']}_{variant_index}"
+            meta["id"] = base_name
+            meta.setdefault("legacy_id", base_label)
+            meta["created_at"] = timestamp
+            meta["uuid"] = unique_id
             meta["final_prompt"] = final_prompt
             meta["parameters"] = scene.to_dict()
 
