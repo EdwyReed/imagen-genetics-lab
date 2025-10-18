@@ -100,3 +100,787 @@ heads:
           - "expressive theatrical pose, exaggerated gesture, stage presence"
           - "dramatic arm sweep, emotive body language, storytelling"
           - "bold expressive posture, emphasis on attitude, confident flair"
+
+  - key: pinup_era
+    display_name: Pin-up Era Focus
+    primary: eighties_glam
+    groups:
+      - label: fifties_pinup
+        prompts:
+          - "classic 1950s pin-up illustration, polka dot dress, vintage curls, painted typography"
+          - "mid-century glamour poster, red lipstick, victory rolls, chrome diner style"
+      - label: eighties_glam
+        prompts:
+          - "1980s glam pin-up, neon gradients, metallic leotard, teased hair, vaporwave glow"
+          - "80s high-cut swimsuit poster, chrome logo, electric purple lighting"
+      - label: two_thousands_digital
+        prompts:
+          - "early 2000s digital pin-up art, airbrushed highlights, glossy cg finish, lens flare"
+          - "Y2K glamour render, metallic background, sparkle overlay, digital sheen"
+
+  - key: retro_poster
+    display_name: Retro Poster Aesthetic
+    primary: poster
+    groups:
+      - label: poster
+        prompts:
+          - "retro poster composition, centered figure, bold typography, distressed paper texture"
+          - "vintage advertising poster, off-white border, print grain, limited palette"
+      - label: clean_modern
+        prompts:
+          - "modern clean layout, minimal typography, flat background, no retro texture"
+          - "sleek digital poster, smooth gradients, crisp edges, contemporary design"
+
+  - key: medium_type
+    display_name: Medium Detector
+    primary: watercolor
+    groups:
+      - label: watercolor
+        prompts:
+          - "delicate watercolor illustration, fluid washes, soft bleeds, paper granulation"
+          - "transparent watercolor pigments, layered washes, subtle outlines"
+      - label: gouache
+        prompts:
+          - "opaque gouache painting, velvety matte finish, bold graphic blocks"
+          - "gouache pin-up art, solid color planes, light chalky texture"
+      - label: digital_paint
+        prompts:
+          - "digital painting, smooth gradients, soft airbrush lighting"
+          - "photoshop illustration, sharp blending, digital brush strokes"
+      - label: oil_paint
+        prompts:
+          - "oil painting with impasto strokes, thick paint texture, traditional canvas"
+          - "classic oil portrait, rich glazes, visible brushwork"
+      - label: photo
+        prompts:
+          - "high resolution photograph, camera capture, realistic skin detail"
+          - "studio photography, lens bokeh, photographic depth of field"
+
+  - key: attire_coverage
+    display_name: Coverage Level
+    primary: lingerie
+    groups:
+      - label: fully_clothed
+        prompts:
+          - "fully clothed outfit, layered garments, little exposed skin"
+          - "fashion editorial with long sleeves, full length dress, modest styling"
+      - label: partial
+        prompts:
+          - "partial coverage outfit, cropped top, exposed midriff, teasing silhouette"
+          - "pin-up pose with open jacket, glimpses of skin, playful tease"
+      - label: lingerie
+        prompts:
+          - "lingerie focus, bra and garter belt, stockings, intimate boudoir styling"
+          - "delicate underwear set, lace panels, seductive pose"
+      - label: nude
+        prompts:
+          - "implied nude figure, artful drapery, minimal garments"
+          - "tasteful nude study, bare skin emphasis, subtle accessories"
+
+  - key: attire_type
+    display_name: Outfit Type
+    primary: lingerie
+    groups:
+      - label: dress
+        prompts:
+          - "elegant dress fashion illustration, flowing fabric, couture details"
+          - "pin-up girl in swing dress, cinched waist, flared skirt"
+      - label: lingerie
+        prompts:
+          - "pin-up lingerie set, corset, stockings, garter straps"
+          - "boudoir lingerie, sheer panels, delicate lace"
+      - label: swimwear
+        prompts:
+          - "retro swimsuit poster, high-cut bikini, sunlit beach backdrop"
+          - "one-piece swimsuit, glossy wet shine, poolside glamour"
+      - label: uniform
+        prompts:
+          - "costume uniform, stylized military jacket, badge details"
+          - "pin-up in service uniform, cap, structured silhouette"
+      - label: casual
+        prompts:
+          - "casual outfit illustration, denim shorts, cropped tee"
+          - "modern casual streetwear, relaxed fit, everyday styling"
+      - label: sporty
+        prompts:
+          - "sporty activewear, athletic pose, fitted gym outfit"
+          - "cheer-inspired costume, energetic stance, sporty accessories"
+      - label: fantasy
+        prompts:
+          - "fantasy costume with armor details, ornate accessories"
+          - "magical girl outfit, ribbons, embellished bodice"
+
+  - key: materials
+    display_name: Material Emphasis
+    primary: sheer
+    groups:
+      - label: lace
+        prompts:
+          - "intricate lace fabric, delicate floral patterns, semi-transparent"
+          - "lace lingerie close-up, ornate trims, feminine texture"
+      - label: silk
+        prompts:
+          - "lustrous silk gown, smooth reflective drape, luxurious sheen"
+          - "silk ribbon accents, flowing fabric, elegant highlights"
+      - label: leather
+        prompts:
+          - "shiny leather outfit, tight fit, biker aesthetics"
+          - "black leather bodysuit, reflective highlights, edgy styling"
+      - label: latex
+        prompts:
+          - "glossy latex costume, mirror shine, futuristic allure"
+          - "latex pin-up suit, high-gloss reflections, form-fitting"
+      - label: denim
+        prompts:
+          - "denim shorts outfit, casual texture, visible seams"
+          - "jean jacket styling, rugged fabric grain"
+      - label: sheer
+        prompts:
+          - "sheer translucent fabric, visible skin beneath, delicate mesh"
+          - "transparent chiffon layers, airy and revealing"
+
+  - key: body_focus
+    display_name: Body Focus Zones
+    primary: thighs
+    groups:
+      - label: thighs
+        prompts:
+          - "composition emphasizing thighs, close framing on legs, sensual lighting"
+          - "focus on upper legs, stockings highlighted, seductive pose"
+      - label: chest
+        prompts:
+          - "emphasis on cleavage, camera centered on chest, lingerie detailing"
+          - "highlighted bust line, sparkling jewelry drawing attention"
+      - label: hips
+        prompts:
+          - "accent on hips, curvy silhouette, hands resting on waist"
+          - "hip-swaying pose, hourglass framing, glam lighting"
+      - label: legs
+        prompts:
+          - "long legs emphasized, extended pose, heels elongating silhouette"
+          - "full leg highlight, stockings or tights in focus"
+      - label: back
+        prompts:
+          - "backless pose, arched spine, emphasis on shoulder blades"
+          - "turned back view, spotlight on back curve"
+      - label: shoulders
+        prompts:
+          - "bare shoulders highlighted, off-shoulder garment, soft light"
+          - "focus on collarbones and shoulders, delicate pose"
+
+  - key: layering
+    display_name: Layering Level
+    primary: single_layer
+    groups:
+      - label: single_layer
+        prompts:
+          - "single layer outfit, minimal clothing pieces, streamlined silhouette"
+          - "one-piece bodysuit, no additional outer layers"
+      - label: multi_layer
+        prompts:
+          - "layered wardrobe, jacket over lingerie, stockings with garter and overskirt"
+          - "multiple garment layers, coat or cape draped over base outfit"
+
+  - key: accessories
+    display_name: Accessory Spotlight
+    primary: stockings
+    groups:
+      - label: jewelry
+        prompts:
+          - "glamour illustration featuring statement jewelry, sparkling necklace"
+          - "close-up on earrings and bracelets, jewelry catching light"
+      - label: gloves
+        prompts:
+          - "opera gloves, satin sheen, elegant hand gestures"
+          - "elbow-length gloves, vintage glamour styling"
+      - label: stockings
+        prompts:
+          - "classic stockings with garter clips, seam detail, pin-up aesthetic"
+          - "sheer thigh-high stockings, lace tops, sensual focus"
+      - label: garters
+        prompts:
+          - "garter belt straps, detailed hardware, lingerie centerpiece"
+          - "garter harness close-up, intricate fastenings"
+      - label: belts
+        prompts:
+          - "wide waist belt cinching silhouette, decorative buckle"
+          - "corset belt accentuating waist, structured accessory"
+      - label: hats
+        prompts:
+          - "pin-up girl wearing wide-brim hat, stylish headwear"
+          - "retro cap accessory, playful tilt, outfit coordination"
+
+  - key: footwear
+    display_name: Footwear Type
+    primary: heels
+    groups:
+      - label: heels
+        prompts:
+          - "stiletto heels, glossy pumps, elongated legs"
+          - "high heel shoes spotlight, reflective surface, glamorous pose"
+      - label: boots
+        prompts:
+          - "knee-high boots, bold stance, leather texture"
+          - "ankle boots with buckles, edgy styling"
+      - label: barefoot
+        prompts:
+          - "barefoot pose, natural toes, grounded stance"
+          - "soft barefoot portrayal, relaxed mood"
+      - label: socks
+        prompts:
+          - "cute socks, playful stripes, youthful vibe"
+          - "knee socks with bows, cozy styling"
+
+  - key: color_palette
+    display_name: Color Palette Character
+    primary: pastel
+    groups:
+      - label: pastel
+        prompts:
+          - "pastel candy palette, soft pinks and mints, gentle gradients"
+          - "powdery pastel tones, light blush background"
+      - label: vivid
+        prompts:
+          - "bold saturated neon colors, electric glow"
+          - "vivid high-energy palette, intense reds and blues"
+      - label: monochrome
+        prompts:
+          - "monochrome illustration, single hue variations"
+          - "black and white pin-up, grayscale shading"
+      - label: high_contrast
+        prompts:
+          - "high contrast palette, bright highlights against deep shadows"
+          - "dramatic complementary colors, strong contrast"
+
+  - key: pose_category
+    display_name: Pose Category
+    primary: arched
+    groups:
+      - label: lying
+        prompts:
+          - "pin-up reclining on sofa, horizontal pose, languid mood"
+          - "lying on stomach pose, bent knees, playful look"
+      - label: sitting
+        prompts:
+          - "seated pose on stool, crossed legs, elegant posture"
+          - "sitting on chair, poised yet relaxed"
+      - label: standing
+        prompts:
+          - "standing pose, weight on one hip, confident gaze"
+          - "upright stance, hands on waist, classic pin-up"
+      - label: kneeling
+        prompts:
+          - "kneeling pose, arched back, hands resting on thighs"
+          - "kneeling on cushion, flirtatious smile"
+      - label: leaning
+        prompts:
+          - "leaning against wall, asymmetrical posture"
+          - "leaned over prop, casual support, coy expression"
+      - label: arched
+        prompts:
+          - "dramatic arched back, accentuated curves, glamorous lighting"
+          - "arched spine pose, chest lifted, confident allure"
+      - label: cross_legged
+        prompts:
+          - "cross-legged sitting pose, demure yet playful"
+          - "floor pose with legs crossed, relaxed mood"
+
+  - key: camera_intimacy
+    display_name: Camera Intimacy
+    primary: close_up
+    groups:
+      - label: close_up
+        prompts:
+          - "tight close-up framing, face and torso dominating frame"
+          - "intimate crop, viewer close to subject, personal connection"
+      - label: medium
+        prompts:
+          - "mid-shot composition, waist-up framing"
+          - "balanced medium framing, environment visible"
+      - label: wide
+        prompts:
+          - "wide shot, full body with ample background"
+          - "distant framing, subject small within scene"
+
+  - key: motion_state
+    display_name: Motion vs Static
+    primary: active
+    groups:
+      - label: static
+        prompts:
+          - "static pose, held posture, calm energy"
+          - "still composition, minimal movement"
+      - label: active
+        prompts:
+          - "dynamic motion, swirling fabric, energetic gesture"
+          - "movement captured mid-action, lively momentum"
+
+  - key: gaze_direction
+    display_name: Gaze Direction
+    primary: direct
+    groups:
+      - label: direct
+        prompts:
+          - "subject looking directly at viewer, engaging eye contact"
+          - "forward gaze, confident connection"
+      - label: side
+        prompts:
+          - "eyes glancing sideways, coy sidelong look"
+          - "profile glance, gaze off-camera"
+      - label: downward
+        prompts:
+          - "eyes cast downward, shy expression"
+          - "gaze lowered, demure mood"
+
+  - key: softness
+    display_name: Softness vs Crispness
+    primary: soft
+    groups:
+      - label: soft
+        prompts:
+          - "soft diffusion, gentle blur, dreamy edges"
+          - "feathered lighting, hazy transitions"
+      - label: crisp
+        prompts:
+          - "crisp line work, sharp edges, high clarity"
+          - "razor sharp focus, defined contours"
+
+  - key: paper_texture
+    display_name: Paper Texture Presence
+    primary: textured
+    groups:
+      - label: textured
+        prompts:
+          - "visible watercolor paper texture, grainy background"
+          - "fibrous paper fibers, tactile surface"
+      - label: smooth
+        prompts:
+          - "smooth digital finish, no paper grain"
+          - "polished surface, textureless background"
+
+  - key: color_harmony
+    display_name: Color Harmony Style
+    primary: pastel_harmony
+    groups:
+      - label: pastel_harmony
+        prompts:
+          - "harmonious pastel scheme, gentle analogous hues"
+          - "soft complementary pastels, cohesive palette"
+      - label: bold_complementary
+        prompts:
+          - "bold complementary colors, striking contrast"
+          - "saturated opposing hues, energetic balance"
+      - label: monochrome_balance
+        prompts:
+          - "monochrome harmony, single hue variations, tonal balance"
+          - "limited palette around one color family"
+
+  - key: contrast_curve
+    display_name: Contrast Curve Feel
+    primary: soft
+    groups:
+      - label: soft
+        prompts:
+          - "soft contrast, lifted shadows, gentle highlights"
+          - "filmic pastel contrast, smooth gradient transitions"
+      - label: punchy
+        prompts:
+          - "punchy contrast, deep blacks, bright speculars"
+          - "high contrast pin-up lighting, dramatic punch"
+
+  - key: specular_color
+    display_name: Specular Color Diversity
+    primary: colorful_specular
+    groups:
+      - label: colorful_specular
+        prompts:
+          - "multi-colored highlights, iridescent shimmer, rainbow sheen"
+          - "colorful rim lights, tinted reflections"
+      - label: monochrome_specular
+        prompts:
+          - "single color specular highlights, uniform white shine"
+          - "monochrome reflections, neutral glints"
+
+  - key: thigh_emphasis
+    display_name: Thigh Prominence
+    primary: strong
+    groups:
+      - label: strong
+        prompts:
+          - "strong emphasis on thighs, close crop, spotlight on legs"
+          - "pin-up pose showcasing thighs, highlighted stockings"
+      - label: subtle
+        prompts:
+          - "balanced composition, thighs not dominant"
+          - "thighs present but secondary focus"
+
+  - key: chest_emphasis
+    display_name: Chest Emphasis
+    primary: strong
+    groups:
+      - label: strong
+        prompts:
+          - "close framing on chest, pronounced cleavage, spotlight"
+          - "lingerie pose with chest forward, accent lighting"
+      - label: subtle
+        prompts:
+          - "minimal chest emphasis, focus on other elements"
+          - "covered neckline, modest presentation"
+
+  - key: legwear_focus
+    display_name: Legwear Focus
+    primary: stockings_focus
+    groups:
+      - label: stockings_focus
+        prompts:
+          - "attention on stockings or tights, seam details, patterned hosiery"
+          - "close-up on legs wearing stockings, garter straps visible"
+      - label: bare_legs
+        prompts:
+          - "bare legs without hosiery, natural skin texture"
+          - "legs uncovered, minimal accessories"
+      - label: patterned_legwear
+        prompts:
+          - "patterned leggings, fishnet tights, bold designs"
+          - "decorated legwear, graphic prints"
+
+  - key: underwear_visibility
+    display_name: Underwear Visibility
+    primary: explicit
+    groups:
+      - label: explicit
+        prompts:
+          - "underwear clearly visible, spotlight on lingerie details"
+          - "direct view of bra and panties, showcased boldly"
+      - label: hinted
+        prompts:
+          - "suggested underwear under translucent fabric, implied visibility"
+          - "peek of lingerie through slits or cutouts"
+      - label: concealed
+        prompts:
+          - "underwear hidden beneath outerwear, modest coverage"
+          - "no lingerie visible, fully covered"
+
+  - key: exposure_level
+    display_name: Exposure Level
+    primary: suggestive
+    groups:
+      - label: demure
+        prompts:
+          - "demure styling, modest coverage, gentle allure"
+          - "reserved posing, subtle hints"
+      - label: suggestive
+        prompts:
+          - "suggestive pin-up pose, teasing reveal, flirtatious"
+          - "playful exposure, tasteful yet enticing"
+      - label: bold
+        prompts:
+          - "boldly revealing pose, daring exposure, confident gaze"
+          - "maximum reveal, unapologetic attitude"
+
+  - key: fit_tightness
+    display_name: Clothing Fit Tightness
+    primary: tight_fit
+    groups:
+      - label: tight_fit
+        prompts:
+          - "tight-fitting outfit hugging curves, bodycon silhouette"
+          - "skin-tight latex or spandex, contoured shape"
+      - label: relaxed_fit
+        prompts:
+          - "looser garments, flowing ease, airy clothing"
+          - "oversized sweater or robe, relaxed drape"
+
+  - key: pose_suggestiveness
+    display_name: Pose Suggestiveness
+    primary: provocative
+    groups:
+      - label: provocative
+        prompts:
+          - "provocative pose, arched back, flirtatious hand placement"
+          - "seductive body language, teasing gesture"
+      - label: elegant
+        prompts:
+          - "elegant poised pose, refined grace, minimal tease"
+          - "classic fashion stance, sophisticated mood"
+      - label: neutral
+        prompts:
+          - "neutral standing pose, straightforward presentation"
+          - "balanced neutral stance, minimal sensuality"
+
+  - key: expression_tone
+    display_name: Facial Expression Tone
+    primary: seductive
+    groups:
+      - label: serene
+        prompts:
+          - "serene calm expression, gentle smile, relaxed eyes"
+          - "peaceful face, soft lips, tranquil mood"
+      - label: seductive
+        prompts:
+          - "seductive expression, half-lidded eyes, inviting smile"
+          - "sultry gaze, confident allure"
+      - label: playful
+        prompts:
+          - "playful wink, cheerful grin, mischievous energy"
+          - "fun-loving expression, lively eyes"
+      - label: innocent
+        prompts:
+          - "innocent wide-eyed look, shy smile"
+          - "sweet naive expression, gentle blush"
+      - label: confident
+        prompts:
+          - "confident bold stare, assertive smile"
+          - "self-assured expression, strong presence"
+
+  - key: mood_contrast
+    display_name: Mood Contrast
+    primary: contrasting
+    groups:
+      - label: harmonious
+        prompts:
+          - "mood and styling in harmony, expression matches setting"
+          - "cohesive atmosphere, aligned emotion"
+      - label: contrasting
+        prompts:
+          - "mood contrast, sweet expression with provocative styling"
+          - "mismatched emotion and outfit, tension in scene"
+
+  - key: genre
+    display_name: Tone and Genre
+    primary: glamour
+    groups:
+      - label: glamour
+        prompts:
+          - "classic glamour pin-up, polished styling, sensual lighting"
+          - "glamorous poster art, sparkling highlights"
+      - label: boudoir
+        prompts:
+          - "intimate boudoir setting, bedroom props, soft lighting"
+          - "private boudoir photo shoot vibe"
+      - label: fashion
+        prompts:
+          - "fashion editorial pose, designer outfit, runway attitude"
+          - "high-fashion illustration, couture focus"
+      - label: artistic
+        prompts:
+          - "artistic fine art study, painterly rendering"
+          - "conceptual composition, expressive styling"
+      - label: humorous
+        prompts:
+          - "playful humorous pin-up scenario, cheeky props"
+          - "light-hearted comedy vibe, quirky setup"
+
+  - key: emotion_mood
+    display_name: Emotional Mood
+    primary: confident
+    groups:
+      - label: soft
+        prompts:
+          - "soft tender mood, gentle affection"
+          - "delicate emotional tone, dreamy atmosphere"
+      - label: melancholic
+        prompts:
+          - "melancholic expression, wistful mood"
+          - "bittersweet feeling, distant gaze"
+      - label: playful
+        prompts:
+          - "playful carefree vibe, laughter, energetic"
+          - "joyful fun atmosphere, upbeat"
+      - label: confident
+        prompts:
+          - "confident mood, empowered stance, bold energy"
+          - "self-assured expression, commanding presence"
+
+  - key: story_presence
+    display_name: Storytelling Presence
+    primary: narrative
+    groups:
+      - label: narrative
+        prompts:
+          - "scene with props and environment telling a story"
+          - "narrative illustration, contextual background elements"
+      - label: minimal
+        prompts:
+          - "minimal backdrop, figure isolated, no story props"
+          - "simple gradient background, focus on subject only"
+
+  - key: archetype
+    display_name: Character Archetype
+    primary: coquette
+    groups:
+      - label: innocent
+        prompts:
+          - "innocent girl-next-door vibe, sweet posture"
+          - "naive character styling, pure expression"
+      - label: vamp
+        prompts:
+          - "vamp femme fatale, dramatic shadows, sultry look"
+          - "dark seductive archetype, powerful gaze"
+      - label: coquette
+        prompts:
+          - "flirty coquette, playful tease, mischievous smile"
+          - "coquette styling, ribbons and bows, teasing energy"
+      - label: sporty
+        prompts:
+          - "athletic sporty archetype, active outfit"
+          - "energetic sports-inspired character"
+      - label: idol
+        prompts:
+          - "idol performer vibe, stage presence, sparkles"
+          - "idol costume, microphone prop, fan-service pose"
+
+  - key: gender_presentation
+    display_name: Gender Presentation
+    primary: feminine
+    groups:
+      - label: feminine
+        prompts:
+          - "feminine styling, soft curves, traditionally feminine fashion"
+          - "girly presentation, delicate accessories"
+      - label: androgynous
+        prompts:
+          - "androgynous fashion, blended masculine and feminine traits"
+          - "gender-neutral styling, ambiguous presentation"
+      - label: masculine
+        prompts:
+          - "masculine presentation, tailored lines, strong shoulders"
+          - "handsome styling, traditionally masculine cues"
+
+  - key: era_authenticity
+    display_name: Era Authenticity
+    primary: high
+    groups:
+      - label: high
+        prompts:
+          - "authentic period-accurate styling, faithful vintage details"
+          - "era-accurate costume, correct makeup and props"
+      - label: loose
+        prompts:
+          - "loosely inspired by era, modern mix of retro elements"
+          - "eclectic blend, not strictly authentic"
+
+  - key: text_elements
+    display_name: Text or Graphic Elements
+    primary: present
+    groups:
+      - label: present
+        prompts:
+          - "poster with text overlays, logos, typography integrated"
+          - "graphic design elements, captions on image"
+      - label: none
+        prompts:
+          - "pure illustration without text, clean image"
+          - "no typography or logos present"
+
+  - key: lighting_direction
+    display_name: Lighting Direction
+    primary: side
+    groups:
+      - label: top
+        prompts:
+          - "strong top lighting, overhead highlights, downward shadows"
+          - "spotlight from above, dramatic downward light"
+      - label: side
+        prompts:
+          - "side lighting, rim light along curves, lateral highlights"
+          - "side-lit composition, one side bright the other shadow"
+      - label: backlight
+        prompts:
+          - "backlit glow, halo outline, silhouette effect"
+          - "backlighting creating rim highlights"
+
+  - key: vignette_intensity
+    display_name: Vignette Intensity
+    primary: vignette
+    groups:
+      - label: vignette
+        prompts:
+          - "visible vignette, darkened corners, retro lens feel"
+          - "soft vignette framing subject, vintage effect"
+      - label: clean_edges
+        prompts:
+          - "clean edges, no vignette, even illumination"
+          - "flat lighting across entire frame"
+
+  - key: poster_layout
+    display_name: Poster Layout Index
+    primary: classic_poster
+    groups:
+      - label: classic_poster
+        prompts:
+          - "classic pin-up poster layout, centered figure, empty background"
+          - "heroic centered composition, poster margins"
+      - label: freeform_layout
+        prompts:
+          - "freeform collage layout, overlapping elements, experimental composition"
+          - "dynamic multi-panel layout, unconventional framing"
+
+  - key: ai_recognizable
+    display_name: AI Recognizability
+    primary: authentic
+    groups:
+      - label: ai_render
+        prompts:
+          - "AI generated render, plastic sheen, unnatural hands"
+          - "synthetic artifacts, GAN-like glitches, uncanny"
+      - label: authentic
+        prompts:
+          - "authentic illustration quality, hand-crafted feel"
+          - "natural imperfections, human-made touch"
+
+  - key: style_coherence
+    display_name: Style Coherence
+    primary: cohesive
+    groups:
+      - label: cohesive
+        prompts:
+          - "consistent rendering style throughout figure and background"
+          - "uniform brush treatment, cohesive finish"
+      - label: mixed
+        prompts:
+          - "mixed styles combined, collage of different render qualities"
+          - "inconsistent detailing between subject and background"
+
+  - key: novelty
+    display_name: Novelty Impression
+    primary: novel
+    groups:
+      - label: novel
+        prompts:
+          - "fresh original concept, unusual colorway, unexpected styling"
+          - "novel interpretation, distinctive composition"
+      - label: familiar
+        prompts:
+          - "commonplace scene, derivative styling, predictable"
+          - "familiar trope, seen-before arrangement"
+
+  - key: color_temperature
+    display_name: Color Temperature Feel
+    primary: warm
+    groups:
+      - label: warm
+        prompts:
+          - "warm golden palette, amber highlights, cozy glow"
+          - "sunset warmth, honeyed tones"
+      - label: cool
+        prompts:
+          - "cool cyan palette, icy lighting"
+          - "cool temperature, blue-toned shadows"
+      - label: mixed
+        prompts:
+          - "mixed warm and cool lighting, dual-tone illumination"
+          - "split lighting with contrasting temperatures"
+
+  - key: viewer_focus
+    display_name: Viewer Focus Map Entropy
+    primary: concentrated
+    groups:
+      - label: concentrated
+        prompts:
+          - "viewer attention concentrated on subject, minimal distractions"
+          - "strong focal point, tight composition"
+      - label: diffuse
+        prompts:
+          - "viewer attention diffuse, many competing elements"
+          - "busy scene, scattered focal points"

@@ -1,14 +1,41 @@
 default: default
 profiles:
   default:
-    clip: 0.3414902120385106
-    illu: 0.04644296840063542
-    spec: 0.6120668195608541
+    clip: 0.2
+    spec: 0.15
+    illu: 0.08
+    retro: 0.1
+    medium: 0.1
+    sensual: 0.1
+    pose: 0.08
+    camera: 0.05
+    color: 0.05
+    accessories: 0.04
+    composition: 0.03
+    skin_glow: 0.02
   illustration_plus:
-    clip: 0.45
-    illu: 0.25
-    spec: 0.3
+    clip: 0.18
+    spec: 0.12
+    illu: 0.14
+    retro: 0.1
+    medium: 0.14
+    sensual: 0.08
+    pose: 0.06
+    camera: 0.05
+    color: 0.06
+    accessories: 0.03
+    composition: 0.02
+    skin_glow: 0.02
   specular_focus:
-    clip: 0.4
-    illu: 0.15
-    spec: 0.45
+    clip: 0.18
+    spec: 0.2
+    illu: 0.06
+    retro: 0.08
+    medium: 0.08
+    sensual: 0.12
+    pose: 0.08
+    camera: 0.04
+    color: 0.04
+    accessories: 0.03
+    composition: 0.05
+    skin_glow: 0.04
