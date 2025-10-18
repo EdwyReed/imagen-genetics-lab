@@ -13,6 +13,7 @@ from scorer import DualScorer
 
 from .catalog import Catalog
 from .config import PipelineConfig
+from .scoring import DEFAULT_STYLE_WEIGHTS, WeightProfileTable
 from .ga import GeneSet, crossover_genes, load_best_gene_sets, mutate_gene
 from .prompting import (
     REQUIRED_STYLE_TERMS,
@@ -57,6 +58,16 @@ def _prepare_services(config: PipelineConfig, output_dir: Optional[Path] = None)
         max_embeddings=config.history.max_embeddings,
     )
     history_cache = EmbeddingCache(history_cfg)
+    profiles_path = getattr(config.scoring, "weight_profiles_path", None)
+    weight_table = None
+    if profiles_path:
+        defaults = config.scoring.weights or DEFAULT_STYLE_WEIGHTS
+        weight_table = WeightProfileTable.load(
+            profiles_path,
+            defaults=defaults,
+            create=True,
+        )
+
     scorer = DualScorer(
         device=config.scoring.device,
         batch=config.scoring.batch_size,
@@ -67,6 +78,9 @@ def _prepare_services(config: PipelineConfig, output_dir: Optional[Path] = None)
         cal_style=config.scoring.cal_style,
         cal_illu=config.scoring.cal_illu,
         auto_weights=config.scoring.auto_weights.as_dict(),
+        weight_table=weight_table,
+        weight_profile=getattr(config.scoring, "weight_profile", "default"),
+        persist_profile_updates=getattr(config.scoring, "persist_profile_updates", False),
     )
     setattr(scorer, "embedding_cache", history_cache)
     catalog = Catalog.load(config.paths.catalog)
@@ -91,6 +105,7 @@ def _format_metrics(metrics: Dict[str, object]) -> Optional[str]:
     pieces: List[str] = []
     batch = metrics.get("batch", {}) if isinstance(metrics, dict) else {}
     history = metrics.get("history", {}) if isinstance(metrics, dict) else {}
+    style = metrics.get("style", {}) if isinstance(metrics, dict) else {}
 
     try:
         pairwise_mean = batch.get("pairwise_mean")  # type: ignore[assignment]
@@ -120,6 +135,19 @@ def _format_metrics(metrics: Dict[str, object]) -> Optional[str]:
     if size:
         try:
             pieces.append(f"history_size={int(size)}")
+        except Exception:
+            pass
+    try:
+        style_mean = style.get("mean_total")  # type: ignore[assignment]
+        if style_mean is not None:
+            pieces.append(f"style_mean={float(style_mean):.3f}")
+    except Exception:
+        pass
+    contributions = style.get("mean_contributions") if isinstance(style, dict) else None
+    if isinstance(contributions, dict) and contributions:
+        try:
+            contrib_bits = [f"{key}:{float(val):.3f}" for key, val in sorted(contributions.items())]
+            pieces.append(f"style_contribs={'/'.join(contrib_bits)}")
         except Exception:
             pass
     if not pieces:
