@@ -8,7 +8,20 @@ import yaml
 
 
 DEFAULT_WEIGHT_PROFILE_PATH = Path(__file__).with_name("scoring").joinpath("weight_profiles.yaml")
-DEFAULT_INLINE_WEIGHTS: Dict[str, float] = {"clip": 0.55, "spec": 0.35, "illu": 0.10}
+DEFAULT_INLINE_WEIGHTS: Dict[str, float] = {
+    "clip": 0.20,
+    "spec": 0.15,
+    "illu": 0.08,
+    "retro": 0.10,
+    "medium": 0.10,
+    "sensual": 0.10,
+    "pose": 0.08,
+    "camera": 0.05,
+    "color": 0.05,
+    "accessories": 0.04,
+    "composition": 0.03,
+    "skin_glow": 0.02,
+}
 
 
 @dataclass

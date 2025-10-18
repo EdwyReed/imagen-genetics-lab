@@ -42,15 +42,8 @@ DEFAULT_TAU: float = 0.07
 DEFAULT_CAL_STYLE: Optional[Tuple[float, float]] = None  # например (0.35, 0.75)
 DEFAULT_CAL_ILLU: Optional[Tuple[float, float]] = None  # например (0.45, 0.85)
 
-# Веса итоговой style-метрики (композиция из трёх компонент)
-W_CLIP, W_SPEC, W_ILLU = (
-    DEFAULT_STYLE_WEIGHTS["clip"],
-    DEFAULT_STYLE_WEIGHTS["spec"],
-    DEFAULT_STYLE_WEIGHTS["illu"],
-)
-
 # Версия схемы логов для SQLite/JSONL. Увеличивайте при изменении структуры записей.
-SCORES_SCHEMA_VERSION = 4
+SCORES_SCHEMA_VERSION = 5
 
 
 @dataclass
@@ -99,6 +92,7 @@ class ScoreResult:
     embedding: Optional[np.ndarray] = None
     style_contributions: Dict[str, float] = field(default_factory=dict)
     style_weights: Dict[str, float] = field(default_factory=dict)
+    style_components: Dict[str, float] = field(default_factory=dict)
     pose_metrics: PoseAnalysis = field(default_factory=PoseAnalysis.empty)
     composition_metrics: CompositionMetrics = field(default_factory=CompositionMetrics.empty)
 
@@ -118,6 +112,7 @@ class ScoredImage:
     illu_bias_raw: float = 0.0
     style_contributions: Dict[str, float] = field(default_factory=dict)
     style_weights: Dict[str, float] = field(default_factory=dict)
+    style_components: Dict[str, float] = field(default_factory=dict)
     pose_class: str = "unknown"
     pose_confidence: int = 0
     body_curve: int = 0
@@ -550,7 +545,7 @@ class DualScorer:
     """
     Двухканальный скорер:
       - nsfw (0..100) по opennsfw2
-      - style (0..100) = w_clip*clip_style + w_spec*specular + w_illu*illu_bias
+      - style (0..100) = взвешенная сумма компонентов (CLIP-головы, specular, поза и др.)
 
     Сохраняет результаты в:
       - SQLite (scores.sqlite, таблица scores)
@@ -603,7 +598,7 @@ class DualScorer:
         self.cal_illu = cal_illu if cal_illu is not None else DEFAULT_CAL_ILLU
         self._base_w = dict(self.w)
         self._auto = AutoWeightsSettings.from_dict(auto_weights)
-        self._ema = {k: self._auto.initial_level for k in ("clip", "spec", "illu")}
+        self._ema = {k: self._auto.initial_level for k in self.w}
         if self._auto.enabled:
             self._apply_weight_bounds()
         self.embedding_cache = None
@@ -619,7 +614,7 @@ class DualScorer:
     def _apply_weight_bounds(self) -> None:
         if not self._auto.enabled:
             return
-        for key in ("clip", "spec", "illu"):
+        for key in list(self.w.keys()):
             self.w[key] = max(self._auto.min_weight, min(self._auto.max_weight, self.w[key]))
         total = sum(self.w.values())
         if total > 0:
@@ -630,20 +625,21 @@ class DualScorer:
     def _sync_style_weights(self, *, persist: bool = False) -> None:
         self.w = self.style_mixer.set_weights(self.w, persist=persist)
 
-    def _update_auto_weights(self, clip_style: float, specular: float, illu_bias: float) -> None:
+    def _update_auto_weights(self, components: Mapping[str, float]) -> None:
         if not self._auto.enabled:
             return
         alpha = max(0.0, min(1.0, self._auto.ema_alpha))
-        values = {"clip": clip_style, "spec": specular, "illu": illu_bias}
-        for key, value in values.items():
+        for key in list(self._ema.keys()):
+            value = float(max(0.0, min(1.0, components.get(key, 0.0))))
             self._ema[key] = (1 - alpha) * self._ema[key] + alpha * value
 
         raw: Dict[str, float] = {}
-        for key in ("clip", "spec", "illu"):
+        for key in list(self._ema.keys()):
             ema = max(self._ema[key], self._auto.min_component)
             gain = self._auto.target / ema if ema > 0 else self._auto.max_gain
             gain = max(self._auto.min_gain, min(self._auto.max_gain, gain))
-            raw[key] = self._base_w[key] * gain
+            base = self._base_w.get(key, self._auto.min_weight)
+            raw[key] = base * gain
 
         total_raw = sum(raw.values())
         if total_raw <= 0:
@@ -657,14 +653,12 @@ class DualScorer:
         self._apply_weight_bounds()
 
     # ---- composition ----
-    def style_from_components(self, clip_style: float, specular: float, illu_bias: float) -> float:
-        composition = self.style_mixer.compose(clip_style, specular, illu_bias)
+    def style_from_components(self, components: Mapping[str, float]) -> float:
+        composition = self.style_mixer.compose(components)
         return composition.total
 
-    def compose_style(
-        self, clip_style: float, specular: float, illu_bias: float
-    ) -> StyleComposition:
-        return self.style_mixer.compose(clip_style, specular, illu_bias)
+    def compose_style(self, components: Mapping[str, float]) -> StyleComposition:
+        return self.style_mixer.compose(components)
 
     def current_weights(self) -> Dict[str, float]:
         return dict(self.w)
@@ -699,6 +693,16 @@ class DualScorer:
             embedding=image_embedding,
         )
 
+        def _prob(head_key: str, label: str) -> float:
+            head = head_probs.get(head_key, {})
+            return float(max(0.0, min(1.0, head.get(label, 0.0))))
+
+        def _avg(values: Sequence[float]) -> float:
+            arr = [float(v) for v in values if float(v) > 0.0]
+            if not arr:
+                return 0.0
+            return float(np.clip(np.mean(arr), 0.0, 1.0))
+
         clip_style = 0.0
         if style_head:
             positive = style_head.primary or (style_head.labels[0] if style_head.labels else None)
@@ -718,9 +722,89 @@ class DualScorer:
         composition_metrics = CompositionMetrics.empty()
         if self.composition_analyzer is not None:
             composition_metrics = self.composition_analyzer.analyze(img)
-        composition = self.style_mixer.compose(clip_style, spec, illu_bias)
+
+        retro_component = _avg(
+            [
+                _prob("retro_poster", "poster"),
+                _prob("pinup_era", "eighties_glam"),
+                _prob("poster_layout", "classic_poster"),
+            ]
+        )
+        medium_component = _avg(
+            [
+                0.6 * _prob("medium_type", "watercolor"),
+                0.4 * _prob("medium_type", "gouache"),
+            ]
+        )
+        sensual_component = _avg(
+            [
+                _prob("thigh_emphasis", "strong"),
+                _prob("chest_emphasis", "strong"),
+                _prob("legwear_focus", "stockings_focus"),
+                _prob("underwear_visibility", "explicit"),
+                _prob("exposure_level", "suggestive"),
+                _prob("pose_suggestiveness", "provocative"),
+                _prob("expression_tone", "seductive"),
+            ]
+        )
+        pose_component = _avg(
+            [
+                _prob("pose_energy", "expressive"),
+                _prob("pose_category", "arched"),
+                _prob("motion_state", "active"),
+                _prob("pose_suggestiveness", "provocative"),
+            ]
+        )
+        camera_component = _prob("camera_intimacy", "close_up")
+        color_component = _avg(
+            [
+                _prob("color_palette", "pastel"),
+                _prob("color_harmony", "pastel_harmony"),
+                _prob("contrast_curve", "soft"),
+            ]
+        )
+        accessories_component = _avg(
+            [
+                _prob("accessories", "stockings"),
+                _prob("materials", "lace"),
+                _prob("legwear_focus", "stockings_focus"),
+            ]
+        )
+        composition_component = float(
+            np.clip(
+                0.5 * composition_metrics.thirds_alignment
+                + 0.5 * max(0.0, 1.0 - composition_metrics.negative_space),
+                0.0,
+                1.0,
+            )
+        )
+
+        skin_glow_component = 0.0
+        highlight_total = float(max(spec_metrics.highlight_ratio, 1e-6))
+        skin_zone = spec_metrics.zones.get("skin")
+        if skin_zone is not None and highlight_total > 0:
+            skin_glow_component = float(
+                np.clip(skin_zone.highlight_density / highlight_total, 0.0, 1.0)
+            )
+
+        style_components = {
+            "clip": float(np.clip(clip_style, 0.0, 1.0)),
+            "spec": float(np.clip(spec, 0.0, 1.0)),
+            "illu": float(np.clip(illu_bias, 0.0, 1.0)),
+            "retro": retro_component,
+            "medium": medium_component,
+            "sensual": sensual_component,
+            "pose": pose_component,
+            "camera": float(np.clip(camera_component, 0.0, 1.0)),
+            "color": color_component,
+            "accessories": accessories_component,
+            "composition": composition_component,
+            "skin_glow": skin_glow_component,
+        }
+
+        composition = self.style_mixer.compose(style_components)
         style = composition.total
-        self._update_auto_weights(clip_style, spec, illu_bias)
+        self._update_auto_weights(style_components)
 
         clip_head_payload: Dict[str, Dict[str, Any]] = {}
         for key, head in self.clip.heads.items():
@@ -743,6 +827,7 @@ class DualScorer:
             embedding=embedding_vec,
             style_contributions=composition.contributions,
             style_weights=composition.weights,
+            style_components=style_components,
             pose_metrics=pose_metrics,
             composition_metrics=composition_metrics,
         )
@@ -778,6 +863,7 @@ class DualScorer:
                         embedding=None,
                         style_contributions={},
                         style_weights={},
+                        style_components={},
                         pose_metrics=PoseAnalysis.empty(),
                         composition_metrics=CompositionMetrics.empty(),
                     )
@@ -809,6 +895,7 @@ class DualScorer:
                         round(spec_payload.get("aggregate", {}).get("weighted_score", 0.0) * 100)
                     ),
                     "style_weights": result.style_weights,
+                    "style_components": result.style_components,
                     "style_contributions": result.style_contributions,
                     "pose_metrics": result.pose_metrics.to_payload(),
                     "composition": result.composition_metrics.to_payload(),
@@ -847,6 +934,7 @@ class DualScorer:
                         illu_bias_raw=float(result.illu_bias),
                         style_contributions=dict(result.style_contributions),
                         style_weights=dict(result.style_weights),
+                        style_components=dict(result.style_components),
                         pose_class=result.pose_metrics.pose_class,
                         pose_confidence=int(round(result.pose_metrics.pose_confidence * 100)),
                         body_curve=int(round(result.pose_metrics.body_curve * 100)),
