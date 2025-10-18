@@ -5,9 +5,32 @@ import sqlite3
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+
+import numpy as np
 
 from .scene_builder import SceneStruct, short_readable
+from .embeddings import EmbeddingCache
+from .metrics import history_distance, intra_batch_distance
+
+try:  # pragma: no cover - typing support
+    from scorer import ScoredImage
+except Exception:  # pragma: no cover - runtime import fallback
+    ScoredImage = None  # type: ignore
+
+
+@dataclass
+class ScoredBatch:
+    images: List["ScoredImage"]
+    metrics: Dict[str, Any]
+
+    def best(self, w_style: float, w_nsfw: float) -> Optional["ScoredImage"]:
+        if not self.images:
+            return None
+        return max(self.images, key=lambda item: item.fitness(w_style, w_nsfw))
+
+    def is_empty(self) -> bool:
+        return not self.images
 
 try:  # pragma: no cover - optional dependency
     import piexif
@@ -188,13 +211,50 @@ def save_and_score(
     indiv: Optional[int],
     w_style: float,
     w_nsfw: float,
-) -> List[Tuple[Path, int, int]]:
+) -> ScoredBatch:
     images = list(extract_image_bytes(response))
     if not images:
-        return []
+        return ScoredBatch(images=[], metrics={})
     saved_paths = writer.write_variants(meta_base, scene, final_prompt, images)
-    triplets = scorer.score_and_save(saved_paths, notes="imagen jelly pin-up")
-    for image_path, nsfw100, style100 in triplets:
+    scored_images: List[ScoredImage] = scorer.score_and_save(saved_paths, notes="imagen jelly pin-up")
+
+    valid_indices: List[int] = []
+    valid_embeddings: List[np.ndarray] = []
+    for idx, scored in enumerate(scored_images):
+        if getattr(scored, "embedding", None) is not None:
+            valid_indices.append(idx)
+            valid_embeddings.append(np.asarray(scored.embedding, dtype=np.float32))
+
+    batch_metrics = intra_batch_distance(valid_embeddings)
+    history_metrics = history_distance(valid_embeddings, getattr(scorer, "embedding_cache", None))
+
+    per_image_batch = [None] * len(scored_images)
+    if batch_metrics.get("available"):
+        per_vals = batch_metrics.get("per_item_min", [])
+        for offset, idx in enumerate(valid_indices):
+            if offset < len(per_vals):
+                per_image_batch[idx] = float(per_vals[offset])
+
+    per_image_history = [None] * len(scored_images)
+    if history_metrics.get("available"):
+        per_vals = history_metrics.get("per_item_min", [])
+        for offset, idx in enumerate(valid_indices):
+            if offset < len(per_vals):
+                per_image_history[idx] = float(per_vals[offset])
+
+    cache = getattr(scorer, "embedding_cache", None)
+    if isinstance(cache, EmbeddingCache):
+        cache.extend(valid_embeddings)
+
+    metrics: Dict[str, Any] = {
+        "batch": batch_metrics,
+        "history": {**history_metrics, "size": len(cache) if isinstance(cache, EmbeddingCache) else 0},
+    }
+
+    for idx, scored in enumerate(scored_images):
+        image_path = scored.path
+        nsfw100 = scored.nsfw
+        style100 = scored.style
         sidecar = image_path.with_suffix(".json")
         try:
             side_meta = json.loads(sidecar.read_text(encoding="utf-8"))
@@ -205,6 +265,19 @@ def save_and_score(
             "nsfw_score": nsfw100,
             "style_score": style100,
             "fitness": fitness,
+            "embedding_metrics": {
+                "batch": {
+                    "pairwise_min": batch_metrics.get("pairwise_min"),
+                    "pairwise_mean": batch_metrics.get("pairwise_mean"),
+                    "self_min_distance": per_image_batch[idx],
+                },
+                "history": {
+                    "min_distance": history_metrics.get("min_distance"),
+                    "mean_distance": history_metrics.get("mean_distance"),
+                    "self_min_distance": per_image_history[idx],
+                    "history_size": len(cache) if isinstance(cache, EmbeddingCache) else 0,
+                },
+            },
         })
         sidecar.write_text(json.dumps(side_meta, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -219,6 +292,7 @@ def save_and_score(
                     "session": session_id,
                     "meta": meta_base,
                     "struct": scene.to_dict(),
+                    "embedding_metrics": metrics,
                 },
                 sfw=float(meta_base.get("ollama", {}).get("sfw_level", 0.0)),
                 temperature=float(meta_base.get("ollama", {}).get("temperature", 0.0)),
@@ -229,5 +303,5 @@ def save_and_score(
                 op=str(meta_base.get("ga_op", "plain")),
             )
         )
-    triplets.sort(key=lambda x: w_style * x[2] + w_nsfw * x[1], reverse=True)
-    return triplets
+    scored_images.sort(key=lambda item: item.fitness(w_style, w_nsfw), reverse=True)
+    return ScoredBatch(images=scored_images, metrics=metrics)

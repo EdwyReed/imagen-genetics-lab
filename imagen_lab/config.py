@@ -93,6 +93,12 @@ class ScoringConfig:
 
 
 @dataclass
+class HistoryConfig:
+    enabled: bool = True
+    max_embeddings: int = 512
+
+
+@dataclass
 class FitnessWeights:
     style: float = 0.7
     nsfw: float = 0.3
@@ -128,6 +134,7 @@ class PipelineConfig:
     ollama: OllamaConfig
     imagen: ImagenConfig
     scoring: ScoringConfig
+    history: HistoryConfig
     fitness: FitnessWeights
     defaults: RunDefaults
     ga: GAConfig
@@ -139,6 +146,7 @@ class PipelineConfig:
         ollama_data = raw.get("ollama", {})
         imagen_data = raw.get("imagen", {})
         scoring_data = raw.get("scoring", {})
+        history_data = raw.get("history", {})
         fitness_data = raw.get("fitness", {})
         defaults_data = raw.get("defaults", {})
         ga_data = raw.get("ga", {})
@@ -178,6 +186,11 @@ class PipelineConfig:
             auto_weights=AutoWeightsConfig.from_mapping(scoring_data.get("auto_weights")),
         )
 
+        history = HistoryConfig(
+            enabled=bool(history_data.get("enabled", True)),
+            max_embeddings=int(history_data.get("max_embeddings", 512)),
+        )
+
         fitness = FitnessWeights(
             style=float(fitness_data.get("style", 0.7)),
             nsfw=float(fitness_data.get("nsfw", 0.3)),
@@ -210,6 +223,7 @@ class PipelineConfig:
             ollama=ollama,
             imagen=imagen,
             scoring=scoring,
+            history=history,
             fitness=fitness,
             defaults=defaults,
             ga=ga,
