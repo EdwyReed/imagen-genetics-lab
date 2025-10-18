@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from typing import List, Sequence
+from typing import Iterable, List, Sequence
 
 import requests
 from google.genai import types
@@ -65,6 +65,73 @@ def needs_enforcement(text: str, required_terms: Sequence[str] = REQUIRED_STYLE_
     lower = text.lower()
     missing = [term for term in required_terms if term.lower() not in lower]
     return missing
+
+
+def _format_terms_sentence(terms: Sequence[str]) -> str:
+    unique: List[str] = []
+    seen: set[str] = set()
+    for term in terms:
+        lowered = term.lower()
+        if lowered in seen:
+            continue
+        unique.append(term)
+        seen.add(lowered)
+    if not unique:
+        return ""
+    if len(unique) == 1:
+        return unique[0]
+    if len(unique) == 2:
+        return f"{unique[0]} and {unique[1]}"
+    return f"{', '.join(unique[:-1])}, and {unique[-1]}"
+
+
+def append_required_terms(
+    text: str,
+    required_terms: Iterable[str] = REQUIRED_STYLE_TERMS,
+    *,
+    max_words: int | None = None,
+) -> str:
+    """Ensure ``text`` contains each of ``required_terms``.
+
+    If Ollama fails to include one or more mandatory style descriptors,
+    fall back to appending a short sentence that mentions every missing
+    term.  When ``max_words`` is provided, the result is trimmed from the
+    main caption (never from the fallback sentence) to honor the word
+    budget while still guaranteeing that the style hints appear in the
+    final Imagen prompt.
+    """
+
+    required_list = [term for term in required_terms if term]
+    if not required_list:
+        return text.strip()
+
+    missing = needs_enforcement(text, required_list)
+    if not missing:
+        return text.strip()
+
+    base = text.strip().rstrip(" .")
+    if base:
+        base += "."
+
+    sentence_core = _format_terms_sentence(missing)
+    addition = "This artwork highlights " + sentence_core
+    if not addition.endswith("."):
+        addition += "."
+
+    base_words = base.split()
+    addition_words = addition.split()
+
+    if max_words is not None and max_words > 0:
+        total_words = len(base_words) + len(addition_words)
+        if total_words > max_words:
+            remove = total_words - max_words
+            if remove >= len(base_words):
+                base_words = []
+            else:
+                base_words = base_words[: len(base_words) - remove]
+
+    combined = base_words + addition_words
+    return " ".join(combined).strip()
 
 
 def enforce_once(
