@@ -118,6 +118,13 @@ All CLI options default to the values declared in `config.yaml`. See `python sma
 
 4. **Scoring & storage** (`scorer.DualScorer`, `imagen_lab.storage`)
    * Saves JPEG + JSON + TXT sidecars (with EXIF notes when `piexif` is installed).
+
+## Pose & segmentation benchmarks
+
+For downstream body-tracking integrations we maintain GPU benchmarks for the
+most likely pose-estimation and human-segmentation candidates. Refer to
+[`wiki/pose_benchmark.md`](./wiki/pose_benchmark.md) for GTX 1060 guidance,
+including VRAM usage, throughput and recommended FP16/CPU fallback settings.
    * Calculates NSFW/style scores, writes them to SQLite/JSONL, and logs metadata for later analysis.
 
 5. **Genetic evolution** (`imagen_lab.ga`, `imagen_lab.pipeline`)
