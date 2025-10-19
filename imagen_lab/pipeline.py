@@ -34,7 +34,7 @@ from .utils import OllamaServiceError, OllamaServiceManager
 
 @dataclass
 class PipelineServices:
-    scorer: DualScorer
+    scorer: Optional[DualScorer]
     catalog: Catalog
     options_catalog: Catalog | None
     builder: SceneBuilder
@@ -57,7 +57,12 @@ def _required_terms(config: PipelineConfig) -> List[str]:
     return terms or list(REQUIRED_STYLE_TERMS)
 
 
-def _prepare_services(config: PipelineConfig, output_dir: Optional[Path] = None) -> PipelineServices:
+def _prepare_services(
+    config: PipelineConfig,
+    output_dir: Optional[Path] = None,
+    *,
+    enable_scoring: bool = True,
+) -> PipelineServices:
     history_cfg = EmbeddingHistoryConfig(
         enabled=config.history.enabled,
         max_embeddings=config.history.max_embeddings,
@@ -73,22 +78,24 @@ def _prepare_services(config: PipelineConfig, output_dir: Optional[Path] = None)
             create=True,
         )
 
-    scorer = DualScorer(
-        device=config.scoring.device,
-        batch=config.scoring.batch_size,
-        db_path=config.paths.database,
-        jsonl_path=config.paths.scores_jsonl,
-        weights=config.scoring.weights,
-        tau=config.scoring.tau,
-        cal_style=config.scoring.cal_style,
-        cal_illu=config.scoring.cal_illu,
-        auto_weights=config.scoring.auto_weights.as_dict(),
-        weight_table=weight_table,
-        weight_profile=getattr(config.scoring, "weight_profile", "default"),
-        persist_profile_updates=getattr(config.scoring, "persist_profile_updates", False),
-        composition_enabled=getattr(config.scoring, "composition_metrics", True),
-    )
-    setattr(scorer, "embedding_cache", history_cache)
+    scorer: Optional[DualScorer] = None
+    if enable_scoring:
+        scorer = DualScorer(
+            device=config.scoring.device,
+            batch=config.scoring.batch_size,
+            db_path=config.paths.database,
+            jsonl_path=config.paths.scores_jsonl,
+            weights=config.scoring.weights,
+            tau=config.scoring.tau,
+            cal_style=config.scoring.cal_style,
+            cal_illu=config.scoring.cal_illu,
+            auto_weights=config.scoring.auto_weights.as_dict(),
+            weight_table=weight_table,
+            weight_profile=getattr(config.scoring, "weight_profile", "default"),
+            persist_profile_updates=getattr(config.scoring, "persist_profile_updates", False),
+            composition_enabled=getattr(config.scoring, "composition_metrics", True),
+        )
+        setattr(scorer, "embedding_cache", history_cache)
     catalog = Catalog.load(config.paths.catalog)
     options_catalog = None
     options_path = getattr(config.paths, "options_catalog", None)
@@ -200,6 +207,7 @@ def run_plain(
     seed: Optional[int] = None,
     w_style: Optional[float] = None,
     w_nsfw: Optional[float] = None,
+    enable_scoring: bool = True,
 ) -> None:
     load_dotenv()
     cycles = cycles if cycles is not None else config.defaults.cycles
@@ -214,7 +222,7 @@ def run_plain(
     if seed is not None:
         random.seed(seed)
 
-    services = _prepare_services(config, output_dir=outdir)
+    services = _prepare_services(config, output_dir=outdir, enable_scoring=enable_scoring)
     logger = services.logger
     writer = services.writer
     scorer = services.scorer
@@ -223,6 +231,8 @@ def run_plain(
     feedback = services.feedback
 
     session_id = f"plain-{int(time.time())}"
+    if scorer is None:
+        print("[plain] scoring disabled (--no-scoring)")
     logger.log_run(
         session_id,
         "plain",
@@ -347,7 +357,7 @@ def run_plain(
                     best = batch.best(w_style, w_nsfw)
                     if best is not None:
                         print(f"   [best] {best.path.name}  style={best.style} nsfw={best.nsfw}")
-                        if feedback is not None:
+                        if feedback is not None and scorer is not None:
                             style_metrics = batch.metrics.get("style", {}) if isinstance(batch.metrics, dict) else {}
                             style_weights = None
                             if isinstance(style_metrics, dict):
@@ -423,6 +433,7 @@ def run_evolve(
     resume_k: Optional[int] = None,
     resume_session: Optional[str] = None,
     resume_mix: Optional[float] = None,
+    enable_scoring: bool = True,
 ) -> None:
     load_dotenv()
     pop = pop if pop is not None else config.ga.pop
@@ -444,7 +455,7 @@ def run_evolve(
     if seed is not None:
         random.seed(seed)
 
-    services = _prepare_services(config, output_dir=outdir)
+    services = _prepare_services(config, output_dir=outdir, enable_scoring=enable_scoring)
     logger = services.logger
     writer = services.writer
     scorer = services.scorer
@@ -454,6 +465,8 @@ def run_evolve(
     feedback = services.feedback
 
     session_id = f"evolve-{int(time.time())}"
+    if scorer is None:
+        print("[evolve] scoring disabled (--no-scoring)")
     logger.log_run(
         session_id,
         "evolve",
@@ -604,7 +617,7 @@ def run_evolve(
                         if best is not None:
                             fitness = w_style * best.style + w_nsfw * best.nsfw
                             scored.append((fitness, genes, best.path, best.style, best.nsfw))
-                            if feedback is not None:
+                            if feedback is not None and scorer is not None:
                                 style_metrics = batch.metrics.get("style", {}) if isinstance(batch.metrics, dict) else {}
                                 style_weights = None
                                 if isinstance(style_metrics, dict):
