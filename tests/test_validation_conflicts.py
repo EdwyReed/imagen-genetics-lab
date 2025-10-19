@@ -40,3 +40,18 @@ def test_weight_clamping_and_normalisation():
     assert any(conflict.rule.startswith("weights") for conflict in result.conflicts)
     assert any("normalise" in (conflict.message or "").lower() for conflict in result.conflicts)
     assert result.notifications, "expected at least one notification"
+
+
+def test_validation_restores_defaults_when_weights_zero():
+    context = ValidationContext(
+        sfw_level=0.4,
+        macro_snapshot={"coverage_target": 0.5},
+        meso_snapshot={},
+        weights={"style": 0.0, "nsfw": 0.0},
+    )
+
+    result = validate_run_parameters(context)
+
+    assert result.weights["style"] == pytest.approx(0.7)
+    assert result.weights["nsfw"] == pytest.approx(0.3)
+    assert not result.conflicts or any(conflict.rule.startswith("weights") for conflict in result.conflicts)
