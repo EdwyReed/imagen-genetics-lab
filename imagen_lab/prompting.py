@@ -39,30 +39,9 @@ class PromptComposer:
             if sfw_level < 0.7
             else "bold adult tone"
         )
-        context_block = "\n".join(self.style.context_lines())
-        if context_block:
-            context_block += "\n\n"
-
-        required_line = ""
-        if self.required_terms:
-            required_line = (
-                "Mandatory words (use naturally): "
-                + ", ".join(self.required_terms)
-                + ".\n"
-            )
-
         return (
-            f"You are a professional caption writer for the {self.style.brand} art catalog.\n\n"
-            "Write one natural English caption (18–60 words) describing an illustration that embodies "
-            f"{self.style.aesthetic}.\n"
-            "Include: model, pose, wardrobe, accessories; camera angle and framing ratio; lighting; background; mood. "
-            f"Keep it SFW-level proportional to {sfw_level:.2f} ({tone_desc}).\n\n"
-            + context_block
-            + required_line
-            + "No bullet lists. One or two sentences. Cinematic, coherent, grounded in the provided JSON payload.\n"
-            "The JSON payload includes character (id, name, summary, prompt_hint when available), style_profile (weights, boost/cooldown lists), scene_summary, and feedback_notes. "
-            "Read them carefully, emphasize boost components, ease off cooldown components, and align the caption with scene_summary"
-            " and feedback notes."
+            "Write one natural English caption (18–50 words) describing the illustration using the provided style, character, and scene facts. "
+            f"Respect the SFW level {sfw_level:.2f} ({tone_desc}) and emphasise the most relevant top signals without inventing new details."
         )
 
     def missing_terms(self, text: str) -> List[str]:

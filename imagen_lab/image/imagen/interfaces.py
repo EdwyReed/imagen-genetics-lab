@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Mapping, Protocol
+from typing import Any, Mapping, Protocol, Sequence
 
 
 @dataclass(frozen=True)
@@ -15,8 +15,17 @@ class ImagenRequest:
 
 
 @dataclass(frozen=True)
+class ImagenVariant:
+    index: int
+    image_bytes: bytes
+    metadata: Mapping[str, Any]
+
+
+@dataclass(frozen=True)
 class ImagenResult:
     response: Any
+    variants: Sequence[ImagenVariant]
+    metadata: Mapping[str, Any]
 
 
 class ImagenEngineProtocol(Protocol):
