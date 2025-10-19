@@ -5,7 +5,7 @@ import random
 from dataclasses import dataclass, field
 from pathlib import Path
 from types import MappingProxyType
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple, Mapping
 
 from .io.json_documents import CharacterDocument, SchemaError
 
