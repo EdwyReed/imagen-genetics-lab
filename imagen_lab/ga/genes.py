@@ -6,8 +6,8 @@ import sqlite3
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from .catalog import Catalog
-from .randomization import WeightedSelector, maybe
+from imagen_lab.catalog import Catalog
+from imagen_lab.randomization import WeightedSelector, maybe
 
 GeneSet = Dict[str, Optional[str]]
 

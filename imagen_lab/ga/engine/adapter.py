@@ -9,7 +9,12 @@ from typing import List, Mapping, Optional
 from dotenv import load_dotenv
 
 from imagen_lab.catalog import Catalog
-from imagen_lab.ga import GeneSet, crossover_genes, load_best_gene_sets, mutate_gene
+from imagen_lab.ga.genes import (
+    GeneSet,
+    crossover_genes,
+    load_best_gene_sets,
+    mutate_gene,
+)
 from imagen_lab.scene.builder.interfaces import SceneBuilderProtocol, SceneRequest
 from imagen_lab.caption.ollama.interfaces import CaptionEngineProtocol, CaptionRequest
 from imagen_lab.image.imagen.interfaces import ImagenEngineProtocol, ImagenRequest
