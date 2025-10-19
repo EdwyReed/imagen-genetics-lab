@@ -177,10 +177,12 @@ def _apply_temperature(value: float, tau: float) -> float:
     clamped = max(0.0, min(1.0, float(value)))
     if tau <= 0:
         return clamped
-    scale = max(float(tau), 1e-6)
-    centered = clamped - 0.5
-    adjusted = 1.0 / (1.0 + math.exp(-centered / scale))
-    return max(0.0, min(1.0, adjusted))
+    strength = 1.0 + max(0.0, float(tau))
+    if clamped >= 0.5:
+        adjusted = 0.5 + (clamped - 0.5) * strength
+        return min(1.0, adjusted)
+    adjusted = 0.5 - (0.5 - clamped) / strength
+    return max(0.0, adjusted)
 
 
 @dataclass
@@ -535,14 +537,50 @@ def load_config(path: Path) -> PipelineConfig:
     return PipelineConfig.from_dict(data)
 
 
-_JSONC_COMMENT_RE = re.compile(r"//.*?$", re.MULTILINE)
-_JSONC_BLOCK_RE = re.compile(r"/\*.*?\*/", re.DOTALL)
-
-
 def _strip_jsonc(payload: str) -> str:
-    without_block = _JSONC_BLOCK_RE.sub("", payload)
-    without_line = _JSONC_COMMENT_RE.sub("", without_block)
-    return without_line
+    result: list[str] = []
+    length = len(payload)
+    i = 0
+    in_string = False
+    escape = False
+    while i < length:
+        ch = payload[i]
+        if in_string:
+            result.append(ch)
+            if escape:
+                escape = False
+            elif ch == "\\":
+                escape = True
+            elif ch == '"':
+                in_string = False
+            i += 1
+            continue
+
+        if ch == '"':
+            in_string = True
+            result.append(ch)
+            i += 1
+            continue
+
+        if ch == '/' and i + 1 < length:
+            nxt = payload[i + 1]
+            if nxt == '/':
+                i += 2
+                while i < length and payload[i] not in "\r\n":
+                    i += 1
+                continue
+            if nxt == '*':
+                i += 2
+                while i < length - 1:
+                    if payload[i] == '*' and payload[i + 1] == '/':
+                        i += 2
+                        break
+                    i += 1
+                continue
+
+        result.append(ch)
+        i += 1
+    return "".join(result)
 
 
 def _optional_path(value: Any) -> Path | None:
