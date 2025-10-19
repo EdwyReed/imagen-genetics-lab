@@ -27,8 +27,8 @@ from .image.imagen.adapter import ImagenClientEngine
 from .image.imagen.interfaces import ImagenEngineProtocol
 from .scoring.core.adapter import ScoringEngineAdapter
 from .scoring.core.interfaces import ScoringEngineProtocol
-from .db.repo.logger import PromptRepository
 from .db.repo.interfaces import RepositoryProtocol
+from .db.repo.sqlite import SQLiteRepository
 from .ga.engine.adapter import DefaultGAEngine
 from .ga.engine.interfaces import GAEngineProtocol
 
@@ -169,7 +169,7 @@ def create_pipeline_container(
         scorer=scorer,
     )
 
-    repository = PromptRepository(logger=logger)
+    repository = SQLiteRepository(Path(config.paths.database))
 
     ga_engine = DefaultGAEngine(
         builder=scene_builder,
