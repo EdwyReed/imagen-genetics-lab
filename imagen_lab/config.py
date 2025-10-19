@@ -5,6 +5,8 @@ from pathlib import Path
 from typing import Any, Dict, Mapping, Optional
 
 import math
+import json
+import re
 import yaml
 
 
@@ -33,6 +35,28 @@ class PathsConfig:
     output_dir: Path
     options_catalog: Path | None = None
     character_catalog: Path | None = None
+    profiles_dir: Path | None = None
+    profile_template: Path | None = None
+
+
+@dataclass
+class PresetConfig:
+    profile_id: str | None = None
+    style_preset: str | None = None
+    character_preset: str | None = None
+
+
+@dataclass
+class BiasConfig:
+    macro_weights: Dict[str, float] = field(default_factory=dict)
+    meso_aggregates: Dict[str, float] = field(default_factory=dict)
+    rules: tuple[str, ...] = field(default_factory=tuple)
+
+    def combined(self) -> Dict[str, float]:
+        merged = dict(self.macro_weights)
+        for key, value in self.meso_aggregates.items():
+            merged[key] = value
+        return merged
 
 
 @dataclass
@@ -245,7 +269,10 @@ class FeedbackConfig:
 
 @dataclass
 class PipelineConfig:
+    schema_version: int
     paths: PathsConfig
+    presets: PresetConfig
+    bias: BiasConfig
     prompting: PromptConfig
     ollama: OllamaConfig
     imagen: ImagenConfig
@@ -258,39 +285,87 @@ class PipelineConfig:
 
     @classmethod
     def from_dict(cls, raw: Dict[str, Any]) -> "PipelineConfig":
+        schema_version = int(raw.get("schema_version", 2))
+
+        storage_data = raw.get("storage", {})
         paths_data = raw.get("paths", {})
-        prompting_data = raw.get("prompting", {})
-        ollama_data = raw.get("ollama", {})
-        imagen_data = raw.get("imagen", {})
+        prompting_data = _mapping_merge(
+            raw.get("prompting", {}),
+            _nested_mapping(raw.get("runtime", {}), "prompting"),
+        )
+        runtime_block = raw.get("runtime", {})
+        ollama_data = runtime_block.get("ollama", raw.get("ollama", {}))
+        imagen_data = runtime_block.get("imagen", raw.get("imagen", {}))
         scoring_data = raw.get("scoring", {})
-        history_data = raw.get("history", {})
+        history_block = runtime_block.get("history", raw.get("history", {}))
+        history_data = _nested_mapping(history_block, "embeddings") or history_block
         fitness_data = raw.get("fitness", {})
-        defaults_data = raw.get("defaults", {})
-        ga_data = raw.get("ga", {})
-        feedback_data = raw.get("feedback", {})
+        defaults_data = runtime_block.get("defaults", raw.get("defaults", {}))
+        ga_data = runtime_block.get("ga", runtime_block.get("genetic", raw.get("ga", {})))
+        feedback_block = runtime_block.get("feedback", raw.get("feedback", {}))
+        feedback_data = _nested_mapping(feedback_block, "style") or feedback_block
+        presets_data = raw.get("presets", {})
 
-        options_catalog_value = paths_data.get("options_catalog")
-        options_catalog = None
-        if options_catalog_value not in (None, ""):
-            options_catalog = Path(str(options_catalog_value))
+        macro_weights = _float_map(raw.get("macro_weights"))
+        meso_weights = _float_map(raw.get("meso_aggregates"))
+        bias_rules = tuple(
+            rule.strip()
+            for rule in (raw.get("bias_rules") or [])
+            if isinstance(rule, str) and rule.strip()
+        )
 
-        character_catalog_value = paths_data.get("character_catalog")
-        character_catalog = None
-        if character_catalog_value not in (None, ""):
-            character_catalog = Path(str(character_catalog_value))
+        catalogs_data = storage_data.get("catalogs", {})
+        profiles_data = storage_data.get("profiles", {})
+
+        catalog_path = (
+            catalogs_data.get("primary")
+            or paths_data.get("catalog")
+            or "catalogs/all-together.json"
+        )
+        options_catalog_value = (
+            catalogs_data.get("options")
+            or paths_data.get("options_catalog")
+        )
+        character_catalog_value = (
+            catalogs_data.get("characters")
+            or paths_data.get("character_catalog")
+        )
+
+        options_catalog = _optional_path(options_catalog_value)
+        character_catalog = _optional_path(character_catalog_value)
+
+        profiles_dir = _optional_path(
+            profiles_data.get("directory") or paths_data.get("profiles_dir")
+        )
+        profile_template = _optional_path(
+            profiles_data.get("active")
+            or profiles_data.get("profile")
+            or paths_data.get("profile_template")
+        )
+
+        database_path = storage_data.get("database", paths_data.get("database", "scores.sqlite"))
+        scores_log = storage_data.get("scores_log", paths_data.get("scores_jsonl", "scores.jsonl"))
+        output_dir = storage_data.get("artifacts_dir", paths_data.get("output_dir", "output"))
 
         paths = PathsConfig(
-            catalog=Path(paths_data.get("catalog", "catalogs/all-together.json")),
-            database=Path(paths_data.get("database", "scores.sqlite")),
-            scores_jsonl=Path(paths_data.get("scores_jsonl", "scores.jsonl")),
-            output_dir=Path(paths_data.get("output_dir", "output")),
+            catalog=Path(str(catalog_path)),
+            database=Path(str(database_path)),
+            scores_jsonl=Path(str(scores_log)),
+            output_dir=Path(str(output_dir)),
             options_catalog=options_catalog,
             character_catalog=character_catalog,
+            profiles_dir=profiles_dir,
+            profile_template=profile_template,
         )
 
         prompting = PromptConfig(
             required_terms=list(prompting_data.get("required_terms", [])),
-            template_ids=list(prompting_data.get("template_ids", ["caption_v1", "caption_v2", "caption_v3", "caption_v4"])),
+            template_ids=list(
+                prompting_data.get(
+                    "template_ids",
+                    ["caption_v1", "caption_v2", "caption_v3", "caption_v4"],
+                )
+            ),
         )
 
         ollama = OllamaConfig(
@@ -307,41 +382,80 @@ class PipelineConfig:
             guidance_scale=float(imagen_data.get("guidance_scale", 0.5)),
         )
 
-        weight_profiles_raw = scoring_data.get("weight_profiles_path", scoring_data.get("weight_profiles"))
-        if "weight_profiles_path" in scoring_data or "weight_profiles" in scoring_data:
-            if weight_profiles_raw in (None, "", False):
-                weight_profiles_path = None
-            else:
-                weight_profiles_path = Path(str(weight_profiles_raw))
-        else:
-            weight_profiles_path = DEFAULT_WEIGHT_PROFILE_PATH
-
-        weights_value = scoring_data.get("weights")
-        weights = dict(weights_value) if isinstance(weights_value, dict) else None
-        if weights is None and weights_value not in (None, "", False):
+        weights_section = scoring_data.get("weights", {}) if isinstance(scoring_data.get("weights"), Mapping) else {}
+        inline_weights = (
+            scoring_data.get("weights")
+            if isinstance(scoring_data.get("weights"), Mapping) and not weights_section
+            else weights_section.get("inline")
+        )
+        weights = dict(inline_weights) if isinstance(inline_weights, Mapping) else None
+        if weights is None and inline_weights not in (None, "", False):
             weights = dict(DEFAULT_INLINE_WEIGHTS)
 
-        tau_raw = scoring_data.get("tau", 0.07)
-        temperature_cfg = TemperatureConfig.from_mapping(tau_raw)
+        profiles_section = weights_section.get("profiles", {}) if isinstance(weights_section, Mapping) else {}
+        weight_profiles_specified = False
+        weight_profiles_raw: Any
+        if isinstance(profiles_section, Mapping) and "table" in profiles_section:
+            weight_profiles_specified = True
+            weight_profiles_raw = profiles_section.get("table")
+        else:
+            weight_profiles_raw = (
+                scoring_data.get("weight_profiles_path")
+                or scoring_data.get("weight_profiles")
+            )
+            if "weight_profiles_path" in scoring_data or "weight_profiles" in scoring_data:
+                weight_profiles_specified = True
+
+        if weight_profiles_raw in ("", False):
+            weight_profiles_path = None
+        elif weight_profiles_raw is None:
+            weight_profiles_path = (
+                None if weight_profiles_specified else DEFAULT_WEIGHT_PROFILE_PATH
+            )
+        else:
+            weight_profiles_path = Path(str(weight_profiles_raw))
+
+        temperature_source = (
+            scoring_data.get("temperatures")
+            or scoring_data.get("tau")
+            or 0.07
+        )
+        temperature_cfg = TemperatureConfig.from_mapping(temperature_source)
+
+        weight_profile_name = (
+            profiles_section.get("profile")
+            or scoring_data.get("weight_profile")
+            or "default"
+        )
+
+        persist_updates = bool(
+            profiles_section.get("persist_updates", scoring_data.get("persist_profile_updates", False))
+        )
 
         scoring = ScoringConfig(
             device=str(scoring_data.get("device", "auto")),
             batch_size=int(scoring_data.get("batch_size", 4)),
             tau=float(temperature_cfg.default),
-            cal_style=_tuple_or_none(scoring_data.get("cal_style")),
-            cal_illu=_tuple_or_none(scoring_data.get("cal_illu")),
+            cal_style=_tuple_or_none(
+                scoring_data.get("cal_style")
+                or _nested_tuple(scoring_data.get("calibration", {}), "style")
+            ),
+            cal_illu=_tuple_or_none(
+                scoring_data.get("cal_illu")
+                or _nested_tuple(scoring_data.get("calibration", {}), "illustration")
+            ),
             weights=weights,
             auto_weights=AutoWeightsConfig.from_mapping(scoring_data.get("auto_weights")),
             weight_profiles_path=weight_profiles_path,
-            weight_profile=str(scoring_data.get("weight_profile", "default")),
-            persist_profile_updates=bool(scoring_data.get("persist_profile_updates", False)),
+            weight_profile=str(weight_profile_name),
+            persist_profile_updates=persist_updates,
             composition_metrics=bool(scoring_data.get("composition_metrics", True)),
             temperatures=temperature_cfg,
         )
 
         history = HistoryConfig(
             enabled=bool(history_data.get("enabled", True)),
-            max_embeddings=int(history_data.get("max_embeddings", 512)),
+            max_embeddings=int(history_data.get("max_embeddings", history_data.get("limit", 512))),
         )
 
         fitness = FitnessWeights(
@@ -359,21 +473,36 @@ class PipelineConfig:
         )
 
         ga = GAConfig(
-            pop=int(ga_data.get("pop", 16)),
-            gens=int(ga_data.get("gens", 4)),
-            keep=float(ga_data.get("keep", 0.25)),
-            mut=float(ga_data.get("mut", 0.15)),
-            xover=float(ga_data.get("xover", 0.30)),
+            pop=int(ga_data.get("pop", ga_data.get("population", 16))),
+            gens=int(ga_data.get("gens", ga_data.get("generations", 4))),
+            keep=float(ga_data.get("keep", ga_data.get("keep_fraction", 0.25))),
+            mut=float(ga_data.get("mut", ga_data.get("mutation", 0.15))),
+            xover=float(ga_data.get("xover", ga_data.get("crossover", 0.30))),
             resume_best=bool(ga_data.get("resume_best", False)),
-            resume_k=int(ga_data.get("resume_k", 0)),
+            resume_k=int(ga_data.get("resume_k", ga_data.get("resume_top_k", 0))),
             resume_session=ga_data.get("resume_session"),
-            resume_mix=float(ga_data.get("resume_mix", 0.10)),
+            resume_mix=float(ga_data.get("resume_mix", ga_data.get("resume_mix_ratio", 0.10))),
         )
 
         feedback = FeedbackConfig.from_mapping(feedback_data)
 
+        presets = PresetConfig(
+            profile_id=_optional_str(presets_data.get("profile_id")),
+            style_preset=_optional_str(presets_data.get("style_preset")),
+            character_preset=_optional_str(presets_data.get("character_preset")),
+        )
+
+        bias = BiasConfig(
+            macro_weights=macro_weights,
+            meso_aggregates=meso_weights,
+            rules=bias_rules,
+        )
+
         return cls(
+            schema_version=schema_version,
             paths=paths,
+            presets=presets,
+            bias=bias,
             prompting=prompting,
             ollama=ollama,
             imagen=imagen,
@@ -395,7 +524,70 @@ def _tuple_or_none(value: Any) -> Optional[tuple[float, float]]:
 
 
 def load_config(path: Path) -> PipelineConfig:
-    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    text = path.read_text(encoding="utf-8")
+    suffix = path.suffix.lower()
+    if suffix in {".json", ".jsonc"}:
+        data = json.loads(_strip_jsonc(text))
+    else:
+        data = yaml.safe_load(text)
     if not isinstance(data, dict):
         raise ValueError("Configuration file must contain a mapping at the top level")
     return PipelineConfig.from_dict(data)
+
+
+_JSONC_COMMENT_RE = re.compile(r"//.*?$", re.MULTILINE)
+_JSONC_BLOCK_RE = re.compile(r"/\*.*?\*/", re.DOTALL)
+
+
+def _strip_jsonc(payload: str) -> str:
+    without_block = _JSONC_BLOCK_RE.sub("", payload)
+    without_line = _JSONC_COMMENT_RE.sub("", without_block)
+    return without_line
+
+
+def _optional_path(value: Any) -> Path | None:
+    if value in (None, "", False):
+        return None
+    return Path(str(value))
+
+
+def _optional_str(value: Any) -> str | None:
+    if not isinstance(value, str):
+        return None
+    stripped = value.strip()
+    return stripped or None
+
+
+def _mapping_merge(parent: Mapping[str, Any], child: Any) -> Dict[str, Any]:
+    result: Dict[str, Any] = {}
+    if isinstance(parent, Mapping):
+        result.update(parent)
+    if isinstance(child, Mapping):
+        result.update(child)
+    return result
+
+
+def _nested_mapping(source: Any, key: str) -> Dict[str, Any]:
+    if not isinstance(source, Mapping):
+        return {}
+    value = source.get(key, {})
+    return dict(value) if isinstance(value, Mapping) else {}
+
+
+def _nested_tuple(source: Any, key: str) -> Optional[tuple[float, float]]:
+    if not isinstance(source, Mapping):
+        return None
+    value = source.get(key)
+    return _tuple_or_none(value)
+
+
+def _float_map(value: Any) -> Dict[str, float]:
+    if not isinstance(value, Mapping):
+        return {}
+    result: Dict[str, float] = {}
+    for key, raw in value.items():
+        try:
+            result[str(key)] = float(raw)
+        except (TypeError, ValueError):
+            continue
+    return result

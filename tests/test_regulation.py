@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
 
+import json
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -56,6 +57,56 @@ def test_profile_resolve_and_rule_parsing():
 def test_bad_rules(line):
     with pytest.raises(Exception):
         parse_rule(line)
+
+
+def test_profile_from_json_validates_and_splits(tmp_path: Path) -> None:
+    payload = {
+        "schema_version": 1,
+        "id": "studio",
+        "macro": {
+            "subject_focus": 1.0,
+            "composition_symmetry": 1.0,
+            "lighting_drama": 1.0,
+            "color_vibrancy": 1.0,
+            "nsfw_pressure": 0.9,
+            "camera_distance": 1.1,
+        },
+        "meso": {
+            "pose_dynamics": 1.0,
+            "prop_density": 1.0,
+            "background_complexity": 0.9,
+            "emotion_intensity": 1.0,
+            "texture_detail": 1.2,
+            "shot_angle": 1.0,
+        },
+    }
+    path = tmp_path / "studio.json"
+    path.write_text(json.dumps(payload), encoding="utf-8")
+
+    profile = RegulatorProfile.load(path, catalog=DEFAULT_REGULATORS)
+    macro, meso = profile.bias_snapshot(DEFAULT_REGULATORS)
+    assert set(macro) == {
+        "subject_focus",
+        "composition_symmetry",
+        "lighting_drama",
+        "color_vibrancy",
+        "nsfw_pressure",
+        "camera_distance",
+    }
+    assert set(meso) == {
+        "pose_dynamics",
+        "prop_density",
+        "background_complexity",
+        "emotion_intensity",
+        "texture_detail",
+        "shot_angle",
+    }
+
+
+def test_profile_from_json_requires_sufficient_regulators() -> None:
+    payload = {"schema_version": 1, "id": "tiny", "macro": {"subject_focus": 1.0}}
+    with pytest.raises(ValueError):
+        RegulatorProfile.from_json(payload, source="<test>")
 
 
 def test_projection_pipeline():
