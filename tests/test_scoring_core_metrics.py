@@ -138,3 +138,15 @@ def test_temperatures_change_alignment_behavior_without_exposing_micro():
     assert "micro" not in public_payload
     assert set(public_payload["aggregates"]) == set(sharpened.meso)
 
+
+def test_score_report_clamps_out_of_range_micro_values():
+    image = np.ones((2, 2, 3), dtype=np.float32)
+    scene = _make_scene()
+    caption = "Two sentence caption. Second sentence."
+    inputs = ScoreInputs(image=image * 10.0, caption=caption, scene=scene)
+
+    report = compute_score_report(inputs)
+
+    assert all(0.0 <= value <= 1.0 for value in report.micro.values())
+    assert all(0.0 <= value <= 1.0 for value in report.meso.values())
+
