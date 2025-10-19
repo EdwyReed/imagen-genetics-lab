@@ -6,6 +6,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import List, Optional
 
+from dotenv import load_dotenv
+
 from imagen_lab.catalog import Catalog
 from imagen_lab.ga import GeneSet, crossover_genes, load_best_gene_sets, mutate_gene
 from imagen_lab.learning import StyleFeedback
