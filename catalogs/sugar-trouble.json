@@ -1,0 +1,427 @@
+{
+  "version": "1.0-sugar-trouble",
+  "brand": "Sugar Trouble",
+  "purpose": "Candy-crush-meets-girl-next-door catalog focused on syrupy gloss, playful innocence, and flirtatious pin-up storytelling.",
+  "style_controller": {
+    "aesthetic": "Hyper-gloss candy idol with pastel syrup bloom and soft innocence",
+    "paper_texture": true,
+    "watercolor": {
+      "blooms": "sticky halos",
+      "backruns": "syrup veils",
+      "edge_darkening": "candy shell"
+    },
+    "highlights": {
+      "broad_shine": true,
+      "micro_seeds": true,
+      "rim_wet": true,
+      "flare_sparkles": "iridescent sprinkles"
+    },
+    "subsurface_glow": [
+      "cheeks",
+      "collarbones",
+      "hips",
+      "knees",
+      "lips",
+      "fingertips"
+    ],
+    "palette_preference": "Strawberry pink, creamy peach, mint drizzle, iris violet, caramel gold",
+    "sfw": true,
+    "background_norm": "Soft candy boutique or pastel daylight",
+    "glam_level_hint": "chewy gloss advertisement that borders on flirtation",
+    "gloss_pipeline": {
+      "specular_intensity": "molten",
+      "highlight_count": "dense",
+      "hotspot_size": "micro-peaks",
+      "wet_sheen_layer": "lacquer",
+      "bokeh_droplets": "sticky pearls",
+      "caustic_ripples": "dissolved taffy"
+    }
+  },
+  "palettes": [
+    {
+      "id": "strawberry_melt",
+      "name": "Strawberry Melt",
+      "colors": [
+        {"name": "Strawberry Glaze", "hex": "#FF6FAE"},
+        {"name": "Vanilla Cream", "hex": "#FFE9DD"},
+        {"name": "Mint Mousse", "hex": "#BDF6E4"},
+        {"name": "Lilac Syrup", "hex": "#C9B6FF"}
+      ],
+      "notes": "Signature sweet pinks with chilled mint lift",
+      "nsfw": 0.32
+    },
+    {
+      "id": "peach_syrup",
+      "name": "Peach Syrup",
+      "colors": [
+        {"name": "Creamsicle", "hex": "#FFB79D"},
+        {"name": "Apricot Foam", "hex": "#FFC7A8"},
+        {"name": "Sugar Dust", "hex": "#FFF5EE"},
+        {"name": "Cola Cherry", "hex": "#CF2F5C"}
+      ],
+      "notes": "Warm peach caramelized with cherry accent",
+      "nsfw": 0.3
+    },
+    {
+      "id": "mint_fizz",
+      "name": "Mint Fizz",
+      "colors": [
+        {"name": "Cool Mint", "hex": "#9FF7D6"},
+        {"name": "Bubble White", "hex": "#F8FDFF"},
+        {"name": "Blue Ice", "hex": "#8CD4FF"},
+        {"name": "Sour Grape", "hex": "#A66CFF"}
+      ],
+      "notes": "Fizzy soda shop contrast",
+      "nsfw": 0.28
+    },
+    {
+      "id": "caramel_pop",
+      "name": "Caramel Pop",
+      "colors": [
+        {"name": "Burnt Sugar", "hex": "#C56D28"},
+        {"name": "Toffee Cream", "hex": "#F9D5B5"},
+        {"name": "Rose Foam", "hex": "#FF8AAE"},
+        {"name": "Cola Shadow", "hex": "#2B1A1A"}
+      ],
+      "notes": "Decadent caramel with poppy pink highlights",
+      "nsfw": 0.36
+    },
+    {
+      "id": "sherbet_glow",
+      "name": "Sherbet Glow",
+      "colors": [
+        {"name": "Melon Sorbet", "hex": "#FF9E99"},
+        {"name": "Lemon Frost", "hex": "#FFF3A3"},
+        {"name": "Gumdrop", "hex": "#FF75D1"},
+        {"name": "Seafoam", "hex": "#93F7CF"}
+      ],
+      "notes": "High energy sherbet gradient",
+      "nsfw": 0.34
+    },
+    {
+      "id": "frosted_violet",
+      "name": "Frosted Violet",
+      "colors": [
+        {"name": "Violet Jelly", "hex": "#B57CFF"},
+        {"name": "Berry Punch", "hex": "#FF4F9E"},
+        {"name": "Cream Dew", "hex": "#F7F0FF"},
+        {"name": "Mint Ribbon", "hex": "#A5F9D5"}
+      ],
+      "notes": "Dreamy violet anchored with berry drip",
+      "nsfw": 0.38
+    },
+    {
+      "id": "honeyed_blush",
+      "name": "Honeyed Blush",
+      "colors": [
+        {"name": "Honey Syrup", "hex": "#F9B04B"},
+        {"name": "Rosewater", "hex": "#FFB5C7"},
+        {"name": "Cream Puff", "hex": "#FFF7ED"},
+        {"name": "Macaron Mint", "hex": "#B8F2E2"}
+      ],
+      "notes": "Sun-kissed pastel dessert mix",
+      "nsfw": 0.26
+    },
+    {
+      "id": "bubblegum_flash",
+      "name": "Bubblegum Flash",
+      "colors": [
+        {"name": "Neon Gum", "hex": "#FF5ABF"},
+        {"name": "Electric Peach", "hex": "#FF977A"},
+        {"name": "Blue Razz", "hex": "#4ED2FF"},
+        {"name": "Lime Twist", "hex": "#BAFF73"}
+      ],
+      "notes": "Playful brights for high flirt",
+      "nsfw": 0.42
+    },
+    {
+      "id": "cotton_kiss_soft",
+      "name": "Cotton Kiss Soft",
+      "colors": [
+        {"name": "Cotton Pink", "hex": "#FBC7E4"},
+        {"name": "Cloud White", "hex": "#FEF9FB"},
+        {"name": "Lavender Milk", "hex": "#E1D7FF"},
+        {"name": "Pistachio Cream", "hex": "#C5F1D0"}
+      ],
+      "notes": "Airy pastel for sweet innocence",
+      "nsfw": 0.18
+    },
+    {
+      "id": "sugar_shock",
+      "name": "Sugar Shock",
+      "colors": [
+        {"name": "Dragonfruit", "hex": "#FF0F7B"},
+        {"name": "Mango Gel", "hex": "#FFAA3A"},
+        {"name": "Frozen Grape", "hex": "#8F54FF"},
+        {"name": "Crystal Mint", "hex": "#9AFFE0"}
+      ],
+      "notes": "Maximal pop perfect for sticky drama",
+      "nsfw": 0.44
+    },
+    {
+      "id": "sundae_neutral",
+      "name": "Sundae Neutral",
+      "colors": [
+        {"name": "Toasted Sugar", "hex": "#D6A374"},
+        {"name": "Cafe Foam", "hex": "#F6E4D3"},
+        {"name": "Rose Topping", "hex": "#FF8DB1"},
+        {"name": "Mint Chip", "hex": "#7DE7C9"}
+      ],
+      "notes": "Sweet neutrals with candy accent",
+      "nsfw": 0.29
+    },
+    {
+      "id": "gummy_rainbow",
+      "name": "Gummy Rainbow",
+      "colors": [
+        {"name": "Cherry Pop", "hex": "#FF3B7B"},
+        {"name": "Citrus Beam", "hex": "#FFD45B"},
+        {"name": "Blueberry Taffy", "hex": "#4A9CFF"},
+        {"name": "Mint Ribbon", "hex": "#61F2C4"}
+      ],
+      "notes": "Gummy bear brightness",
+      "nsfw": 0.4
+    },
+    {
+      "id": "glowstick_dream",
+      "name": "Glowstick Dream",
+      "colors": [
+        {"name": "Hot Fuchsia", "hex": "#FF2EA3"},
+        {"name": "Cream Beam", "hex": "#FFF0C1"},
+        {"name": "Aqua Jelly", "hex": "#35E6FF"},
+        {"name": "Violet Flash", "hex": "#B040FF"}
+      ],
+      "notes": "Syrupy neons for late-night candy",
+      "nsfw": 0.46
+    }
+  ],
+  "lighting_presets": [
+    {"id": "taffy_softbox", "desc": "Softbox coated with gel diffusion; sticky rim along cheeks", "nsfw": 0.32},
+    {"id": "gloss_counter", "desc": "Candy-shop counter bounce, warm top syrup shine", "nsfw": 0.28},
+    {"id": "sundae_window", "desc": "Late afternoon window beam through sugar dust", "nsfw": 0.24},
+    {"id": "neon_lollipop", "desc": "Hot pink and aqua neons kissing glossy lips", "nsfw": 0.44},
+    {"id": "arcade_flash", "desc": "Arcade cabinet glow with specular pinpricks", "nsfw": 0.42},
+    {"id": "mirror_candy", "desc": "Triple mirror bounce for multiplied highlights", "nsfw": 0.38},
+    {"id": "syrup_backwash", "desc": "Backlit honey haze with warm rim and cool fill", "nsfw": 0.35},
+    {"id": "freezer_bloom", "desc": "Frosted cyan edge with peach core, like freezer fog", "nsfw": 0.26},
+    {"id": "gumdrop_twinkle", "desc": "Point glitter lights, micro sparkles on skin", "nsfw": 0.36},
+    {"id": "lip_gloss_rim", "desc": "Low rim for lip lacquer glare, subtle front fill", "nsfw": 0.4},
+    {"id": "soda_machine", "desc": "Striped RGB bounce reminiscent of soda machine LEDs", "nsfw": 0.41},
+    {"id": "cotton_cloud", "desc": "High key diffused top, luminous back haze", "nsfw": 0.18},
+    {"id": "molasses_spot", "desc": "Tight warm spotlight trailing down legs", "nsfw": 0.47},
+    {"id": "sugar_bounce", "desc": "Silver bounce from tabletop, lights up chin and collar", "nsfw": 0.33},
+    {"id": "prism_drip", "desc": "Prismatic refraction, rainbow drips across figure", "nsfw": 0.37},
+    {"id": "poster_flash", "desc": "High-contrast promo lighting with candy reflection cards", "nsfw": 0.39}
+  ],
+  "backgrounds": [
+    {"id": "candy_boutique", "desc": "Blurred candy jars and pastel shelves", "nsfw": 0.26},
+    {"id": "syrup_window", "desc": "Window streaked with syrup trails catching light", "nsfw": 0.34},
+    {"id": "mint_tile", "desc": "Mint ceramic tiles with gloss reflections", "nsfw": 0.22},
+    {"id": "bubble_floor", "desc": "Lucite bubble floor with suspended sprinkles", "nsfw": 0.38},
+    {"id": "gumball_wall", "desc": "Oversized gumball machine backdrop", "nsfw": 0.3},
+    {"id": "sundae_bed", "desc": "Soft bed styled as giant sundae with whipped pillows", "nsfw": 0.4},
+    {"id": "lipstick_billboard", "desc": "Candy ad billboard with neon text", "nsfw": 0.36},
+    {"id": "roller_rink_glow", "desc": "Glossy roller rink with pastel stripes", "nsfw": 0.33},
+    {"id": "sugar_spill", "desc": "Sprinkled sugar on reflective tabletop", "nsfw": 0.28},
+    {"id": "cloud_puff", "desc": "Cotton candy clouds swirling", "nsfw": 0.2},
+    {"id": "lollipop_dream", "desc": "Lollipop forest with sticky ground", "nsfw": 0.37},
+    {"id": "soda_shop_booth", "desc": "Retro soda shop booth with pastel vinyl", "nsfw": 0.29},
+    {"id": "iridescent_drape", "desc": "Translucent drape with syrup streak highlights", "nsfw": 0.31},
+    {"id": "marshmallow_pool", "desc": "Sunken lounge filled with marshmallow cushions", "nsfw": 0.35}
+  ],
+  "camera": {
+    "angles": [
+      {"id": "sweet_eye", "desc": "Eye-level with candy-shop charm", "nsfw": 0.28},
+      {"id": "window_drop", "desc": "Above eye, glancing down lick pose", "nsfw": 0.36},
+      {"id": "counter_flirt", "desc": "Waist-high from counter edge", "nsfw": 0.42},
+      {"id": "floor_syrup", "desc": "Low floor view following syrup trails", "nsfw": 0.48},
+      {"id": "roller_swoop", "desc": "Dynamic swoop as if skating by", "nsfw": 0.4},
+      {"id": "mirror_peek", "desc": "Over-shoulder mirror peek", "nsfw": 0.43},
+      {"id": "lip_close", "desc": "Tight on lips and chin with gloss", "nsfw": 0.38},
+      {"id": "diner_booth", "desc": "Seated eye-line from across booth", "nsfw": 0.3},
+      {"id": "spin_pop", "desc": "Dutch tilt capturing spin move", "nsfw": 0.45},
+      {"id": "lollipop_level", "desc": "Lollipop-level, focused on candy gesture", "nsfw": 0.41}
+    ],
+    "framing": [
+      {"id": "portrait_sundae", "ratio": "3:4", "desc": "Portrait crop with sundae props", "nsfw": 0.34},
+      {"id": "wide_rink", "ratio": "16:9", "desc": "Wide rink scene, glowing floor", "nsfw": 0.26},
+      {"id": "square_ad", "ratio": "1:1", "desc": "Square ad-like composition", "nsfw": 0.24},
+      {"id": "poster_tall", "ratio": "9:16", "desc": "Tall poster with elongated legs", "nsfw": 0.44},
+      {"id": "close_macro", "ratio": "4:3", "desc": "Macro on candy and lips", "nsfw": 0.42},
+      {"id": "booth_medium", "ratio": "4:5", "desc": "Medium crop leaning on booth", "nsfw": 0.32}
+    ],
+    "lenses": [
+      {"id": "syrup_50", "desc": "50mm candy advertisement clarity", "nsfw": 0.3},
+      {"id": "portrait_85_glaze", "desc": "85mm with syrup compression", "nsfw": 0.36},
+      {"id": "wide_candy", "desc": "35mm to exaggerate candy world", "nsfw": 0.33},
+      {"id": "macro_lip", "desc": "Macro for lip gloss and drips", "nsfw": 0.46},
+      {"id": "roller_tracking", "desc": "24mm motion with roller blur", "nsfw": 0.38}
+    ],
+    "depth": [
+      {"id": "soft_f2", "desc": "Soft depth, highlight melt", "nsfw": 0.34},
+      {"id": "sparkle_f4", "desc": "f/4 to keep sparkles sharp", "nsfw": 0.28},
+      {"id": "macro_shallow", "desc": "Macro shallow depth on syrup", "nsfw": 0.44},
+      {"id": "bokeh_sprinkle", "desc": "Sprinkle bokeh trailing into background", "nsfw": 0.3}
+    ]
+  },
+  "moods": [
+    {"id": "sweet_idiot", "words": ["sunny", "bumbling", "sticky", "carefree"], "nsfw": 0.32},
+    {"id": "playful_tease", "words": ["teasing", "cheeky", "bubble", "fizzy"], "nsfw": 0.44},
+    {"id": "sugar_siren", "words": ["magnetic", "slow-burn", "syrupy", "dangerously cute"], "nsfw": 0.48},
+    {"id": "sleepy_cutie", "words": ["drowsy", "cushioned", "warm", "afterglow"], "nsfw": 0.26},
+    {"id": "roller_rush", "words": ["energetic", "spinning", "laughing", "glittering"], "nsfw": 0.38},
+    {"id": "soda_shop_flirt", "words": ["innocent", "sparkling", "longing", "sugar-high"], "nsfw": 0.4}
+  ],
+  "poses": [
+    {"id": "window_lick", "desc": "Sits on sill licking melting ice cream, knees tilted in", "nsfw": 0.45},
+    {"id": "floor_scatter", "desc": "Lies amid spilled candy, propped on elbows", "nsfw": 0.43},
+    {"id": "kneel_lollipop", "desc": "Kneels with lollipop held at lips, shoulders forward", "nsfw": 0.46},
+    {"id": "pillow_tug", "desc": "Hugs heart pillow, thumb hooked in waistband", "nsfw": 0.48},
+    {"id": "roller_twist", "desc": "Twists on roller skates, hip popped, hair trailing", "nsfw": 0.41},
+    {"id": "counter_perch", "desc": "Perches on counter swinging legs, leaning back", "nsfw": 0.36},
+    {"id": "bubble_pop", "desc": "Blows bubblegum, head tilted, free hand to hip", "nsfw": 0.38},
+    {"id": "sundae_sprawl", "desc": "Sprawled on floor-length cushion shaped like sundae", "nsfw": 0.44},
+    {"id": "pouty_spin", "desc": "Mid twirl with skirt flare, lip bite", "nsfw": 0.42},
+    {"id": "sofa_syrup", "desc": "Lounges on sofa with syrup bottle near lips", "nsfw": 0.47}
+  ],
+  "actions": [
+    {"id": "licks_slow", "desc": "Licks candy slowly while keeping naive gaze", "nsfw": 0.48},
+    {"id": "chews_gum", "desc": "Chews gum and pops bubble mid-sentence", "nsfw": 0.42},
+    {"id": "sprinkle_toss", "desc": "Tosses sprinkles in the air, laughing", "nsfw": 0.3},
+    {"id": "stirs_sundae", "desc": "Stirs sundae with finger then tastes it", "nsfw": 0.43},
+    {"id": "tugs_strap", "desc": "Absentmindedly tugs bra strap while smiling", "nsfw": 0.49},
+    {"id": "roller_reach", "desc": "Rolls forward reaching for camera with candy", "nsfw": 0.4},
+    {"id": "sips_soda", "desc": "Sips soda through candy-striped straw", "nsfw": 0.34},
+    {"id": "powder_dust", "desc": "Dusts cheeks with shimmer sugar puff", "nsfw": 0.32},
+    {"id": "winks_over_shoulder", "desc": "Looks back over shoulder with caramel smile", "nsfw": 0.41},
+    {"id": "plays_with_laces", "desc": "Teases skate laces between fingers", "nsfw": 0.37}
+  ],
+  "model_descriptions": [
+    "girl-next-door candy idol",
+    "sticky-sweet neighbor fantasy",
+    "cotton candy flirt",
+    "bubblegum daydream muse",
+    "roller-rink sweetheart",
+    "marshmallow glow siren",
+    "glossy sundae angel",
+    "innocent cherry crush",
+    "sugar rush heroine",
+    "glitter-dusted tease"
+  ],
+  "props": [
+    {"id": "giant_lollipop", "desc": "Oversized swirled lollipop", "nsfw": 0.42},
+    {"id": "melting_cone", "desc": "Melting triple scoop cone", "nsfw": 0.44},
+    {"id": "candy_strand", "desc": "Candy necklace half bitten", "nsfw": 0.38},
+    {"id": "sprinkle_shaker", "desc": "Shaker dusting glitter sprinkles", "nsfw": 0.28},
+    {"id": "cotton_cloud_pillow", "desc": "Cotton candy pillow", "nsfw": 0.25},
+    {"id": "syrup_bottle", "desc": "Glass syrup bottle with drip", "nsfw": 0.46},
+    {"id": "soda_float", "desc": "Root beer float with striped straw", "nsfw": 0.3},
+    {"id": "gummy_bowl", "desc": "Bowl overflowing with gummy hearts", "nsfw": 0.33},
+    {"id": "roller_skates", "desc": "Laced roller skates with glitter wheels", "nsfw": 0.34},
+    {"id": "heart_box", "desc": "Heart-shaped chocolate box with ribbon", "nsfw": 0.31}
+  ],
+  "wardrobe": {
+    "tops": [
+      {"id": "sticky_crop_tee", "desc": "Tiny crop tee reading 'Sweet Trouble', clinging like syrup", "nsfw": 0.46},
+      {"id": "glossy_bralette", "desc": "Glossed vinyl bralette with candy bow", "nsfw": 0.48},
+      {"id": "wetlook_tank", "desc": "Pastel tank with rain-kissed transparency", "nsfw": 0.44},
+      {"id": "sugar_raglan", "desc": "Soft raglan tee knotted over midriff", "nsfw": 0.38},
+      {"id": "bubble_cardigan", "desc": "Short bubble cardigan slipping off shoulder", "nsfw": 0.4},
+      {"id": "latex_tee", "desc": "Pastel latex tee hugging torso", "nsfw": 0.47},
+      {"id": "syrup_button", "desc": "Semi-unbuttoned satin blouse with syrup sheen", "nsfw": 0.45},
+      {"id": "lolipop_mesh", "desc": "Mesh top layered over candy print bra", "nsfw": 0.43}
+    ],
+    "bottoms": [
+      {"id": "ruffle_shorts", "desc": "Ruffled shorts with elastic waist and candy piping", "nsfw": 0.42},
+      {"id": "vinyl_mini", "desc": "Gloss vinyl mini skirt hugging hips", "nsfw": 0.47},
+      {"id": "jelly_bloomers", "desc": "Sheer jelly bloomers over satin briefs", "nsfw": 0.45},
+      {"id": "roller_shorts", "desc": "High-waisted roller shorts with stripes", "nsfw": 0.4},
+      {"id": "sugar_skirt", "desc": "Flippy skirt dotted with candy beads", "nsfw": 0.39},
+      {"id": "lacey_bike", "desc": "Pastel lace biker shorts", "nsfw": 0.36}
+    ],
+    "dresses": [
+      {"id": "gumdrop_slip", "desc": "Slip dress with gumdrop sequins", "nsfw": 0.44},
+      {"id": "cotton_sundress", "desc": "Cotton sundress clinging from syrup mist", "nsfw": 0.38},
+      {"id": "vinyl_babydoll", "desc": "Vinyl babydoll dress with heart cutout", "nsfw": 0.48},
+      {"id": "popover_mini", "desc": "Popover mini with ruffled straps", "nsfw": 0.4}
+    ],
+    "one_piece": [
+      {"id": "idol_bodysuit", "desc": "Candy idol bodysuit with glossy piping", "nsfw": 0.49},
+      {"id": "swirl_romper", "desc": "Pastel romper with swirl print and snug waist", "nsfw": 0.42},
+      {"id": "sticky_swim", "desc": "High-cut swimsuit with syrup sheen", "nsfw": 0.48},
+      {"id": "lace_teddy", "desc": "Lace teddy showing candy underlining", "nsfw": 0.5}
+    ],
+    "outerwear": [
+      {"id": "candy_bomber", "desc": "Vinyl bomber zipped halfway with sherbet lining", "nsfw": 0.37},
+      {"id": "frosted_shrug", "desc": "Frosted organza shrug sticking to shoulders", "nsfw": 0.42},
+      {"id": "marshmallow_robes", "desc": "Plush robe sliding down arms", "nsfw": 0.35},
+      {"id": "glaze_trench", "desc": "Transparent glaze trench tied loosely", "nsfw": 0.43}
+    ],
+    "footwear": [
+      {"id": "lace_socks", "desc": "White lace socks with candy bead trim", "nsfw": 0.22},
+      {"id": "patent_maryjanes", "desc": "Patent Mary Janes with bow straps", "nsfw": 0.24},
+      {"id": "roller_skates_glow", "desc": "Glow-wheel roller skates", "nsfw": 0.32},
+      {"id": "jelly_heels", "desc": "Clear jelly heels with glitter", "nsfw": 0.36}
+    ],
+    "hosiery": [
+      {"id": "syrup_stockings", "desc": "Stockings with syrup sheen and candy seam", "nsfw": 0.48},
+      {"id": "mesh_knee", "desc": "Mesh knee-highs with bows", "nsfw": 0.38},
+      {"id": "pastel_tights", "desc": "Pastel ombre tights glossy from mist", "nsfw": 0.33}
+    ],
+    "gloves": [
+      {"id": "sticky_gloves", "desc": "Short gloves coated like melted candy", "nsfw": 0.36},
+      {"id": "lace_mitts", "desc": "Fingerless lace mitts", "nsfw": 0.32}
+    ],
+    "headwear": [
+      {"id": "candy_bow", "desc": "Oversized satin bow with sugar crystals", "nsfw": 0.28},
+      {"id": "gumdrop_headband", "desc": "Headband dotted with gumdrops", "nsfw": 0.24},
+      {"id": "roller_bandana", "desc": "Bandana tied like candy wrapper", "nsfw": 0.22}
+    ],
+    "jewelry": [
+      {"id": "candy_choker", "desc": "Gummy bead choker with gloss", "nsfw": 0.4},
+      {"id": "syrup_chain", "desc": "Dripping metal chain resembling syrup", "nsfw": 0.45},
+      {"id": "lollipop_earrings", "desc": "Lollipop earrings grazing shoulders", "nsfw": 0.38},
+      {"id": "heart_charm", "desc": "Heart charm bracelet sticky with glitter", "nsfw": 0.32}
+    ],
+    "belts": [
+      {"id": "candy_belt", "desc": "Elastic belt with candy clasp", "nsfw": 0.34},
+      {"id": "ribbon_wrap", "desc": "Ribbon wrap belt with syrup stain", "nsfw": 0.37}
+    ],
+    "scarves": [
+      {"id": "taffy_scarf", "desc": "Translucent scarf stretched like taffy", "nsfw": 0.29},
+      {"id": "cotton_neck", "desc": "Cotton candy neck tie", "nsfw": 0.24}
+    ]
+  },
+  "wardrobe_sets": [
+    {"id": "sticky_sweetheart", "items": ["sticky_crop_tee", "ruffle_shorts", "candy_choker", "lace_socks", "patent_maryjanes"], "note": "Classic sugar trouble look", "nsfw": 0.45},
+    {"id": "roller_flirt", "items": ["sugar_raglan", "roller_shorts", "roller_skates_glow", "mesh_knee", "gumdrop_headband"], "note": "Roller rink tease", "nsfw": 0.42},
+    {"id": "sundae_lounge", "items": ["bubble_cardigan", "lacey_bike", "marshmallow_robes", "candy_belt", "cotton_cloud_pillow"], "note": "Lounging after sugar coma", "nsfw": 0.38},
+    {"id": "idol_stage", "items": ["glossy_bralette", "vinyl_mini", "jelly_heels", "syrup_stockings", "candy_bow"], "note": "Candy idol ready for stage", "nsfw": 0.49},
+    {"id": "cotton_dream", "items": ["cotton_sundress", "lace_socks", "patent_maryjanes", "candy_choker", "cotton_neck"], "note": "SFW airy sweetness", "nsfw": 0.28},
+    {"id": "sticky_glam", "items": ["syrup_button", "vinyl_mini", "syrup_stockings", "jelly_heels", "syrup_chain"], "note": "Syrup glam for provocative cover", "nsfw": 0.5}
+  ],
+  "emotional_archetypes": [
+    {"id": "sweet_idiot", "summary": "Clumsy charm, drops candy, laughs at herself", "nsfw": 0.32},
+    {"id": "playful_tease", "summary": "Knows exactly how long to hold a gaze while chewing gum", "nsfw": 0.46},
+    {"id": "sugar_siren", "summary": "Confident, sticky, makes even syrup look dangerous", "nsfw": 0.5},
+    {"id": "sleepy_cutie", "summary": "Post sugar rush, draped in pillows, still glowing", "nsfw": 0.3}
+  ],
+  "brand_variants": [
+    {"id": "sugar_trouble", "desc": "Balanced sweet-and-hot core"},
+    {"id": "cherry_pop_idol", "desc": "Pop-art neon escalation"},
+    {"id": "lick_me_softly", "desc": "NSFW-leaning, hyper sticky"},
+    {"id": "cotton_kiss", "desc": "Softer SFW blend"}
+  ],
+  "rules": {
+    "caption_length": {"min_words": 20, "max_words": 60},
+    "tone": "flirty yet nominally wholesome",
+    "provocation": "Suggestive gestures only; no explicit nudity."
+  },
+  "templates": {
+    "caption_v1": "Glossy candy idol illustration of a {model} in {pose}, {action}, styled with {wardrobe_main} plus {wardrobe_extras}; camera {camera_angle} ({framing_ratio}), {lighting}, on {background}.",
+    "caption_v2": "{mood} candy-crush pin-up — {model} {action} while {pose}; outfit {wardrobe_main} ({wardrobe_extras}); {lighting} over {background}; shot with {lens} depth {depth}.",
+    "caption_v3": "Sticky-sweet {model} {action} in {pose}, wardrobe {wardrobe_main} and {wardrobe_extras}; {camera_angle}, {lighting}, {background}, syrup-gloss vibes.",
+    "caption_v4": "Cover-ready gloss for Sugar Trouble: {model} {action}, {pose}, wearing {wardrobe_main}; {lighting} wraps {background}; {lens} at {depth}; tone {mood}.",
+    "render_instructions": "Keep it dangerously cute, candy advertisement energy, mention stickiness or gloss, stay non-explicit but undeniable."
+  }
+}

@@ -36,6 +36,7 @@ from .utils import OllamaServiceError, OllamaServiceManager
 class PipelineServices:
     scorer: DualScorer
     catalog: Catalog
+    options_catalog: Catalog | None
     builder: SceneBuilder
     logger: PromptLogger
     writer: ArtifactWriter
@@ -89,6 +90,13 @@ def _prepare_services(config: PipelineConfig, output_dir: Optional[Path] = None)
     )
     setattr(scorer, "embedding_cache", history_cache)
     catalog = Catalog.load(config.paths.catalog)
+    options_catalog = None
+    options_path = getattr(config.paths, "options_catalog", None)
+    if options_path:
+        try:
+            options_catalog = Catalog.load(options_path)
+        except FileNotFoundError:
+            options_catalog = None
     builder = SceneBuilder(catalog, required_terms=_required_terms(config), template_ids=config.prompting.template_ids)
     logger = PromptLogger(config.paths.database)
     writer = ArtifactWriter(output_dir or config.paths.output_dir)
@@ -97,6 +105,7 @@ def _prepare_services(config: PipelineConfig, output_dir: Optional[Path] = None)
     return PipelineServices(
         scorer=scorer,
         catalog=catalog,
+        options_catalog=options_catalog,
         builder=builder,
         logger=logger,
         writer=writer,
