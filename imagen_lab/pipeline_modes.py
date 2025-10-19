@@ -1,5 +1,3 @@
-"""Test-friendly orchestrators for the Normal/Evolve/Dry-run modes."""
-
 from __future__ import annotations
 
 import re
@@ -7,7 +5,8 @@ import time
 from dataclasses import dataclass
 from typing import Any, Mapping, MutableMapping, Optional, Protocol, Sequence
 
-from imagen_lab.db.repo.interfaces import PromptRecord, RepositoryProtocol, RunRecord, ScoreRecord
+from imagen_lab.db.repo.interfaces import PromptRecord, RepositoryProtocol, RunRecord
+from imagen_lab.scoring.core.interfaces import ScoringEngineProtocol, ScoringRequest
 
 
 @dataclass(frozen=True)
@@ -106,6 +105,7 @@ class PipelineDependencies:
     scene_builder: SceneBuilderProtocol
     caption_engine: CaptionEngineProtocol
     imagen_engine: ImagenEngineProtocol
+    scoring_engine: ScoringEngineProtocol
     repository: RepositoryProtocol
 
 
@@ -115,38 +115,6 @@ class ModeResult:
     caption: CaptionResult
     prompt_path: str
     imagen_metadata: Mapping[str, Any]
-
-
-@dataclass(frozen=True)
-class _MetricsBundle:
-    micro: Mapping[str, float]
-    meso: Mapping[str, float]
-
-
-def _default_metrics() -> _MetricsBundle:
-    micro = {
-        "clip_prompt_alignment": 0.82,
-        "ai_artifacts": 0.08,
-        "style_core": 0.9,
-        "gloss_intensity": 0.72,
-        "softness_blur": 0.68,
-        "coverage_ratio": 0.58,
-        "skin_exposure": 0.35,
-        "coverage_target_alignment": 0.61,
-        "identity_consistency": 0.77,
-        "pose_coherence": 0.73,
-    }
-    meso = {
-        "fitness_style": 0.78,
-        "fitness_body_focus": 0.62,
-        "fitness_coverage": 0.69,
-        "fitness_alignment": 0.76,
-        "fitness_cleanliness": 0.91,
-        "fitness_era_match": 0.72,
-        "fitness_novelty": 0.57,
-        "fitness_visual": 0.79,
-    }
-    return _MetricsBundle(micro=micro, meso=meso)
 
 
 def _sentence_count(text: str) -> int:
@@ -231,56 +199,50 @@ def _run_cycle(
 
     prompt_path = f"{context.session_id}-{variant.index:02d}.jpg"
 
-    prompt_record = PromptRecord(
-        path=prompt_path,
-        session_id=context.session_id,
-        prompt=caption.final_prompt,
-        params={
-            "scene": scene_payload,
-            "imagen": dict(imagen_result.metadata),
-            "variant_metadata": dict(variant.metadata),
-        },
-        gene_choices=choices if isinstance(choices, Mapping) else dict(scene.gene_ids),
-        option_probabilities=option_probs if isinstance(option_probs, Mapping) else None,
-        caption=caption.caption,
-        imagen_version=str(imagen_result.metadata.get("imagen_version", "unknown")),
-        fitness=0.0,
-        parents=ga_context.get("parents"),
-        op=ga_context.get("op"),
-        gen=ga_context.get("gen"),
-        indiv=ga_context.get("indiv"),
-        created_at=timestamp,
-        status="ok",
-    )
-
     if skip_scoring:
+        prompt_record = PromptRecord(
+            path=prompt_path,
+            session_id=context.session_id,
+            prompt=caption.final_prompt,
+            params={
+                "scene": scene_payload,
+                "imagen": dict(imagen_result.metadata),
+                "variant_metadata": dict(variant.metadata),
+            },
+            gene_choices=choices if isinstance(choices, Mapping) else dict(scene.gene_ids),
+            option_probabilities=option_probs if isinstance(option_probs, Mapping) else None,
+            caption=caption.caption,
+            imagen_version=str(imagen_result.metadata.get("imagen_version", "unknown")),
+            fitness=0.0,
+            parents=ga_context.get("parents"),
+            op=ga_context.get("op"),
+            gen=ga_context.get("gen"),
+            indiv=ga_context.get("indiv"),
+            created_at=timestamp,
+            status="no_score",
+        )
         deps.repository.record_cycle(prompt=prompt_record, score=None)
         return ModeResult(scene=scene, caption=caption, prompt_path=prompt_path, imagen_metadata=imagen_result.metadata)
 
-    metrics = _default_metrics()
-    prompt_record = PromptRecord(
-        **{
-            **prompt_record.__dict__,
-            "fitness": metrics.meso["fitness_visual"],
-        }
+    scoring_result = deps.scoring_engine.score(
+        ScoringRequest(
+            imagen=imagen_result,
+            prompt=caption.final_prompt,
+            caption=caption.caption,
+            scene=scene_payload,
+            session_id=context.session_id,
+            meta={"mode": mode},
+            weights=context.weights,
+            ga_context=ga_context,
+            timestamp=timestamp,
+        )
     )
 
-    score_record = ScoreRecord(
-        prompt_path=prompt_path,
-        micro_metrics=metrics.micro,
-        meso_metrics=metrics.meso,
-        fitness_visual=metrics.meso["fitness_visual"],
-        fitness_body_focus=metrics.meso["fitness_body_focus"],
-        fitness_alignment=metrics.meso["fitness_alignment"],
-        fitness_cleanliness=metrics.meso["fitness_cleanliness"],
-        fitness_era_match=metrics.meso["fitness_era_match"],
-        fitness_novelty=metrics.meso["fitness_novelty"],
-        clip_alignment=metrics.micro["clip_prompt_alignment"],
-        ai_artifacts=metrics.micro["ai_artifacts"],
-        created_at=timestamp,
+    best_variant = scoring_result.best(
+        float(context.weights.get("style", 0.0)),
+        float(context.weights.get("nsfw", 0.0)),
     )
-
-    deps.repository.record_cycle(prompt=prompt_record, score=score_record)
+    prompt_path = best_variant.prompt_path if best_variant is not None else prompt_path
     return ModeResult(scene=scene, caption=caption, prompt_path=prompt_path, imagen_metadata=imagen_result.metadata)
 
 
@@ -334,4 +296,3 @@ __all__ = [
     "run_evolve_mode",
     "run_dry_run_mode",
 ]
-

@@ -9,8 +9,12 @@ from typing import List, Mapping, Optional
 from dotenv import load_dotenv
 
 from imagen_lab.catalog import Catalog
-from imagen_lab.ga import GeneSet, crossover_genes, load_best_gene_sets, mutate_gene
-from imagen_lab.learning import StyleFeedback
+from imagen_lab.ga.genes import (
+    GeneSet,
+    crossover_genes,
+    load_best_gene_sets,
+    mutate_gene,
+)
 from imagen_lab.scene.builder.interfaces import SceneBuilderProtocol, SceneRequest
 from imagen_lab.caption.ollama.interfaces import CaptionEngineProtocol, CaptionRequest
 from imagen_lab.image.imagen.interfaces import ImagenEngineProtocol, ImagenRequest
@@ -63,14 +67,12 @@ class DefaultGAEngine(GAEngineProtocol):
         caption_engine: CaptionEngineProtocol,
         imagen_engine: ImagenEngineProtocol,
         scoring_engine: ScoringEngineProtocol,
-        feedback: StyleFeedback | None,
     ) -> None:
         self._builder = builder
         self._catalog = catalog
         self._caption_engine = caption_engine
         self._imagen_engine = imagen_engine
         self._scoring_engine = scoring_engine
-        self._feedback = feedback
 
     def _seed_population(
         self,
@@ -103,7 +105,6 @@ class DefaultGAEngine(GAEngineProtocol):
                 SceneRequest(
                     sfw_level=params.sfw_level,
                     temperature=params.temperature,
-                    feedback=self._feedback,
                     profile_id=params.profile_id,
                     macro_snapshot=params.macro_snapshot,
                     meso_snapshot=params.meso_snapshot,
@@ -146,7 +147,6 @@ class DefaultGAEngine(GAEngineProtocol):
                             SceneRequest(
                                 sfw_level=params.sfw_level,
                                 temperature=params.temperature,
-                                feedback=self._feedback,
                                 profile_id=params.profile_id,
                                 macro_snapshot=params.macro_snapshot,
                                 meso_snapshot=params.meso_snapshot,
@@ -224,8 +224,9 @@ class DefaultGAEngine(GAEngineProtocol):
 
                         scoring_result = self._scoring_engine.score(
                             ScoringRequest(
-                                response=response,
+                                imagen=imagen_result,
                                 prompt=caption.final_prompt,
+                                caption=caption.caption,
                                 scene=scene.raw,
                                 session_id=params.session_id,
                                 meta=meta_base,
@@ -235,33 +236,23 @@ class DefaultGAEngine(GAEngineProtocol):
                         )
                         time.sleep(params.sleep_s)
 
-                        batch = scoring_result.batch
-                        if not batch.is_empty():
-                            best = batch.best(params.w_style, params.w_nsfw)
-                            if best is not None:
-                                fitness = params.w_style * best.style + params.w_nsfw * best.nsfw
-                                tracker.record_success(scene.gene_ids, fitness)
-                                scored.append((fitness, genes, best.path, best.style, best.nsfw))
-                                if self._feedback is not None:
-                                    style_metrics = batch.metrics.get("style", {}) if isinstance(batch.metrics, dict) else {}
-                                    style_weights = None
-                                    if isinstance(style_metrics, dict):
-                                        weights = style_metrics.get("weights")
-                                        if isinstance(weights, dict):
-                                            style_weights = weights
-                                    self._feedback.update(
-                                        gene_ids=dict(scene.gene_ids),
-                                        template_id=scene.template_id,
-                                        summary=scene.summary,
-                                        batch_metrics=batch.metrics,
-                                        best_image=best,
-                                        weights=style_weights,
-                                    )
-                            metrics_line = format_metrics(batch.metrics)
-                            if metrics_line:
-                                print(f"   [metrics] {metrics_line}")
-                        else:
+                        if scoring_result.is_empty():
                             tracker.record_failure(scene.gene_ids)
+                            continue
+
+                        best_variant = scoring_result.best(params.w_style, params.w_nsfw)
+                        if best_variant is None:
+                            tracker.record_failure(scene.gene_ids)
+                            continue
+
+                        fitness = best_variant.weighted_fitness(params.w_style, params.w_nsfw)
+                        tracker.record_success(scene.gene_ids, fitness)
+                        style_component = best_variant.fitness_style
+                        nsfw_component = 1.0 - best_variant.fitness_coverage
+                        scored.append((fitness, genes, Path(best_variant.prompt_path), style_component, nsfw_component))
+                        metrics_line = format_metrics(best_variant.report)
+                        if metrics_line:
+                            print(f"   [metrics] {metrics_line}")
 
                     if not scored:
                         print("[evolve] no scored individuals; stopping.")

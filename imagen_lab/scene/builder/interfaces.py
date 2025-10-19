@@ -3,14 +3,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Mapping, Optional, Protocol
 
-from imagen_lab.learning import StyleFeedback
-
-
 @dataclass(frozen=True)
 class SceneRequest:
     sfw_level: float
     temperature: float
-    feedback: Optional[StyleFeedback] = None
+    feedback: Optional[object] = None
     template_id: Optional[str] = None
     profile_id: Optional[str] = None
     macro_snapshot: Mapping[str, Any] | None = None
