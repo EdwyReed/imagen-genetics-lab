@@ -2,6 +2,7 @@
   "version": "1.0-cherry-pop",
   "brand": "Cherry Pop Idol",
   "purpose": "Hyper-pop variant leaning into 80s neon arcades, candy idols, and energetic flirtation with pop-art flair.",
+  "default_character": "neon_idol_heroine",
   "style_controller": {
     "aesthetic": "Neon candy idol with chrome gloss and synthwave sparkle",
     "paper_texture": true,

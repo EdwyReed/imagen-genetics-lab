@@ -1,0 +1,18 @@
+{
+  "id": "neon_idol_heroine",
+  "name": "Neon Idol Heroine",
+  "summary": "Neon candy idol with chrome gloss and fearless stage energy",
+  "style_variants": ["Cherry Pop Idol"],
+  "prompt_hint": "pop idol, neon stage, holographic gloss",
+  "tags": ["idol", "neon", "stage"],
+  "visual_traits": [
+    "chrome-lit cheeks",
+    "glossed neon eyeliner",
+    "synthwave highlight gradients"
+  ],
+  "signature_props": [
+    "holographic microphone",
+    "laser-backlit stage rig"
+  ],
+  "personality": "Charismatic crowd-leader who performs every wink like an encore"
+}

@@ -31,6 +31,7 @@ class PathsConfig:
     scores_jsonl: Path
     output_dir: Path
     options_catalog: Path | None = None
+    character_catalog: Path | None = None
 
 
 @dataclass
@@ -208,12 +209,18 @@ class PipelineConfig:
         if options_catalog_value not in (None, ""):
             options_catalog = Path(str(options_catalog_value))
 
+        character_catalog_value = paths_data.get("character_catalog")
+        character_catalog = None
+        if character_catalog_value not in (None, ""):
+            character_catalog = Path(str(character_catalog_value))
+
         paths = PathsConfig(
             catalog=Path(paths_data.get("catalog", "catalogs/all-together.json")),
             database=Path(paths_data.get("database", "scores.sqlite")),
             scores_jsonl=Path(paths_data.get("scores_jsonl", "scores.jsonl")),
             output_dir=Path(paths_data.get("output_dir", "output")),
             options_catalog=options_catalog,
+            character_catalog=character_catalog,
         )
 
         prompting = PromptConfig(

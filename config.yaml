@@ -4,6 +4,7 @@ paths:
   scores_jsonl: scores.jsonl
   output_dir: output
   options_catalog: catalogs/all-together.json
+  character_catalog: catalogs/characters
 
 prompting:
   required_terms:
