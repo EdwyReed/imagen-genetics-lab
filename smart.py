@@ -31,6 +31,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--temperature", type=float, default=None, help="Caption temperature")
     parser.add_argument("--w-style", type=float, default=None, help="Fitness weight for style score")
     parser.add_argument("--w-nsfw", type=float, default=None, help="Fitness weight for NSFW score")
+    parser.add_argument(
+        "--no-scoring",
+        action="store_true",
+        help="Disable DualScorer evaluation and metric logging",
+    )
     parser.add_argument("--model", default=None, help="Override Imagen model name")
     parser.add_argument("--person-mode", default=None, help="Override person generation mode")
     parser.add_argument("--ollama-url", default=None, help="Override Ollama URL")
@@ -117,6 +122,7 @@ def main() -> None:
             resume_k=args.resume_k,
             resume_session=args.resume_session,
             resume_mix=args.resume_mix,
+            enable_scoring=not args.no_scoring,
         )
     else:
         run_plain(
@@ -130,6 +136,7 @@ def main() -> None:
             seed=args.seed,
             w_style=args.w_style,
             w_nsfw=args.w_nsfw,
+            enable_scoring=not args.no_scoring,
         )
 
 

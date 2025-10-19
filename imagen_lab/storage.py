@@ -231,7 +231,23 @@ def save_and_score(
     if not images:
         return ScoredBatch(images=[], metrics={})
     saved_paths = writer.write_variants(meta_base, scene, final_prompt, images)
-    scored_images: List[ScoredImage] = scorer.score_and_save(saved_paths, notes="imagen jelly pin-up")
+    scored_images: List[ScoredImage]
+    if scorer is None:
+        if ScoredImage is None:
+            raise RuntimeError("ScoredImage class unavailable while scoring is disabled")
+        scored_images = [
+            ScoredImage(
+                path=path,
+                nsfw=0,
+                style=0,
+                clip_style=0,
+                specular=0,
+                illu_bias=0,
+            )
+            for path in saved_paths
+        ]
+    else:
+        scored_images = scorer.score_and_save(saved_paths, notes="imagen jelly pin-up")
 
     valid_indices: List[int] = []
     valid_embeddings: List[np.ndarray] = []
@@ -257,7 +273,7 @@ def save_and_score(
             if offset < len(per_vals):
                 per_image_history[idx] = float(per_vals[offset])
 
-    cache = getattr(scorer, "embedding_cache", None)
+    cache = getattr(scorer, "embedding_cache", None) if scorer is not None else None
     if isinstance(cache, EmbeddingCache):
         cache.extend(valid_embeddings)
 
