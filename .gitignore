@@ -1,4 +1,4 @@
-output/
+output*/
 ollama*/
 evol*/
 alpha*/
@@ -6,5 +6,6 @@ alpha*/
 .ipynb_checkpoints/
 .env
 .idea
-refs/
+refs*/
+beta*/
 run_summary.json
