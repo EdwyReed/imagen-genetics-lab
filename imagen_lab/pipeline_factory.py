@@ -81,7 +81,6 @@ def create_pipeline_container(
         caption_engine=caption_engine,
         imagen_engine=imagen_engine,
         scoring_engine=scoring_engine,
-        feedback=None,
     )
 
     return PipelineContainer(

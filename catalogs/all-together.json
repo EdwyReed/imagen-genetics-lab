@@ -68,7 +68,7 @@
       "rules": {
         "caption_length": {
           "min_words": 22,
-          "max_words": 64
+          "max_words": 100
         },
         "tone": "Concert-level excitement with flirt",
         "provocation": "Tease via performance gestures only"
@@ -111,7 +111,7 @@
       "rules": {
         "caption_length": {
           "min_words": 18,
-          "max_words": 54
+          "max_words": 100
         },
         "tone": "Wholesome flirt",
         "provocation": "Keep innuendo mild and adorable"
@@ -155,7 +155,7 @@
       "rules": {
         "caption_length": {
           "min_words": 24,
-          "max_words": 60
+          "max_words": 100
         },
         "tone": "Provocative but artful",
         "provocation": "Push suggestiveness without explicit description"
@@ -200,7 +200,7 @@
       "rules": {
         "caption_length": {
           "min_words": 20,
-          "max_words": 60
+          "max_words": 100
         },
         "tone": "flirty yet nominally wholesome",
         "provocation": "Suggestive gestures only; no explicit nudity."
@@ -3627,7 +3627,7 @@
   "rules": {
     "caption_length": {
       "min_words": 18,
-      "max_words": 64
+      "max_words": 100
     }
   },
   "templates": {
