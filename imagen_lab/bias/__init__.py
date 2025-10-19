@@ -1,5 +1,6 @@
 """Bias utilities for Imagen Genetics Lab."""
 
+from .engine import BiasContext, BiasEngineProtocol, SimpleBiasEngine  # noqa: F401
 from .regulation import (  # noqa: F401
     BiasMixer,
     BiasSource,
@@ -19,6 +20,8 @@ from .regulation import (  # noqa: F401
 )
 
 __all__ = [
+    "BiasContext",
+    "BiasEngineProtocol",
     "BiasMixer",
     "BiasSource",
     "ClampRule",
@@ -32,6 +35,7 @@ __all__ = [
     "RegulatorRule",
     "RegulatorSpec",
     "RuleParseError",
+    "SimpleBiasEngine",
     "parse_rule",
     "parse_rules",
 ]
