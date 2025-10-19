@@ -105,3 +105,6 @@ class RepositoryProtocol(Protocol):
 
     def get_gene_stat(self, gene_id: str) -> Mapping[str, Any] | None:
         ...
+
+    def iter_gene_stats(self) -> Iterable[Mapping[str, Any]]:
+        ...

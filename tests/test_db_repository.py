@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import sqlite3
+import sys
 from pathlib import Path
 
 import pytest
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from imagen_lab.db.repo.interfaces import (
     GeneStatRecord,
@@ -130,3 +133,6 @@ def test_profile_and_gene_stats_crud(tmp_path: Path) -> None:
     assert stat is not None
     assert stat["ema_fitness"] == pytest.approx(0.5)
     assert stat["count"] == 3
+
+    stats = list(repo.iter_gene_stats())
+    assert stats and stats[0]["gene_id"] == "gene-1"

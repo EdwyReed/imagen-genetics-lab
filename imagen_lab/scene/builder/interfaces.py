@@ -15,6 +15,8 @@ class SceneRequest:
     profile_id: Optional[str] = None
     macro_snapshot: Mapping[str, Any] | None = None
     meso_snapshot: Mapping[str, Any] | None = None
+    gene_fitness: Mapping[str, float] | None = None
+    penalties: Mapping[str, float] | None = None
 
 
 @dataclass(frozen=True)

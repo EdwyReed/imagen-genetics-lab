@@ -59,38 +59,41 @@ def load_best_gene_sets(db_path: Path, k: int, session_id: Optional[str] = None)
     conn = sqlite3.connect(str(db_path))
     cur = conn.cursor()
     limit = max(1, k * 3)
+    query = (
+        """
+        SELECT params_json, gene_choices_json
+        FROM prompts
+        WHERE fitness IS NOT NULL
+        """
+    )
+    params: tuple = ()
     if session_id:
-        cur.execute(
-            """
-            SELECT params FROM prompts
-            WHERE fitness IS NOT NULL
-              AND params LIKE '%"struct"%'
-              AND params LIKE ?
-            ORDER BY fitness DESC
-            LIMIT ?
-            """,
-            (f"%{session_id}%", limit),
-        )
-    else:
-        cur.execute(
-            """
-            SELECT params FROM prompts
-            WHERE fitness IS NOT NULL
-              AND params LIKE '%"struct"%'
-            ORDER BY fitness DESC
-            LIMIT ?
-            """,
-            (limit,),
-        )
+        query += " AND params_json LIKE ?"
+        params = (f"%{session_id}%",)
+    query += " ORDER BY fitness DESC LIMIT ?"
+    params += (limit,)
+    cur.execute(query, params)
     rows = cur.fetchall()
     conn.close()
 
     best: List[GeneSet] = []
     seen: set[str] = set()
-    for (params_json,) in rows:
+    for params_json, gene_json in rows:
         try:
-            params = json.loads(params_json)
-            genes = params.get("struct", {}).get("gene_ids")
+            genes: Optional[Dict[str, Optional[str]]] = None
+            if gene_json:
+                payload = json.loads(gene_json)
+                if isinstance(payload, dict):
+                    choices = payload.get("choices")
+                    if isinstance(choices, dict):
+                        genes = {str(slot): value.get("id") if isinstance(value, dict) else value for slot, value in choices.items()}
+            if genes is None:
+                params = json.loads(params_json) if params_json else {}
+                struct = params.get("struct") if isinstance(params, dict) else {}
+                if isinstance(struct, dict):
+                    raw_genes = struct.get("gene_ids")
+                    if isinstance(raw_genes, dict):
+                        genes = {str(k): v for k, v in raw_genes.items()}
             if not isinstance(genes, dict):
                 continue
             key = json.dumps(genes, sort_keys=True)
