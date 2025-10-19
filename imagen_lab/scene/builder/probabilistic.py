@@ -85,12 +85,15 @@ class ProbabilisticSceneBuilder(SceneBuilderProtocol):
             meso_snapshot=request.meso_snapshot or {},
             sfw_level=request.sfw_level,
             temperature=request.temperature,
+            gene_fitness=request.gene_fitness or {},
+            penalties=request.penalties or {},
         )
         bias_data = self.bias_engine.compute_bias(context)
         slot_targets: Mapping[str, Mapping[str, Any]] = bias_data.get("slot_targets", {})
         applied_rules = list(bias_data.get("applied_rules", []))
         conflicts = list(bias_data.get("conflicts", []))
         effective_sfw = float(bias_data.get("sfw_level", request.sfw_level))
+        gene_bias = bias_data.get("gene_bias", {})
 
         slot_order = ["pose", "lighting", "palette", "wardrobe", "background", "mood"]
         slots: "OrderedDict[str, SceneSlotChoice]" = OrderedDict()
@@ -108,6 +111,7 @@ class ProbabilisticSceneBuilder(SceneBuilderProtocol):
                 request,
                 slot_bias,
                 effective_sfw,
+                gene_bias,
             )
 
             option_probabilities[slot] = tuple(probabilities)
@@ -233,6 +237,7 @@ class ProbabilisticSceneBuilder(SceneBuilderProtocol):
         request: SceneRequest,
         slot_bias: Mapping[str, Any],
         sfw_level: float,
+        gene_bias: Mapping[str, float] | None,
     ) -> tuple[List[GeneOptionProbability], int, List[Mapping[str, Any]]]:
         weights: MutableSequence[float] = []
         metadata_entries: List[Mapping[str, Any]] = []
@@ -245,6 +250,14 @@ class ProbabilisticSceneBuilder(SceneBuilderProtocol):
             label = _option_label(option)
             nsfw_score = _extract_float(option, "nsfw")
             weight = max(1e-3, 1.0 - sfw_level * nsfw_score)
+            option_id = str(option.get("id"))
+            if gene_bias:
+                bias_multiplier = gene_bias.get(option_id)
+                if bias_multiplier is not None:
+                    try:
+                        weight *= float(bias_multiplier)
+                    except (TypeError, ValueError):  # pragma: no cover - defensive
+                        pass
             if max_nsfw is not None and nsfw_score > float(max_nsfw):
                 weight *= 0.05
             if slot == "palette" and temp_boost:

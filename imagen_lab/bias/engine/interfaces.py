@@ -11,6 +11,8 @@ class BiasContext:
     meso_snapshot: Mapping[str, Any]
     sfw_level: float
     temperature: float
+    gene_fitness: Mapping[str, float] | None = None
+    penalties: Mapping[str, float] | None = None
 
 
 class BiasEngineProtocol(Protocol):

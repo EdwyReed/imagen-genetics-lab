@@ -11,6 +11,7 @@ from imagen_lab.caption.ollama.interfaces import CaptionRequest
 from imagen_lab.config import PipelineConfig
 from imagen_lab.db.repo.interfaces import RunRecord
 from imagen_lab.ga.engine.adapter import GARunParameters
+from imagen_lab.ga.session_state import SessionGeneStats
 from imagen_lab.pipeline_factory import PipelineContainer, create_pipeline_container
 from imagen_lab.scene.builder.interfaces import SceneRequest
 from imagen_lab.scoring.core.interfaces import ScoringRequest
@@ -63,6 +64,8 @@ def run_plain(
     if container.scorer is None:
         print("[plain] scoring disabled (--no-scoring)")
 
+    gene_tracker = SessionGeneStats(container.repository.iter_gene_stats())
+
     container.repository.log_run(
         RunRecord(
             session_id=session_id,
@@ -91,13 +94,20 @@ def run_plain(
                         time.sleep(sleep_s)
                         continue
 
-                scene = container.scene_builder.build_scene(
-                    SceneRequest(
-                        sfw_level=sfw_level,
-                        temperature=temperature,
-                        feedback=container.feedback,
-                    )
+                gene_tracker.decay_penalties()
+                scene_request = SceneRequest(
+                    sfw_level=sfw_level,
+                    temperature=temperature,
+                    feedback=container.feedback,
+                    gene_fitness=gene_tracker.ema_snapshot(),
+                    penalties=gene_tracker.penalty_snapshot(),
                 )
+                scene = container.scene_builder.build_scene(scene_request)
+                attempts = 0
+                while gene_tracker.should_penalize(scene.gene_ids) and attempts < 3:
+                    gene_tracker.decay_penalties()
+                    scene = container.scene_builder.build_scene(scene_request)
+                    attempts += 1
                 print(
                     f"[{idx:02d}/{cycles}] scene ready template={scene.template_id} summary={scene.summary}"
                 )
@@ -116,6 +126,7 @@ def run_plain(
                         print(f"[{idx:02d}/{cycles}] enforced required terms once")
                 except Exception as exc:  # pragma: no cover - network interaction
                     print(f"[{idx:02d}/{cycles}] Ollama error: {exc}")
+                    gene_tracker.record_failure(scene.gene_ids)
                     time.sleep(sleep_s)
                     continue
 
@@ -142,12 +153,14 @@ def run_plain(
                     print(f"[{idx:02d}/{cycles}] Imagen error: {exc}")
                     if "400" in str(exc):
                         print(f"[{idx:02d}/{cycles}] final prompt that caused 400: {caption.final_prompt}")
+                    gene_tracker.record_failure(scene.gene_ids)
                     time.sleep(sleep_s)
                     continue
 
                 response = imagen_result.response
                 if not getattr(response, "generated_images", None):
                     print(f"[{idx:02d}/{cycles}] no images returned; final prompt: {caption.final_prompt}")
+                    gene_tracker.record_failure(scene.gene_ids)
                     time.sleep(sleep_s)
                     continue
 
@@ -185,6 +198,8 @@ def run_plain(
                 if not batch.is_empty():
                     best = batch.best(w_style, w_nsfw)
                     if best is not None:
+                        fitness_value = best.fitness(w_style, w_nsfw)
+                        gene_tracker.record_success(scene.gene_ids, fitness_value)
                         print(f"   [best] {best.path.name}  style={best.style} nsfw={best.nsfw}")
                         if container.feedback is not None and container.scorer is not None:
                             style_metrics = batch.metrics.get("style", {}) if isinstance(batch.metrics, dict) else {}
@@ -204,9 +219,16 @@ def run_plain(
                     metrics_line = format_metrics(batch.metrics)
                     if metrics_line:
                         print(f"   [metrics] {metrics_line}")
+                else:
+                    gene_tracker.record_failure(scene.gene_ids)
                 time.sleep(sleep_s)
     except OllamaServiceError as exc:
         print(f"[plain] Ollama service error: {exc}")
+    finally:
+        try:
+            gene_tracker.flush(container.repository)
+        except Exception as exc:
+            print(f"[plain] failed to flush gene stats: {exc}")
 
 
 def run_evolve(
@@ -255,6 +277,8 @@ def run_evolve(
     if container.scorer is None:
         print("[evolve] scoring disabled (--no-scoring)")
 
+    gene_tracker = SessionGeneStats(container.repository.iter_gene_stats())
+
     container.repository.log_run(
         RunRecord(
             session_id=session_id,
@@ -300,6 +324,16 @@ def run_evolve(
         resume_mix=resume_mix,
         db_path=config.paths.database,
         service_manager=manager,
+        gene_tracker=gene_tracker,
+        profile_id=None,
+        macro_snapshot=None,
+        meso_snapshot=None,
     )
 
-    container.ga_engine.run(params)
+    try:
+        container.ga_engine.run(params)
+    finally:
+        try:
+            gene_tracker.flush(container.repository)
+        except Exception as exc:
+            print(f"[evolve] failed to flush gene stats: {exc}")

@@ -87,9 +87,38 @@ class SimpleBiasEngine(BiasEngineProtocol):
             slot_targets.setdefault("palette", {})["temperature_boost"] = boost
             applied_rules.append(f"novelty_palette_boost={boost:.2f}")
 
+        gene_bias: Dict[str, float] = {}
+        fitness_map = context.gene_fitness or {}
+        if fitness_map:
+            values = [
+                float(value)
+                for value in fitness_map.values()
+                if isinstance(value, (int, float))
+            ]
+            if values:
+                mean_val = sum(values) / len(values)
+                spread = max(1e-6, max(values) - min(values))
+                penalties = context.penalties or {}
+                for gene_id, value in fitness_map.items():
+                    try:
+                        fitness_val = float(value)
+                    except (TypeError, ValueError):  # pragma: no cover - defensive
+                        continue
+                    normalized = 0.5 + 0.5 * ((fitness_val - mean_val) / spread)
+                    multiplier = 0.6 + max(0.0, min(1.0, normalized)) * 0.8
+                    penalty = penalties.get(gene_id)
+                    if penalty is not None:
+                        try:
+                            penalty_val = float(penalty)
+                        except (TypeError, ValueError):  # pragma: no cover
+                            penalty_val = 0.0
+                        multiplier *= max(0.1, 1.0 - max(0.0, min(0.9, penalty_val)))
+                    gene_bias[gene_id] = max(0.05, min(2.0, multiplier))
+
         return {
             "slot_targets": slot_targets,
             "applied_rules": applied_rules,
             "conflicts": conflicts,
             "sfw_level": sfw_level,
+            "gene_bias": gene_bias,
         }

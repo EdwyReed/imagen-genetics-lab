@@ -78,6 +78,7 @@ def test_scene_builder_returns_scene_model_with_probabilities():
         profile_id="profile:demo",
         macro_snapshot={"sfw_level": 0.6, "novelty_preference": 0.75},
         meso_snapshot={"fitness_novelty": 0.8},
+        gene_fitness={"pose_a": 80.0, "pose_b": 20.0},
     )
 
     scene = builder.build_scene(request)
@@ -109,3 +110,28 @@ def test_rebuild_from_genes_preserves_override():
     assert rebuilt.gene_ids["pose"] == pose_choice
     payload = json.loads(rebuilt.payload["gene_choices_json"])
     assert payload["choices"]["pose"]["id"] == pose_choice
+
+
+def test_gene_penalties_reduce_option_weight():
+    catalog = make_catalog()
+    engine = SimpleBiasEngine()
+    builder = ProbabilisticSceneBuilder(catalog=catalog, bias_engine=engine, rng=random.Random(3))
+
+    base_request = SceneRequest(
+        sfw_level=0.4,
+        temperature=0.7,
+        gene_fitness={"wardrobe_layered": 70.0, "wardrobe_bold": 30.0},
+    )
+    scene = builder.build_scene(base_request)
+    wardrobe_choice = scene.payload["scene_model"]["choices"]["wardrobe"]
+    assert wardrobe_choice["id"] in {"wardrobe_layered", "wardrobe_bold"}
+
+    penalized_request = SceneRequest(
+        sfw_level=0.4,
+        temperature=0.7,
+        gene_fitness={"wardrobe_layered": 70.0, "wardrobe_bold": 30.0},
+        penalties={"wardrobe_layered": 0.9},
+    )
+    penalized_scene = builder.build_scene(penalized_request)
+    penalized_choice = penalized_scene.payload["scene_model"]["choices"]["wardrobe"]
+    assert penalized_choice["id"] == "wardrobe_bold"

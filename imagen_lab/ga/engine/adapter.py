@@ -4,7 +4,7 @@ import random
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Mapping, Optional
 
 from dotenv import load_dotenv
 
@@ -19,6 +19,7 @@ from imagen_lab.scoring.core.utils import format_metrics
 from imagen_lab.utils import OllamaServiceError, OllamaServiceManager
 
 from .interfaces import GAEngineProtocol
+from ..session_state import SessionGeneStats
 
 
 @dataclass(frozen=True)
@@ -48,6 +49,10 @@ class GARunParameters:
     resume_mix: float
     db_path: Path
     service_manager: OllamaServiceManager
+    gene_tracker: SessionGeneStats
+    profile_id: Optional[str] = None
+    macro_snapshot: Mapping[str, float] | None = None
+    meso_snapshot: Mapping[str, float] | None = None
 
 
 class DefaultGAEngine(GAEngineProtocol):
@@ -73,10 +78,13 @@ class DefaultGAEngine(GAEngineProtocol):
     ) -> List[GeneSet]:
         load_dotenv()
         population: List[GeneSet] = []
+        tracker = params.gene_tracker
         if params.resume_best:
             seed_genes = load_best_gene_sets(params.db_path, params.resume_k, params.resume_session)
             if seed_genes:
                 for genes in seed_genes:
+                    if tracker.should_penalize(genes):
+                        continue
                     child = dict(genes)
                     if params.resume_mix > 0.0:
                         for key in list(child.keys()):
@@ -90,13 +98,21 @@ class DefaultGAEngine(GAEngineProtocol):
                                 )
                     population.append(child)
         while len(population) < params.pop_size:
+            tracker.decay_penalties()
             scene = self._builder.build_scene(
                 SceneRequest(
                     sfw_level=params.sfw_level,
                     temperature=params.temperature,
                     feedback=self._feedback,
+                    profile_id=params.profile_id,
+                    macro_snapshot=params.macro_snapshot,
+                    meso_snapshot=params.meso_snapshot,
+                    gene_fitness=tracker.ema_snapshot(),
+                    penalties=tracker.penalty_snapshot(),
                 )
             )
+            if tracker.should_penalize(scene.gene_ids):
+                continue
             population.append(dict(scene.gene_ids))
         return population
 
@@ -106,12 +122,14 @@ class DefaultGAEngine(GAEngineProtocol):
 
         population = self._seed_population(params)
         manager = params.service_manager
+        tracker = params.gene_tracker
 
         try:
             with manager:
                 for gen_idx in range(1, params.generations + 1):
                     print(f"\n===== Generation {gen_idx}/{params.generations} =====")
                     scored: List[tuple[float, GeneSet, Path, float, float]] = []
+                    tracker.decay_penalties()
 
                     for indiv_idx, genes in enumerate(population, start=1):
                         print(f"[G{gen_idx} I{indiv_idx}] evaluating individual")
@@ -129,8 +147,16 @@ class DefaultGAEngine(GAEngineProtocol):
                                 sfw_level=params.sfw_level,
                                 temperature=params.temperature,
                                 feedback=self._feedback,
+                                profile_id=params.profile_id,
+                                macro_snapshot=params.macro_snapshot,
+                                meso_snapshot=params.meso_snapshot,
+                                gene_fitness=tracker.ema_snapshot(),
+                                penalties=tracker.penalty_snapshot(),
                             ),
                         )
+                        if tracker.should_penalize(scene.gene_ids):
+                            tracker.record_failure(scene.gene_ids)
+                            continue
                         print(
                             f"[G{gen_idx} I{indiv_idx}] scene ready template={scene.template_id} summary={scene.summary}"
                         )
@@ -148,6 +174,7 @@ class DefaultGAEngine(GAEngineProtocol):
                                 print(f"[G{gen_idx} I{indiv_idx}] enforced required terms once")
                         except Exception as exc:  # pragma: no cover - network interaction
                             print(f"[G{gen_idx} I{indiv_idx}] Ollama error: {exc}")
+                            tracker.record_failure(scene.gene_ids)
                             time.sleep(params.sleep_s)
                             continue
 
@@ -164,6 +191,7 @@ class DefaultGAEngine(GAEngineProtocol):
                             )
                         except Exception as exc:  # pragma: no cover - API call
                             print(f"[G{gen_idx} I{indiv_idx}] Imagen error: {exc}")
+                            tracker.record_failure(scene.gene_ids)
                             time.sleep(params.sleep_s)
                             continue
 
@@ -172,6 +200,7 @@ class DefaultGAEngine(GAEngineProtocol):
                             print(
                                 f"[G{gen_idx} I{indiv_idx}] WARN: no image returned; final prompt: {caption.final_prompt}"
                             )
+                            tracker.record_failure(scene.gene_ids)
                             time.sleep(params.sleep_s)
                             continue
 
@@ -211,6 +240,7 @@ class DefaultGAEngine(GAEngineProtocol):
                             best = batch.best(params.w_style, params.w_nsfw)
                             if best is not None:
                                 fitness = params.w_style * best.style + params.w_nsfw * best.nsfw
+                                tracker.record_success(scene.gene_ids, fitness)
                                 scored.append((fitness, genes, best.path, best.style, best.nsfw))
                                 if self._feedback is not None:
                                     style_metrics = batch.metrics.get("style", {}) if isinstance(batch.metrics, dict) else {}
@@ -230,6 +260,8 @@ class DefaultGAEngine(GAEngineProtocol):
                             metrics_line = format_metrics(batch.metrics)
                             if metrics_line:
                                 print(f"   [metrics] {metrics_line}")
+                        else:
+                            tracker.record_failure(scene.gene_ids)
 
                     if not scored:
                         print("[evolve] no scored individuals; stopping.")

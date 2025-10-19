@@ -403,3 +403,23 @@ class SQLiteRepository(RepositoryProtocol):
             "updated_at": row[5],
         }
 
+    def iter_gene_stats(self) -> Iterable[Mapping[str, Any]]:
+        with self._connect() as conn:
+            cursor = conn.execute(
+                """
+                SELECT gene_id, ema_fitness, count, last_seen_ts, confidence, updated_at
+                FROM gene_stats
+                ORDER BY updated_at DESC
+                """
+            )
+            rows = cursor.fetchall()
+        for row in rows:
+            yield {
+                "gene_id": row[0],
+                "ema_fitness": row[1],
+                "count": row[2],
+                "last_seen_ts": row[3],
+                "confidence": row[4],
+                "updated_at": row[5],
+            }
+
