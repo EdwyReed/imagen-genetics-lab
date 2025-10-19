@@ -18,6 +18,7 @@ from imagen_lab.scoring.core.interfaces import ScoringRequest
 from imagen_lab.scoring.core.utils import format_metrics
 from imagen_lab.image.imagen.interfaces import ImagenRequest
 from imagen_lab.utils import OllamaServiceError, OllamaServiceManager
+from imagen_lab.validation import ValidationContext, validate_run_parameters
 
 
 def _build_container(
@@ -55,6 +56,25 @@ def run_plain(
     w_style = w_style if w_style is not None else config.fitness.style
     w_nsfw = w_nsfw if w_nsfw is not None else config.fitness.nsfw
 
+    macro_snapshot = dict(config.bias.macro_weights)
+    meso_snapshot = dict(config.bias.meso_aggregates)
+    validation = validate_run_parameters(
+        ValidationContext(
+            sfw_level=sfw_level,
+            macro_snapshot=macro_snapshot,
+            meso_snapshot=meso_snapshot,
+            weights={"style": w_style, "nsfw": w_nsfw},
+        )
+    )
+    sfw_level = validation.sfw_level
+    macro_snapshot = validation.macro_snapshot
+    meso_snapshot = validation.meso_snapshot
+    w_style = validation.weights.get("style", w_style)
+    w_nsfw = validation.weights.get("nsfw", w_nsfw)
+
+    for note in validation.notifications:
+        print(f"[validation] {note}")
+
     if seed is not None:
         random.seed(seed)
 
@@ -77,6 +97,10 @@ def run_plain(
                 "temperature": temperature,
                 "weights": {"style": w_style, "nsfw": w_nsfw},
             },
+            macro_snapshot=macro_snapshot,
+            meso_snapshot=meso_snapshot,
+            seed=seed,
+            conflicts=validation.conflicts_payload(),
         )
     )
 
@@ -99,6 +123,8 @@ def run_plain(
                     sfw_level=sfw_level,
                     temperature=temperature,
                     feedback=container.feedback,
+                    macro_snapshot=macro_snapshot,
+                    meso_snapshot=meso_snapshot,
                     gene_fitness=gene_tracker.ema_snapshot(),
                     penalties=gene_tracker.penalty_snapshot(),
                 )
@@ -271,6 +297,25 @@ def run_evolve(
     resume_session = resume_session if resume_session is not None else config.ga.resume_session
     resume_mix = resume_mix if resume_mix is not None else config.ga.resume_mix
 
+    macro_snapshot = dict(config.bias.macro_weights)
+    meso_snapshot = dict(config.bias.meso_aggregates)
+    validation = validate_run_parameters(
+        ValidationContext(
+            sfw_level=sfw_level,
+            macro_snapshot=macro_snapshot,
+            meso_snapshot=meso_snapshot,
+            weights={"style": w_style, "nsfw": w_nsfw},
+        )
+    )
+    sfw_level = validation.sfw_level
+    macro_snapshot = validation.macro_snapshot
+    meso_snapshot = validation.meso_snapshot
+    w_style = validation.weights.get("style", w_style)
+    w_nsfw = validation.weights.get("nsfw", w_nsfw)
+
+    for note in validation.notifications:
+        print(f"[validation] {note}")
+
     container = _build_container(config, outdir=outdir, enable_scoring=enable_scoring)
     session_id = f"evolve-{int(time.time())}"
 
@@ -293,6 +338,10 @@ def run_evolve(
                 "temperature": temperature,
                 "weights": {"style": w_style, "nsfw": w_nsfw},
             },
+            macro_snapshot=macro_snapshot,
+            meso_snapshot=meso_snapshot,
+            seed=seed,
+            conflicts=validation.conflicts_payload(),
         )
     )
 
@@ -326,8 +375,8 @@ def run_evolve(
         service_manager=manager,
         gene_tracker=gene_tracker,
         profile_id=None,
-        macro_snapshot=None,
-        meso_snapshot=None,
+        macro_snapshot=macro_snapshot,
+        meso_snapshot=meso_snapshot,
     )
 
     try:
