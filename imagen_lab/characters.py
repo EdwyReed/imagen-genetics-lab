@@ -5,7 +5,9 @@ import random
 from dataclasses import dataclass, field
 from pathlib import Path
 from types import MappingProxyType
-from typing import Dict, Iterable, Iterator, List, Mapping, Optional, Sequence
+from typing import Dict, List, Optional, Sequence, Tuple
+
+from .io.json_documents import CharacterDocument, SchemaError
 
 
 EMPTY_MAPPING: Mapping[str, object] = MappingProxyType({})
@@ -112,13 +114,19 @@ class CharacterProfile:
 class CharacterLibrary:
     """Lookup helper for characters defined in a separate catalog."""
 
-    def __init__(self, characters: Sequence[CharacterProfile]):
+    def __init__(
+        self,
+        characters: Sequence[CharacterProfile],
+        *,
+        documents: Sequence[CharacterDocument] | None = None,
+    ):
         self._characters: List[CharacterProfile] = list(characters)
         self._by_id: Dict[str, CharacterProfile] = {c.id: c for c in self._characters}
         self._by_variant: Dict[str, List[CharacterProfile]] = {}
         for profile in self._characters:
             for variant in profile.style_variants:
                 self._by_variant.setdefault(variant, []).append(profile)
+        self._documents: Tuple[CharacterDocument, ...] = tuple(documents or ())
 
     @classmethod
     def load(cls, path: Path) -> "CharacterLibrary":
@@ -126,43 +134,48 @@ class CharacterLibrary:
         if not path.exists():
             raise FileNotFoundError(path)
 
-        def iter_entries_from_payload(payload: object) -> Iterator[Mapping[str, object]]:
-            if isinstance(payload, Mapping):
-                characters = payload.get("characters")
-                if isinstance(characters, Iterable) and not isinstance(characters, (str, bytes)):
-                    for item in characters:
-                        if isinstance(item, Mapping):
-                            yield item
-                    return
-                yield payload
-                return
-            if isinstance(payload, Iterable) and not isinstance(payload, (str, bytes)):
-                for item in payload:
-                    if isinstance(item, Mapping):
-                        yield item
-
         characters: List[CharacterProfile] = []
+        documents: List[CharacterDocument] = []
+
+        def consume_payload(payload: object, *, source: str) -> None:
+            try:
+                document = CharacterDocument.from_raw(payload, source=source)
+            except SchemaError as exc:
+                raise ValueError(str(exc)) from exc
+            profiles = document.to_profiles()
+            if not profiles:
+                raise ValueError(f"{source}: character document contains no entries")
+            characters.extend(profiles)
+            documents.append(document)
 
         if path.is_dir():
             for child in sorted(path.glob("*.json")):
                 if not child.is_file():
                     continue
-                data = json.loads(child.read_text(encoding="utf-8"))
-                for entry in iter_entries_from_payload(data):
-                    characters.append(CharacterProfile.from_mapping(entry))
+                try:
+                    payload = json.loads(child.read_text(encoding="utf-8"))
+                except json.JSONDecodeError as exc:
+                    message = f"{child}: invalid JSON: {exc.msg} at line {exc.lineno} column {exc.colno}"
+                    raise ValueError(message) from exc
+                consume_payload(payload, source=str(child))
         else:
-            data = json.loads(path.read_text(encoding="utf-8"))
-            if isinstance(data, Mapping) and "version" in data and "characters" not in data:
-                raise ValueError("character catalog missing 'characters' list")
-            for entry in iter_entries_from_payload(data):
-                characters.append(CharacterProfile.from_mapping(entry))
+            try:
+                payload = json.loads(path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError as exc:
+                message = f"{path}: invalid JSON: {exc.msg} at line {exc.lineno} column {exc.colno}"
+                raise ValueError(message) from exc
+            consume_payload(payload, source=str(path))
 
         if not characters:
             raise ValueError("character catalog contains no valid entries")
-        return cls(characters)
+        return cls(characters, documents=documents)
 
     def to_dict(self) -> Dict[str, object]:
         return {"characters": [c.to_dict() for c in self._characters]}
+
+    @property
+    def documents(self) -> Tuple[CharacterDocument, ...]:
+        return self._documents
 
     def find(self, character_id: str | None) -> Optional[CharacterProfile]:
         if not character_id:

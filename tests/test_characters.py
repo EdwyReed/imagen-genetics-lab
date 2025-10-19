@@ -9,6 +9,7 @@ pytest.importorskip("yaml")
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from imagen_lab.characters import CharacterLibrary, CharacterProfile
+from imagen_lab.io.json_documents import CHARACTER_SCHEMA_VERSION
 
 
 def test_character_library_returns_variant_specific_profile(monkeypatch) -> None:
@@ -93,3 +94,30 @@ def test_character_library_loads_directory(tmp_path: Path) -> None:
     guardian = library.find("leaf_guardian")
     assert guardian is not None
     assert "leaf crown" in guardian.visual_traits
+
+    assert library.documents
+    assert library.documents[0].header.schema_version == CHARACTER_SCHEMA_VERSION
+
+
+def test_character_library_validates_schema(tmp_path: Path) -> None:
+    payload = {
+        "schema_version": CHARACTER_SCHEMA_VERSION,
+        "id_namespace": "characters:test@v1",
+        "extends": None,
+        "merge": {},
+        "characters": [
+            {
+                "name": "Nameless",
+                "summary": "Missing id",
+                "style_variants": ["Test"],
+            }
+        ],
+    }
+
+    path = tmp_path / "invalid.json"
+    path.write_text(json.dumps(payload), encoding="utf-8")
+
+    with pytest.raises(ValueError) as exc:
+        CharacterLibrary.load(path)
+
+    assert "characters[0].id must be a non-empty string" in str(exc.value)
