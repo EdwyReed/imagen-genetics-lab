@@ -63,6 +63,7 @@ def _prepare_services(
     *,
     enable_scoring: bool = True,
 ) -> PipelineServices:
+    print("[services] preparing pipeline services")
     history_cfg = EmbeddingHistoryConfig(
         enabled=config.history.enabled,
         max_embeddings=config.history.max_embeddings,
@@ -71,6 +72,7 @@ def _prepare_services(
     profiles_path = getattr(config.scoring, "weight_profiles_path", None)
     weight_table = None
     if profiles_path:
+        print(f"[services] loading weight profiles from {profiles_path}")
         defaults = config.scoring.weights or DEFAULT_STYLE_WEIGHTS
         weight_table = WeightProfileTable.load(
             profiles_path,
@@ -80,6 +82,7 @@ def _prepare_services(
 
     scorer: Optional[DualScorer] = None
     if enable_scoring:
+        print("[services] initializing scorer")
         scorer = DualScorer(
             device=config.scoring.device,
             batch=config.scoring.batch_size,
@@ -96,19 +99,26 @@ def _prepare_services(
             composition_enabled=getattr(config.scoring, "composition_metrics", True),
         )
         setattr(scorer, "embedding_cache", history_cache)
+    print(f"[services] loading catalog from {config.paths.catalog}")
     catalog = Catalog.load(config.paths.catalog)
     options_catalog = None
     options_path = getattr(config.paths, "options_catalog", None)
     if options_path:
         try:
+            print(f"[services] loading options catalog from {options_path}")
             options_catalog = Catalog.load(options_path)
         except FileNotFoundError:
+            print(f"[services] options catalog not found at {options_path}")
             options_catalog = None
     builder = SceneBuilder(catalog, required_terms=_required_terms(config), template_ids=config.prompting.template_ids)
     logger = PromptLogger(config.paths.database)
     writer = ArtifactWriter(output_dir or config.paths.output_dir)
+    print(f"[services] artifacts will be written to {writer.output_dir}")
     client = genai.Client()
     feedback = StyleFeedback(config.feedback) if config.feedback.enabled else None
+    if feedback is not None:
+        print("[services] feedback engine enabled")
+    print("[services] pipeline services ready")
     return PipelineServices(
         scorer=scorer,
         catalog=catalog,
@@ -209,6 +219,7 @@ def run_plain(
     w_nsfw: Optional[float] = None,
     enable_scoring: bool = True,
 ) -> None:
+    print("[plain] starting plain pipeline run")
     load_dotenv()
     cycles = cycles if cycles is not None else config.defaults.cycles
     per_cycle = per_cycle if per_cycle is not None else config.defaults.per_cycle
@@ -253,6 +264,7 @@ def run_plain(
     try:
         with service_manager:
             for idx in range(1, cycles + 1):
+                print(f"\n[plain] cycle {idx}/{cycles} started")
                 if service_manager.enabled:
                     try:
                         service_manager.ensure_running()
@@ -261,12 +273,17 @@ def run_plain(
                         time.sleep(sleep_s)
                         continue
 
+                print(f"[{idx:02d}/{cycles}] building scene")
                 scene = builder.build_scene(
                     sfw_level=sfw_level,
                     temperature=temperature,
                     feedback=feedback,
                 )
+                print(
+                    f"[{idx:02d}/{cycles}] scene ready template={scene.template_id} summary={short_readable(scene)}"
+                )
                 try:
+                    print(f"[{idx:02d}/{cycles}] requesting caption from Ollama")
                     caption = ollama_generate(
                         config.ollama.url,
                         config.ollama.model,
@@ -276,6 +293,7 @@ def run_plain(
                         top_p=config.ollama.top_p,
                         seed=seed,
                     )
+                    print(f"[{idx:02d}/{cycles}] enforcing required terms once")
                     caption = enforce_once(
                         config.ollama.url,
                         config.ollama.model,
@@ -288,12 +306,16 @@ def run_plain(
                     )
                 except Exception as exc:  # pragma: no cover - network interaction
                     print(f"[{idx:02d}/{cycles}] Ollama error: {exc}")
+                    print(f"[{idx:02d}/{cycles}] last caption payload: {scene.ollama_payload()}")
                     time.sleep(sleep_s)
                     continue
 
                 bounds = scene.caption_bounds
                 min_words = int(bounds.get("min_words", 18))
                 max_words = int(bounds.get("max_words", 60))
+                print(
+                    f"[{idx:02d}/{cycles}] enforcing bounds min_words={min_words} max_words={max_words}"
+                )
                 final_prompt = enforce_bounds(
                     caption,
                     min_words,
@@ -304,8 +326,10 @@ def run_plain(
                     _required_terms(config),
                     max_words=max_words,
                 )
+                print(f"[{idx:02d}/{cycles}] final prompt prepared: {final_prompt}")
 
                 try:
+                    print(f"[{idx:02d}/{cycles}] requesting images from Imagen model")
                     response = imagen_call(
                         client,
                         config.imagen.model,
@@ -317,6 +341,13 @@ def run_plain(
                     )
                 except Exception as exc:  # pragma: no cover - API call
                     print(f"[{idx:02d}/{cycles}] Imagen error: {exc}")
+                    if "400" in str(exc):
+                        print(f"[{idx:02d}/{cycles}] final prompt that caused 400: {final_prompt}")
+                    time.sleep(sleep_s)
+                    continue
+
+                if not getattr(response, "generated_images", None):
+                    print(f"[{idx:02d}/{cycles}] no images returned; final prompt: {final_prompt}")
                     time.sleep(sleep_s)
                     continue
 
@@ -338,6 +369,7 @@ def run_plain(
                     },
                 }
 
+                print(f"[{idx:02d}/{cycles}] saving artifacts and scoring")
                 batch = save_and_score(
                     response,
                     writer,
@@ -392,6 +424,7 @@ def _seed_population(
     *,
     feedback: Optional[StyleFeedback] = None,
 ) -> List[GeneSet]:
+    print("[evolve] seeding initial population")
     population: List[GeneSet] = []
     if seed_resume:
         seed_genes = load_best_gene_sets(db_path, settings.resume_k, session_id)
@@ -405,12 +438,14 @@ def _seed_population(
                 population.append(child)
             print(f"[resume] seeded from DB: {len(seed_genes)} genes (session={session_id or 'ANY'})")
     while len(population) < settings.pop:
+        print(f"[evolve] generating seed individual {len(population)+1}/{settings.pop}")
         scene = builder.build_scene(
             sfw_level=sfw_level,
             temperature=temperature,
             feedback=feedback,
         )
         population.append(dict(scene.gene_ids))
+    print(f"[evolve] initial population size: {len(population)}")
     return population
 
 
@@ -435,6 +470,7 @@ def run_evolve(
     resume_mix: Optional[float] = None,
     enable_scoring: bool = True,
 ) -> None:
+    print("[evolve] starting evolutionary pipeline run")
     load_dotenv()
     pop = pop if pop is not None else config.ga.pop
     gens = gens if gens is not None else config.ga.gens
@@ -512,6 +548,7 @@ def run_evolve(
                 scored: List[Tuple[float, GeneSet, Path, int, int]] = []
 
                 for indiv_idx, genes in enumerate(population, start=1):
+                    print(f"[G{gen_idx} I{indiv_idx}] evaluating individual")
                     if service_manager.enabled:
                         try:
                             service_manager.ensure_running()
@@ -520,13 +557,18 @@ def run_evolve(
                             time.sleep(sleep_s)
                             continue
 
+                    print(f"[G{gen_idx} I{indiv_idx}] rebuilding scene from genes")
                     scene = builder.rebuild_from_genes(
                         genes,
                         sfw_level=sfw_level,
                         temperature=temperature,
                         feedback=feedback,
                     )
+                    print(
+                        f"[G{gen_idx} I{indiv_idx}] scene ready template={scene.template_id} summary={short_readable(scene)}"
+                    )
                     try:
+                        print(f"[G{gen_idx} I{indiv_idx}] requesting caption from Ollama")
                         caption = ollama_generate(
                             config.ollama.url,
                             config.ollama.model,
@@ -536,6 +578,7 @@ def run_evolve(
                             top_p=config.ollama.top_p,
                             seed=seed,
                         )
+                        print(f"[G{gen_idx} I{indiv_idx}] enforcing required terms once")
                         caption = enforce_once(
                             config.ollama.url,
                             config.ollama.model,
@@ -548,17 +591,30 @@ def run_evolve(
                         )
                     except Exception as exc:  # pragma: no cover - network interaction
                         print(f"[G{gen_idx} I{indiv_idx}] Ollama error: {exc}")
+                        print(f"[G{gen_idx} I{indiv_idx}] last caption payload: {scene.ollama_payload()}")
                         time.sleep(sleep_s)
                         continue
 
                     bounds = scene.caption_bounds
+                    min_words = int(bounds.get("min_words", 18))
+                    max_words = int(bounds.get("max_words", 60))
+                    print(
+                        f"[G{gen_idx} I{indiv_idx}] enforcing bounds min_words={min_words} max_words={max_words}"
+                    )
                     final_prompt = enforce_bounds(
                         caption,
-                        int(bounds.get("min_words", 18)),
-                        int(bounds.get("max_words", 60)),
+                        min_words,
+                        max_words,
                     )
+                    final_prompt = append_required_terms(
+                        final_prompt,
+                        _required_terms(config),
+                        max_words=max_words,
+                    )
+                    print(f"[G{gen_idx} I{indiv_idx}] final prompt prepared: {final_prompt}")
 
                     try:
+                        print(f"[G{gen_idx} I{indiv_idx}] requesting images from Imagen model")
                         response = imagen_call(
                             client,
                             config.imagen.model,
@@ -570,11 +626,17 @@ def run_evolve(
                         )
                     except Exception as exc:  # pragma: no cover - API call
                         print(f"[G{gen_idx} I{indiv_idx}] Imagen error: {exc}")
+                        if "400" in str(exc):
+                            print(
+                                f"[G{gen_idx} I{indiv_idx}] final prompt that caused 400: {final_prompt}"
+                            )
                         time.sleep(sleep_s)
                         continue
 
                     if not getattr(response, "generated_images", None):
-                        print(f"[G{gen_idx} I{indiv_idx}] WARN: no image")
+                        print(
+                            f"[G{gen_idx} I{indiv_idx}] WARN: no image returned; final prompt: {final_prompt}"
+                        )
                         time.sleep(sleep_s)
                         continue
 
@@ -596,6 +658,7 @@ def run_evolve(
                         },
                     }
 
+                    print(f"[G{gen_idx} I{indiv_idx}] saving artifacts and scoring")
                     batch = save_and_score(
                         response,
                         writer,
