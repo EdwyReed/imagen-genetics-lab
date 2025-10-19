@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "id": "studio",
+  "title": "Studio baseline",
+  "description": "Balanced baseline profile used for deterministic smoke tests.",
+  "macro": {
+    "subject_focus": 1.0,
+    "composition_symmetry": 1.0,
+    "lighting_drama": 1.1,
+    "color_vibrancy": 1.0,
+    "nsfw_pressure": 0.8,
+    "camera_distance": 1.0
+  },
+  "meso": {
+    "pose_dynamics": 1.0,
+    "prop_density": 1.0,
+    "background_complexity": 1.0,
+    "emotion_intensity": 1.0,
+    "texture_detail": 1.0,
+    "shot_angle": 1.0
+  },
+  "notes": [
+    "Macro regulators favour clean studio framing with moderate drama.",
+    "Meso coefficients keep the scene balanced for GA warm starts."
+  ]
+}

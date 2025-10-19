@@ -59,14 +59,13 @@ Key sections:
 
 | Section      | Purpose |
 |--------------|---------|
-| `paths`      | File locations for the style catalog, aggregated options catalog (`options_catalog`), SQLite database, JSONL score log, and output directory. Paths are resolved relative to the repository root. |
-| `prompting`  | Required style terms and template IDs used by the scene builder when crafting Ollama payloads. |
-| `ollama`     | Endpoint, model name, default temperature, `top_p`, and `manual_mode` flag for controlling automatic Ollama lifecycle management. |
-| `imagen`     | Imagen model identifier, person-generation mode, and guidance scale. |
-| `scoring`    | DualScorer device, batch size, tau, calibration ranges, dynamic weight profiles, and optional auto-weight tuning. |
-| `fitness`    | Weights applied to style and NSFW scores when computing fitness. |
-| `defaults`   | Baseline values for SFW level, caption temperature, number of cycles, etc. |
-| `ga`         | Population size, number of generations, elite fraction, mutation/crossover rates, and resume strategy for genetic runs. |
+| `presets`    | Default `profile_id`, `style_preset`, and `character_preset` used when the pipeline boots. |
+| `storage`    | Paths for the SQLite database, JSONL score log, artefact output, catalogs, and the bias profile directory (`profiles/<id>.json`). |
+| `runtime`    | Groups the prompting templates, Ollama/Imagen parameters, GA tuning knobs, default SFW/temperature settings, and feedback/history switches. |
+| `scoring`    | DualScorer device, batch size, temperature schedule, calibration ranges, inline weights, and dynamic profile options. |
+| `macro_weights` | Baseline macro regulators (6 entries) that seed the bias engine. |
+| `meso_aggregates` | Baseline meso regulators (6 entries) for the bias engine. |
+| `bias_rules` | Declarative DSL rules applied by the bias engine before sampling scene genes. |
 
 Adjust `config.yaml` whenever you need to change long-lived settings. The CLI exposes overrides for quick experiments without editing the file.
 

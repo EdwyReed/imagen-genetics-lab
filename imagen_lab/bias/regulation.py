@@ -9,6 +9,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
+import json
+from pathlib import Path
 from typing import Dict, Iterable, Mapping, Optional, Sequence, Tuple
 
 
@@ -156,12 +158,107 @@ class RegulatorProfile:
 
     name: str
     regulators: Mapping[str, float]
+    description: Optional[str] = None
+    source_path: Optional[Path] = None
 
     def resolve(self, catalog: Mapping[str, RegulatorSpec]) -> Dict[str, float]:
         resolved: Dict[str, float] = {}
         for reg_id, spec in catalog.items():
             resolved[reg_id] = spec.clamp(self.regulators.get(reg_id, spec.baseline))
         return resolved
+
+    def bias_snapshot(self, catalog: Mapping[str, RegulatorSpec]) -> Tuple[Dict[str, float], Dict[str, float]]:
+        """Return macro and meso regulator maps compatible with the bias engine."""
+
+        resolved = self.resolve(catalog)
+        macro: Dict[str, float] = {}
+        meso: Dict[str, float] = {}
+        for reg_id, spec in catalog.items():
+            if spec.level is RegulatorLevel.MACRO:
+                macro[reg_id] = resolved[reg_id]
+            else:
+                meso[reg_id] = resolved[reg_id]
+        return macro, meso
+
+    @classmethod
+    def from_json(
+        cls,
+        payload: Mapping[str, object],
+        *,
+        source: str = "<memory>",
+        catalog: Optional[Mapping[str, RegulatorSpec]] = None,
+        min_regulators: int = 10,
+        max_regulators: int = 12,
+    ) -> "RegulatorProfile":
+        if not isinstance(payload, Mapping):
+            raise ValueError(f"{source}: profile payload must be a mapping")
+
+        schema_version = payload.get("schema_version", 1)
+        if not isinstance(schema_version, int) or schema_version != 1:
+            raise ValueError(f"{source}: unsupported profile schema_version {schema_version!r}")
+
+        identifier = payload.get("id") or payload.get("profile_id")
+        if not isinstance(identifier, str) or not identifier.strip():
+            raise ValueError(f"{source}: profile id must be a non-empty string")
+        name = identifier.strip()
+
+        description = payload.get("description")
+        if isinstance(description, str):
+            description = description.strip() or None
+        else:
+            description = None
+
+        regulators: Dict[str, float] = {}
+        combined = {}
+        for key in ("regulators", "macro", "macro_weights", "meso", "meso_aggregates"):
+            block = payload.get(key)
+            if block is None:
+                continue
+            if not isinstance(block, Mapping):
+                raise ValueError(f"{source}: section '{key}' must be an object")
+            combined.update(block)
+
+        if not combined:
+            raise ValueError(f"{source}: profile must declare at least one regulator")
+
+        for reg_id, value in combined.items():
+            try:
+                regulators[str(reg_id)] = float(value)
+            except (TypeError, ValueError) as exc:
+                raise ValueError(f"{source}: regulator '{reg_id}' must be numeric") from exc
+
+        count = len(regulators)
+        if count < min_regulators or count > max_regulators:
+            raise ValueError(
+                f"{source}: expected between {min_regulators} and {max_regulators} regulators, got {count}"
+            )
+
+        if catalog:
+            resolved = {}
+            for reg_id, spec in catalog.items():
+                value = regulators.get(reg_id, spec.baseline)
+                resolved[reg_id] = spec.clamp(value)
+        else:
+            resolved = dict(regulators)
+
+        path_hint = None
+        if isinstance(source, str) and source not in ("", "<memory>"):
+            try:
+                path_hint = Path(source)
+            except TypeError:  # pragma: no cover - defensive
+                path_hint = None
+
+        return cls(
+            name=name,
+            regulators=resolved,
+            description=description,
+            source_path=path_hint,
+        )
+
+    @classmethod
+    def load(cls, path: Path, *, catalog: Optional[Mapping[str, RegulatorSpec]] = None) -> "RegulatorProfile":
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
+        return cls.from_json(data, source=str(path), catalog=catalog)
 
 
 # --- Mini DSL for regulator rules -------------------------------------------------
