@@ -8,7 +8,7 @@ from google import genai
 
 from scorer import DualScorer
 
-from imagen_lab.caption.ollama.workflow import OllamaCaptionEngine
+from imagen_lab.caption.ollama import OllamaClient, OllamaCaptionEngine
 from imagen_lab.caption.ollama.interfaces import CaptionEngineProtocol
 from imagen_lab.config import PipelineConfig
 from imagen_lab.embeddings import EmbeddingCache, EmbeddingHistoryConfig
@@ -145,18 +145,21 @@ def create_pipeline_container(
 
     logger = PromptLogger(config.paths.database)
     writer = ArtifactWriter(output_dir or config.paths.output_dir)
-    client = genai.Client()
+    imagen_client = genai.Client()
 
     feedback = StyleFeedback(config.feedback) if config.feedback.enabled else None
 
+    ollama_client = OllamaClient(
+        base_url=config.ollama.url,
+        model=config.ollama.model,
+    )
     caption_engine = OllamaCaptionEngine(
         composer=composer,
-        ollama_url=config.ollama.url,
-        ollama_model=config.ollama.model,
+        client=ollama_client,
     )
 
     imagen_engine = ImagenClientEngine(
-        client=client,
+        client=imagen_client,
         model=config.imagen.model,
     )
 
@@ -189,7 +192,7 @@ def create_pipeline_container(
         options_catalog=options_catalog,
         characters=character_library,
         writer=writer,
-        client=client,
+        client=imagen_client,
         feedback=feedback,
         style=style,
         required_terms=required_terms,

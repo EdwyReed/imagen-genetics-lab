@@ -3,12 +3,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional
 
-from imagen_lab.prompting import (
-    PromptComposer,
-    ollama_generate,
-    system_prompt_hash,
-)
+from imagen_lab.prompting import PromptComposer, system_prompt_hash
 
+from .adapter import OllamaClient
+from .contract import build_caption_payload
 from .interfaces import CaptionEngineProtocol, CaptionRequest
 from .types import CaptionResult
 
@@ -16,8 +14,7 @@ from .types import CaptionResult
 @dataclass
 class OllamaCaptionEngine(CaptionEngineProtocol):
     composer: PromptComposer
-    ollama_url: str
-    ollama_model: str
+    client: OllamaClient
 
     def __post_init__(self) -> None:
         self._system_prompts: dict[float, str] = {}
@@ -38,12 +35,20 @@ class OllamaCaptionEngine(CaptionEngineProtocol):
     def _enforcement_temperature(self, temperature: float) -> float:
         return max(0.45, temperature - 0.05)
 
+    def _enforcement_prompt(self, system_prompt: str, missing: list[str]) -> str:
+        if not missing:
+            return system_prompt
+        return (
+            system_prompt
+            + "\n\nRewrite the caption naturally (18–60 words) and include the missing words: "
+            + ", ".join(missing)
+            + ". Keep it one or two sentences."
+        )
+
     def generate(self, request: CaptionRequest) -> CaptionResult:
-        payload = request.scene.ollama_payload()
+        payload = build_caption_payload(request.scene)
         system_prompt = self._system_prompt(request.sfw_level)
-        caption = ollama_generate(
-            self.ollama_url,
-            self.ollama_model,
+        caption = self.client.generate(
             system_prompt,
             payload,
             temperature=request.temperature,
@@ -54,13 +59,11 @@ class OllamaCaptionEngine(CaptionEngineProtocol):
         missing = self.composer.missing_terms(caption)
         if missing:
             enforced = True
-            caption = self.composer.enforce_once(
-                self.ollama_url,
-                self.ollama_model,
-                system_prompt,
+            caption = self.client.generate(
+                self._enforcement_prompt(system_prompt, missing),
                 payload,
-                caption,
                 temperature=self._enforcement_temperature(request.temperature),
+                top_p=request.top_p,
                 seed=request.seed,
             )
         final_prompt = self.composer.final_prompt(caption, request.scene.caption_bounds)
