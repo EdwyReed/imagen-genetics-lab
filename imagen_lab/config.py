@@ -209,7 +209,7 @@ class PipelineConfig:
             options_catalog = Path(str(options_catalog_value))
 
         paths = PathsConfig(
-            catalog=Path(paths_data.get("catalog", "jelly-pin-up.json")),
+            catalog=Path(paths_data.get("catalog", "catalogs/all-together.json")),
             database=Path(paths_data.get("database", "scores.sqlite")),
             scores_jsonl=Path(paths_data.get("scores_jsonl", "scores.jsonl")),
             output_dir=Path(paths_data.get("output_dir", "output")),

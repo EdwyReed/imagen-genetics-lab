@@ -20,7 +20,8 @@ imagen-genetics-lab/
 │   ├── sugar-trouble.json      # Core sticky-sweet mix
 │   ├── cherry-pop-idol.json    # Neon pop-art escalation
 │   ├── lick-me-softly.json     # NSFW-leaning syrup overload
-│   └── cotton-kiss.json        # Soft SFW daytime variant
+│   ├── cotton-kiss.json        # Soft SFW daytime variant
+│   └── jelly-pin-up.json       # Legacy jelly-gloss preset (optional)
 ├── process.py                  # Image pre-processing utility
 ├── scorer.py                   # DualScorer (style + NSFW)
 ├── smart.py                    # CLI entrypoint
@@ -138,6 +139,7 @@ including VRAM usage, throughput and recommended FP16/CPU fallback settings.
 ## Extending the system
 
 * Add new wardrobe items, lighting presets, or camera options by editing any file under `catalogs/`; the scene builder reads the catalog dynamically.
+* Switch the entire art direction by pointing `paths.catalog` to a different file under `catalogs/`. The prompting layer now derives its system prompt and required terms from the selected catalog's metadata, so swapping catalogs fully rewires the generated captions without additional tweaks.
 * Customize selection logic or introduce new genes inside `imagen_lab/scene_builder.py` and `imagen_lab/ga.py`.
 * Swap or reconfigure scoring components by editing `scorer.py`—no changes to the pipeline layer are required.
 

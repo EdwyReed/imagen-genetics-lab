@@ -8,24 +8,41 @@ import requests
 from google.genai import types
 
 from .randomization import clamp
+from .style_guide import StyleGuide
 
 
-REQUIRED_STYLE_TERMS = ["illustration", "watercolor", "glossy", "paper", "pastel"]
+DEFAULT_REQUIRED_TERMS = ["illustration", "watercolor", "glossy", "paper", "pastel"]
 
 
-def system_prompt_for(sfw_level: float) -> str:
+def system_prompt_for(style: StyleGuide, sfw_level: float) -> str:
     sfw_level = clamp(sfw_level, 0.0, 1.0)
     tone_desc = (
         "wholesome and innocent" if sfw_level < 0.25 else "flirty but tasteful" if sfw_level < 0.7 else "bold adult tone"
     )
+    context_lines = style.context_lines()
+    context_block = "\n".join(context_lines)
+    if context_block:
+        context_block += "\n\n"
+
+    required_line = ""
+    if style.required_terms:
+        required_line = (
+            "Mandatory words (use naturally): "
+            + ", ".join(style.required_terms)
+            + ".\n"
+        )
+
     return (
-        "You are a professional caption writer for pin-up illustration.\n\n"
-        "Write one natural English caption (18–60 words) describing a retro pin-up watercolor illustration in ultra-glossy jellyart look.\n"
-        "Include: model, pose, wardrobe, accessories; camera angle and framing ratio; lighting; background; mood. Keep it SFW-level proportional to "
-        f"{sfw_level:.2f} ({tone_desc}).\n\n"
-        "Mandatory words (use naturally): illustration, watercolor, glossy, paper, pastel.\n"
-        "No lists. One or two sentences. Cinematic, juicy, coherent.\n"
-        "The JSON payload includes style_profile (weights, boost/cooldown lists), scene_summary, and feedback_notes. Read them carefully, emphasize boost components, ease off cooldown components, and align the caption with scene_summary and feedback notes."
+        f"You are a professional caption writer for the {style.brand} art catalog.\n\n"
+        "Write one natural English caption (18–60 words) describing an illustration that embodies "
+        f"{style.aesthetic}.\n"
+        "Include: model, pose, wardrobe, accessories; camera angle and framing ratio; lighting; background; mood. "
+        f"Keep it SFW-level proportional to {sfw_level:.2f} ({tone_desc}).\n\n"
+        + context_block
+        + required_line
+        + "No bullet lists. One or two sentences. Cinematic, coherent, grounded in the provided JSON payload.\n"
+        "The JSON payload includes style_profile (weights, boost/cooldown lists), scene_summary, and feedback_notes. "
+        "Read them carefully, emphasize boost components, ease off cooldown components, and align the caption with scene_summary and feedback notes."
     )
 
 
@@ -61,7 +78,7 @@ def ollama_generate(
     return text
 
 
-def needs_enforcement(text: str, required_terms: Sequence[str] = REQUIRED_STYLE_TERMS) -> List[str]:
+def needs_enforcement(text: str, required_terms: Sequence[str] = DEFAULT_REQUIRED_TERMS) -> List[str]:
     lower = text.lower()
     missing = [term for term in required_terms if term.lower() not in lower]
     return missing
@@ -87,7 +104,7 @@ def _format_terms_sentence(terms: Sequence[str]) -> str:
 
 def append_required_terms(
     text: str,
-    required_terms: Iterable[str] = REQUIRED_STYLE_TERMS,
+    required_terms: Iterable[str] = DEFAULT_REQUIRED_TERMS,
     *,
     max_words: int | None = None,
 ) -> str:
@@ -140,7 +157,7 @@ def enforce_once(
     system_prompt: str,
     payload: dict,
     base_caption: str,
-    required_terms: Sequence[str] = REQUIRED_STYLE_TERMS,
+    required_terms: Sequence[str] = DEFAULT_REQUIRED_TERMS,
     temperature: float = 0.5,
     seed: int | None = None,
 ) -> str:
