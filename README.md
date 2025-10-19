@@ -2,7 +2,7 @@
 
 This repository orchestrates a glossy pin-up illustration workflow that combines:
 
-* **Scene assembly** driven by a rich style catalog (`jelly-pin-up.json`).
+* **Scene assembly** driven by a rich style catalog (defaults to `catalogs/all-together.json`).
 * **Prompting** via Ollama to turn scene metadata into natural captions.
 * **Image generation** with Google Imagen 3.
 * **Dual scoring** (style + NSFW) for automatic quality tracking.
@@ -15,7 +15,12 @@ All runtime parameters are managed through [`config.yaml`](./config.yaml). The n
 ```
 imagen-genetics-lab/
 ├── config.yaml                 # Global configuration (paths, defaults, GA tuning)
-├── jelly-pin-up.json           # Style catalog for scene construction
+├── catalogs/                   # Candy Danger catalog family
+│   ├── all-together.json       # Aggregated options across every variant
+│   ├── sugar-trouble.json      # Core sticky-sweet mix
+│   ├── cherry-pop-idol.json    # Neon pop-art escalation
+│   ├── lick-me-softly.json     # NSFW-leaning syrup overload
+│   └── cotton-kiss.json        # Soft SFW daytime variant
 ├── process.py                  # Image pre-processing utility
 ├── scorer.py                   # DualScorer (style + NSFW)
 ├── smart.py                    # CLI entrypoint
@@ -53,7 +58,7 @@ Key sections:
 
 | Section      | Purpose |
 |--------------|---------|
-| `paths`      | File locations for the style catalog, SQLite database, JSONL score log, and output directory. Paths are resolved relative to the repository root. |
+| `paths`      | File locations for the style catalog, aggregated options catalog (`options_catalog`), SQLite database, JSONL score log, and output directory. Paths are resolved relative to the repository root. |
 | `prompting`  | Required style terms and template IDs used by the scene builder when crafting Ollama payloads. |
 | `ollama`     | Endpoint, model name, default temperature, `top_p`, and `manual_mode` flag for controlling automatic Ollama lifecycle management. |
 | `imagen`     | Imagen model identifier, person-generation mode, and guidance scale. |
@@ -106,7 +111,7 @@ All CLI options default to the values declared in `config.yaml`. See `python sma
 ## Data flow
 
 1. **Scene construction** (`imagen_lab.scene_builder`)
-   * Samples palette, lighting, background, camera setup, wardrobe, props, and mood from `jelly-pin-up.json` using the `WeightedSelector`.
+   * Samples palette, lighting, background, camera setup, wardrobe, props, and mood from the configured catalog (`catalogs/all-together.json` by default) using the `WeightedSelector`.
    * Returns typed dataclasses containing metadata and Ollama-ready payloads.
 
 2. **Prompting** (`imagen_lab.prompting`)
@@ -132,7 +137,7 @@ including VRAM usage, throughput and recommended FP16/CPU fallback settings.
 
 ## Extending the system
 
-* Add new wardrobe items, lighting presets, or camera options by editing `jelly-pin-up.json`; the scene builder reads the catalog dynamically.
+* Add new wardrobe items, lighting presets, or camera options by editing any file under `catalogs/`; the scene builder reads the catalog dynamically.
 * Customize selection logic or introduce new genes inside `imagen_lab/scene_builder.py` and `imagen_lab/ga.py`.
 * Swap or reconfigure scoring components by editing `scorer.py`—no changes to the pipeline layer are required.
 

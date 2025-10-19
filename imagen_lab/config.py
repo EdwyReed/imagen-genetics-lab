@@ -30,6 +30,7 @@ class PathsConfig:
     database: Path
     scores_jsonl: Path
     output_dir: Path
+    options_catalog: Path | None = None
 
 
 @dataclass
@@ -202,11 +203,17 @@ class PipelineConfig:
         ga_data = raw.get("ga", {})
         feedback_data = raw.get("feedback", {})
 
+        options_catalog_value = paths_data.get("options_catalog")
+        options_catalog = None
+        if options_catalog_value not in (None, ""):
+            options_catalog = Path(str(options_catalog_value))
+
         paths = PathsConfig(
             catalog=Path(paths_data.get("catalog", "jelly-pin-up.json")),
             database=Path(paths_data.get("database", "scores.sqlite")),
             scores_jsonl=Path(paths_data.get("scores_jsonl", "scores.jsonl")),
             output_dir=Path(paths_data.get("output_dir", "output")),
+            options_catalog=options_catalog,
         )
 
         prompting = PromptConfig(

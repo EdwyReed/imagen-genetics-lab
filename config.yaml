@@ -1,8 +1,9 @@
 paths:
-  catalog: jelly-pin-up.json
+  catalog: catalogs/all-together.json
   database: scores.sqlite
   scores_jsonl: scores.jsonl
   output_dir: output
+  options_catalog: catalogs/all-together.json
 
 prompting:
   required_terms:
