@@ -2,8 +2,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Mapping, Optional
 
+import math
 import yaml
 
 
@@ -102,6 +103,63 @@ class AutoWeightsConfig:
 
 
 @dataclass
+class TemperatureConfig:
+    """Temperature parameters for contrastive metric adjustments."""
+
+    default: float = 0.07
+    overrides: Dict[str, float] = field(default_factory=dict)
+
+    def __post_init__(self) -> None:
+        self.default = float(self.default)
+        cleaned: Dict[str, float] = {}
+        for key, value in self.overrides.items():
+            if key == "default":
+                continue
+            cleaned[str(key)] = float(value)
+        self.overrides = cleaned
+
+    @classmethod
+    def from_mapping(
+        cls, raw: Optional[Mapping[str, object] | float | "TemperatureConfig"]
+    ) -> "TemperatureConfig":
+        if raw is None:
+            return cls()
+        if isinstance(raw, TemperatureConfig):
+            return cls(default=raw.default, overrides=dict(raw.overrides))
+        if isinstance(raw, Mapping):
+            default = float(raw.get("default", 0.07))
+            overrides = {
+                str(key): float(value)
+                for key, value in raw.items()
+                if key != "default"
+            }
+            return cls(default=default, overrides=overrides)
+        return cls(default=float(raw))
+
+    def resolve(self, metric: str) -> float:
+        return float(self.overrides.get(metric, self.default))
+
+    def apply(self, metric: str, value: float) -> float:
+        tau = self.resolve(metric)
+        return _apply_temperature(value, tau)
+
+    def as_dict(self) -> Dict[str, float]:
+        data = {"default": float(self.default)}
+        data.update({key: float(val) for key, val in self.overrides.items()})
+        return data
+
+
+def _apply_temperature(value: float, tau: float) -> float:
+    clamped = max(0.0, min(1.0, float(value)))
+    if tau <= 0:
+        return clamped
+    scale = max(float(tau), 1e-6)
+    centered = clamped - 0.5
+    adjusted = 1.0 / (1.0 + math.exp(-centered / scale))
+    return max(0.0, min(1.0, adjusted))
+
+
+@dataclass
 class ScoringConfig:
     device: str = "auto"
     batch_size: int = 4
@@ -114,6 +172,13 @@ class ScoringConfig:
     weight_profile: str = "default"
     persist_profile_updates: bool = False
     composition_metrics: bool = True
+    temperatures: TemperatureConfig = field(default_factory=TemperatureConfig)
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.temperatures, TemperatureConfig):
+            self.temperatures = TemperatureConfig.from_mapping(self.temperatures)
+        if not math.isclose(self.tau, self.temperatures.default):
+            self.tau = float(self.temperatures.default)
 
 
 @dataclass
@@ -256,10 +321,13 @@ class PipelineConfig:
         if weights is None and weights_value not in (None, "", False):
             weights = dict(DEFAULT_INLINE_WEIGHTS)
 
+        tau_raw = scoring_data.get("tau", 0.07)
+        temperature_cfg = TemperatureConfig.from_mapping(tau_raw)
+
         scoring = ScoringConfig(
             device=str(scoring_data.get("device", "auto")),
             batch_size=int(scoring_data.get("batch_size", 4)),
-            tau=float(scoring_data.get("tau", 0.07)),
+            tau=float(temperature_cfg.default),
             cal_style=_tuple_or_none(scoring_data.get("cal_style")),
             cal_illu=_tuple_or_none(scoring_data.get("cal_illu")),
             weights=weights,
@@ -268,6 +336,7 @@ class PipelineConfig:
             weight_profile=str(scoring_data.get("weight_profile", "default")),
             persist_profile_updates=bool(scoring_data.get("persist_profile_updates", False)),
             composition_metrics=bool(scoring_data.get("composition_metrics", True)),
+            temperatures=temperature_cfg,
         )
 
         history = HistoryConfig(
