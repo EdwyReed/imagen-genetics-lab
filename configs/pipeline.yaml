@@ -1,0 +1,59 @@
+styles_path: ../assets/styles
+characters_path: ../assets/characters
+style_preset: watercolor_poster
+character_preset: default_muse
+macro_weights:
+  sfw_level: 0.9
+  gloss_priority: 0.8
+  coverage_target: 0.3
+  illustration_strength: 0.95
+  novelty_preference: 0.65
+  lighting_softness: 0.75
+meso_overrides:
+  fitness_style: 80
+  fitness_lighting: 74
+meso_aggregates:
+  fitness_style:
+    components:
+      style_core: 0.5
+      gloss_intensity: 0.3
+      softness_blur: 0.2
+  fitness_body_focus:
+    components:
+      chest_focus: 0.4
+      thigh_focus: 0.4
+      pose_suggestiveness: 0.2
+    target: 70
+  fitness_lighting:
+    components:
+      ambient_softness: 0.6
+      highlight_distribution: 0.4
+  fitness_color:
+    components:
+      color_harmony: 0.6
+      poster_layout: 0.4
+  fitness_composition:
+    components:
+      background_cleanliness: 0.5
+      aesthetic_coherence: 0.5
+  fitness_coverage:
+    components:
+      coverage_ratio: 1.0
+runtime:
+  dry_run_no_scoring: false
+  resume_best: false
+  population: 4
+  generations: 2
+  ollama_model: ollama-mini
+storage:
+  database: ../build/runs.sqlite
+  artifacts: ../build/artifacts
+profile:
+  active: default
+  definitions:
+    default:
+      macro:
+        coverage_target: 0.5
+      meso:
+        fitness_style: 78
+        fitness_lighting: 72

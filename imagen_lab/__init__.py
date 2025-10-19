@@ -1,13 +1,8 @@
 from __future__ import annotations
 
-"""High-level helpers for the Imagen Genetics pipeline."""
+"""Refactored pipeline public interface."""
 
-from .config import PipelineConfig, load_config
-from .pipeline import run_evolve, run_plain
+from .pipeline.configuration import PipelineConfig
+from .pipeline.orchestrator import Pipeline
 
-__all__ = [
-    "PipelineConfig",
-    "load_config",
-    "run_plain",
-    "run_evolve",
-]
+__all__ = ["PipelineConfig", "Pipeline"]

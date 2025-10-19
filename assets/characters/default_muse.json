@@ -1,0 +1,18 @@
+{
+  "id": "default_muse",
+  "name": "Cassie",
+  "summary": "Playful muse with bright aerobics nostalgia",
+  "macro_overrides": {
+    "sfw_level": 0.85,
+    "coverage_target": 0.6
+  },
+  "traits": {
+    "hair": "blonde bob",
+    "personality": "confident"
+  },
+  "gene_overrides": {
+    "wardrobe": [
+      {"id": "wardrobe/aerobics_set", "weight": 0.7}
+    ]
+  }
+}

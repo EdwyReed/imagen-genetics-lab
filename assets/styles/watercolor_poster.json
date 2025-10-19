@@ -1,0 +1,51 @@
+{
+  "id": "watercolor_poster",
+  "name": "Watercolor Retro Poster",
+  "description": "Dreamy watercolor illustration with retro poster framing",
+  "macro_defaults": {
+    "sfw_level": 0.7,
+    "era_target": "80s",
+    "focus_mode": "style_first",
+    "gloss_priority": 0.6,
+    "coverage_target": 0.55,
+    "illustration_strength": 0.9,
+    "novelty_preference": 0.5,
+    "lighting_softness": 0.7,
+    "retro_authenticity": 0.8
+  },
+  "meso_defaults": {
+    "fitness_style": 75.0,
+    "fitness_lighting": 70.0,
+    "fitness_color": 72.0,
+    "fitness_composition": 68.0,
+    "fitness_coverage": 60.0
+  },
+  "genes": {
+    "pose": [
+      {"id": "pose/elegant_arch", "weight": 0.6},
+      {"id": "pose/power_stance", "weight": 0.4}
+    ],
+    "lighting": [
+      {"id": "lighting/soft_ambient", "weight": 0.7},
+      {"id": "lighting/rim_gloss", "weight": 0.3}
+    ],
+    "palette": [
+      {"id": "palette/pastel_neon", "weight": 0.65},
+      {"id": "palette/berry_custard", "weight": 0.35}
+    ],
+    "wardrobe": [
+      {"id": "wardrobe/retro_fitness", "weight": 0.5},
+      {"id": "wardrobe/satin_lounge", "weight": 0.5}
+    ]
+  },
+  "bias_rules": [
+    {
+      "when": {"coverage_target": "< 0.4"},
+      "adjust": {"wardrobe": -0.2, "pose": 0.1}
+    },
+    {
+      "when": {"retro_authenticity": ">= 0.8"},
+      "adjust": {"palette": 0.2}
+    }
+  ]
+}
