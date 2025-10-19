@@ -7,7 +7,7 @@ from typing import Optional
 from google import genai
 
 from imagen_lab.bias.engine.simple import SimpleBiasEngine
-from imagen_lab.caption.ollama import OllamaCaptionEngine, OllamaClient
+from imagen_lab.caption.ollama.workflow import OllamaCaptionEngine, OllamaClient
 from imagen_lab.caption.ollama.interfaces import CaptionEngineProtocol
 from imagen_lab.catalog import Catalog
 from imagen_lab.config import PipelineConfig
