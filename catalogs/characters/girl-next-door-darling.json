@@ -1,0 +1,18 @@
+{
+  "id": "girl_next_door_darling",
+  "name": "Girl-Next-Door Darling",
+  "summary": "Soft porchlight muse with watercolor freckles and shy smiles",
+  "style_variants": ["Cotton Kiss", "Watercolor Lullaby"],
+  "prompt_hint": "front porch at dawn, handwritten letters, cardigan",
+  "tags": ["girl-next-door", "porch", "watercolor"],
+  "visual_traits": [
+    "freckles dusting bridge of nose",
+    "loose braid tied with ribbon",
+    "porchlight glow halo"
+  ],
+  "signature_props": [
+    "ceramic mug painted with daisies",
+    "stack of love letters"
+  ],
+  "personality": "Earnest neighbor who shares warm tea, sings hushed lullabies, and writes secret crush notes"
+}

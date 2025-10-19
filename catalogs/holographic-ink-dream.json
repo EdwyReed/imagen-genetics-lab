@@ -1,0 +1,166 @@
+{
+  "version": "1.0-holo-ink",
+  "brand": "Holographic Ink Dream",
+  "purpose": "Avant-garde fusion of metallic inks, glitch gradients, and dreamy holographic calligraphy.",
+  "default_character": "holo_ink_enchantress",
+  "style_controller": {
+    "aesthetic": "Metallic ink calligraphy layered over holographic gradients",
+    "paper_texture": true,
+    "watercolor": {
+      "blooms": "chromatic blooms",
+      "backruns": "ink fractures",
+      "edge_darkening": "iridescent rim"
+    },
+    "highlights": {
+      "broad_shine": true,
+      "micro_seeds": true,
+      "rim_wet": true,
+      "flare_sparkles": "prism dust"
+    },
+    "subsurface_glow": ["temples", "collarbone", "fingertips"],
+    "palette_preference": "Opalescent teals, ultraviolet ink, mirrored silver",
+    "sfw": false,
+    "background_norm": "Calligraphy studios, glitch nebulae, reflective stages",
+    "glam_level_hint": "Experimental couture",
+    "gloss_pipeline": {
+      "specular_intensity": "liquid chrome",
+      "highlight_count": "scattered",
+      "hotspot_size": "feather",
+      "wet_sheen_layer": "ink glaze",
+      "bokeh_droplets": "holo glyphs",
+      "caustic_ripples": "oil slick"
+    }
+  },
+  "palettes": [
+    {
+      "id": "prism_nocturne",
+      "name": "Prism Nocturne",
+      "colors": [
+        {"name": "Holo Teal", "hex": "#3BF4FF"},
+        {"name": "Ultraviolet", "hex": "#7C4CFF"},
+        {"name": "Mercury", "hex": "#C9CEDA"},
+        {"name": "Raven Ink", "hex": "#1A152F"}
+      ],
+      "notes": "Signature iridescent mix",
+      "nsfw": 0.48
+    },
+    {
+      "id": "ink_dawn",
+      "name": "Ink Dawn",
+      "colors": [
+        {"name": "Opal Rose", "hex": "#FF9CD9"},
+        {"name": "Mist Silver", "hex": "#DDE6F3"},
+        {"name": "Cerulean Wash", "hex": "#6AB7FF"},
+        {"name": "Vapor Grey", "hex": "#5D6A80"}
+      ],
+      "notes": "Ethereal morning light",
+      "nsfw": 0.46
+    },
+    {
+      "id": "glitch_oracle",
+      "name": "Glitch Oracle",
+      "colors": [
+        {"name": "Signal Green", "hex": "#53FFBA"},
+        {"name": "Magenta Noise", "hex": "#FF4DD6"},
+        {"name": "Deep Space", "hex": "#0C0B1E"},
+        {"name": "Spectrum White", "hex": "#F6F7FF"}
+      ],
+      "notes": "Digital oracle contrast",
+      "nsfw": 0.47
+    }
+  ],
+  "lighting_presets": [
+    {"id": "holo_rim", "desc": "Holographic rim light cascading prismatic bands", "nsfw": 0.46},
+    {"id": "ink_neon", "desc": "Neon calligraphy strokes casting animated shadows", "nsfw": 0.47},
+    {"id": "studio_reflect", "desc": "Mirror floor reflections with soft fog", "nsfw": 0.45}
+  ],
+  "backgrounds": [
+    {"id": "calligraphy_stage", "desc": "Stage wrapped in floating kanji light", "nsfw": 0.46},
+    {"id": "glitch_void", "desc": "Glitch nebula with suspended holo shards", "nsfw": 0.47},
+    {"id": "ink_studio", "desc": "Modern ink studio with mirrored walls", "nsfw": 0.44}
+  ],
+  "camera": {
+    "angles": [
+      {"id": "holo_low", "desc": "Low reflective angle capturing mirror floor", "nsfw": 0.46},
+      {"id": "ink_close", "desc": "Tight close-up emphasizing metallic eyeliner", "nsfw": 0.44},
+      {"id": "spiral_pan", "desc": "Spiraling pan capturing floating glyphs", "nsfw": 0.45}
+    ],
+    "framing": [
+      {"id": "mirror_portrait", "ratio": "4:5", "desc": "Portrait with mirrored duplicate", "nsfw": 0.45},
+      {"id": "glitch_panorama", "ratio": "3:1", "desc": "Wide glitch panorama", "nsfw": 0.46}
+    ],
+    "lenses": [
+      {"id": "holo_prime", "desc": "Prime lens with chromatic aberration", "nsfw": 0.45},
+      {"id": "ink_macro", "desc": "Macro capturing metallic ink pools", "nsfw": 0.44}
+    ],
+    "depth": [
+      {"id": "mirror_depth", "desc": "Reflections layered with soft fog", "nsfw": 0.45},
+      {"id": "glyph_focus", "desc": "Focus on glyphs swirling around subject", "nsfw": 0.46}
+    ]
+  },
+  "moods": [
+    {"id": "oracle_trance", "words": ["trance", "whisper", "glimmer", "oracle"], "nsfw": 0.45},
+    {"id": "glitch_muse", "words": ["glitch", "glow", "echo", "pulse"], "nsfw": 0.46}
+  ],
+  "poses": [
+    {"id": "ink_arc", "desc": "Arms arcing while glyphs trail", "nsfw": 0.45},
+    {"id": "mirror_kneel", "desc": "Kneeling pose mirrored on reflective floor", "nsfw": 0.46},
+    {"id": "calligraphy_draw", "desc": "Drawing glowing kanji in air", "nsfw": 0.44}
+  ],
+  "actions": [
+    {"id": "summon_glyph", "desc": "Summons holographic glyph halo", "nsfw": 0.46},
+    {"id": "ink_whisper", "desc": "Whispers into floating ink microphone", "nsfw": 0.45},
+    {"id": "mirror_step", "desc": "Steps causing ripples in mirror floor", "nsfw": 0.44}
+  ],
+  "model_descriptions": [
+    "holographic ink siren",
+    "glitch couture oracle",
+    "prismatic calligraphy muse"
+  ],
+  "props": [
+    {"id": "ink_fan", "desc": "Folded fan painted with metallic runes", "nsfw": 0.45},
+    {"id": "holo_scroll", "desc": "Floating scroll projecting glyphs", "nsfw": 0.46},
+    {"id": "mirror_fragment", "desc": "Handheld mirror shard with light trails", "nsfw": 0.44}
+  ],
+  "wardrobe": {
+    "tops": [
+      {"id": "holo_kimono", "desc": "Structured kimono jacket with iridescent panels", "nsfw": 0.45},
+      {"id": "ink_bodice", "desc": "Metallic bodice with dripping ink tassels", "nsfw": 0.46}
+    ],
+    "bottoms": [
+      {"id": "prism_skirt", "desc": "Pleated prism skirt with reflective edges", "nsfw": 0.45},
+      {"id": "glyph_leggings", "desc": "Sheer leggings with scrolling glyphs", "nsfw": 0.46}
+    ],
+    "one_piece": [
+      {"id": "liquid_gown", "desc": "Liquid metal gown with transparent gradients", "nsfw": 0.47}
+    ],
+    "outerwear": [
+      {"id": "mirror_cape", "desc": "Cape made of segmented mirror tiles", "nsfw": 0.45}
+    ],
+    "footwear": [
+      {"id": "ink_boots", "desc": "High boots that fade into holographic mist", "nsfw": 0.45},
+      {"id": "glyph_heels", "desc": "Heels with floating glyph heels", "nsfw": 0.46}
+    ],
+    "accessories": [
+      {"id": "ear_cuffs", "desc": "Cascading ear cuffs with prism chains", "nsfw": 0.44},
+      {"id": "glyph_gloves", "desc": "Gloves projecting animated calligraphy", "nsfw": 0.45}
+    ]
+  },
+  "wardrobe_sets": [
+    {"id": "oracle_manifest", "items": ["holo_kimono", "prism_skirt", "ink_boots", "ear_cuffs", "holo_scroll"], "nsfw": 0.46},
+    {"id": "glitch_ceremony", "items": ["ink_bodice", "glyph_leggings", "mirror_cape", "glyph_heels", "mirror_fragment"], "nsfw": 0.47}
+  ],
+  "emotional_archetypes": [
+    {"id": "ink_oracle", "summary": "Mystic who paints prophecies in mid-air", "nsfw": 0.46},
+    {"id": "glitch_seductress", "summary": "Seductive avant-garde performer who flickers like a hologram", "nsfw": 0.47}
+  ],
+  "rules": {
+    "caption_length": {"min_words": 20, "max_words": 60},
+    "tone": "Iridescent surrealism"
+  },
+  "templates": {
+    "caption_v1": "Holographic ink {model} {action} amid {background}; {lighting} paints {pose}; wearing {wardrobe_main} plus {wardrobe_extras} ({mood}).",
+    "caption_v2": "Avant-garde {model} {action} as {camera_angle} ({framing_ratio}) catches {lighting}; lens {lens}, depth {depth}; props {props} shimmer.",
+    "render_instructions": "Blend metallic inks with holographic gradients, add glitch particles, and emphasize mirrored reflections."
+  }
+}

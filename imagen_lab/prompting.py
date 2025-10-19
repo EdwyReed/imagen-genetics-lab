@@ -23,9 +23,40 @@ class PromptComposer:
 
     def __post_init__(self) -> None:
         terms = list(self.required_terms or self.style.required_terms or DEFAULT_REQUIRED_TERMS)
-        self.required_terms = tuple(
-            term.strip() for term in terms if isinstance(term, str) and term.strip()
-        )
+        cleaned: list[str] = []
+        seen: set[str] = set()
+        for term in terms:
+            if not isinstance(term, str):
+                continue
+            stripped = term.strip()
+            if not stripped:
+                continue
+            lowered = stripped.lower()
+            if lowered in seen:
+                continue
+            seen.add(lowered)
+            cleaned.append(stripped)
+        self.required_terms = tuple(cleaned)
+
+    def _combined_terms(self, extra_terms: Iterable[str] | None = None) -> tuple[str, ...]:
+        terms = list(self.required_terms)
+        if extra_terms:
+            for term in extra_terms:
+                if not isinstance(term, str):
+                    continue
+                stripped = term.strip()
+                if not stripped:
+                    continue
+                terms.append(stripped)
+        cleaned: list[str] = []
+        seen: set[str] = set()
+        for term in terms:
+            lowered = term.lower()
+            if lowered in seen:
+                continue
+            seen.add(lowered)
+            cleaned.append(term)
+        return tuple(cleaned)
 
     # ------------------------------------------------------------------
     # Prompt building
@@ -44,8 +75,9 @@ class PromptComposer:
             f"Respect the SFW level {sfw_level:.2f} ({tone_desc}) and emphasise the most relevant top signals without inventing new details."
         )
 
-    def missing_terms(self, text: str) -> List[str]:
-        return needs_enforcement(text, self.required_terms)
+    def missing_terms(self, text: str, extra_terms: Iterable[str] | None = None) -> List[str]:
+        combined = self._combined_terms(extra_terms)
+        return needs_enforcement(text, combined)
 
     def trim_to_limit(self, text: str, max_words: int) -> str:
         words = text.split()
@@ -53,8 +85,15 @@ class PromptComposer:
             words = words[:max_words]
         return " ".join(words)
 
-    def append_required_terms(self, text: str, *, max_words: int | None = None) -> str:
-        return append_required_terms(text, self.required_terms, max_words=max_words)
+    def append_required_terms(
+        self,
+        text: str,
+        *,
+        max_words: int | None = None,
+        extra_terms: Iterable[str] | None = None,
+    ) -> str:
+        combined = self._combined_terms(extra_terms)
+        return append_required_terms(text, combined, max_words=max_words)
 
     def enforce_once(
         self,
@@ -66,8 +105,9 @@ class PromptComposer:
         *,
         temperature: float = 0.5,
         seed: int | None = None,
+        extra_terms: Iterable[str] | None = None,
     ) -> str:
-        missing = self.missing_terms(base_caption)
+        missing = self.missing_terms(base_caption, extra_terms)
         if not missing:
             return base_caption
         enforce_sys = (
@@ -85,10 +125,16 @@ class PromptComposer:
             seed=seed,
         )
 
-    def final_prompt(self, caption: str, bounds: Mapping[str, object]) -> str:
+    def final_prompt(
+        self,
+        caption: str,
+        bounds: Mapping[str, object],
+        *,
+        extra_terms: Iterable[str] | None = None,
+    ) -> str:
         max_words = int(bounds.get("max_words", 60) or 60)
         trimmed = self.trim_to_limit(caption, max_words)
-        return self.append_required_terms(trimmed, max_words=max_words)
+        return self.append_required_terms(trimmed, max_words=max_words, extra_terms=extra_terms)
 
 
 # ----------------------------------------------------------------------

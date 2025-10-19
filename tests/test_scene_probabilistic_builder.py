@@ -11,6 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from imagen_lab.bias.engine.simple import SimpleBiasEngine
 from imagen_lab.catalog import Catalog
+from imagen_lab.characters import CharacterLibrary, CharacterProfile
 from imagen_lab.scene.builder.interfaces import SceneRequest
 from imagen_lab.scene.builder.probabilistic import ProbabilisticSceneBuilder
 
@@ -18,13 +19,28 @@ from imagen_lab.scene.builder.probabilistic import ProbabilisticSceneBuilder
 def make_catalog() -> Catalog:
     raw_catalog = {
         "version": "catalog:test@v1",
+        "brand": "Test Variant",
+        "default_character": "demo_character",
+        "brand_variants": [
+            {"id": "Test Variant", "default_character": "demo_character"}
+        ],
         "poses": [
-            {"id": "pose_a", "desc": "pose A", "nsfw": 0.2},
-            {"id": "pose_b", "desc": "pose B", "nsfw": 0.4},
+            {"id": "pose_a", "desc": "pose A", "nsfw": 0.2, "variant": "Test Variant"},
+            {"id": "pose_b", "desc": "pose B", "nsfw": 0.4, "variant": "Test Variant"},
         ],
         "lighting_presets": [
-            {"id": "light_soft", "desc": "soft light", "nsfw": 0.1},
-            {"id": "light_drama", "desc": "dramatic", "nsfw": 0.3},
+            {
+                "id": "light_soft",
+                "desc": "soft light",
+                "nsfw": 0.1,
+                "variant": "Test Variant",
+            },
+            {
+                "id": "light_drama",
+                "desc": "dramatic",
+                "nsfw": 0.3,
+                "variant": "Test Variant",
+            },
         ],
         "palettes": [
             {
@@ -32,12 +48,14 @@ def make_catalog() -> Catalog:
                 "name": "Cool",
                 "colors": [{"name": "Blue", "hex": "#00F"}],
                 "nsfw": 0.1,
+                "variant": "Test Variant",
             },
             {
                 "id": "palette_warm",
                 "name": "Warm",
                 "colors": [{"name": "Red", "hex": "#F00"}],
                 "nsfw": 0.2,
+                "variant": "Test Variant",
             },
         ],
         "wardrobe_sets": [
@@ -46,21 +64,43 @@ def make_catalog() -> Catalog:
                 "items": ["jacket", "skirt"],
                 "note": "layered outfit",
                 "nsfw": 0.2,
+                "variant": "Test Variant",
             },
             {
                 "id": "wardrobe_bold",
                 "items": ["dress", "heels"],
                 "note": "bold outfit",
                 "nsfw": 0.45,
+                "variant": "Test Variant",
             },
         ],
         "backgrounds": [
-            {"id": "bg_clean", "desc": "clean background", "nsfw": 0.1},
-            {"id": "bg_city", "desc": "city lights", "nsfw": 0.35},
+            {
+                "id": "bg_clean",
+                "desc": "clean background",
+                "nsfw": 0.1,
+                "variant": "Test Variant",
+            },
+            {
+                "id": "bg_city",
+                "desc": "city lights",
+                "nsfw": 0.35,
+                "variant": "Test Variant",
+            },
         ],
         "moods": [
-            {"id": "mood_bright", "words": ["bright", "fresh"], "nsfw": 0.2},
-            {"id": "mood_noir", "words": ["noir", "moody"], "nsfw": 0.4},
+            {
+                "id": "mood_bright",
+                "words": ["bright", "fresh"],
+                "nsfw": 0.2,
+                "variant": "Test Variant",
+            },
+            {
+                "id": "mood_noir",
+                "words": ["noir", "moody"],
+                "nsfw": 0.4,
+                "variant": "Test Variant",
+            },
         ],
         "rules": {"caption_length": {"min_words": 12, "max_words": 30}},
     }
@@ -135,3 +175,27 @@ def test_gene_penalties_reduce_option_weight():
     penalized_scene = builder.build_scene(penalized_request)
     penalized_choice = penalized_scene.payload["scene_model"]["choices"]["wardrobe"]
     assert penalized_choice["id"] == "wardrobe_bold"
+
+
+def test_character_payload_included_when_library_available():
+    catalog = make_catalog()
+    engine = SimpleBiasEngine()
+    profile = CharacterProfile(
+        id="demo_character",
+        name="Demo Character",
+        summary="Demo summary",
+        style_variants=("Test Variant",),
+        prompt_hint="demo sparkle",
+    )
+    library = CharacterLibrary([profile])
+    builder = ProbabilisticSceneBuilder(
+        catalog=catalog,
+        bias_engine=engine,
+        rng=random.Random(21),
+        character_library=library,
+    )
+    scene = builder.build_scene(SceneRequest(sfw_level=0.5, temperature=0.6))
+    character_payload = scene.payload.get("character")
+    assert character_payload
+    assert character_payload["id"] == "demo_character"
+    assert character_payload.get("variant") == "Test Variant"

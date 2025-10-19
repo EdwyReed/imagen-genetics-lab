@@ -1,0 +1,18 @@
+{
+  "id": "chibi_gumball_sprite",
+  "name": "Chibi Gumball Sprite",
+  "summary": "Squeaky parade mascot who bounces like a candy-filled capsule",
+  "style_variants": ["Chibi Pop Parade"],
+  "prompt_hint": "chibi proportions, gacha machine backdrop, confetti",
+  "tags": ["chibi", "mascot", "idol"],
+  "visual_traits": [
+    "oversized starry eyes",
+    "tiny limbs with mitten hands",
+    "floating heart-shaped highlights"
+  ],
+  "signature_props": [
+    "bubble wand shaped like lollipop",
+    "badge chain covered in enamel pins"
+  ],
+  "personality": "Boundless sugar rush energy who chants theme songs and gifts surprise capsules to fans"
+}

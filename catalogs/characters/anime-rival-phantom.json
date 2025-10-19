@@ -1,0 +1,18 @@
+{
+  "id": "anime_rival_phantom",
+  "name": "Anime Rival Phantom",
+  "summary": "Stage rival with blade mic and smirking hero aura",
+  "style_variants": ["Anime Hyperline", "Cherry Pop Idol"],
+  "prompt_hint": "anime cel shading, speedlines, neon arena",
+  "tags": ["anime", "idol", "rival"],
+  "visual_traits": [
+    "cel-shaded hair streaks",
+    "angular eyeliner wings",
+    "glowing gauntlet bracers"
+  ],
+  "signature_props": [
+    "beam sword microphone",
+    "floating lyric subtitle panel"
+  ],
+  "personality": "Competitive idol hero who flirts with danger, taunts the crowd, then offers sincere encores"
+}

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
+from typing import Mapping, Optional
 
 from imagen_lab.prompting import PromptComposer, system_prompt_hash
 
@@ -9,6 +9,29 @@ from .adapter import OllamaClient
 from .contract import build_caption_payload
 from .interfaces import CaptionEngineProtocol, CaptionRequest
 from .types import CaptionResult
+
+from imagen_lab.characters import character_keywords
+
+
+def _character_terms(scene) -> tuple[str, ...]:
+    payload = scene.ollama_payload() if hasattr(scene, "ollama_payload") else getattr(scene, "payload", {})
+    character: Mapping[str, object] | None = None
+    if isinstance(payload, Mapping):
+        maybe = payload.get("character")
+        if isinstance(maybe, Mapping):
+            character = maybe
+    if character is None:
+        direct = getattr(scene, "character", None)
+        if isinstance(direct, Mapping):
+            character = direct
+    if character is None:
+        raw = getattr(scene, "raw", None)
+        maybe_raw = getattr(raw, "character", None)
+        if isinstance(maybe_raw, Mapping):
+            character = maybe_raw
+    if character is None:
+        return ()
+    return tuple(character_keywords(character))
 
 
 @dataclass
@@ -47,6 +70,7 @@ class OllamaCaptionEngine(CaptionEngineProtocol):
 
     def generate(self, request: CaptionRequest) -> CaptionResult:
         payload = build_caption_payload(request.scene)
+        extra_terms = _character_terms(request.scene)
         system_prompt = self._system_prompt(request.sfw_level)
         caption = self.client.generate(
             system_prompt,
@@ -56,7 +80,7 @@ class OllamaCaptionEngine(CaptionEngineProtocol):
             seed=request.seed,
         )
         enforced = False
-        missing = self.composer.missing_terms(caption)
+        missing = self.composer.missing_terms(caption, extra_terms)
         if missing:
             enforced = True
             caption = self.client.generate(
@@ -66,7 +90,18 @@ class OllamaCaptionEngine(CaptionEngineProtocol):
                 top_p=request.top_p,
                 seed=request.seed,
             )
-        final_prompt = self.composer.final_prompt(caption, request.scene.caption_bounds)
+            missing = self.composer.missing_terms(caption, extra_terms)
+            if missing:
+                caption = self.composer.append_required_terms(
+                    caption,
+                    max_words=int(request.scene.caption_bounds.get("max_words", 60) or 60),
+                    extra_terms=missing,
+                )
+        final_prompt = self.composer.final_prompt(
+            caption,
+            request.scene.caption_bounds,
+            extra_terms=extra_terms,
+        )
         return CaptionResult(
             caption=caption,
             final_prompt=final_prompt,

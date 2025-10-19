@@ -65,7 +65,7 @@
     {"id": "archetype_confident", "summary": "Confident flirt", "nsfw": 0.5}
   ],
   "rules": {
-    "caption_length": {"min_words": 18, "max_words": 60}
+    "caption_length": {"min_words": 18, "max_words": 100}
   },
   "templates": {
     "caption_v1": "{model} in {pose} wearing {wardrobe_main}; {lighting} across {background}.",

@@ -150,7 +150,7 @@
     {"id": "breathless_doll", "summary": "Wide-eyed but clearly in control", "nsfw": 0.6}
   ],
   "rules": {
-    "caption_length": {"min_words": 24, "max_words": 60},
+    "caption_length": {"min_words": 24, "max_words": 100},
     "tone": "Provocative but artful",
     "provocation": "Push suggestiveness without explicit description"
   },

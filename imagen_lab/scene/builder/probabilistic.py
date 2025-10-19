@@ -8,6 +8,7 @@ from typing import Any, Dict, Iterable, List, Mapping, MutableSequence, Sequence
 
 from imagen_lab.bias.engine.interfaces import BiasContext, BiasEngineProtocol
 from imagen_lab.catalog import Catalog
+from imagen_lab.characters import CharacterLibrary, CharacterProfile
 from imagen_lab.scene.model import (
     CatalogReference,
     GeneOptionProbability,
@@ -55,6 +56,9 @@ def _option_metadata(slot: str, option: Mapping[str, Any]) -> Dict[str, Any]:
         metadata["colors"] = list(option.get("colors", []))
     if slot == "mood" and option.get("words"):
         metadata["words"] = list(option.get("words", []))
+    variant = option.get("variant")
+    if isinstance(variant, str) and variant.strip():
+        metadata["variant"] = variant.strip()
     return metadata
 
 
@@ -66,6 +70,9 @@ class ProbabilisticSceneBuilder(SceneBuilderProtocol):
     bias_engine: BiasEngineProtocol
     catalog_id: str | None = None
     rng: random.Random | None = None
+    character_library: CharacterLibrary | None = None
+    default_character: str | None = None
+    variant_character_defaults: Mapping[str, str] | None = None
 
     def __post_init__(self) -> None:
         self._rng = self.rng if self.rng is not None else random
@@ -74,6 +81,65 @@ class ProbabilisticSceneBuilder(SceneBuilderProtocol):
             if self.catalog_id
             else str(self.catalog.raw.get("version") or "catalog")
         )
+        if self.default_character is None:
+            default = self.catalog.raw.get("default_character")
+            if isinstance(default, str) and default.strip():
+                self.default_character = default.strip()
+        variant_defaults: Dict[str, str] = {}
+        brand_variants = self.catalog.raw.get("brand_variants")
+        if isinstance(brand_variants, Iterable):
+            for entry in brand_variants:
+                if not isinstance(entry, Mapping):
+                    continue
+                variant = entry.get("id")
+                default = entry.get("default_character")
+                if isinstance(variant, str) and isinstance(default, str):
+                    variant_defaults[variant.strip()] = default.strip()
+        if self.variant_character_defaults:
+            for key, value in self.variant_character_defaults.items():
+                if isinstance(key, str) and isinstance(value, str):
+                    variant_defaults[key.strip()] = value.strip()
+        self._variant_character_defaults = variant_defaults
+
+    # ------------------------------------------------------------------
+    # Character helpers
+    # ------------------------------------------------------------------
+    def _resolve_variant(self, *options: Mapping[str, Any]) -> str | None:
+        for option in options:
+            if not isinstance(option, Mapping):
+                continue
+            variant = option.get("variant")
+            if isinstance(variant, str) and variant.strip():
+                return variant.strip()
+        brand = self.catalog.raw.get("brand")
+        if isinstance(brand, str) and brand.strip():
+            return brand.strip()
+        return None
+
+    def _select_character(self, variant: str | None) -> CharacterProfile | None:
+        if self.character_library is None:
+            return None
+        default_id: str | None = None
+        if variant and variant in self._variant_character_defaults:
+            default_id = self._variant_character_defaults.get(variant)
+        if not default_id:
+            default_id = self.default_character
+        try:
+            return self.character_library.choose(variant, default_id=default_id)
+        except ValueError:
+            if default_id:
+                return self.character_library.find(default_id)
+        return None
+
+    def _character_payload(
+        self, variant: str | None, profile: CharacterProfile | None
+    ) -> Dict[str, Any] | None:
+        if profile is None:
+            return None
+        payload = profile.to_dict()
+        if variant and "variant" not in payload:
+            payload["variant"] = variant
+        return payload
 
     # ------------------------------------------------------------------
     # SceneBuilderProtocol implementation
@@ -99,6 +165,7 @@ class ProbabilisticSceneBuilder(SceneBuilderProtocol):
         slots: "OrderedDict[str, SceneSlotChoice]" = OrderedDict()
         option_probabilities: "OrderedDict[str, Sequence[GeneOptionProbability]]" = OrderedDict()
         gene_ids: Dict[str, str] = {}
+        selected_options: List[Mapping[str, Any]] = []
 
         for slot in slot_order:
             options = self._slot_options(slot)
@@ -117,6 +184,7 @@ class ProbabilisticSceneBuilder(SceneBuilderProtocol):
             option_probabilities[slot] = tuple(probabilities)
             chosen_option = options[choice_idx]
             chosen_meta = meta_entries[choice_idx]
+            selected_options.append(chosen_option)
             option_id = str(chosen_option.get("id"))
             slots[slot] = SceneSlotChoice(
                 slot=slot,
@@ -127,6 +195,10 @@ class ProbabilisticSceneBuilder(SceneBuilderProtocol):
                 metadata=chosen_meta,
             )
             gene_ids[slot] = option_id
+
+        variant = self._resolve_variant(*selected_options)
+        character_profile = self._select_character(variant)
+        character_payload = self._character_payload(variant, character_profile)
 
         scene_model = SceneModel(
             catalog_id=self._catalog_id,
@@ -143,12 +215,15 @@ class ProbabilisticSceneBuilder(SceneBuilderProtocol):
 
         caption_bounds = self._caption_bounds()
         summary = scene_model.summary()
+        payload = scene_model.to_payload()
+        if character_payload:
+            payload["character"] = character_payload
         return SceneDescription(
             template_id=request.template_id or "scene:probabilistic_v1",
             caption_bounds=caption_bounds,
             aspect_ratio=self._aspect_ratio(slots),
             gene_ids=gene_ids,
-            payload=scene_model.to_payload(),
+            payload=payload,
             summary=summary,
             raw=scene_model,
         )
@@ -202,12 +277,23 @@ class ProbabilisticSceneBuilder(SceneBuilderProtocol):
             temperature=description.raw.temperature,
         )
         summary = scene_model.summary()
+        metadata_options = [
+            choice.metadata
+            for choice in scene_model.slots.values()
+            if isinstance(choice.metadata, Mapping)
+        ]
+        variant = self._resolve_variant(*metadata_options)
+        character_profile = self._select_character(variant)
+        character_payload = self._character_payload(variant, character_profile)
+        payload = scene_model.to_payload()
+        if character_payload:
+            payload["character"] = character_payload
         return SceneDescription(
             template_id=description.template_id,
             caption_bounds=description.caption_bounds,
             aspect_ratio=description.aspect_ratio,
             gene_ids={slot: choice.option_id for slot, choice in scene_model.slots.items()},
-            payload=scene_model.to_payload(),
+            payload=payload,
             summary=summary,
             raw=scene_model,
         )

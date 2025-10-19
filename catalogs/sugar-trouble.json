@@ -414,7 +414,7 @@
     {"id": "cotton_kiss", "desc": "Softer SFW blend"}
   ],
   "rules": {
-    "caption_length": {"min_words": 20, "max_words": 60},
+    "caption_length": {"min_words": 20, "max_words": 100},
     "tone": "flirty yet nominally wholesome",
     "provocation": "Suggestive gestures only; no explicit nudity."
   },

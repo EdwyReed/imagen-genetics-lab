@@ -10,6 +10,7 @@ from imagen_lab.bias.engine.simple import SimpleBiasEngine
 from imagen_lab.caption.ollama.workflow import OllamaCaptionEngine, OllamaClient
 from imagen_lab.caption.ollama.interfaces import CaptionEngineProtocol
 from imagen_lab.catalog import Catalog
+from imagen_lab.characters import CharacterLibrary
 from imagen_lab.config import PipelineConfig
 from imagen_lab.db.repo.interfaces import RepositoryProtocol
 from imagen_lab.db.repo.sqlite import SQLiteRepository
@@ -64,7 +65,34 @@ def create_pipeline_container(
     imagen_engine = ImagenClientEngine(client=imagen_client, model=config.imagen.model)
 
     bias_engine = SimpleBiasEngine()
-    scene_builder = ProbabilisticSceneBuilder(catalog=catalog, bias_engine=bias_engine)
+
+    character_library = None
+    default_character = None
+    variant_defaults: dict[str, str] | None = None
+    if config.paths.character_catalog:
+        character_library = CharacterLibrary.load(config.paths.character_catalog)
+        default_value = catalog.raw.get("default_character")
+        if isinstance(default_value, str) and default_value.strip():
+            default_character = default_value.strip()
+        brand_variants = catalog.raw.get("brand_variants")
+        mapping: dict[str, str] = {}
+        if isinstance(brand_variants, list):
+            for entry in brand_variants:
+                if not isinstance(entry, dict):
+                    continue
+                variant = entry.get("id")
+                char_id = entry.get("default_character")
+                if isinstance(variant, str) and isinstance(char_id, str):
+                    mapping[variant.strip()] = char_id.strip()
+        variant_defaults = mapping or None
+
+    scene_builder = ProbabilisticSceneBuilder(
+        catalog=catalog,
+        bias_engine=bias_engine,
+        character_library=character_library,
+        default_character=default_character,
+        variant_character_defaults=variant_defaults,
+    )
 
     repository = SQLiteRepository(Path(config.paths.database))
     artifacts = ImageArtifactStore(output_dir or config.paths.output_dir)

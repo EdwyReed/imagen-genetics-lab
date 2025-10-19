@@ -333,7 +333,7 @@
     {"id": "arcade_bestie", "summary": "Playful competitor beating your high score", "nsfw": 0.38}
   ],
   "rules": {
-    "caption_length": {"min_words": 22, "max_words": 64},
+    "caption_length": {"min_words": 22, "max_words": 100},
     "tone": "Concert-level excitement with flirt",
     "provocation": "Tease via performance gestures only"
   },

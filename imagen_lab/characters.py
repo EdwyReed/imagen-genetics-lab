@@ -2,10 +2,11 @@ from __future__ import annotations
 
 import json
 import random
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from types import MappingProxyType
-from typing import Dict, List, Optional, Sequence, Tuple, Mapping
+from typing import Dict, Iterable, List, Optional, Sequence, Tuple, Mapping
 
 from .io.json_documents import CharacterDocument, SchemaError
 
@@ -25,6 +26,55 @@ def _as_list(value: object) -> List[str]:
     if isinstance(value, str) and value.strip():
         return [value.strip()]
     return []
+
+
+def _split_terms(value: str) -> Iterable[str]:
+    for fragment in re.split(r"[;,/]|\band\b", value):
+        cleaned = fragment.strip()
+        if cleaned:
+            yield cleaned
+
+
+def character_keywords(character: Mapping[str, object], *, limit: int = 8) -> List[str]:
+    """Derive high-signal keywords from a character mapping."""
+
+    if not isinstance(character, Mapping):
+        return []
+
+    terms: List[str] = []
+    seen: set[str] = set()
+
+    def push(term: object) -> None:
+        if not isinstance(term, str):
+            return
+        cleaned = term.strip()
+        if not cleaned:
+            return
+        lowered = cleaned.lower()
+        if lowered in seen:
+            return
+        seen.add(lowered)
+        terms.append(cleaned)
+
+    def push_many(value: object) -> None:
+        if isinstance(value, str):
+            for fragment in _split_terms(value):
+                push(fragment)
+        elif isinstance(value, Iterable):
+            for item in value:
+                push(item)
+
+    push(character.get("name"))
+    push_many(character.get("prompt_hint"))
+    push_many(character.get("visual_traits"))
+    push_many(character.get("signature_props"))
+    push(character.get("personality"))
+    if not terms:
+        push(character.get("summary"))
+
+    if limit > 0:
+        return terms[:limit]
+    return terms
 
 
 @dataclass(frozen=True)

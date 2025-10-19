@@ -1,0 +1,166 @@
+{
+  "version": "1.0-watercolor",
+  "brand": "Watercolor Lullaby",
+  "purpose": "Dreamy watercolor portraits with delicate bloom edges and slow-breath romance.",
+  "default_character": "girl_next_door_darling",
+  "style_controller": {
+    "aesthetic": "Translucent watercolor with velvety bloom and soft grain",
+    "paper_texture": true,
+    "watercolor": {
+      "blooms": "sleepy gradients",
+      "backruns": "teardrop trails",
+      "edge_darkening": "rose rim"
+    },
+    "highlights": {
+      "broad_shine": true,
+      "micro_seeds": true,
+      "rim_wet": true,
+      "flare_sparkles": "soft glints"
+    },
+    "subsurface_glow": ["cheeks", "nose", "collarbone"],
+    "palette_preference": "Diluted pastels, tea browns, rainy blues",
+    "sfw": true,
+    "background_norm": "Window light, pressed flowers, hand-painted backdrops",
+    "glam_level_hint": "Gentle intimacy",
+    "gloss_pipeline": {
+      "specular_intensity": "brushed",
+      "highlight_count": "sparse",
+      "hotspot_size": "diffuse",
+      "wet_sheen_layer": "varnish wash",
+      "bokeh_droplets": "bleed halos",
+      "caustic_ripples": "ink ripples"
+    }
+  },
+  "palettes": [
+    {
+      "id": "porch_dawn",
+      "name": "Porch Dawn",
+      "colors": [
+        {"name": "Morning Peach", "hex": "#F3BC9A"},
+        {"name": "Porch White", "hex": "#F9F0EA"},
+        {"name": "Cedar Brown", "hex": "#9C6B50"},
+        {"name": "Blue Mist", "hex": "#A8C7DD"}
+      ],
+      "notes": "Sunrise over wooden porch",
+      "nsfw": 0.18
+    },
+    {
+      "id": "rain_letter",
+      "name": "Rain Letter",
+      "colors": [
+        {"name": "Ink Blue", "hex": "#6A8AA9"},
+        {"name": "Paper Cream", "hex": "#F5EADF"},
+        {"name": "Blush Wash", "hex": "#E7A5B0"},
+        {"name": "Fern Tea", "hex": "#C4D3B3"}
+      ],
+      "notes": "Gentle rainy afternoon",
+      "nsfw": 0.17
+    },
+    {
+      "id": "moonlit_bloom",
+      "name": "Moonlit Bloom",
+      "colors": [
+        {"name": "Night Indigo", "hex": "#2D3E66"},
+        {"name": "Lotus Pink", "hex": "#F5A3C3"},
+        {"name": "Parchment", "hex": "#F2E6D0"},
+        {"name": "Silver Dew", "hex": "#D3E2EA"}
+      ],
+      "notes": "Evening lullaby palette",
+      "nsfw": 0.2
+    }
+  ],
+  "lighting_presets": [
+    {"id": "porch_glow", "desc": "Golden porch light diffused through curtains", "nsfw": 0.18},
+    {"id": "rain_softbox", "desc": "Cool rain reflections balanced with warm lamplight", "nsfw": 0.17},
+    {"id": "moon_wash", "desc": "Moonlit wash with lavender rim", "nsfw": 0.19}
+  ],
+  "backgrounds": [
+    {"id": "open_window", "desc": "Open window with rain streaks and flower pots", "nsfw": 0.16},
+    {"id": "porch_swing", "desc": "Wooden porch swing with quilt", "nsfw": 0.18},
+    {"id": "studio_canvas", "desc": "Artist studio with unfinished canvases", "nsfw": 0.19}
+  ],
+  "camera": {
+    "angles": [
+      {"id": "gentle_three_quarter", "desc": "Three-quarter angle resting against doorframe", "nsfw": 0.19},
+      {"id": "over_shoulder", "desc": "Over-shoulder glance while brushing hair", "nsfw": 0.18},
+      {"id": "lap_view", "desc": "Seated lap-level gaze with sketchbook", "nsfw": 0.17}
+    ],
+    "framing": [
+      {"id": "portrait_4_5", "ratio": "4:5", "desc": "Soft portrait crop", "nsfw": 0.18},
+      {"id": "letterbox", "ratio": "21:9", "desc": "Cinematic porch framing", "nsfw": 0.19}
+    ],
+    "lenses": [
+      {"id": "watercolor_55mm", "desc": "Natural 55mm with watercolor falloff", "nsfw": 0.18},
+      {"id": "soft_macro", "desc": "Macro for brushstroke and freckles", "nsfw": 0.19}
+    ],
+    "depth": [
+      {"id": "wash_blur", "desc": "Soft wash blur with bokeh blooms", "nsfw": 0.18},
+      {"id": "ink_focus", "desc": "Focused eyes, loose background bleed", "nsfw": 0.19}
+    ]
+  },
+  "moods": [
+    {"id": "porch_crush", "words": ["tender", "slow", "warm", "breeze"], "nsfw": 0.18},
+    {"id": "rainy_memory", "words": ["nostalgic", "raindrop", "ink", "sigh"], "nsfw": 0.17}
+  ],
+  "poses": [
+    {"id": "porch_lean", "desc": "Leaning on porch rail with cardigan wrap", "nsfw": 0.19},
+    {"id": "window_breath", "desc": "Breathing fog onto window and tracing heart", "nsfw": 0.18},
+    {"id": "sketch_lap", "desc": "Sketchbook balanced on knees", "nsfw": 0.17}
+  ],
+  "actions": [
+    {"id": "write_letter", "desc": "Writes slow letter on textured paper", "nsfw": 0.17},
+    {"id": "braid_hair", "desc": "Braids hair while smiling softly", "nsfw": 0.18},
+    {"id": "pour_tea", "desc": "Pours tea into ceramic mug", "nsfw": 0.16}
+  ],
+  "model_descriptions": [
+    "porchlight girl-next-door",
+    "watercolor daydreamer",
+    "softspoken letter writer"
+  ],
+  "props": [
+    {"id": "ceramic_mug", "desc": "Hand-painted ceramic mug", "nsfw": 0.16},
+    {"id": "pressed_flower", "desc": "Pressed flower bookmark", "nsfw": 0.15},
+    {"id": "sketchbook", "desc": "Sketchbook with watercolor swatches", "nsfw": 0.17}
+  ],
+  "wardrobe": {
+    "tops": [
+      {"id": "linen_blouse", "desc": "Linen blouse with rolled sleeves", "nsfw": 0.19},
+      {"id": "porch_cardigan", "desc": "Oversized cardigan draped over shoulders", "nsfw": 0.18}
+    ],
+    "bottoms": [
+      {"id": "denim_shorts", "desc": "Soft denim shorts", "nsfw": 0.2},
+      {"id": "floral_skirt", "desc": "Watercolor floral skirt", "nsfw": 0.18}
+    ],
+    "dresses": [
+      {"id": "tea_dress", "desc": "Tea-length dress with brushstroke print", "nsfw": 0.19}
+    ],
+    "outerwear": [
+      {"id": "rain_shawl", "desc": "Sheer rain shawl with stitched stars", "nsfw": 0.18}
+    ],
+    "footwear": [
+      {"id": "canvas_slipon", "desc": "Canvas slip-ons with paint splatter", "nsfw": 0.17},
+      {"id": "barefoot_rain", "desc": "Barefoot with rain gloss", "nsfw": 0.16}
+    ],
+    "accessories": [
+      {"id": "ink_pen", "desc": "Gold fountain pen with ink stain", "nsfw": 0.17},
+      {"id": "ribbon_scrunchie", "desc": "Ribbon scrunchie with watercolor gradient", "nsfw": 0.16}
+    ]
+  },
+  "wardrobe_sets": [
+    {"id": "porch_reading", "items": ["linen_blouse", "floral_skirt", "porch_cardigan", "ceramic_mug", "pressed_flower"], "nsfw": 0.19},
+    {"id": "rain_letter_set", "items": ["tea_dress", "rain_shawl", "canvas_slipon", "ink_pen", "sketchbook"], "nsfw": 0.18}
+  ],
+  "emotional_archetypes": [
+    {"id": "gentle_neighbor", "summary": "Girl-next-door painting you into her sketchbook", "nsfw": 0.18},
+    {"id": "porch_serenade", "summary": "Hums lullabies while the rain keeps tempo", "nsfw": 0.17}
+  ],
+  "rules": {
+    "caption_length": {"min_words": 18, "max_words": 60},
+    "tone": "Tender watercolor romance"
+  },
+  "templates": {
+    "caption_v1": "Watercolor {model} {action} in {pose}; {lighting} softens {background}; outfit {wardrobe_main} plus {wardrobe_extras} ({mood}).",
+    "caption_v2": "Ink-washed portrait of {model} {action} while {pose}; {camera_angle}, {framing_ratio}, {lens}, {depth}; ambience {lighting} over {background}.",
+    "render_instructions": "Use layered watercolor washes, visible paper grain, soft edge blooms, and gentle highlight varnish."
+  }
+}

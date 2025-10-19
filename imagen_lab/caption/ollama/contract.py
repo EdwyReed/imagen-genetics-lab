@@ -10,6 +10,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:  # pragma: no cover - typing only
     from imagen_lab.scene.builder.interfaces import SceneDescription
 
+from imagen_lab.characters import character_keywords
+
 
 def _as_mapping(value: Any) -> dict[str, Any]:
     if isinstance(value, Mapping):
@@ -52,12 +54,21 @@ def _style_section(scene: "SceneDescription") -> dict[str, Any]:
 def _character_section(scene: "SceneDescription") -> dict[str, Any]:
     payload = _as_mapping(scene.payload)
     character = payload.get("character")
+    data: dict[str, Any] = {}
     if isinstance(character, Mapping):
-        return {str(k): v for k, v in character.items()}
-    raw = getattr(scene.raw, "character", None)
-    if isinstance(raw, Mapping):
-        return {str(k): v for k, v in raw.items()}
-    return {}
+        data = {str(k): v for k, v in character.items()}
+    else:
+        raw = getattr(scene.raw, "character", None)
+        if isinstance(raw, Mapping):
+            data = {str(k): v for k, v in raw.items()}
+
+    if not data:
+        return {}
+
+    keywords = character_keywords(data)
+    if keywords and "keywords" not in data:
+        data["keywords"] = keywords
+    return data
 
 
 def _scene_choices_from_model(raw_model: Any) -> list[dict[str, Any]]:

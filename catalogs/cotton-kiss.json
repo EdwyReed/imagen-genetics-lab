@@ -79,6 +79,30 @@
       ],
       "notes": "Cooling sweets",
       "nsfw": 0.17
+    },
+    {
+      "id": "rainy_bluebell",
+      "name": "Rainy Bluebell",
+      "colors": [
+        {"name": "Bluebell", "hex": "#9FB7FF"},
+        {"name": "Cloud Milk", "hex": "#F4F7FF"},
+        {"name": "Misty Lilac", "hex": "#E0D7FF"},
+        {"name": "Soft Moss", "hex": "#C6E8CF"}
+      ],
+      "notes": "Cozy rainy-day palette for window-seat scenes",
+      "nsfw": 0.15
+    },
+    {
+      "id": "buttercream_blush",
+      "name": "Buttercream Blush",
+      "colors": [
+        {"name": "Buttercream", "hex": "#FFE8C8"},
+        {"name": "Petal Pink", "hex": "#FFC5D7"},
+        {"name": "Sorbet", "hex": "#FFA6B4"},
+        {"name": "Mint Sugar", "hex": "#BFF2DE"}
+      ],
+      "notes": "Birthday cake afternoon treats",
+      "nsfw": 0.19
     }
   ],
   "lighting_presets": [
@@ -86,14 +110,18 @@
     {"id": "blanket_glow", "desc": "Bounce from pastel blankets", "nsfw": 0.16},
     {"id": "cotton_sun", "desc": "Sunbeam diffused through sheer curtains", "nsfw": 0.2},
     {"id": "pillow_reflect", "desc": "Reflective light from fluffy pillows", "nsfw": 0.15},
-    {"id": "soft_taffy", "desc": "Taffy-colored fill with gentle rim", "nsfw": 0.19}
+    {"id": "soft_taffy", "desc": "Taffy-colored fill with gentle rim", "nsfw": 0.19},
+    {"id": "rain_light", "desc": "Cool window rain streaks with warm interior bounce", "nsfw": 0.17},
+    {"id": "lantern_glow", "desc": "Paper lantern glow pooling around cheeks", "nsfw": 0.18}
   ],
   "backgrounds": [
     {"id": "window_seat", "desc": "Window seat with cushions", "nsfw": 0.16},
     {"id": "pastel_bedroom", "desc": "Pastel bedroom with string lights", "nsfw": 0.18},
     {"id": "picnic_blanket", "desc": "Outdoor blanket with sweets", "nsfw": 0.14},
     {"id": "cloud_couch", "desc": "Puffy couch shaped like clouds", "nsfw": 0.17},
-    {"id": "macaron_stack", "desc": "Stacked macarons as background", "nsfw": 0.2}
+    {"id": "macaron_stack", "desc": "Stacked macarons as background", "nsfw": 0.2},
+    {"id": "rainy_window", "desc": "Raindrop-speckled window overlooking pastel town", "nsfw": 0.15},
+    {"id": "attic_library", "desc": "Tiny attic library with quilted cushions", "nsfw": 0.17}
   ],
   "camera": {
     "angles": [
@@ -118,20 +146,23 @@
   },
   "moods": [
     {"id": "sleepy_cutie_soft", "words": ["sleepy", "warm", "wrapped", "snuggle"], "nsfw": 0.18},
-    {"id": "sweet_idiot_soft", "words": ["clumsy", "giggle", "sprinkles", "sunshine"], "nsfw": 0.2},
-    {"id": "daydream_blush", "words": ["dreamy", "light", "flutter", "blush"], "nsfw": 0.17}
+    {"id": "sweet_clumsy_soft", "words": ["clumsy", "giggle", "sprinkles", "sunshine"], "nsfw": 0.2},
+    {"id": "daydream_blush", "words": ["dreamy", "light", "flutter", "blush"], "nsfw": 0.17},
+    {"id": "rainy_romance", "words": ["quiet", "raindrops", "blanket", "breath"], "nsfw": 0.16}
   ],
   "poses": [
     {"id": "pillow_hug", "desc": "Hugging heart pillow, legs kicked up", "nsfw": 0.2},
     {"id": "window_curl", "desc": "Curled on window seat sipping tea", "nsfw": 0.18},
     {"id": "picnic_sprawl", "desc": "Sprawled on blanket reaching for macaron", "nsfw": 0.22},
-    {"id": "cloud_lie", "desc": "Lying on cloud couch, gentle smile", "nsfw": 0.19}
+    {"id": "cloud_lie", "desc": "Lying on cloud couch, gentle smile", "nsfw": 0.19},
+    {"id": "journal_pose", "desc": "Knees tucked while journaling with pastel pen", "nsfw": 0.18}
   ],
   "actions": [
     {"id": "sips_tea", "desc": "Sips tea with two hands", "nsfw": 0.14},
     {"id": "bites_macaron", "desc": "Bites macaron delicately", "nsfw": 0.18},
     {"id": "ties_ribbon", "desc": "Ties ribbon on ponytail", "nsfw": 0.16},
-    {"id": "feeds_bird", "desc": "Offers sugar cube to imaginary bird", "nsfw": 0.12}
+    {"id": "feeds_bird", "desc": "Offers sugar cube to imaginary bird", "nsfw": 0.12},
+    {"id": "writes_letter", "desc": "Writes scented letter with glitter pen", "nsfw": 0.14}
   ],
   "model_descriptions": [
     "wholesome candy crush",
@@ -143,58 +174,71 @@
     {"id": "heart_pillow", "desc": "Heart-shaped plush pillow", "nsfw": 0.12},
     {"id": "tea_cup", "desc": "Porcelain tea cup with saucer", "nsfw": 0.1},
     {"id": "macaron_plate", "desc": "Plate of macarons", "nsfw": 0.12},
-    {"id": "cotton_basket", "desc": "Basket of cotton candy", "nsfw": 0.16}
+    {"id": "cotton_basket", "desc": "Basket of cotton candy", "nsfw": 0.16},
+    {"id": "rainy_book", "desc": "Pastel-jacket romance novel with pressed flowers", "nsfw": 0.13}
   ],
   "wardrobe": {
     "tops": [
       {"id": "soft_cardigan", "desc": "Soft cardigan slipping slightly", "nsfw": 0.22},
       {"id": "puff_blouse", "desc": "Puff-sleeve blouse with bow", "nsfw": 0.18},
-      {"id": "graphic_tee", "desc": "Graphic tee reading 'Chew Me Later' in playful font", "nsfw": 0.2}
+      {"id": "graphic_tee", "desc": "Graphic tee reading 'Chew Me Later' in playful font", "nsfw": 0.2},
+      {"id": "lace_camiso", "desc": "Lace-trim camisole layered under cardigan", "nsfw": 0.21}
     ],
     "bottoms": [
       {"id": "lace_short", "desc": "Lace-trim shorts", "nsfw": 0.2},
-      {"id": "flowy_skirt", "desc": "Flowy skirt with ruffles", "nsfw": 0.18}
+      {"id": "flowy_skirt", "desc": "Flowy skirt with ruffles", "nsfw": 0.18},
+      {"id": "ribbed_legwarmers", "desc": "Ribbed legwarmers scrunched at ankles", "nsfw": 0.17}
     ],
     "dresses": [
       {"id": "babydoll_dress", "desc": "Babydoll dress with ribbon straps", "nsfw": 0.2},
-      {"id": "wrap_tea_dress", "desc": "Wrap tea dress with floral print", "nsfw": 0.18}
+      {"id": "wrap_tea_dress", "desc": "Wrap tea dress with floral print", "nsfw": 0.18},
+      {"id": "rainy_smock", "desc": "Smock dress layered with translucent raincoat", "nsfw": 0.21}
     ],
     "one_piece": [
-      {"id": "romper_cotton", "desc": "Cotton romper with heart buttons", "nsfw": 0.2}
+      {"id": "romper_cotton", "desc": "Cotton romper with heart buttons", "nsfw": 0.2},
+      {"id": "satin_sleep_set", "desc": "Satin pajama short set with embroidered clouds", "nsfw": 0.23}
     ],
     "outerwear": [
-      {"id": "blanket_shawl", "desc": "Knitted blanket draped", "nsfw": 0.16}
+      {"id": "blanket_shawl", "desc": "Knitted blanket draped", "nsfw": 0.16},
+      {"id": "pastel_raincoat", "desc": "Transparent pastel raincoat with heart buttons", "nsfw": 0.19}
     ],
     "footwear": [
       {"id": "socks_ribbon", "desc": "Ribbed socks with ribbon trim", "nsfw": 0.14},
-      {"id": "ballet_slippers", "desc": "Ballet slippers", "nsfw": 0.12}
+      {"id": "ballet_slippers", "desc": "Ballet slippers", "nsfw": 0.12},
+      {"id": "fuzzy_slides", "desc": "Fuzzy slides with pom charms", "nsfw": 0.13}
     ],
     "hosiery": [
-      {"id": "opaque_tights", "desc": "Opaque pastel tights", "nsfw": 0.16}
+      {"id": "opaque_tights", "desc": "Opaque pastel tights", "nsfw": 0.16},
+      {"id": "lace_kneehighs", "desc": "Lace knee-high socks", "nsfw": 0.17}
     ],
     "gloves": [
-      {"id": "knit_mitts", "desc": "Knitted mittens", "nsfw": 0.1}
+      {"id": "knit_mitts", "desc": "Knitted mittens", "nsfw": 0.1},
+      {"id": "satin_bows", "desc": "Fingerless satin gloves with bow cuffs", "nsfw": 0.15}
     ],
     "headwear": [
       {"id": "sleep_mask", "desc": "Sleep mask pushed on head", "nsfw": 0.1},
-      {"id": "ribbon_headband", "desc": "Ribbon headband", "nsfw": 0.12}
+      {"id": "ribbon_headband", "desc": "Ribbon headband", "nsfw": 0.12},
+      {"id": "rain_hat", "desc": "Transparent rain hat with scalloped trim", "nsfw": 0.13}
     ],
     "jewelry": [
       {"id": "bead_bracelet", "desc": "Pastel bead bracelet", "nsfw": 0.12},
-      {"id": "heart_pendant", "desc": "Heart pendant necklace", "nsfw": 0.14}
+      {"id": "heart_pendant", "desc": "Heart pendant necklace", "nsfw": 0.14},
+      {"id": "locket_charm", "desc": "Tiny locket charm engraved with clouds", "nsfw": 0.13}
     ]
   },
   "wardrobe_sets": [
     {"id": "sleepover", "items": ["soft_cardigan", "lace_short", "socks_ribbon", "heart_pillow", "sleep_mask"], "note": "Sleepover cozy", "nsfw": 0.2},
     {"id": "window_morning", "items": ["puff_blouse", "flowy_skirt", "ballet_slippers", "tea_cup", "ribbon_headband"], "note": "Morning crush", "nsfw": 0.18},
-    {"id": "picnic_day", "items": ["graphic_tee", "flowy_skirt", "opaque_tights", "cotton_basket", "bead_bracelet"], "note": "Picnic sweetness", "nsfw": 0.2}
+    {"id": "picnic_day", "items": ["graphic_tee", "flowy_skirt", "opaque_tights", "cotton_basket", "bead_bracelet"], "note": "Picnic sweetness", "nsfw": 0.2},
+    {"id": "rainy_letter", "items": ["lace_camiso", "rainy_smock", "lace_kneehighs", "rainy_book", "locket_charm"], "note": "Rainy day love letter", "nsfw": 0.19}
   ],
   "emotional_archetypes": [
     {"id": "sleepover_friend", "summary": "Sleepy friend who blushes easily", "nsfw": 0.18},
-    {"id": "picnic_crush", "summary": "Daylight crush sharing sweets", "nsfw": 0.17}
+    {"id": "picnic_crush", "summary": "Daylight crush sharing sweets", "nsfw": 0.17},
+    {"id": "rain_confidant", "summary": "Quiet confidant sharing secrets while rain taps the glass", "nsfw": 0.16}
   ],
   "rules": {
-    "caption_length": {"min_words": 18, "max_words": 54},
+    "caption_length": {"min_words": 18, "max_words": 100},
     "tone": "Wholesome flirt",
     "provocation": "Keep innuendo mild and adorable"
   },
