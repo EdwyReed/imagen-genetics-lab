@@ -81,7 +81,7 @@ def run_plain(
     container = _build_container(config, outdir=outdir, enable_scoring=enable_scoring)
     session_id = f"plain-{int(time.time())}"
 
-    if container.scorer is None:
+    if not enable_scoring:
         print("[plain] scoring disabled (--no-scoring)")
 
     gene_tracker = SessionGeneStats(container.repository.iter_gene_stats())
@@ -122,7 +122,6 @@ def run_plain(
                 scene_request = SceneRequest(
                     sfw_level=sfw_level,
                     temperature=temperature,
-                    feedback=container.feedback,
                     macro_snapshot=macro_snapshot,
                     meso_snapshot=meso_snapshot,
                     gene_fitness=gene_tracker.ema_snapshot(),
@@ -183,8 +182,7 @@ def run_plain(
                     time.sleep(sleep_s)
                     continue
 
-                response = imagen_result.response
-                if not getattr(response, "generated_images", None):
+                if not imagen_result.variants:
                     print(f"[{idx:02d}/{cycles}] no images returned; final prompt: {caption.final_prompt}")
                     gene_tracker.record_failure(scene.gene_ids)
                     time.sleep(sleep_s)
@@ -210,8 +208,9 @@ def run_plain(
 
                 scoring_result = container.scoring_engine.score(
                     ScoringRequest(
-                        response=response,
+                        imagen=imagen_result,
                         prompt=caption.final_prompt,
+                        caption=caption.caption,
                         scene=scene.raw,
                         session_id=session_id,
                         meta=meta_base,
@@ -220,33 +219,27 @@ def run_plain(
                     )
                 )
 
-                batch = scoring_result.batch
-                if not batch.is_empty():
-                    best = batch.best(w_style, w_nsfw)
-                    if best is not None:
-                        fitness_value = best.fitness(w_style, w_nsfw)
-                        gene_tracker.record_success(scene.gene_ids, fitness_value)
-                        print(f"   [best] {best.path.name}  style={best.style} nsfw={best.nsfw}")
-                        if container.feedback is not None and container.scorer is not None:
-                            style_metrics = batch.metrics.get("style", {}) if isinstance(batch.metrics, dict) else {}
-                            style_weights = None
-                            if isinstance(style_metrics, dict):
-                                weights = style_metrics.get("weights")
-                                if isinstance(weights, dict):
-                                    style_weights = weights
-                            container.feedback.update(
-                                gene_ids=dict(scene.gene_ids),
-                                template_id=scene.template_id,
-                                summary=scene.summary,
-                                batch_metrics=batch.metrics,
-                                best_image=best,
-                                weights=style_weights,
-                            )
-                    metrics_line = format_metrics(batch.metrics)
-                    if metrics_line:
-                        print(f"   [metrics] {metrics_line}")
-                else:
+                if scoring_result.is_empty():
                     gene_tracker.record_failure(scene.gene_ids)
+                else:
+                    best_variant = scoring_result.best(w_style, w_nsfw)
+                    if best_variant is None:
+                        gene_tracker.record_failure(scene.gene_ids)
+                    else:
+                        fitness_value = best_variant.weighted_fitness(w_style, w_nsfw)
+                        gene_tracker.record_success(scene.gene_ids, fitness_value)
+                        style_component = best_variant.fitness_style
+                        nsfw_component = 1.0 - best_variant.fitness_coverage
+                        print(
+                            "   [best] {path} style={style:.2f} nsfw={nsfw:.2f}".format(
+                                path=best_variant.prompt_path,
+                                style=style_component,
+                                nsfw=nsfw_component,
+                            )
+                        )
+                        metrics_line = format_metrics(best_variant.report)
+                        if metrics_line:
+                            print(f"   [metrics] {metrics_line}")
                 time.sleep(sleep_s)
     except OllamaServiceError as exc:
         print(f"[plain] Ollama service error: {exc}")
@@ -319,7 +312,7 @@ def run_evolve(
     container = _build_container(config, outdir=outdir, enable_scoring=enable_scoring)
     session_id = f"evolve-{int(time.time())}"
 
-    if container.scorer is None:
+    if not enable_scoring:
         print("[evolve] scoring disabled (--no-scoring)")
 
     gene_tracker = SessionGeneStats(container.repository.iter_gene_stats())
