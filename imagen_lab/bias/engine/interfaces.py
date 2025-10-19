@@ -9,6 +9,8 @@ class BiasContext:
     profile_id: str | None
     macro_snapshot: Mapping[str, Any]
     meso_snapshot: Mapping[str, Any]
+    sfw_level: float
+    temperature: float
 
 
 class BiasEngineProtocol(Protocol):

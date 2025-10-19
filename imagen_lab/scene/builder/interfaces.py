@@ -12,6 +12,9 @@ class SceneRequest:
     temperature: float
     feedback: Optional[StyleFeedback] = None
     template_id: Optional[str] = None
+    profile_id: Optional[str] = None
+    macro_snapshot: Mapping[str, Any] | None = None
+    meso_snapshot: Mapping[str, Any] | None = None
 
 
 @dataclass(frozen=True)
