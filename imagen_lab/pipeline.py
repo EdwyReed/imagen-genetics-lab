@@ -107,7 +107,7 @@ class PromptWorkflow:
 
     def finalize(self, caption: str, bounds: Mapping[str, object]) -> str:
         return self.composer.final_prompt(caption, bounds)
-
+      
 def _prepare_services(
     config: PipelineConfig,
     output_dir: Optional[Path] = None,
@@ -334,6 +334,8 @@ def run_plain(
     builder = services.builder
     client = services.client
     feedback = services.feedback
+    style = services.style
+    required_terms = services.required_terms
 
     session_id = f"plain-{int(time.time())}"
     if scorer is None:
@@ -576,6 +578,8 @@ def run_evolve(
     catalog = services.catalog
     client = services.client
     feedback = services.feedback
+    style = services.style
+    required_terms = services.required_terms
 
     session_id = f"evolve-{int(time.time())}"
     if scorer is None:
