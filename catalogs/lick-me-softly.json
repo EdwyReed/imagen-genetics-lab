@@ -2,6 +2,7 @@
   "version": "1.0-lick-me-softly",
   "brand": "Lick Me Softly",
   "purpose": "NSFW-leaning candy idol variant dialing up wet gloss, provocative gestures, and high-intensity stickiness while remaining technically non-explicit.",
+  "default_character": "molten_latex_siren",
   "style_controller": {
     "aesthetic": "Molten candy siren with dripping latex and humid glow",
     "paper_texture": true,

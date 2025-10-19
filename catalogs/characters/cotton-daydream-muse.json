@@ -1,0 +1,18 @@
+{
+  "id": "cotton_daydream_muse",
+  "name": "Cotton Daydream Muse",
+  "summary": "Sleepover-soft crush with rosy cheeks and cozy sweater paws",
+  "style_variants": ["Cotton Kiss"],
+  "prompt_hint": "sun-dappled bedroom, cozy knits",
+  "tags": ["soft", "wholesome"],
+  "visual_traits": [
+    "powder blush freckles",
+    "sweater sleeves over fingertips",
+    "hazy pastel lighting"
+  ],
+  "signature_props": [
+    "plush pillow stack",
+    "warm tea mug"
+  ],
+  "personality": "Daydream believer who whispers secrets into pastel pillows"
+}

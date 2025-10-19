@@ -2,6 +2,7 @@
   "version": "1.0-sugar-trouble",
   "brand": "Sugar Trouble",
   "purpose": "Candy-crush-meets-girl-next-door catalog focused on syrupy gloss, playful innocence, and flirtatious pin-up storytelling.",
+  "default_character": "sugar_troublemaker",
   "style_controller": {
     "aesthetic": "Hyper-gloss candy idol with pastel syrup bloom and soft innocence",
     "paper_texture": true,

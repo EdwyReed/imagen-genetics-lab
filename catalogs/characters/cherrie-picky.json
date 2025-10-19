@@ -1,0 +1,22 @@
+{
+  "id": "cherrie_picky",
+  "name": "Cherrie Picky",
+  "summary": "Cherry-sweet icon lounging with a leaf sprout and confident wink",
+  "style_variants": ["Cherry Pop Idol"],
+  "prompt_hint": "cherry-red hair, leaf hair stem, plush pink sofa, cherry lollipop",
+  "tags": ["cherry", "idol", "lounging"],
+  "visual_traits": [
+    "glossy cherry-red hair cascading to the waist",
+    "single green leaf sprouting from a cherry stem hairpin",
+    "bright blue doe eyes with thick lashes",
+    "rosy watercolor cheeks and heart-dotted freckles"
+  ],
+  "signature_props": [
+    "cherry lollipop with sugar sparkle",
+    "plush pink loveseat",
+    "floating sugar cubes",
+    "tiny bird-shaped candy companion"
+  ],
+  "personality": "Playful lounge idol who teases with a slow smile and relaxed poise",
+  "backstory": "Poster muse of the Chew Me Later tour; keeps her lucky cherry stem clipped in her hair for every set"
+}

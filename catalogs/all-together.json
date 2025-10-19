@@ -2,26 +2,31 @@
   "version": "1.0-all",
   "brand": "Candy Danger Collection",
   "purpose": "Unified catalog combining Sugar Trouble, Cherry Pop Idol, Lick Me Softly, and Cotton Kiss options.",
+  "default_character": "sugar_troublemaker",
   "brand_variants": [
     {
       "id": "Cherry Pop Idol",
       "file": "cherry-pop-idol.json",
-      "purpose": "Hyper-pop variant leaning into 80s neon arcades, candy idols, and energetic flirtation with pop-art flair."
+      "purpose": "Hyper-pop variant leaning into 80s neon arcades, candy idols, and energetic flirtation with pop-art flair.",
+      "default_character": "neon_idol_heroine"
     },
     {
       "id": "Cotton Kiss",
       "file": "cotton-kiss.json",
-      "purpose": "Softer SFW branch with airy light, sleepy sweetness, and wholesome candy daydreams."
+      "purpose": "Softer SFW branch with airy light, sleepy sweetness, and wholesome candy daydreams.",
+      "default_character": "cotton_daydream_muse"
     },
     {
       "id": "Lick Me Softly",
       "file": "lick-me-softly.json",
-      "purpose": "NSFW-leaning candy idol variant dialing up wet gloss, provocative gestures, and high-intensity stickiness while remaining technically non-explicit."
+      "purpose": "NSFW-leaning candy idol variant dialing up wet gloss, provocative gestures, and high-intensity stickiness while remaining technically non-explicit.",
+      "default_character": "molten_latex_siren"
     },
     {
       "id": "Sugar Trouble",
       "file": "sugar-trouble.json",
-      "purpose": "Candy-crush-meets-girl-next-door catalog focused on syrupy gloss, playful innocence, and flirtatious pin-up storytelling."
+      "purpose": "Candy-crush-meets-girl-next-door catalog focused on syrupy gloss, playful innocence, and flirtatious pin-up storytelling.",
+      "default_character": "sugar_troublemaker"
     }
   ],
   "brand_profiles": {

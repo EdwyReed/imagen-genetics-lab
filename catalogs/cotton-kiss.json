@@ -2,6 +2,7 @@
   "version": "1.0-cotton-kiss",
   "brand": "Cotton Kiss",
   "purpose": "Softer SFW branch with airy light, sleepy sweetness, and wholesome candy daydreams.",
+  "default_character": "cotton_daydream_muse",
   "style_controller": {
     "aesthetic": "Pastel cotton-candy dream with gentle gloss",
     "paper_texture": true,

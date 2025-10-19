@@ -4,7 +4,7 @@ import random
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Mapping, Optional, Tuple
 
 from dotenv import load_dotenv
 from google import genai
@@ -12,24 +12,23 @@ from google import genai
 from scorer import DualScorer
 
 from .catalog import Catalog
+from .characters import CharacterLibrary
 from .config import PipelineConfig
 from .scoring import DEFAULT_STYLE_WEIGHTS, WeightProfileTable
 from .learning import StyleFeedback
 from .ga import GeneSet, crossover_genes, load_best_gene_sets, mutate_gene
 from .prompting import (
-    REQUIRED_STYLE_TERMS,
-    append_required_terms,
-    enforce_bounds,
-    enforce_once,
+    DEFAULT_REQUIRED_TERMS,
+    PromptComposer,
     imagen_call,
     ollama_generate,
-    system_prompt_for,
     system_prompt_hash,
 )
 from .scene_builder import SceneBuilder, short_readable
 from .embeddings import EmbeddingCache, EmbeddingHistoryConfig
 from .storage import ArtifactWriter, PromptLogger, save_and_score
 from .utils import OllamaServiceError, OllamaServiceManager
+from .style_guide import StyleGuide
 
 
 @dataclass
@@ -37,12 +36,16 @@ class PipelineServices:
     scorer: Optional[DualScorer]
     catalog: Catalog
     options_catalog: Catalog | None
+    characters: CharacterLibrary | None
     builder: SceneBuilder
     logger: PromptLogger
     writer: ArtifactWriter
     client: genai.Client
     history: EmbeddingCache
     feedback: Optional[StyleFeedback]
+    style: StyleGuide
+    required_terms: List[str]
+    composer: PromptComposer
 
 
 @dataclass
@@ -52,10 +55,58 @@ class GASettings:
     resume_mix: float
 
 
-def _required_terms(config: PipelineConfig) -> List[str]:
-    terms = [t for t in config.prompting.required_terms if t]
-    return terms or list(REQUIRED_STYLE_TERMS)
+@dataclass
+class PromptWorkflow:
+    composer: PromptComposer
+    sfw_level: float
+    temperature: float
+    top_p: float
+    seed: Optional[int]
+    ollama_url: str
+    ollama_model: str
 
+    _system_prompt: Optional[str] = None
+    _system_hash: Optional[str] = None
+
+    def system_prompt(self) -> str:
+        if self._system_prompt is None:
+            self._system_prompt = self.composer.system_prompt(self.sfw_level)
+        return self._system_prompt
+
+    def system_hash(self) -> str:
+        if self._system_hash is None:
+            self._system_hash = system_prompt_hash(self.system_prompt())
+        return self._system_hash
+
+    def enforcement_temperature(self) -> float:
+        return max(0.45, self.temperature - 0.05)
+
+    def generate_caption(self, payload: Mapping[str, object]) -> Tuple[str, bool]:
+        caption = ollama_generate(
+            self.ollama_url,
+            self.ollama_model,
+            self.system_prompt(),
+            payload,
+            temperature=self.temperature,
+            top_p=self.top_p,
+            seed=self.seed,
+        )
+        missing = self.composer.missing_terms(caption)
+        if not missing:
+            return caption, False
+        enforced = self.composer.enforce_once(
+            self.ollama_url,
+            self.ollama_model,
+            self.system_prompt(),
+            payload,
+            caption,
+            temperature=self.enforcement_temperature(),
+            seed=self.seed,
+        )
+        return enforced, True
+
+    def finalize(self, caption: str, bounds: Mapping[str, object]) -> str:
+        return self.composer.final_prompt(caption, bounds)
 
 def _prepare_services(
     config: PipelineConfig,
@@ -110,7 +161,46 @@ def _prepare_services(
         except FileNotFoundError:
             print(f"[services] options catalog not found at {options_path}")
             options_catalog = None
-    builder = SceneBuilder(catalog, required_terms=_required_terms(config), template_ids=config.prompting.template_ids)
+
+    character_library: CharacterLibrary | None = None
+    char_path = getattr(config.paths, "character_catalog", None)
+    if char_path:
+        try:
+            print(f"[services] loading characters catalog from {char_path}")
+            character_library = CharacterLibrary.load(char_path)
+        except FileNotFoundError:
+            print(f"[services] characters catalog not found at {char_path}")
+        except ValueError as err:
+            print(f"[services] failed to load characters catalog: {err}")
+    configured_terms = [t for t in config.prompting.required_terms if t]
+    fallback_terms = configured_terms or list(DEFAULT_REQUIRED_TERMS)
+    style = StyleGuide.from_catalog(catalog, fallback_terms)
+    required_terms = configured_terms or list(style.required_terms)
+    composer = PromptComposer(style, required_terms)
+
+    catalog_dict = catalog.to_dict()
+    default_character = catalog_dict.get("default_character")
+    variant_defaults: Dict[str, str] = {}
+    for variant in catalog_dict.get("brand_variants", []):
+        if isinstance(variant, Mapping):
+            variant_id = variant.get("id")
+            char_id = variant.get("default_character")
+            if (
+                isinstance(variant_id, str)
+                and variant_id.strip()
+                and isinstance(char_id, str)
+                and char_id.strip()
+            ):
+                variant_defaults[variant_id.strip()] = char_id.strip()
+
+    builder = SceneBuilder(
+        catalog,
+        required_terms=required_terms,
+        template_ids=config.prompting.template_ids,
+        character_library=character_library,
+        default_character=default_character if isinstance(default_character, str) else None,
+        variant_character_defaults=variant_defaults,
+    )
     logger = PromptLogger(config.paths.database)
     writer = ArtifactWriter(output_dir or config.paths.output_dir)
     print(f"[services] artifacts will be written to {writer.output_dir}")
@@ -123,12 +213,16 @@ def _prepare_services(
         scorer=scorer,
         catalog=catalog,
         options_catalog=options_catalog,
+        characters=character_library,
         builder=builder,
         logger=logger,
         writer=writer,
         client=client,
         history=history_cache,
         feedback=feedback,
+        style=style,
+        required_terms=required_terms,
+        composer=composer,
     )
 
 
@@ -256,8 +350,16 @@ def run_plain(
         },
     )
 
-    system_prompt = system_prompt_for(sfw_level)
-    sys_hash = system_prompt_hash(system_prompt)
+    workflow = PromptWorkflow(
+        composer=services.composer,
+        sfw_level=sfw_level,
+        temperature=temperature,
+        top_p=config.ollama.top_p,
+        seed=seed,
+        ollama_url=config.ollama.url,
+        ollama_model=config.ollama.model,
+    )
+    sys_hash = workflow.system_hash()
 
     service_manager = OllamaServiceManager(manual_mode=config.ollama.manual_mode)
 
@@ -282,31 +384,15 @@ def run_plain(
                 print(
                     f"[{idx:02d}/{cycles}] scene ready template={scene.template_id} summary={short_readable(scene)}"
                 )
+                payload = scene.ollama_payload()
                 try:
                     print(f"[{idx:02d}/{cycles}] requesting caption from Ollama")
-                    caption = ollama_generate(
-                        config.ollama.url,
-                        config.ollama.model,
-                        system_prompt,
-                        scene.ollama_payload(),
-                        temperature=temperature,
-                        top_p=config.ollama.top_p,
-                        seed=seed,
-                    )
-                    print(f"[{idx:02d}/{cycles}] enforcing required terms once")
-                    caption = enforce_once(
-                        config.ollama.url,
-                        config.ollama.model,
-                        system_prompt,
-                        scene.ollama_payload(),
-                        caption,
-                        required_terms=_required_terms(config),
-                        temperature=max(0.45, temperature - 0.05),
-                        seed=seed,
-                    )
+                    caption, enforced = workflow.generate_caption(payload)
+                    if enforced:
+                        print(f"[{idx:02d}/{cycles}] enforced required terms once")
                 except Exception as exc:  # pragma: no cover - network interaction
                     print(f"[{idx:02d}/{cycles}] Ollama error: {exc}")
-                    print(f"[{idx:02d}/{cycles}] last caption payload: {scene.ollama_payload()}")
+                    print(f"[{idx:02d}/{cycles}] last caption payload: {payload}")
                     time.sleep(sleep_s)
                     continue
 
@@ -316,16 +402,7 @@ def run_plain(
                 print(
                     f"[{idx:02d}/{cycles}] enforcing bounds min_words={min_words} max_words={max_words}"
                 )
-                final_prompt = enforce_bounds(
-                    caption,
-                    min_words,
-                    max_words,
-                )
-                final_prompt = append_required_terms(
-                    final_prompt,
-                    _required_terms(config),
-                    max_words=max_words,
-                )
+                final_prompt = workflow.finalize(caption, bounds)
                 print(f"[{idx:02d}/{cycles}] final prompt prepared: {final_prompt}")
 
                 try:
@@ -518,8 +595,16 @@ def run_evolve(
         },
     )
 
-    system_prompt = system_prompt_for(sfw_level)
-    sys_hash = system_prompt_hash(system_prompt)
+    workflow = PromptWorkflow(
+        composer=services.composer,
+        sfw_level=sfw_level,
+        temperature=temperature,
+        top_p=config.ollama.top_p,
+        seed=seed,
+        ollama_url=config.ollama.url,
+        ollama_model=config.ollama.model,
+    )
+    sys_hash = workflow.system_hash()
 
     settings = GASettings(
         pop=pop,
@@ -567,31 +652,15 @@ def run_evolve(
                     print(
                         f"[G{gen_idx} I{indiv_idx}] scene ready template={scene.template_id} summary={short_readable(scene)}"
                     )
+                    payload = scene.ollama_payload()
                     try:
                         print(f"[G{gen_idx} I{indiv_idx}] requesting caption from Ollama")
-                        caption = ollama_generate(
-                            config.ollama.url,
-                            config.ollama.model,
-                            system_prompt,
-                            scene.ollama_payload(),
-                            temperature=temperature,
-                            top_p=config.ollama.top_p,
-                            seed=seed,
-                        )
-                        print(f"[G{gen_idx} I{indiv_idx}] enforcing required terms once")
-                        caption = enforce_once(
-                            config.ollama.url,
-                            config.ollama.model,
-                            system_prompt,
-                            scene.ollama_payload(),
-                            caption,
-                            required_terms=_required_terms(config),
-                            temperature=max(0.45, temperature - 0.05),
-                            seed=seed,
-                        )
+                        caption, enforced = workflow.generate_caption(payload)
+                        if enforced:
+                            print(f"[G{gen_idx} I{indiv_idx}] enforced required terms once")
                     except Exception as exc:  # pragma: no cover - network interaction
                         print(f"[G{gen_idx} I{indiv_idx}] Ollama error: {exc}")
-                        print(f"[G{gen_idx} I{indiv_idx}] last caption payload: {scene.ollama_payload()}")
+                        print(f"[G{gen_idx} I{indiv_idx}] last caption payload: {payload}")
                         time.sleep(sleep_s)
                         continue
 
@@ -601,16 +670,7 @@ def run_evolve(
                     print(
                         f"[G{gen_idx} I{indiv_idx}] enforcing bounds min_words={min_words} max_words={max_words}"
                     )
-                    final_prompt = enforce_bounds(
-                        caption,
-                        min_words,
-                        max_words,
-                    )
-                    final_prompt = append_required_terms(
-                        final_prompt,
-                        _required_terms(config),
-                        max_words=max_words,
-                    )
+                    final_prompt = workflow.finalize(caption, bounds)
                     print(f"[G{gen_idx} I{indiv_idx}] final prompt prepared: {final_prompt}")
 
                     try:

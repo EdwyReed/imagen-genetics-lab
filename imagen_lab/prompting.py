@@ -2,34 +2,126 @@ from __future__ import annotations
 
 import hashlib
 import json
-from typing import Iterable, List, Sequence
+from dataclasses import dataclass
+from typing import Iterable, List, Mapping, MutableMapping, Sequence
 
 import requests
 from google.genai import types
 
 from .randomization import clamp
+from .style_guide import StyleGuide
+
+DEFAULT_REQUIRED_TERMS = ["illustration", "watercolor", "glossy", "paper", "pastel"]
 
 
-REQUIRED_STYLE_TERMS = ["illustration", "watercolor", "glossy", "paper", "pastel"]
+@dataclass
+class PromptComposer:
+    """Build and post-process prompts for Ollama and Imagen."""
+
+    style: StyleGuide
+    required_terms: Sequence[str] | None = None
+
+    def __post_init__(self) -> None:
+        terms = list(self.required_terms or self.style.required_terms or DEFAULT_REQUIRED_TERMS)
+        self.required_terms = tuple(
+            term.strip() for term in terms if isinstance(term, str) and term.strip()
+        )
+
+    # ------------------------------------------------------------------
+    # Prompt building
+    # ------------------------------------------------------------------
+    def system_prompt(self, sfw_level: float) -> str:
+        sfw_level = clamp(sfw_level, 0.0, 1.0)
+        tone_desc = (
+            "wholesome and innocent"
+            if sfw_level < 0.25
+            else "flirty but tasteful"
+            if sfw_level < 0.7
+            else "bold adult tone"
+        )
+        context_block = "\n".join(self.style.context_lines())
+        if context_block:
+            context_block += "\n\n"
+
+        required_line = ""
+        if self.required_terms:
+            required_line = (
+                "Mandatory words (use naturally): "
+                + ", ".join(self.required_terms)
+                + ".\n"
+            )
+
+        return (
+            f"You are a professional caption writer for the {self.style.brand} art catalog.\n\n"
+            "Write one natural English caption (18–60 words) describing an illustration that embodies "
+            f"{self.style.aesthetic}.\n"
+            "Include: model, pose, wardrobe, accessories; camera angle and framing ratio; lighting; background; mood. "
+            f"Keep it SFW-level proportional to {sfw_level:.2f} ({tone_desc}).\n\n"
+            + context_block
+            + required_line
+            + "No bullet lists. One or two sentences. Cinematic, coherent, grounded in the provided JSON payload.\n"
+            "The JSON payload includes character (id, name, summary, prompt_hint when available), style_profile (weights, boost/cooldown lists), scene_summary, and feedback_notes. "
+            "Read them carefully, emphasize boost components, ease off cooldown components, and align the caption with scene_summary"
+            " and feedback notes."
+        )
+
+    def missing_terms(self, text: str) -> List[str]:
+        return needs_enforcement(text, self.required_terms)
+
+    def trim_to_limit(self, text: str, max_words: int) -> str:
+        words = text.split()
+        if max_words > 0 and len(words) > max_words:
+            words = words[:max_words]
+        return " ".join(words)
+
+    def append_required_terms(self, text: str, *, max_words: int | None = None) -> str:
+        return append_required_terms(text, self.required_terms, max_words=max_words)
+
+    def enforce_once(
+        self,
+        url: str,
+        model: str,
+        system_prompt: str,
+        payload: Mapping[str, object] | MutableMapping[str, object],
+        base_caption: str,
+        *,
+        temperature: float = 0.5,
+        seed: int | None = None,
+    ) -> str:
+        missing = self.missing_terms(base_caption)
+        if not missing:
+            return base_caption
+        enforce_sys = (
+            system_prompt
+            + "\n\nRewrite the caption naturally (18–60 words) and include the missing words: "
+            + ", ".join(missing)
+            + ". Keep it one or two sentences."
+        )
+        return ollama_generate(
+            url,
+            model,
+            enforce_sys,
+            dict(payload),
+            temperature=temperature,
+            seed=seed,
+        )
+
+    def final_prompt(self, caption: str, bounds: Mapping[str, object]) -> str:
+        max_words = int(bounds.get("max_words", 60) or 60)
+        trimmed = self.trim_to_limit(caption, max_words)
+        return self.append_required_terms(trimmed, max_words=max_words)
 
 
-def system_prompt_for(sfw_level: float) -> str:
-    sfw_level = clamp(sfw_level, 0.0, 1.0)
-    tone_desc = (
-        "wholesome and innocent" if sfw_level < 0.25 else "flirty but tasteful" if sfw_level < 0.7 else "bold adult tone"
-    )
-    return (
-        "You are a professional caption writer for pin-up illustration.\n\n"
-        "Write one natural English caption (18–60 words) describing a retro pin-up watercolor illustration in ultra-glossy jellyart look.\n"
-        "Include: model, pose, wardrobe, accessories; camera angle and framing ratio; lighting; background; mood. Keep it SFW-level proportional to "
-        f"{sfw_level:.2f} ({tone_desc}).\n\n"
-        "Mandatory words (use naturally): illustration, watercolor, glossy, paper, pastel.\n"
-        "No lists. One or two sentences. Cinematic, juicy, coherent.\n"
-        "The JSON payload includes style_profile (weights, boost/cooldown lists), scene_summary, and feedback_notes. Read them carefully, emphasize boost components, ease off cooldown components, and align the caption with scene_summary and feedback notes."
-    )
+# ----------------------------------------------------------------------
+# Compatibility helpers (module-level functions maintained for callers)
+# ----------------------------------------------------------------------
+
+def system_prompt_for(style: StyleGuide, sfw_level: float) -> str:
+    return PromptComposer(style).system_prompt(sfw_level)
 
 
-def enforce_bounds(text: str, mn: int, mx: int) -> str:
+def enforce_bounds(text: str, mn: int, mx: int) -> str:  # pragma: no cover - deprecated
+    _ = mn  # retained for backward compatibility
     words = text.split()
     if len(words) > mx:
         words = words[:mx]
@@ -40,7 +132,7 @@ def ollama_generate(
     url: str,
     model: str,
     system_prompt: str,
-    payload: dict,
+    payload: Mapping[str, object] | MutableMapping[str, object],
     temperature: float = 0.55,
     top_p: float = 0.9,
     seed: int | None = None,
@@ -61,10 +153,10 @@ def ollama_generate(
     return text
 
 
-def needs_enforcement(text: str, required_terms: Sequence[str] = REQUIRED_STYLE_TERMS) -> List[str]:
+def needs_enforcement(text: str, required_terms: Sequence[str] = DEFAULT_REQUIRED_TERMS) -> List[str]:
+    terms = [term for term in required_terms if isinstance(term, str) and term]
     lower = text.lower()
-    missing = [term for term in required_terms if term.lower() not in lower]
-    return missing
+    return [term for term in terms if term.lower() not in lower]
 
 
 def _format_terms_sentence(terms: Sequence[str]) -> str:
@@ -87,19 +179,11 @@ def _format_terms_sentence(terms: Sequence[str]) -> str:
 
 def append_required_terms(
     text: str,
-    required_terms: Iterable[str] = REQUIRED_STYLE_TERMS,
+    required_terms: Iterable[str] = DEFAULT_REQUIRED_TERMS,
     *,
     max_words: int | None = None,
 ) -> str:
-    """Ensure ``text`` contains each of ``required_terms``.
-
-    If Ollama fails to include one or more mandatory style descriptors,
-    fall back to appending a short sentence that mentions every missing
-    term.  When ``max_words`` is provided, the result is trimmed from the
-    main caption (never from the fallback sentence) to honor the word
-    budget while still guaranteeing that the style hints appear in the
-    final Imagen prompt.
-    """
+    """Ensure ``text`` contains each of ``required_terms``."""
 
     required_list = [term for term in required_terms if term]
     if not required_list:
@@ -138,9 +222,9 @@ def enforce_once(
     url: str,
     model: str,
     system_prompt: str,
-    payload: dict,
+    payload: Mapping[str, object] | MutableMapping[str, object],
     base_caption: str,
-    required_terms: Sequence[str] = REQUIRED_STYLE_TERMS,
+    required_terms: Sequence[str] = DEFAULT_REQUIRED_TERMS,
     temperature: float = 0.5,
     seed: int | None = None,
 ) -> str:
@@ -153,7 +237,14 @@ def enforce_once(
         + ", ".join(missing)
         + ". Keep it one or two sentences."
     )
-    return ollama_generate(url, model, enforce_sys, payload, temperature=temperature, seed=seed)
+    return ollama_generate(
+        url,
+        model,
+        enforce_sys,
+        payload,
+        temperature=temperature,
+        seed=seed,
+    )
 
 
 def imagen_call(

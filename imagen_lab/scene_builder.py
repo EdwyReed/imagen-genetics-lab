@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Mapping, Optional
 
 from .catalog import Catalog
+from .characters import CharacterLibrary, CharacterProfile
 from .randomization import WeightedSelector, maybe, pick_from_ids, pick_one
 from .learning import StyleFeedback
 
@@ -24,9 +25,10 @@ class PromptPayload:
     style_profile: Dict[str, Any]
     scene_summary: str = ""
     feedback_notes: List[str] = field(default_factory=list)
+    character: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
-        return {
+        data = {
             "mood": self.mood,
             "model": self.model,
             "pose": self.pose,
@@ -41,6 +43,9 @@ class PromptPayload:
             "scene_summary": self.scene_summary,
             "feedback_notes": list(self.feedback_notes),
         }
+        if self.character:
+            data["character"] = dict(self.character)
+        return data
 
 
 @dataclass
@@ -64,6 +69,7 @@ class SceneStruct:
     caption_bounds: Dict[str, Any]
     gene_ids: Dict[str, Optional[str]]
     payload: PromptPayload
+    character: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         data = {
@@ -87,6 +93,8 @@ class SceneStruct:
             "gene_ids": self.gene_ids,
             "ollama_payload": self.payload.to_dict(),
         }
+        if self.character:
+            data["character"] = dict(self.character)
         return data
 
     def ollama_payload(self) -> Dict[str, Any]:
@@ -94,10 +102,22 @@ class SceneStruct:
 
 
 class SceneBuilder:
-    def __init__(self, catalog: Catalog, required_terms: List[str], template_ids: List[str]):
+    def __init__(
+        self,
+        catalog: Catalog,
+        required_terms: List[str],
+        template_ids: List[str],
+        *,
+        character_library: CharacterLibrary | None = None,
+        default_character: str | None = None,
+        variant_character_defaults: Dict[str, str] | None = None,
+    ):
         self.catalog = catalog
         self.required_terms = required_terms
         self.template_ids = template_ids
+        self.character_library = character_library
+        self.default_character = default_character
+        self.variant_character_defaults = variant_character_defaults or {}
 
     def _pick_template(self, template_id: Optional[str], feedback: Optional[StyleFeedback]) -> str:
         if template_id:
@@ -157,6 +177,50 @@ class SceneBuilder:
             pool.remove(choice)
         return out
 
+    # ------------------------------------------------------------------
+    # character helpers
+    # ------------------------------------------------------------------
+    def _resolve_variant(self, *items: dict) -> Optional[str]:
+        for item in items:
+            if isinstance(item, dict):
+                variant = item.get("variant")
+                if isinstance(variant, str) and variant.strip():
+                    return variant.strip()
+        brand = self.catalog.raw.get("brand") if isinstance(self.catalog.raw, Mapping) else None
+        if isinstance(brand, str) and brand.strip():
+            return brand.strip()
+        return None
+
+    def _variant_default_character(self, variant: Optional[str]) -> Optional[str]:
+        if variant and variant in self.variant_character_defaults:
+            return self.variant_character_defaults[variant]
+        return self.default_character
+
+    def _select_character(
+        self,
+        variant: Optional[str],
+    ) -> Optional[CharacterProfile]:
+        if self.character_library is None:
+            return None
+        default_id = self._variant_default_character(variant)
+        try:
+            return self.character_library.choose(variant, default_id=default_id)
+        except ValueError:
+            return self.character_library.find(default_id) or None
+
+    def _fallback_model_description(self) -> str:
+        entries = self.catalog.section("model_descriptions")
+        if not entries:
+            return "featured muse"
+        choice = pick_one(entries)
+        if isinstance(choice, dict):
+            for key in ("description", "desc", "name"):
+                value = choice.get(key)
+                if isinstance(value, str) and value.strip():
+                    return value.strip()
+            return str(choice)
+        return str(choice)
+
     def build_scene(
         self,
         sfw_level: float,
@@ -200,11 +264,24 @@ class SceneBuilder:
         moods = self.catalog.section("moods")
         poses = self.catalog.section("poses")
         actions = self.catalog.section("actions")
-        model_desc = pick_one(self.catalog.section("model_descriptions"))
 
         mood = self._pick_with_feedback(selector, moods, "mood", feedback)
         pose = self._pick_with_feedback(selector, poses, "pose", feedback)
         action = self._pick_with_feedback(selector, actions, "action", feedback)
+
+        variant_id = self._resolve_variant(palette, lighting, background, mood, pose, action)
+        character_profile = self._select_character(variant_id)
+        character_info: Optional[Dict[str, Any]] = None
+        if character_profile is not None:
+            character_info = character_profile.to_dict()
+            if variant_id and "variant" not in character_info:
+                character_info["variant"] = variant_id
+        model_desc = (
+            character_profile.summary
+            if character_profile is not None and character_profile.summary
+            else self._fallback_model_description()
+        )
+        model_desc = str(model_desc).strip()
 
         wardrobe_groups = self.catalog.wardrobe_groups()
         wardrobe_sets = self.catalog.wardrobe_sets()
@@ -342,6 +419,7 @@ class SceneBuilder:
             required_terms=self.required_terms,
             style_profile=style_snapshot,
             feedback_notes=list(style_snapshot.get("notes", [])),
+            character=character_info,
         )
 
         gene_ids = {
@@ -378,6 +456,7 @@ class SceneBuilder:
             caption_bounds=bounds,
             gene_ids=gene_ids,
             payload=payload,
+            character=character_info,
         )
         scene.payload.scene_summary = short_readable(scene)
         return scene
@@ -448,6 +527,7 @@ class SceneBuilder:
             required_terms=self.required_terms,
             style_profile=style_snapshot,
             feedback_notes=list(style_snapshot.get("notes", [])),
+            character=base.character,
         )
         base.payload.scene_summary = short_readable(base)
         return base
@@ -462,6 +542,7 @@ def short_readable(scene: SceneStruct) -> str:
         f"frame={scene.camera_framing.get('id')}",
         f"pose={scene.pose.get('id') if isinstance(scene.pose, dict) else ''}",
         f"action={scene.action.get('id') if isinstance(scene.action, dict) else ''}",
+        f"char={scene.character.get('id')}" if scene.character else "",
         f"main={scene.wardrobe_main}",
         f"extras={','.join(scene.wardrobe_extras)}" if scene.wardrobe_extras else "",
     ]

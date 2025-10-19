@@ -1,6 +1,7 @@
 {
   "version": "2.6-gloss",
   "purpose": "Master object for building glossy, jelly-art watercolor pin-up captions in a hyper-specular, cover-girl vibe. Output 1–2 concise sentences; restate only concrete scene details.",
+  "default_character": "sugar_troublemaker",
   "style_controller": {
     "aesthetic": "Lacquered watercolor jelly-art with chrome-wet speculars",
     "paper_texture": true,
