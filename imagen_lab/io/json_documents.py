@@ -26,10 +26,33 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 import json
 from pathlib import Path
-from typing import Any, Callable, Dict, Iterable, List, Mapping, MutableMapping, Optional, Sequence, Tuple
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Iterable,
+    List,
+    Mapping,
+    MutableMapping,
+    Optional,
+    Sequence,
+    Set,
+    Tuple,
+)
 
 
 MERGE_MODES: frozenset[str] = frozenset({"override", "append_unique", "remove"})
+
+
+def _split_namespace(namespace: str, *, source: str) -> Tuple[str, str]:
+    if "@" not in namespace:
+        raise SchemaValidationError(source, ["id_namespace must include '@' version suffix"])
+    base, version = namespace.split("@", 1)
+    if not base.strip():
+        raise SchemaValidationError(source, ["id_namespace must contain a non-empty prefix before '@'"])
+    if not version.strip():
+        raise SchemaValidationError(source, ["id_namespace must contain a non-empty version suffix after '@'"])
+    return base.strip(), version.strip()
 
 
 class SchemaError(ValueError):
@@ -52,6 +75,298 @@ class SchemaValidationError(SchemaError):
 class SchemaMigrationError(SchemaError):
     """Raised when a document cannot be migrated to the target version."""
 
+
+CATALOG_SCHEMA_VERSION = 1
+
+
+@dataclass(frozen=True)
+class CatalogEntry:
+    """Individual catalog item with an identifier and metadata."""
+
+    id: str
+    payload: Mapping[str, object]
+
+    @classmethod
+    def from_mapping(
+        cls, raw: Mapping[str, object], *, source: str, index: int
+    ) -> "CatalogEntry":
+        identifier = _normalise_string(raw.get("id"))
+        if not identifier:
+            raise SchemaValidationError(
+                source, [f"entries[{index}].id must be a non-empty string"]
+            )
+        return cls(id=identifier, payload=dict(raw))
+
+
+@dataclass(frozen=True)
+class CatalogDocument:
+    """Versioned catalog storing reusable pose/lighting/palette entries."""
+
+    header: SchemaHeader
+    entries: Tuple[CatalogEntry, ...]
+    extras: Mapping[str, object] = field(default_factory=dict)
+
+    @property
+    def catalog_version(self) -> str:
+        _, version = _split_namespace(self.header.id_namespace, source="<internal>")
+        return version
+
+    @classmethod
+    def from_raw(
+        cls, data: object, *, source: str
+    ) -> "CatalogDocument":
+        canonical = cls._upgrade(data, source=source)
+        return cls._from_canonical(canonical, source=source)
+
+    @classmethod
+    def _upgrade(cls, data: object, *, source: str) -> Mapping[str, object]:
+        if isinstance(data, Mapping) and isinstance(data.get("schema_version"), int):
+            version = data["schema_version"]
+            if version == CATALOG_SCHEMA_VERSION:
+                return data
+            if version > CATALOG_SCHEMA_VERSION:
+                raise SchemaMigrationError(
+                    source, f"unsupported schema version {version}"
+                )
+        else:
+            version = 0
+
+        upgraded = data
+        while version < CATALOG_SCHEMA_VERSION:
+            step = version + 1
+            converter = _CATALOG_MIGRATIONS.get((version, step))
+            if converter is None:
+                raise SchemaMigrationError(
+                    source, f"no migration path from version {version}"
+                )
+            upgraded = converter(upgraded, source=source)
+            if not isinstance(upgraded, Mapping):
+                raise SchemaMigrationError(
+                    source, "migration did not return a JSON object"
+                )
+            version = upgraded.get("schema_version", version)
+            if version != step:
+                raise SchemaMigrationError(
+                    source,
+                    f"migration step expected schema_version {step}, got {version!r}",
+                )
+        return upgraded
+
+    @classmethod
+    def _from_canonical(
+        cls, data: Mapping[str, object], *, source: str
+    ) -> "CatalogDocument":
+        errors: List[str] = []
+
+        version = data.get("schema_version")
+        if not isinstance(version, int) or version != CATALOG_SCHEMA_VERSION:
+            errors.append(
+                f"schema_version must be integer {CATALOG_SCHEMA_VERSION}, got {version!r}"
+            )
+
+        namespace = _normalise_string(data.get("id_namespace"))
+        if not namespace:
+            errors.append("id_namespace must be a non-empty string")
+        else:
+            try:
+                _split_namespace(namespace, source=source)
+            except SchemaValidationError as exc:
+                errors.extend(exc.errors)
+
+        extends = data.get("extends")
+        if extends is not None and not isinstance(extends, str):
+            errors.append("extends must be either a string or null")
+        elif isinstance(extends, str):
+            try:
+                _split_namespace(extends, source=source)
+            except SchemaValidationError as exc:
+                errors.extend([f"extends {msg}" for msg in exc.errors])
+
+        merge_field = data.get("merge", {})
+        merge: Dict[str, str] = {}
+        if merge_field is None:
+            merge_field = {}
+        if not isinstance(merge_field, Mapping):
+            errors.append("merge must be an object")
+        else:
+            for key, value in merge_field.items():
+                if not isinstance(key, str):
+                    errors.append("merge keys must be strings")
+                    continue
+                if not isinstance(value, str) or value not in MERGE_MODES:
+                    errors.append(
+                        f"merge['{key}'] must be one of {sorted(MERGE_MODES)}, got {value!r}"
+                    )
+                    continue
+                merge[key] = value
+
+        raw_entries = data.get("entries")
+        if not isinstance(raw_entries, list):
+            errors.append("entries must be an array")
+            raw_entries = []
+        elif not raw_entries:
+            errors.append("entries must contain at least one item")
+
+        if errors:
+            raise SchemaValidationError(source, errors)
+
+        header = SchemaHeader(
+            schema_version=version,
+            id_namespace=namespace,
+            extends=extends,
+            merge=merge,
+        )
+
+        entries: List[CatalogEntry] = []
+        seen: Set[str] = set()
+        for idx, item in enumerate(raw_entries):
+            if not isinstance(item, Mapping):
+                raise SchemaValidationError(
+                    source, [f"entries[{idx}] must be a JSON object"]
+                )
+            entry = CatalogEntry.from_mapping(item, source=source, index=idx)
+            if entry.id in seen:
+                raise SchemaValidationError(
+                    source, [f"duplicate catalog entry id '{entry.id}'"]
+                )
+            seen.add(entry.id)
+            entries.append(entry)
+
+        extras: Dict[str, object] = {}
+        for key, value in data.items():
+            if key not in {"schema_version", "id_namespace", "extends", "merge", "entries"}:
+                extras[key] = value
+
+        return cls(header=header, entries=tuple(entries), extras=extras)
+
+    def to_dict(self) -> Dict[str, object]:
+        return {
+            "schema_version": self.header.schema_version,
+            "id_namespace": self.header.id_namespace,
+            "extends": self.header.extends,
+            "merge": dict(self.header.merge),
+            "entries": [dict(entry.payload) for entry in self.entries],
+            **dict(self.extras),
+        }
+
+
+def _migrate_catalog_v0_to_v1(payload: object, *, source: str) -> Mapping[str, object]:
+    if not isinstance(payload, Mapping):
+        raise SchemaMigrationError(source, "legacy catalog payload must be an object")
+
+    entries: List[Mapping[str, object]] = []
+    raw_entries = payload.get("entries")
+    if isinstance(raw_entries, Iterable) and not isinstance(raw_entries, (str, bytes)):
+        for item in raw_entries:
+            if isinstance(item, Mapping):
+                entries.append(item)
+            else:
+                raise SchemaMigrationError(
+                    source, "legacy entries must contain JSON objects"
+                )
+    else:
+        candidate = {key: value for key, value in payload.items() if key != "version"}
+        if "id" in candidate:
+            entries.append(candidate)
+
+    if not entries:
+        raise SchemaMigrationError(source, "legacy catalog payload contains no entries")
+
+    namespace = _normalise_string(payload.get("id_namespace"))
+    if not namespace:
+        prefix = _normalise_string(payload.get("catalog")) or "catalog"
+        namespace = f"catalog:{prefix}@legacy"
+
+    return {
+        "schema_version": CATALOG_SCHEMA_VERSION,
+        "id_namespace": namespace,
+        "extends": None,
+        "merge": {},
+        "entries": [dict(entry) for entry in entries],
+    }
+
+
+_CATALOG_MIGRATIONS: Dict[Tuple[int, int], Callable[[object], Mapping[str, object]]] = {
+    (0, 1): lambda payload, source: _migrate_catalog_v0_to_v1(payload, source=source),
+}
+
+
+class CatalogRegistry:
+    """Lookup table for primitive catalog entries with version awareness."""
+
+    def __init__(self, documents: Sequence[CatalogDocument]):
+        self._documents: Tuple[CatalogDocument, ...] = tuple(documents)
+        self._by_namespace: Dict[str, CatalogDocument] = {
+            document.header.id_namespace: document for document in self._documents
+        }
+        versions_by_entry: Dict[str, Set[str]] = {}
+        for document in self._documents:
+            version = document.catalog_version
+            for entry in document.entries:
+                versions_by_entry.setdefault(entry.id, set()).add(version)
+        self._versions_by_entry: Dict[str, Set[str]] = {
+            key: set(value) for key, value in versions_by_entry.items()
+        }
+
+    @classmethod
+    def load(cls, path: Path) -> "CatalogRegistry":
+        path = Path(path)
+        if not path.exists():
+            raise FileNotFoundError(path)
+
+        documents: List[CatalogDocument] = []
+
+        def consume(payload: object, *, source: str) -> None:
+            try:
+                document = CatalogDocument.from_raw(payload, source=source)
+            except SchemaError as exc:
+                raise ValueError(str(exc)) from exc
+            documents.append(document)
+
+        if path.is_dir():
+            for child in sorted(path.glob("*.json")):
+                if not child.is_file():
+                    continue
+                try:
+                    payload = json.loads(child.read_text(encoding="utf-8"))
+                except json.JSONDecodeError as exc:
+                    message = f"{child}: invalid JSON: {exc.msg} at line {exc.lineno} column {exc.colno}"
+                    raise ValueError(message) from exc
+                consume(payload, source=str(child))
+        else:
+            try:
+                payload = json.loads(path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError as exc:
+                message = f"{path}: invalid JSON: {exc.msg} at line {exc.lineno} column {exc.colno}"
+                raise ValueError(message) from exc
+            consume(payload, source=str(path))
+
+        if not documents:
+            raise ValueError("catalog registry contains no valid documents")
+
+        return cls(documents)
+
+    def has_entry(self, identifier: str) -> bool:
+        if "@" in identifier:
+            base, version = identifier.split("@", 1)
+            versions = self._versions_by_entry.get(base)
+            if not versions:
+                return False
+            return bool(version.strip()) and version.strip() in versions
+        return identifier in self._versions_by_entry
+
+    def ensure_entry(self, identifier: str, *, source: str, field: str) -> None:
+        if not self.has_entry(identifier):
+            raise SchemaValidationError(
+                source,
+                [
+                    f"{field} references unknown catalog entry '{identifier}'",
+                ],
+            )
+
+    @property
+    def documents(self) -> Tuple[CatalogDocument, ...]:
+        return self._documents
 
 @dataclass(frozen=True)
 class SchemaHeader:
@@ -224,10 +539,20 @@ class CharacterDocument:
         namespace = _normalise_string(data.get("id_namespace"))
         if not namespace:
             errors.append("id_namespace must be a non-empty string")
+        else:
+            try:
+                _split_namespace(namespace, source=source)
+            except SchemaValidationError as exc:
+                errors.extend(exc.errors)
 
         extends = data.get("extends")
         if extends is not None and not isinstance(extends, str):
             errors.append("extends must be either a string or null")
+        elif isinstance(extends, str):
+            try:
+                _split_namespace(extends, source=source)
+            except SchemaValidationError as exc:
+                errors.extend([f"extends {msg}" for msg in exc.errors])
 
         merge_field = data.get("merge", {})
         merge: Dict[str, str] = {}
@@ -402,21 +727,35 @@ class StyleDocument:
     extras: Mapping[str, object] = field(default_factory=dict)
 
     @classmethod
-    def from_raw(cls, data: object, *, source: str) -> "StyleDocument":
+    def from_raw(
+        cls,
+        data: object,
+        *,
+        source: str,
+        catalogs: "CatalogRegistry | None" = None,
+    ) -> "StyleDocument":
         canonical = _upgrade_style_payload(data, source)
-        return cls._from_canonical(canonical, source=source)
+        return cls._from_canonical(canonical, source=source, catalogs=catalogs)
 
     @classmethod
-    def from_path(cls, path: Path) -> "StyleDocument":
+    def from_path(
+        cls, path: Path, *, catalogs: "CatalogRegistry | None" = None
+    ) -> "StyleDocument":
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
         except json.JSONDecodeError as exc:
             message = f"invalid JSON: {exc.msg} at line {exc.lineno} column {exc.colno}"
             raise SchemaError(str(path), message) from exc
-        return cls.from_raw(payload, source=str(path))
+        return cls.from_raw(payload, source=str(path), catalogs=catalogs)
 
     @classmethod
-    def _from_canonical(cls, data: Mapping[str, object], *, source: str) -> "StyleDocument":
+    def _from_canonical(
+        cls,
+        data: Mapping[str, object],
+        *,
+        source: str,
+        catalogs: "CatalogRegistry | None" = None,
+    ) -> "StyleDocument":
         errors: List[str] = []
 
         version = data.get("schema_version")
@@ -428,10 +767,20 @@ class StyleDocument:
         namespace = _normalise_string(data.get("id_namespace"))
         if not namespace:
             errors.append("id_namespace must be a non-empty string")
+        else:
+            try:
+                _split_namespace(namespace, source=source)
+            except SchemaValidationError as exc:
+                errors.extend(exc.errors)
 
         extends = data.get("extends")
         if extends is not None and not isinstance(extends, str):
             errors.append("extends must be either a string or null")
+        elif isinstance(extends, str):
+            try:
+                _split_namespace(extends, source=source)
+            except SchemaValidationError as exc:
+                errors.extend([f"extends {msg}" for msg in exc.errors])
 
         merge_field = data.get("merge", {})
         merge: Dict[str, str] = {}
@@ -538,6 +887,13 @@ class StyleDocument:
             }:
                 extras[key] = value
 
+        if catalogs is not None:
+            for field, items in meso_map.items():
+                for item in items:
+                    catalogs.ensure_entry(
+                        item, source=source, field=f"meso_templates['{field}']"
+                    )
+
         return cls(
             header=header,
             brand=brand,
@@ -636,8 +992,12 @@ __all__ = [
     "CharacterEntry",
     "CharacterDocument",
     "StyleDocument",
+    "CatalogEntry",
+    "CatalogDocument",
+    "CatalogRegistry",
     "CHARACTER_SCHEMA_VERSION",
     "STYLE_SCHEMA_VERSION",
+    "CATALOG_SCHEMA_VERSION",
     "MERGE_MODES",
 ]
 
