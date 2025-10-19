@@ -17,7 +17,7 @@ from .scoring import DEFAULT_STYLE_WEIGHTS, WeightProfileTable
 from .learning import StyleFeedback
 from .ga import GeneSet, crossover_genes, load_best_gene_sets, mutate_gene
 from .prompting import (
-    REQUIRED_STYLE_TERMS,
+    DEFAULT_REQUIRED_TERMS,
     append_required_terms,
     enforce_bounds,
     enforce_once,
@@ -30,6 +30,7 @@ from .scene_builder import SceneBuilder, short_readable
 from .embeddings import EmbeddingCache, EmbeddingHistoryConfig
 from .storage import ArtifactWriter, PromptLogger, save_and_score
 from .utils import OllamaServiceError, OllamaServiceManager
+from .style_guide import StyleGuide
 
 
 @dataclass
@@ -43,6 +44,8 @@ class PipelineServices:
     client: genai.Client
     history: EmbeddingCache
     feedback: Optional[StyleFeedback]
+    style: StyleGuide
+    required_terms: List[str]
 
 
 @dataclass
@@ -50,11 +53,6 @@ class GASettings:
     pop: int
     resume_k: int
     resume_mix: float
-
-
-def _required_terms(config: PipelineConfig) -> List[str]:
-    terms = [t for t in config.prompting.required_terms if t]
-    return terms or list(REQUIRED_STYLE_TERMS)
 
 
 def _prepare_services(
@@ -110,7 +108,16 @@ def _prepare_services(
         except FileNotFoundError:
             print(f"[services] options catalog not found at {options_path}")
             options_catalog = None
-    builder = SceneBuilder(catalog, required_terms=_required_terms(config), template_ids=config.prompting.template_ids)
+    configured_terms = [t for t in config.prompting.required_terms if t]
+    fallback_terms = configured_terms or list(DEFAULT_REQUIRED_TERMS)
+    style = StyleGuide.from_catalog(catalog, fallback_terms)
+    required_terms = configured_terms or list(style.required_terms)
+
+    builder = SceneBuilder(
+        catalog,
+        required_terms=required_terms,
+        template_ids=config.prompting.template_ids,
+    )
     logger = PromptLogger(config.paths.database)
     writer = ArtifactWriter(output_dir or config.paths.output_dir)
     print(f"[services] artifacts will be written to {writer.output_dir}")
@@ -129,6 +136,8 @@ def _prepare_services(
         client=client,
         history=history_cache,
         feedback=feedback,
+        style=style,
+        required_terms=required_terms,
     )
 
 
@@ -240,6 +249,8 @@ def run_plain(
     builder = services.builder
     client = services.client
     feedback = services.feedback
+    style = services.style
+    required_terms = services.required_terms
 
     session_id = f"plain-{int(time.time())}"
     if scorer is None:
@@ -256,7 +267,7 @@ def run_plain(
         },
     )
 
-    system_prompt = system_prompt_for(sfw_level)
+    system_prompt = system_prompt_for(style, sfw_level)
     sys_hash = system_prompt_hash(system_prompt)
 
     service_manager = OllamaServiceManager(manual_mode=config.ollama.manual_mode)
@@ -300,7 +311,7 @@ def run_plain(
                         system_prompt,
                         scene.ollama_payload(),
                         caption,
-                        required_terms=_required_terms(config),
+                        required_terms=required_terms,
                         temperature=max(0.45, temperature - 0.05),
                         seed=seed,
                     )
@@ -323,7 +334,7 @@ def run_plain(
                 )
                 final_prompt = append_required_terms(
                     final_prompt,
-                    _required_terms(config),
+                    required_terms,
                     max_words=max_words,
                 )
                 print(f"[{idx:02d}/{cycles}] final prompt prepared: {final_prompt}")
@@ -499,6 +510,8 @@ def run_evolve(
     catalog = services.catalog
     client = services.client
     feedback = services.feedback
+    style = services.style
+    required_terms = services.required_terms
 
     session_id = f"evolve-{int(time.time())}"
     if scorer is None:
@@ -518,7 +531,7 @@ def run_evolve(
         },
     )
 
-    system_prompt = system_prompt_for(sfw_level)
+    system_prompt = system_prompt_for(style, sfw_level)
     sys_hash = system_prompt_hash(system_prompt)
 
     settings = GASettings(
@@ -585,7 +598,7 @@ def run_evolve(
                             system_prompt,
                             scene.ollama_payload(),
                             caption,
-                            required_terms=_required_terms(config),
+                            required_terms=required_terms,
                             temperature=max(0.45, temperature - 0.05),
                             seed=seed,
                         )
@@ -608,7 +621,7 @@ def run_evolve(
                     )
                     final_prompt = append_required_terms(
                         final_prompt,
-                        _required_terms(config),
+                        required_terms,
                         max_words=max_words,
                     )
                     print(f"[G{gen_idx} I{indiv_idx}] final prompt prepared: {final_prompt}")

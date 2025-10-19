@@ -16,6 +16,14 @@ class Catalog:
             data = json.load(fh)
         return cls(raw=data)
 
+    def _first_brand_profile(self) -> Optional[Dict[str, Any]]:
+        profiles = self.raw.get("brand_profiles")
+        if isinstance(profiles, dict):
+            for profile in profiles.values():
+                if isinstance(profile, dict):
+                    return profile
+        return None
+
     def section(self, key: str, default: Optional[List[dict]] = None) -> List[dict]:
         value = self.raw.get(key, default or [])
         if not isinstance(value, list):
@@ -35,11 +43,25 @@ class Catalog:
 
     def rules(self) -> Dict[str, Any]:
         rules = self.raw.get("rules", {})
-        return rules if isinstance(rules, dict) else {}
+        if isinstance(rules, dict) and rules:
+            return rules
+        profile = self._first_brand_profile()
+        if isinstance(profile, dict):
+            rules = profile.get("rules", {})
+            if isinstance(rules, dict):
+                return rules
+        return {}
 
     def style_controller(self) -> Dict[str, Any]:
         style = self.raw.get("style_controller", {})
-        return style if isinstance(style, dict) else {}
+        if isinstance(style, dict) and style:
+            return style
+        profile = self._first_brand_profile()
+        if isinstance(profile, dict):
+            style = profile.get("style_controller", {})
+            if isinstance(style, dict):
+                return style
+        return {}
 
     def find_description(self, item_id: str) -> Optional[str]:
         wardrobe = self.raw.get("wardrobe", {})
