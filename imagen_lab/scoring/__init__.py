@@ -14,6 +14,7 @@ from .weights_table import (
     WeightProfileTable,
     normalize_weights,
 )
+from .core import ScoreInputs, ScoreReport, compute_score_report
 
 __all__ = [
     "ClipTextHead",
@@ -26,4 +27,7 @@ __all__ = [
     "WeightProfileTable",
     "load_clip_text_heads",
     "normalize_weights",
+    "ScoreInputs",
+    "ScoreReport",
+    "compute_score_report",
 ]

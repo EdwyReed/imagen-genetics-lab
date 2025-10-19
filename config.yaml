@@ -34,7 +34,12 @@ imagen:
 scoring:
   device: auto
   batch_size: 4
-  tau: 0.07
+  tau:
+    default: 0.07
+    clip_prompt_alignment: 0.05
+    identity_consistency: 0.06
+    ai_artifacts: 0.08
+    visual_noise_level: 0.09
   cal_style:
   cal_illu:
   weights:
