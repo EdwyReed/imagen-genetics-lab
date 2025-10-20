@@ -1,0 +1,68 @@
+[
+  {
+    "id": "pose_arching_back",
+    "desc": "arching her back with one hand on the hip and playful smile",
+    "attributes": {
+      "sexuality": 0.72,
+      "nudity": 0.35,
+      "routine": 0.25,
+      "artistic": 0.68,
+      "era": {"1960s": 0.6, "1980s": 0.3}
+    }
+  },
+  {
+    "id": "pose_pinup_legpop",
+    "desc": "one leg popped behind while blowing a kiss toward camera",
+    "attributes": {
+      "sexuality": 0.65,
+      "nudity": 0.28,
+      "routine": 0.55,
+      "artistic": 0.58,
+      "era": {"1950s": 0.4, "1970s": 0.4}
+    }
+  },
+  {
+    "id": "pose_sitting_stool",
+    "desc": "perched on a chrome stool with knees together and tilted shoulders",
+    "attributes": {
+      "sexuality": 0.48,
+      "nudity": 0.18,
+      "routine": 0.62,
+      "artistic": 0.74,
+      "era": {"1960s": 0.5, "1990s": 0.2}
+    }
+  },
+  {
+    "id": "pose_floor_recline",
+    "desc": "reclining on polished floor while supporting herself on an elbow",
+    "attributes": {
+      "sexuality": 0.82,
+      "nudity": 0.55,
+      "routine": 0.18,
+      "artistic": 0.79,
+      "era": {"1970s": 0.5, "1980s": 0.4}
+    }
+  },
+  {
+    "id": "pose_dance_twirl",
+    "desc": "twirling mid-spin with skirt fanned out and laughter in her eyes",
+    "attributes": {
+      "sexuality": 0.44,
+      "nudity": 0.15,
+      "routine": 0.71,
+      "artistic": 0.81,
+      "era": {"1950s": 0.6, "2000s": 0.3}
+    }
+  },
+  {
+    "id": "pose_shoulder_glance",
+    "desc": "looking back over shoulder with hands clasped behind",
+    "attributes": {
+      "sexuality": 0.58,
+      "nudity": 0.22,
+      "routine": 0.48,
+      "artistic": 0.63,
+      "era": {"1960s": 0.5, "1990s": 0.3}
+    }
+  }
+]

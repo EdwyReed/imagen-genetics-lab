@@ -1,0 +1,213 @@
+{
+  "dresses": [
+    {
+      "id": "dress_bubblegum",
+      "desc": "bubblegum swing dress with scalloped hem",
+      "attributes": {
+        "sexuality": 0.5,
+        "nudity": 0.18,
+        "routine": 0.72,
+        "artistic": 0.82,
+        "era": {"1950s": 0.7, "1960s": 0.2}
+      }
+    },
+    {
+      "id": "dress_sparkle_bodycon",
+      "desc": "sparkle bodycon mini with sequined straps",
+      "attributes": {
+        "sexuality": 0.74,
+        "nudity": 0.46,
+        "routine": 0.35,
+        "artistic": 0.75,
+        "era": {"1980s": 0.6, "1990s": 0.3}
+      }
+    }
+  ],
+  "one_piece": [
+    {
+      "id": "onepiece_pool",
+      "desc": "shimmer poolside one-piece with sweetheart neckline",
+      "attributes": {
+        "sexuality": 0.7,
+        "nudity": 0.52,
+        "routine": 0.28,
+        "artistic": 0.78,
+        "era": {"1970s": 0.5, "1980s": 0.3}
+      }
+    }
+  ],
+  "tops": [
+    {
+      "id": "top_polkadot",
+      "desc": "polka-dot knot blouse with puff sleeves",
+      "attributes": {
+        "sexuality": 0.52,
+        "nudity": 0.2,
+        "routine": 0.74,
+        "artistic": 0.82,
+        "era": {"1950s": 0.6, "1960s": 0.3}
+      }
+    },
+    {
+      "id": "top_latex",
+      "desc": "latex sweetheart bustier with reflective glaze",
+      "attributes": {
+        "sexuality": 0.8,
+        "nudity": 0.55,
+        "routine": 0.22,
+        "artistic": 0.7,
+        "era": {"1980s": 0.6, "2000s": 0.2}
+      }
+    }
+  ],
+  "bottoms": [
+    {
+      "id": "bottom_cigarette",
+      "desc": "candy stripe cigarette pants",
+      "attributes": {
+        "sexuality": 0.48,
+        "nudity": 0.16,
+        "routine": 0.76,
+        "artistic": 0.78,
+        "era": {"1950s": 0.6, "1960s": 0.3}
+      }
+    },
+    {
+      "id": "bottom_vinyl",
+      "desc": "black vinyl mini skirt with chrome zipper",
+      "attributes": {
+        "sexuality": 0.72,
+        "nudity": 0.42,
+        "routine": 0.38,
+        "artistic": 0.73,
+        "era": {"1970s": 0.5, "1980s": 0.4}
+      }
+    }
+  ],
+  "footwear": [
+    {
+      "id": "shoe_peep_toe",
+      "desc": "patent peep-toe heels",
+      "attributes": {
+        "sexuality": 0.62,
+        "nudity": 0.24,
+        "routine": 0.68,
+        "artistic": 0.78,
+        "era": {"1950s": 0.6, "1960s": 0.2}
+      }
+    },
+    {
+      "id": "shoe_platform",
+      "desc": "sparkle platform sandals",
+      "attributes": {
+        "sexuality": 0.7,
+        "nudity": 0.32,
+        "routine": 0.42,
+        "artistic": 0.74,
+        "era": {"1970s": 0.5, "1980s": 0.3}
+      }
+    }
+  ],
+  "hosiery": [
+    {
+      "id": "hosiery_seamed",
+      "desc": "sheer seamed stockings",
+      "attributes": {
+        "sexuality": 0.66,
+        "nudity": 0.34,
+        "routine": 0.58,
+        "artistic": 0.8,
+        "era": {"1950s": 0.7, "1960s": 0.2}
+      }
+    }
+  ],
+  "headwear": [
+    {
+      "id": "headband_satin",
+      "desc": "satin headband with bow",
+      "attributes": {
+        "sexuality": 0.4,
+        "nudity": 0.12,
+        "routine": 0.82,
+        "artistic": 0.72,
+        "era": {"1950s": 0.6, "1960s": 0.3}
+      }
+    }
+  ],
+  "jewelry": [
+    {
+      "id": "jewelry_pearl",
+      "desc": "triple strand pearl choker",
+      "attributes": {
+        "sexuality": 0.46,
+        "nudity": 0.14,
+        "routine": 0.76,
+        "artistic": 0.74,
+        "era": {"1950s": 0.6, "1960s": 0.3}
+      }
+    },
+    {
+      "id": "jewelry_hoops",
+      "desc": "oversized holographic hoop earrings",
+      "attributes": {
+        "sexuality": 0.62,
+        "nudity": 0.2,
+        "routine": 0.52,
+        "artistic": 0.78,
+        "era": {"1980s": 0.7, "1990s": 0.2}
+      }
+    }
+  ],
+  "belts": [
+    {
+      "id": "belt_chain",
+      "desc": "chrome chain belt",
+      "attributes": {
+        "sexuality": 0.56,
+        "nudity": 0.24,
+        "routine": 0.58,
+        "artistic": 0.69,
+        "era": {"1970s": 0.5, "1980s": 0.3}
+      }
+    }
+  ],
+  "scarves": [
+    {
+      "id": "scarf_silk",
+      "desc": "silk scarf knotted at the neck",
+      "attributes": {
+        "sexuality": 0.44,
+        "nudity": 0.12,
+        "routine": 0.82,
+        "artistic": 0.75,
+        "era": {"1950s": 0.6, "1960s": 0.3}
+      }
+    }
+  ],
+  "gloves": [
+    {
+      "id": "gloves_lace",
+      "desc": "wrist-length lace gloves",
+      "attributes": {
+        "sexuality": 0.58,
+        "nudity": 0.2,
+        "routine": 0.7,
+        "artistic": 0.77,
+        "era": {"1950s": 0.6, "1960s": 0.2}
+      }
+    }
+  ],
+  "outerwear": [
+    {
+      "id": "outerwear_faux_fur",
+      "desc": "cropped faux-fur shrug",
+      "attributes": {
+        "sexuality": 0.62,
+        "nudity": 0.28,
+        "routine": 0.48,
+        "artistic": 0.81,
+        "era": {"1960s": 0.5, "1980s": 0.3}
+      }
+    }
+  ]
+}
