@@ -7,6 +7,7 @@ import logging
 import random
 import sys
 import uuid
+from contextlib import nullcontext
 from pathlib import Path
 from typing import Dict, List, Sequence
 
@@ -121,33 +122,103 @@ def run_plain(args: argparse.Namespace) -> None:
     out_dir = Path(args.out)
     runs_log = out_dir / "runs.jsonl"
     run_id = uuid.uuid4().hex
+
+    generation_context = nullcontext()
+    generation_workflow = None
+    if getattr(args, "generate_images", False):
+        from imagen_pipeline.core.generation import (
+            GenerationError,
+            ImageGenerationWorkflow,
+            ImagenOptions,
+            OllamaOptions,
+        )
+
+        ollama_options = OllamaOptions(
+            base_url=args.ollama_url,
+            model=args.ollama_model,
+            temperature=args.ollama_temperature,
+            top_p=args.ollama_top_p,
+            timeout=args.ollama_timeout,
+            seed=args.ollama_seed,
+            unload_model=not args.ollama_keep_model,
+            startup_timeout=args.ollama_startup_timeout,
+        )
+        imagen_options = ImagenOptions(
+            model=args.imagen_model,
+            aspect_ratio=args.imagen_aspect_ratio,
+            variants=args.imagen_variants,
+            person_mode=args.imagen_person_mode,
+            guidance_scale=args.imagen_guidance_scale,
+        )
+        generation_workflow = ImageGenerationWorkflow(
+            run_id=run_id,
+            output_dir=out_dir,
+            ollama=ollama_options,
+            imagen=imagen_options,
+            weights={"style": args.style_weight, "nsfw": args.nsfw_weight},
+            min_words=args.caption_min_words,
+            max_words=args.caption_max_words,
+        )
+        generation_context = generation_workflow
+
     append_jsonl(runs_log, {"event": "run_start", "run_id": run_id, "mode": "plain"})
-    for stage in stages:
-        context = stage_context(bias, stage)
-        for cycle in range(stage.cycles):
-            result = build_struct(
-                assets=assets,
-                selector=selector,
-                bias=bias,
-                stage=stage,
-                default_style_profile=args.style_profile,
-                style_token_limit=STYLE_TOKEN_LIMIT,
-            )
-            record_id = f"{stage.stage_id}_cycle{cycle:03d}"
-            payload = build_payload(result, stage_id=stage.stage_id, cycle=cycle)
-            write_record(out_dir / f"{record_id}.json", payload)
-            append_jsonl(
-                runs_log,
-                {
-                    "event": "result",
-                    "run_id": run_id,
-                    "stage_id": stage.stage_id,
-                    "cycle": cycle,
-                    "gene_ids": result.gene_ids,
-                    "meta": result.meta,
-                },
-            )
-            LOGGER.info("%s gene_ids=%s", record_id, result.gene_ids)
+
+    with generation_context as workflow:
+        for stage in stages:
+            context = stage_context(bias, stage)
+            for cycle in range(stage.cycles):
+                result = build_struct(
+                    assets=assets,
+                    selector=selector,
+                    bias=bias,
+                    stage=stage,
+                    default_style_profile=args.style_profile,
+                    style_token_limit=STYLE_TOKEN_LIMIT,
+                )
+                record_id = f"{stage.stage_id}_cycle{cycle:03d}"
+                payload = build_payload(result, stage_id=stage.stage_id, cycle=cycle)
+
+                if workflow:
+                    try:
+                        artifacts = workflow.process(
+                            stage_id=stage.stage_id,
+                            cycle=cycle,
+                            record_id=record_id,
+                            result=result,
+                            stage_temperature=stage.temperature,
+                        )
+                    except GenerationError as error:
+                        LOGGER.error("generation failed for %s: %s", record_id, error)
+                        payload["generation_error"] = str(error)
+                    except Exception as error:  # pragma: no cover - defensive logging
+                        LOGGER.exception("unexpected generation error for %s", record_id)
+                        payload["generation_error"] = str(error)
+                    else:
+                        payload.update(
+                            {
+                                "caption": artifacts.caption,
+                                "final_prompt": artifacts.final_prompt,
+                                "ollama_request": artifacts.ollama_request,
+                                "imagen_request": artifacts.imagen_request,
+                                "imagen_metadata": artifacts.imagen_metadata,
+                                "artifacts": list(artifacts.variants),
+                            }
+                        )
+
+                write_record(out_dir / f"{record_id}.json", payload)
+                append_jsonl(
+                    runs_log,
+                    {
+                        "event": "result",
+                        "run_id": run_id,
+                        "stage_id": stage.stage_id,
+                        "cycle": cycle,
+                        "gene_ids": result.gene_ids,
+                        "meta": result.meta,
+                    },
+                )
+                LOGGER.info("%s gene_ids=%s", record_id, result.gene_ids)
+
     append_jsonl(runs_log, {"event": "run_end", "run_id": run_id})
 
 
@@ -271,6 +342,41 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--ga-pop", type=int, default=0, dest="ga_pop")
     parser.add_argument("--ga-gen", type=int, default=0, dest="ga_gen")
     parser.add_argument("--verbose", action="store_true")
+    parser.add_argument("--generate-images", action="store_true", dest="generate_images")
+    parser.add_argument("--ollama-url", default="http://localhost:11434", dest="ollama_url")
+    parser.add_argument("--ollama-model", default="qwen2.5:3b", dest="ollama_model")
+    parser.add_argument(
+        "--ollama-temperature",
+        type=float,
+        default=0.55,
+        dest="ollama_temperature",
+        help="Default Ollama temperature when stage temperature is not provided",
+    )
+    parser.add_argument("--ollama-top-p", type=float, default=0.9, dest="ollama_top_p")
+    parser.add_argument("--ollama-timeout", type=float, default=45.0, dest="ollama_timeout")
+    parser.add_argument("--ollama-seed", type=int, default=None, dest="ollama_seed")
+    parser.add_argument(
+        "--ollama-startup-timeout",
+        type=float,
+        default=30.0,
+        dest="ollama_startup_timeout",
+        help="Seconds to wait for the Ollama service to become reachable",
+    )
+    parser.add_argument(
+        "--ollama-keep-model",
+        action="store_true",
+        dest="ollama_keep_model",
+        help="Retain the Ollama model on disk after the run completes",
+    )
+    parser.add_argument("--imagen-model", default="imagen-3.0-generate-002", dest="imagen_model")
+    parser.add_argument("--imagen-aspect-ratio", default="1:1", dest="imagen_aspect_ratio")
+    parser.add_argument("--imagen-variants", type=int, default=1, dest="imagen_variants")
+    parser.add_argument("--imagen-person-mode", default="allow_adult", dest="imagen_person_mode")
+    parser.add_argument("--imagen-guidance-scale", type=float, default=0.5, dest="imagen_guidance_scale")
+    parser.add_argument("--caption-min-words", type=int, default=18, dest="caption_min_words")
+    parser.add_argument("--caption-max-words", type=int, default=60, dest="caption_max_words")
+    parser.add_argument("--style-weight", type=float, default=0.6, dest="style_weight")
+    parser.add_argument("--nsfw-weight", type=float, default=0.4, dest="nsfw_weight")
     return parser
 
 

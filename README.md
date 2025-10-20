@@ -28,7 +28,27 @@ python main.py run plain \
   --out out/plain_run
 ```
 
-The CLI writes JSON artefacts per stage/cycle and appends metadata to `runs.jsonl`. For GA mode:
+To request captions from a local Ollama instance and hand them off to Google Imagen, add `--generate-images` and the desired
+options:
+
+```bash
+python main.py run plain \
+  --style-profile retro_glossy \
+  --asset-pack data/packs/examples \
+  --bias bias.json \
+  --scenario scenarios/demo.json \
+  --out out/plain_run \
+  --generate-images \
+  --ollama-model qwen2.5:3b \
+  --imagen-model imagen-3.0-generate-002 \
+  --imagen-variants 2
+```
+
+The workflow automatically ensures that the Ollama model is available (pulling it on demand and removing it afterwards unless
+`--ollama-keep-model` is provided), forwards the assembled scene payload together with weights and the system prompt, and embeds the
+resulting final prompt plus all generation options in every image’s EXIF metadata. Each variant also receives adjacent `.json` and
+`.txt` companions storing the metadata and prompt. The CLI writes JSON artefacts per stage/cycle and appends metadata to
+`runs.jsonl`. For GA mode:
 
 ```bash
 python main.py run evolve \
