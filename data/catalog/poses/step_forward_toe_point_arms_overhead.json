@@ -1,0 +1,16 @@
+{
+  "id": "step_forward_toe_point_arms_overhead",
+  "label": "Step forward with pointed toe and arms overhead",
+  "weight": 1.0,
+  "tags": [
+    "dynamic"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Step forward",
+    "legs": "pointed toe",
+    "arms": "arms overhead",
+    "description": "Stepping through with a pointed lead toe to elongate the legs while arms sweep overhead, opening the ribcage and spotlighting the hip swing."
+  }
+}

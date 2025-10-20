@@ -1,0 +1,16 @@
+{
+  "id": "hip_pop_shy_grin_hand_on_hip",
+  "label": "Hip pop with shy grin (hand on hip)",
+  "weight": 1.0,
+  "tags": [
+    "sweet"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip pop",
+    "expression": "with shy grin",
+    "gesture": "hand on hip",
+    "description": "A gentle hip pop shows the curve while she offers a shy grin and keeps one hand resting on the hip, balancing bashful charm with confident posture."
+  }
+}

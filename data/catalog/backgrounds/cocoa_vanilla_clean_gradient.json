@@ -1,0 +1,19 @@
+{
+  "id": "cocoa_vanilla_clean_gradient",
+  "label": "Cocoa vanilla sweep with clean gradient",
+  "weight": 1.0,
+  "tags": [
+    "soft",
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "cocoa",
+      "vanilla"
+    ],
+    "finish": "clean gradient",
+    "description": "Creamy cocoa to vanilla fade with a polished studio gradient that keeps the focus on the silhouette."
+  }
+}

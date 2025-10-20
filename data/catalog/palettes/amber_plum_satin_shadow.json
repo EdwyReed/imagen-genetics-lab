@@ -1,0 +1,19 @@
+{
+  "id": "amber_plum_satin_shadow",
+  "label": "Amber plum with satin shadow",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "amber",
+      "plum",
+      "cream"
+    ],
+    "accent": "satin shadow",
+    "description": "Amber and plum candy tones with satin-shadow shading to carve a luxe hip spotlight."
+  }
+}

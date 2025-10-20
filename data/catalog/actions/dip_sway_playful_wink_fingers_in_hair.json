@@ -1,0 +1,16 @@
+{
+  "id": "dip_sway_playful_wink_fingers_in_hair",
+  "label": "Dip sway with playful wink (fingers in hair)",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Dip sway",
+    "expression": "with playful wink",
+    "gesture": "fingers in hair",
+    "description": "A slow hip dip into a side-to-side sway that shows off the curve. She tosses a playful wink while fingers comb through her hair, framing the face and hips together."
+  }
+}

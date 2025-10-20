@@ -1,0 +1,16 @@
+{
+  "id": "perch_pose_toe_point_arms_overhead",
+  "label": "Perched seat with pointed toes and arms overhead",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Perched seat",
+    "legs": "pointed toes",
+    "arms": "arms overhead",
+    "description": "Perched on a stool with toes pointed forward to elongate the legs while arms arc overhead to stretch the torso and spotlight the hips."
+  }
+}

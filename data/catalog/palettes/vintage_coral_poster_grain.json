@@ -1,0 +1,19 @@
+{
+  "id": "vintage_coral_poster_grain",
+  "label": "Vintage coral with poster grain",
+  "weight": 1.0,
+  "tags": [
+    "vintage"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "coral",
+      "rose",
+      "cream"
+    ],
+    "accent": "poster grain",
+    "description": "Velvety coral and rose palette brushed with fine poster grain to echo mid-century lithographs."
+  }
+}

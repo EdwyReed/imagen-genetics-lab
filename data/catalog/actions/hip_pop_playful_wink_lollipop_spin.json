@@ -1,0 +1,16 @@
+{
+  "id": "hip_pop_playful_wink_lollipop_spin",
+  "label": "Hip pop with playful wink (lollipop spin)",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip pop",
+    "expression": "with playful wink",
+    "gesture": "lollipop spin",
+    "description": "A decisive hip pop holds the curve as she flashes a playful wink and twirls a lollipop between her fingers, keeping attention at the hip line."
+  }
+}

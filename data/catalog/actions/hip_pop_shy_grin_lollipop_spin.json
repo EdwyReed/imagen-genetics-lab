@@ -1,0 +1,16 @@
+{
+  "id": "hip_pop_shy_grin_lollipop_spin",
+  "label": "Hip pop with shy grin (lollipop spin)",
+  "weight": 1.0,
+  "tags": [
+    "sweet"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip pop",
+    "expression": "with shy grin",
+    "gesture": "lollipop spin",
+    "description": "She holds a candy-colored hip pop while offering a shy grin, twirling a lollipop to keep the mood coy and focus sliding across the hips."
+  }
+}

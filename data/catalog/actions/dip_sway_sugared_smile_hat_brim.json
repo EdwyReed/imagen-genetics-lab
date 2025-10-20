@@ -1,0 +1,16 @@
+{
+  "id": "dip_sway_sugared_smile_hat_brim",
+  "label": "Dip sway with sugared smile (hat brim)",
+  "weight": 1.0,
+  "tags": [
+    "sweet"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Dip sway",
+    "expression": "with sugared smile",
+    "gesture": "hat brim",
+    "description": "She eases into a hip dip and gentle sway, smiling like spun sugar while fingertips tease the brim of a hat to keep the gaze circling her hips."
+  }
+}
