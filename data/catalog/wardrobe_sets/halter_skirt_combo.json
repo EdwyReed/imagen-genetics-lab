@@ -1,0 +1,18 @@
+{
+  "id": "halter_skirt_combo",
+  "label": "Halter and ruffle mini",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:halter_glow",
+    "wardrobe:ruffle_mini",
+    "wardrobe:ankle_scarf",
+    "wardrobe:peep_toe_pumps"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Halter matched with ruffle mini."
+  }
+}

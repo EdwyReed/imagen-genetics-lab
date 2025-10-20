@@ -1,0 +1,16 @@
+{
+  "id": "dip_sway_lip_bite_lollipop_spin",
+  "label": "Dip sway with lip bite (twirling lollipop)",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Dip sway",
+    "expression": "with lip bite",
+    "gesture": "twirling lollipop",
+    "description": "Dips the knees while swaying hips in a playful rhythm. She teases a gentle bite of her lip, equal parts bashful and daring. Her free hand keeps twirls a candy-bright lollipop near her smile. All focus lands on the hipline."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "peach_milkshake_floor_reflect",
+  "label": "Peach milkshake fade with floor reflection",
+  "weight": 1.0,
+  "tags": [
+    "minimal"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "peach",
+      "melon"
+    ],
+    "finish": "floor reflection",
+    "description": "Simple peach into pale melon gradient with A satin floor reflection fading near the knees."
+  }
+}

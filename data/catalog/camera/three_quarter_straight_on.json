@@ -1,0 +1,16 @@
+{
+  "id": "three_quarter_straight_on",
+  "label": "Three-quarter straight-on",
+  "weight": 1.0,
+  "tags": [
+    "portrait",
+    "hip_focus"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Three-quarter",
+    "angle": "straight-on",
+    "description": "Frames from head to mid-thigh for an easy hip emphasis. Straight-on view that lets the hips lead the shot."
+  }
+}

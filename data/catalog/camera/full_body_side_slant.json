@@ -1,0 +1,16 @@
+{
+  "id": "full_body_side_slant",
+  "label": "Full body side slant",
+  "weight": 1.0,
+  "tags": [
+    "fashion",
+    "hip_focus"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Full body",
+    "angle": "side slant",
+    "description": "Shows the whole silhouette without clutter. Angled from the side to highlight curvature."
+  }
+}

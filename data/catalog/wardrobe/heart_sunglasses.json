@@ -1,0 +1,15 @@
+{
+  "id": "heart_sunglasses",
+  "label": "Heart sunglasses",
+  "weight": 1.0,
+  "tags": [
+    "accessory",
+    "eyewear"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "accessory",
+    "description": "Heart-shaped frames."
+  }
+}

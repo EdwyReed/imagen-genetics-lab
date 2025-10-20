@@ -1,0 +1,16 @@
+{
+  "id": "swaying_stand_heel_lift_arms_overhead",
+  "label": "Swaying stand with lifted heel and arms overhead",
+  "weight": 1.0,
+  "tags": [
+    "floor"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Swaying stand",
+    "legs": "lifted heel",
+    "arms": "arms overhead",
+    "description": "Weight shifted onto one leg with hips leading. Heel lifted off the ground for extra hip tilt. Arms overhead stretching the torso."
+  }
+}

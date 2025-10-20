@@ -1,0 +1,15 @@
+{
+  "id": "belted_capris",
+  "label": "Belted capris",
+  "weight": 1.0,
+  "tags": [
+    "bottom",
+    "pants"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "bottom",
+    "description": "Capris cinched with a bow belt."
+  }
+}

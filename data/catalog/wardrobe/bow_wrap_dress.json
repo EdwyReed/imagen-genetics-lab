@@ -1,0 +1,15 @@
+{
+  "id": "bow_wrap_dress",
+  "label": "Bow wrap dress",
+  "weight": 1.0,
+  "tags": [
+    "dress",
+    "wrap"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "dress",
+    "description": "Wrap dress with oversized hip bow."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "retro_polka_dress",
+  "label": "Retro polka dress",
+  "weight": 1.0,
+  "tags": [
+    "dress",
+    "polka"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "dress",
+    "description": "Polka dot dress hugging the waist."
+  }
+}

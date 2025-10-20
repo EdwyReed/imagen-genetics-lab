@@ -1,0 +1,19 @@
+{
+  "id": "lavender_fog_powder_soft",
+  "label": "Lavender fog glow with powder-soft diffusion",
+  "weight": 1.0,
+  "tags": [
+    "pastel",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "lavender",
+      "cloud"
+    ],
+    "finish": "powder-soft diffusion",
+    "description": "Simple lavender fog gradient with Powder-soft diffusion that keeps edges simple."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "honey_peony_sugar_spark",
+  "label": "Honey peony with sugar spark",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "honey",
+      "peony",
+      "champagne"
+    ],
+    "accent": "sugar spark",
+    "description": "Peony kissed honey. finished with Micro sugar sparkles."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "sugar_soft_shadows",
+  "label": "Sugar-soft shadows",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Keep shadows tender and low contrast."
+  }
+}

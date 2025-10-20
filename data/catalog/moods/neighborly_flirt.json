@@ -1,0 +1,13 @@
+{
+  "id": "neighborly_flirt",
+  "label": "Neighborly flirt",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Girl-next-door warmth with a flirtatious twist."
+  }
+}

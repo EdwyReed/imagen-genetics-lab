@@ -1,0 +1,17 @@
+{
+  "id": "bow_wrap_dress_set",
+  "label": "Bow wrap dress look",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:bow_wrap_dress",
+    "wardrobe:satin_gloves",
+    "wardrobe:peep_toe_pumps"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Wrap dress with opera gloves."
+  }
+}

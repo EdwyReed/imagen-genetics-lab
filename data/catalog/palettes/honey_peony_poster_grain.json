@@ -1,0 +1,19 @@
+{
+  "id": "honey_peony_poster_grain",
+  "label": "Honey peony with poster grain",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "honey",
+      "peony",
+      "champagne"
+    ],
+    "accent": "poster grain",
+    "description": "Peony kissed honey. finished with Light vintage poster grain."
+  }
+}

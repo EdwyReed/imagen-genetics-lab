@@ -1,0 +1,18 @@
+{
+  "id": "apricot_cloud_halo_glow",
+  "label": "Apricot cloud with halo glow",
+  "weight": 1.0,
+  "tags": [
+    "minimal"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "apricot",
+      "pearl"
+    ],
+    "finish": "halo glow",
+    "description": "Simple apricot cloud gradient with A thin halo glow right behind the hip line."
+  }
+}

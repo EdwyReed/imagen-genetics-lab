@@ -1,0 +1,13 @@
+{
+  "id": "pastel_back",
+  "label": "Pastel background",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Keep backgrounds pastel and uncluttered."
+  }
+}

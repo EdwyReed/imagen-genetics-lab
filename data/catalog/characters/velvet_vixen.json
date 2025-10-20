@@ -1,0 +1,13 @@
+{
+  "id": "velvet_vixen",
+  "label": "Velvet vixen",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Velvet-soft glamour that still feels warm."
+  }
+}

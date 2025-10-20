@@ -1,0 +1,14 @@
+{
+  "id": "pastel_tights",
+  "label": "Pastel sheen tights",
+  "weight": 1.0,
+  "tags": [
+    "hosiery"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "hosiery",
+    "description": "Glossy pastel tights."
+  }
+}

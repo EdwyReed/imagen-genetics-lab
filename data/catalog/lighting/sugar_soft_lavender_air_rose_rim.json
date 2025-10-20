@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_lavender_air_rose_rim",
+  "label": "Sugar-soft key with Lavender air fill and rose rim",
+  "weight": 1.0,
+  "tags": [
+    "anime_glow"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Lavender air fill",
+    "rim": "rose rim",
+    "description": "Large jelly-soft key hugging the front. Lavender-tinted fill smoothing skin. Rose rim light tracing the back hip."
+  }
+}

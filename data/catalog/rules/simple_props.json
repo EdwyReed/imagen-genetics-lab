@@ -1,0 +1,13 @@
+{
+  "id": "simple_props",
+  "label": "Simple props",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Use at most one playful prop."
+  }
+}

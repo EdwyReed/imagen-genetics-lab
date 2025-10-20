@@ -1,0 +1,13 @@
+{
+  "id": "cupid_caper",
+  "label": "Cupid caper",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Playful mischief as if Cupid staged the scene."
+  }
+}

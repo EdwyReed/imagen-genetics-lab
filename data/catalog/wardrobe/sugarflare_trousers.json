@@ -1,0 +1,15 @@
+{
+  "id": "sugarflare_trousers",
+  "label": "Sugar-flare trousers",
+  "weight": 1.0,
+  "tags": [
+    "bottom",
+    "pants"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "bottom",
+    "description": "Flared trousers with shimmer."
+  }
+}

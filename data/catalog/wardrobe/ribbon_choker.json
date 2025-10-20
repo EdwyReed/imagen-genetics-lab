@@ -1,0 +1,15 @@
+{
+  "id": "ribbon_choker",
+  "label": "Ribbon choker",
+  "weight": 1.0,
+  "tags": [
+    "accessory",
+    "neck"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "accessory",
+    "description": "Satin ribbon choker with bow."
+  }
+}

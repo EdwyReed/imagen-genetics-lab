@@ -1,0 +1,19 @@
+{
+  "id": "rose_quartz_powder_soft",
+  "label": "Rose quartz mist with powder-soft diffusion",
+  "weight": 1.0,
+  "tags": [
+    "pastel",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "rose",
+      "quartz"
+    ],
+    "finish": "powder-soft diffusion",
+    "description": "Simple rose quartz gradient with Powder-soft diffusion that keeps edges simple."
+  }
+}

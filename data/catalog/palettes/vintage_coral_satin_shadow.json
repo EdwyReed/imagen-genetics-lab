@@ -1,0 +1,19 @@
+{
+  "id": "vintage_coral_satin_shadow",
+  "label": "Vintage coral with satin shadow",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "coral",
+      "sepia",
+      "powder blue"
+    ],
+    "accent": "satin shadow",
+    "description": "Vintage coral poster vibes. finished with Satin-soft low contrast shadow."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_frosted_fill_sunset_rim",
+  "label": "Sugar-soft key with Frosted fill and sunset rim",
+  "weight": 1.0,
+  "tags": [
+    "soft"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Frosted fill",
+    "rim": "sunset rim",
+    "description": "Large jelly-soft key hugging the front. Frosted fill light that polishes highlights. Warm sunset rim behind the subject."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "peach_milkshake_jelly_gloss",
+  "label": "Peach milkshake fade with jelly gloss sheen",
+  "weight": 1.0,
+  "tags": [
+    "studio",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "peach",
+      "melon"
+    ],
+    "finish": "jelly gloss sheen",
+    "description": "Simple peach into pale melon gradient with Wet-look gleam hugging the subject outline."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "peach_milkshake_misty_spark",
+  "label": "Peach milkshake fade with misty spark",
+  "weight": 1.0,
+  "tags": [
+    "soft",
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "peach",
+      "melon"
+    ],
+    "finish": "misty spark",
+    "description": "Simple peach into pale melon gradient with Misty sparkle hugging the silhouette."
+  }
+}

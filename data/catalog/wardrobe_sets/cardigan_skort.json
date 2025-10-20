@@ -1,0 +1,18 @@
+{
+  "id": "cardigan_skort",
+  "label": "Cardigan and pleated skort",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:cropped_cardigan",
+    "wardrobe:pleated_skort",
+    "wardrobe:ribbon_choker",
+    "wardrobe:kitten_heels"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Girl-next-door cardigan with playful skort."
+  }
+}

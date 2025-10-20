@@ -1,0 +1,15 @@
+{
+  "id": "three_quarter_over_shoulder",
+  "label": "Three-quarter over-shoulder",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Three-quarter",
+    "angle": "over-shoulder",
+    "description": "Frames from head to mid-thigh for an easy hip emphasis. Over-the-shoulder glance back at the camera."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "mint_cotton_satin_shadow",
+  "label": "Mint cotton with satin shadow",
+  "weight": 1.0,
+  "tags": [
+    "anime"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "mint",
+      "cotton candy",
+      "pearl"
+    ],
+    "accent": "satin shadow",
+    "description": "Mint cotton candy dream. finished with Satin-soft low contrast shadow."
+  }
+}

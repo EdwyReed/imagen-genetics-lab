@@ -1,0 +1,16 @@
+{
+  "id": "hip_circle_sugared_smile_lollipop_spin",
+  "label": "Hip circle with sugared smile (twirling lollipop)",
+  "weight": 1.0,
+  "tags": [
+    "flirty"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip circle",
+    "expression": "with sugared smile",
+    "gesture": "twirling lollipop",
+    "description": "Traces a slow glossy circle with her hips, catching the studio gleam. She flashes a sugared smile that feels innocently indulgent. Her free hand keeps twirls a candy-bright lollipop near her smile. All focus lands on the hipline."
+  }
+}

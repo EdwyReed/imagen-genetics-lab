@@ -1,0 +1,19 @@
+{
+  "id": "peach_rose_cream_sugar_spark",
+  "label": "Peach rose cream with sugar spark",
+  "weight": 1.0,
+  "tags": [
+    "retro"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "peach",
+      "rose",
+      "cream"
+    ],
+    "accent": "sugar spark",
+    "description": "Soft dessert trio. finished with Micro sugar sparkles."
+  }
+}

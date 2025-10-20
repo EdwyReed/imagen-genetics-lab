@@ -1,0 +1,13 @@
+{
+  "id": "retro_rocket",
+  "label": "Retro rocket",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Vintage poster heroine ready for fun."
+  }
+}

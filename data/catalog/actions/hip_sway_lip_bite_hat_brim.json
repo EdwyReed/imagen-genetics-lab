@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_lip_bite_hat_brim",
+  "label": "Hip sway with lip bite (tipping brim)",
+  "weight": 1.0,
+  "tags": [
+    "sweet"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with lip bite",
+    "gesture": "tipping brim",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She teases a gentle bite of her lip, equal parts bashful and daring. Her free hand keeps tips a satin sunhat brim toward the camera. All focus lands on the hipline."
+  }
+}

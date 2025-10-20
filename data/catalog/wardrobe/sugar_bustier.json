@@ -1,0 +1,15 @@
+{
+  "id": "sugar_bustier",
+  "label": "Sugar-glaze bustier",
+  "weight": 1.0,
+  "tags": [
+    "top",
+    "structured"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "top",
+    "description": "Structured bustier with jelly gloss."
+  }
+}

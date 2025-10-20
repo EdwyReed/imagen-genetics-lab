@@ -1,0 +1,19 @@
+{
+  "id": "citrus_sorbet_powder_soft",
+  "label": "Citrus sorbet haze with powder-soft diffusion",
+  "weight": 1.0,
+  "tags": [
+    "pastel",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "citrus",
+      "vanilla"
+    ],
+    "finish": "powder-soft diffusion",
+    "description": "Simple citrus sorbet gradient with Powder-soft diffusion that keeps edges simple."
+  }
+}

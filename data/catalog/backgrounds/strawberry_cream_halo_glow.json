@@ -1,0 +1,18 @@
+{
+  "id": "strawberry_cream_halo_glow",
+  "label": "Strawberry cream wash with halo glow",
+  "weight": 1.0,
+  "tags": [
+    "minimal"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "rose",
+      "cream"
+    ],
+    "finish": "halo glow",
+    "description": "Simple faded strawberry cream gradient with A thin halo glow right behind the hip line."
+  }
+}

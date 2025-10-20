@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_satin_reflect_frost_rim",
+  "label": "Sugar-soft key with Satin reflector and frost rim",
+  "weight": 1.0,
+  "tags": [
+    "vintage"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Satin reflector",
+    "rim": "frost rim",
+    "description": "Large jelly-soft key hugging the front. Satin reflector placed near the hip line. Cool frost rim for contrast."
+  }
+}

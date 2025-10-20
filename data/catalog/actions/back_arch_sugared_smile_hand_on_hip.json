@@ -1,0 +1,16 @@
+{
+  "id": "back_arch_sugared_smile_hand_on_hip",
+  "label": "Back arch with sugared smile (hand on hip)",
+  "weight": 1.0,
+  "tags": [
+    "flirty"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Back arch",
+    "expression": "with sugared smile",
+    "gesture": "hand on hip",
+    "description": "Arches the lower back to push hips forward with satin confidence. She flashes a sugared smile that feels innocently indulgent. Her free hand keeps one hand resting just above the hip bone. All focus lands on the hipline."
+  }
+}

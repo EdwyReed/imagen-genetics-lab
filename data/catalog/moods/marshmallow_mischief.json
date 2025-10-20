@@ -1,0 +1,13 @@
+{
+  "id": "marshmallow_mischief",
+  "label": "Marshmallow mischief",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Soft mischief cushioned by sweetness."
+  }
+}

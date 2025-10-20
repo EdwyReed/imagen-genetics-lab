@@ -1,0 +1,19 @@
+{
+  "id": "honey_peony_satin_shadow",
+  "label": "Honey peony with satin shadow",
+  "weight": 1.0,
+  "tags": [
+    "semi_realism"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "honey",
+      "peony",
+      "champagne"
+    ],
+    "accent": "satin shadow",
+    "description": "Peony kissed honey. finished with Satin-soft low contrast shadow."
+  }
+}

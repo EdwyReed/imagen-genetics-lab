@@ -1,0 +1,13 @@
+{
+  "id": "pearl_phone",
+  "label": "Pearl rotary phone",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Pearlescent rotary phone for playful calls."
+  }
+}

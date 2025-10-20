@@ -1,0 +1,19 @@
+{
+  "id": "bubblegum_sky_jelly_gloss",
+  "label": "Bubblegum sky with jelly gloss sheen",
+  "weight": 1.0,
+  "tags": [
+    "retro",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "bubblegum",
+      "sky"
+    ],
+    "finish": "jelly gloss sheen",
+    "description": "Simple bubblegum sky gradient with Wet-look gleam hugging the subject outline."
+  }
+}

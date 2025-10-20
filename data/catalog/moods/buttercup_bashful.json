@@ -1,0 +1,13 @@
+{
+  "id": "buttercup_bashful",
+  "label": "Buttercup bashful",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Bashful charm that still shows off the hips."
+  }
+}

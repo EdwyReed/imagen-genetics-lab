@@ -1,0 +1,92 @@
+{
+  "id": "girl_next_door_montage",
+  "stages": [
+    {
+      "stage_id": "neighborhood_glow",
+      "cycles": 2,
+      "temperature": 0.27,
+      "style_profile": "gelatin_glamour",
+      "locks": {
+        "models": {"allow": ["gelatin_glamour_v1", "nectar_glow_v1"]},
+        "characters": {"allow": ["neighborly_muse", "glossy_girl_next"]},
+        "wardrobe_sets": {"allow": ["cardigan_skort", "wrap_sarong_set"]},
+        "backgrounds": {"allow": ["mint_mousse_clean_gradient", "honey_butter_misty_spark"]},
+        "palettes": {"allow": ["mint_cotton_satin_shadow", "honey_peony_glaze_highlight"]},
+        "poses": {"allow": ["swaying_stand_knee_pop_double_frame", "step_forward_toe_point_hand_cascade"]},
+        "camera": {"allow": ["waist_up_straight_on", "three_quarter_low_angle"]},
+        "lighting": {"allow": ["sugar_soft_peach_catch_rose_rim", "butter_glow_bounce_creme_butterfly_rim"]},
+        "props": {"allow": ["bouquet_babybreath", "bubble_blower"]},
+        "moods": {"allow": ["neighborly_flirt", "peachy_poise"]},
+        "actions": {"allow": ["hip_sway_soft_laugh_hand_on_hip", "hip_pop_shy_grin_lollipop_spin"]}
+      },
+      "required_terms": [
+        "approachable gloss",
+        "hip-forward posture",
+        "sunny stoop scene"
+      ],
+      "inject_rules": [
+        "neighborly_vibes",
+        "soft_smile",
+        "simple_backdrops"
+      ]
+    },
+    {
+      "stage_id": "animated_neighbor",
+      "cycles": 2,
+      "temperature": 0.34,
+      "style_profile": "anime_lumina",
+      "locks": {
+        "models": {"allow": ["anime_spark_v1", "pastel_idol_v1"]},
+        "characters": {"allow": ["anime_darling", "neighborly_muse"]},
+        "wardrobe_sets": {"allow": ["neighborly_shortset", "cardigan_skort"]},
+        "backgrounds": {"allow": ["bubblegum_sky_jelly_gloss", "mint_mousse_misty_spark"]},
+        "palettes": {"allow": ["mint_cotton_sugar_spark", "soda_fizz_sugar_spark"]},
+        "poses": {"allow": ["step_forward_heel_lift_double_frame", "cross_leg_pop_knee_pop_hand_cascade"]},
+        "camera": {"allow": ["waist_up_high_perch", "hip_close_straight_on"]},
+        "lighting": {"allow": ["candy_beam_mint_soft_sunset_rim", "sugar_soft_mint_soft_butterfly_rim"]},
+        "props": {"allow": ["bubble_blower", "sparkler_star"]},
+        "moods": {"allow": ["sparkler_soft", "cotton_coy"]},
+        "actions": {"allow": ["hip_twist_playful_wink_hat_brim", "hip_circle_sugared_smile_lollipop_spin"]}
+      },
+      "required_terms": [
+        "anime sparkle",
+        "hip accent",
+        "playful wink"
+      ],
+      "inject_rules": [
+        "anime_sparkle_eyes",
+        "anime_pose_flow",
+        "neighborly_vibes"
+      ]
+    },
+    {
+      "stage_id": "poster_wave",
+      "cycles": 1,
+      "temperature": 0.25,
+      "style_profile": "vintage_velour",
+      "locks": {
+        "models": {"allow": ["poster_velvet_v1", "film_blush_v1"]},
+        "characters": {"allow": ["glossy_girl_next", "poster_princess"]},
+        "wardrobe_sets": {"allow": ["pearl_trouser_set", "wrap_blouse_pencil"]},
+        "backgrounds": {"allow": ["apricot_cloud_halo_glow", "cocoa_vanilla_clean_gradient"]},
+        "palettes": {"allow": ["peach_rose_cream_glaze_highlight", "vintage_coral_poster_grain"]},
+        "poses": {"allow": ["perch_pose_knee_pop_double_frame", "swaying_stand_toe_point_hand_cascade"]},
+        "camera": {"allow": ["three_quarter_straight_on", "waist_up_side_slant"]},
+        "lighting": {"allow": ["butter_glow_satin_reflect_sunset_rim", "pearl_wrap_lavender_air_halo_rim"]},
+        "props": {"allow": ["bouquet_babybreath", "marshmallow_pillow"]},
+        "moods": {"allow": ["neighborly_flirt", "velvet_vulnerability"]},
+        "actions": {"allow": ["lean_back_soft_laugh_fingers_in_hair", "hip_sway_bold_pout_fingers_in_hair"]}
+      },
+      "required_terms": [
+        "poster smile",
+        "hips highlighted",
+        "velvet glow"
+      ],
+      "inject_rules": [
+        "neighborly_vibes",
+        "soft_smile",
+        "vintage_grain"
+      ]
+    }
+  ]
+}

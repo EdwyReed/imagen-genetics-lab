@@ -1,0 +1,13 @@
+{
+  "id": "starlit_neighbor",
+  "label": "Starlit neighbor",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Friendly neighbor with starlet energy."
+  }
+}

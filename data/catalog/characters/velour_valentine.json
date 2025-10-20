@@ -1,0 +1,13 @@
+{
+  "id": "velour_valentine",
+  "label": "Velour valentine",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Velour softness matched with daring pose."
+  }
+}

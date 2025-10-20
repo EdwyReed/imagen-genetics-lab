@@ -1,0 +1,15 @@
+{
+  "id": "retro_litho_v1",
+  "label": "Retro lithograph Version 1",
+  "weight": 1.0,
+  "tags": [
+    "vintage"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "style_family": "vintage",
+    "variant": "Version 1",
+    "description": "Lithograph texture minus typography"
+  }
+}

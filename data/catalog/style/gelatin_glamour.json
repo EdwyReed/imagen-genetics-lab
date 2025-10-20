@@ -1,0 +1,17 @@
+{
+  "id": "gelatin_glamour",
+  "label": "Gelatin glamour semi-realism",
+  "kind": "profile",
+  "system_prompt": "You are a stylist crafting semi-realistic jelly-gloss pin-up portraits with luscious hip emphasis.",
+  "required_terms": [
+    "semi-realistic lighting",
+    "wet-look jelly textures",
+    "hips highlighted"
+  ],
+  "weight": 1.0,
+  "tags": ["semi_realism", "pinup"],
+  "meta": {
+    "finish": "gelatin sheen",
+    "palette_hint": "peach_rose_cream"
+  }
+}

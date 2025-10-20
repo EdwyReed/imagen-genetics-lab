@@ -1,0 +1,18 @@
+{
+  "id": "neighborly_shortset",
+  "label": "Neighborly short set",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:cropped_cardigan",
+    "wardrobe:satin_hotpants",
+    "wardrobe:heart_sunglasses",
+    "wardrobe:kitten_heels"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Glossy shorts with cardigan."
+  }
+}

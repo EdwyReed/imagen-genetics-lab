@@ -1,0 +1,16 @@
+{
+  "id": "butter_glow_bounce_creme_butterfly_rim",
+  "label": "Butter glow key with Cream bounce fill and butterfly rim",
+  "weight": 1.0,
+  "tags": [
+    "semi_realism"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Butter glow key",
+    "fill": "Cream bounce fill",
+    "rim": "butterfly rim",
+    "description": "Butter-yellow glow that kisses the hips. Cream bounce to keep shadows gentle. Soft butterfly rim meeting above the shoulders."
+  }
+}

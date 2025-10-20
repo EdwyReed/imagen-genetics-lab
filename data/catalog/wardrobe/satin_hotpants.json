@@ -1,0 +1,15 @@
+{
+  "id": "satin_hotpants",
+  "label": "Satin hot pants",
+  "weight": 1.0,
+  "tags": [
+    "bottom",
+    "shorts"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "bottom",
+    "description": "Ultra-gloss hot pants hugging hips."
+  }
+}

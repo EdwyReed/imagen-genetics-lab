@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_bounce_creme_sunset_rim",
+  "label": "Sugar-soft key with Cream bounce fill and sunset rim",
+  "weight": 1.0,
+  "tags": [
+    "soft"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Cream bounce fill",
+    "rim": "sunset rim",
+    "description": "Large jelly-soft key hugging the front. Cream bounce to keep shadows gentle. Warm sunset rim behind the subject."
+  }
+}

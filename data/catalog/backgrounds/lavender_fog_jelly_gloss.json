@@ -1,0 +1,19 @@
+{
+  "id": "lavender_fog_jelly_gloss",
+  "label": "Lavender fog glow with jelly gloss sheen",
+  "weight": 1.0,
+  "tags": [
+    "studio",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "lavender",
+      "cloud"
+    ],
+    "finish": "jelly gloss sheen",
+    "description": "Simple lavender fog gradient with Wet-look gleam hugging the subject outline."
+  }
+}

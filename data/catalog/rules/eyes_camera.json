@@ -1,0 +1,13 @@
+{
+  "id": "eyes_camera",
+  "label": "Eyes to camera",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Maintain eye contact for intimacy."
+  }
+}

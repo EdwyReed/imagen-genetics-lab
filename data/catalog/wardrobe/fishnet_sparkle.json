@@ -1,0 +1,14 @@
+{
+  "id": "fishnet_sparkle",
+  "label": "Sparkle fishnets",
+  "weight": 1.0,
+  "tags": [
+    "hosiery"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "hosiery",
+    "description": "Fishnets with glitter strands."
+  }
+}

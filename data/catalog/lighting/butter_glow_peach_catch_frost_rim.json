@@ -1,0 +1,16 @@
+{
+  "id": "butter_glow_peach_catch_frost_rim",
+  "label": "Butter glow key with Peach catch fill and frost rim",
+  "weight": 1.0,
+  "tags": [
+    "vintage"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Butter glow key",
+    "fill": "Peach catch fill",
+    "rim": "frost rim",
+    "description": "Butter-yellow glow that kisses the hips. Peach catch light lifting the cheeks. Cool frost rim for contrast."
+  }
+}

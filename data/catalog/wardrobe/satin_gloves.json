@@ -1,0 +1,15 @@
+{
+  "id": "satin_gloves",
+  "label": "Satin opera gloves",
+  "weight": 1.0,
+  "tags": [
+    "accessory",
+    "gloves"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "accessory",
+    "description": "Elbow gloves with glossy finish."
+  }
+}

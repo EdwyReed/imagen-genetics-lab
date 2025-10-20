@@ -1,0 +1,18 @@
+{
+  "id": "bow_peplum_circle",
+  "label": "Bow peplum with circle skirt",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:bow_peplum",
+    "wardrobe:swing_circle_skirt",
+    "wardrobe:waist_bow",
+    "wardrobe:ankle_strap_heels"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Peplum flounce over swirling skirt."
+  }
+}

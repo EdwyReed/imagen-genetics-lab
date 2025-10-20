@@ -1,0 +1,19 @@
+{
+  "id": "cocoa_vanilla_misty_spark",
+  "label": "Cocoa vanilla with misty spark",
+  "weight": 1.0,
+  "tags": [
+    "pastel",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "cocoa",
+      "vanilla"
+    ],
+    "finish": "misty spark",
+    "description": "Simple cocoa vanilla gradient with Misty sparkle hugging the silhouette."
+  }
+}

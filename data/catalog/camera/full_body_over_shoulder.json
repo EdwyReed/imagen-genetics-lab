@@ -1,0 +1,15 @@
+{
+  "id": "full_body_over_shoulder",
+  "label": "Full body over-shoulder",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Full body",
+    "angle": "over-shoulder",
+    "description": "Shows the whole silhouette without clutter. Over-the-shoulder glance back at the camera."
+  }
+}

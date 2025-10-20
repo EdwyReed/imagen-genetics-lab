@@ -1,0 +1,13 @@
+{
+  "id": "clean_palette",
+  "label": "Clean dessert palette",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Limit palette to dessert-inspired hues."
+  }
+}

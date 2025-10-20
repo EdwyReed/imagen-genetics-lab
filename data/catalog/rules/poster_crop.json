@@ -1,0 +1,13 @@
+{
+  "id": "poster_crop",
+  "label": "Poster crop",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Frame like a poster with breathing room."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "dip_sway_soft_laugh_hat_brim",
+  "label": "Dip sway with soft laugh (tipping brim)",
+  "weight": 1.0,
+  "tags": [
+    "sultry"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Dip sway",
+    "expression": "with soft laugh",
+    "gesture": "tipping brim",
+    "description": "Dips the knees while swaying hips in a playful rhythm. She releases a soft laugh that keeps the mood light and sweet. Her free hand keeps tips a satin sunhat brim toward the camera. All focus lands on the hipline."
+  }
+}

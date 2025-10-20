@@ -1,0 +1,19 @@
+{
+  "id": "blueberry_custard_floor_reflect",
+  "label": "Blueberry custard with floor reflection",
+  "weight": 1.0,
+  "tags": [
+    "retro",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "blueberry",
+      "cream"
+    ],
+    "finish": "floor reflection",
+    "description": "Simple blueberry custard gradient with A satin floor reflection fading near the knees."
+  }
+}

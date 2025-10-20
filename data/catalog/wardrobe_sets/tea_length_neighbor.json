@@ -1,0 +1,17 @@
+{
+  "id": "tea_length_neighbor",
+  "label": "Tea-length neighbor",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:tea_length_dress",
+    "wardrobe:heart_sunglasses",
+    "wardrobe:kitten_heels"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Tea-length twirl with heart glasses."
+  }
+}

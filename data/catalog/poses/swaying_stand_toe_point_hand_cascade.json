@@ -1,0 +1,16 @@
+{
+  "id": "swaying_stand_toe_point_hand_cascade",
+  "label": "Swaying stand with pointed toes and cascading hand",
+  "weight": 1.0,
+  "tags": [
+    "standing"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Swaying stand",
+    "legs": "pointed toes",
+    "arms": "cascading hand",
+    "description": "Weight shifted onto one leg with hips leading. Toes pointed to elongate legs. Hand cascading along the hip."
+  }
+}

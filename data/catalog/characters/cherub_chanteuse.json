@@ -1,0 +1,13 @@
+{
+  "id": "cherub_chanteuse",
+  "label": "Cherub chanteuse",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Singer-inspired sweetness and coquette flair."
+  }
+}

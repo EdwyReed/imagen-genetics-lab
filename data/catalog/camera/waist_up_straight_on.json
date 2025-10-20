@@ -1,0 +1,15 @@
+{
+  "id": "waist_up_straight_on",
+  "label": "Waist-up straight-on",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Waist-up",
+    "angle": "straight-on",
+    "description": "Keeps the hips centered at the lower third. Straight-on view that lets the hips lead the shot."
+  }
+}

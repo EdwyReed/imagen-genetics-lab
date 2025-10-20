@@ -1,0 +1,19 @@
+{
+  "id": "berry_milk_poster_grain",
+  "label": "Berry milk with poster grain",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "raspberry",
+      "milk",
+      "powder"
+    ],
+    "accent": "poster grain",
+    "description": "Milkshake berry mix. finished with Light vintage poster grain."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "pleated_skort",
+  "label": "Pleated skort",
+  "weight": 1.0,
+  "tags": [
+    "bottom",
+    "skort"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "bottom",
+    "description": "Pleated skort with playful swing."
+  }
+}

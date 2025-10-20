@@ -1,0 +1,13 @@
+{
+  "id": "neighborly_vibes",
+  "label": "Neighborly vibes",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Mention approachable, friendly energy."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "sundae_dish",
+  "label": "Sundae dish",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Pastel sundae dish with melting gloss."
+  }
+}

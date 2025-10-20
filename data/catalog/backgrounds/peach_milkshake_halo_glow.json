@@ -1,0 +1,19 @@
+{
+  "id": "peach_milkshake_halo_glow",
+  "label": "Peach milkshake fade with halo glow",
+  "weight": 1.0,
+  "tags": [
+    "gloss",
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "peach",
+      "melon"
+    ],
+    "finish": "halo glow",
+    "description": "Simple peach into pale melon gradient with A thin halo glow right behind the hip line."
+  }
+}

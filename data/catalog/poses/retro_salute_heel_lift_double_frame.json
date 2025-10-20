@@ -1,0 +1,16 @@
+{
+  "id": "retro_salute_heel_lift_double_frame",
+  "label": "Retro salute with lifted heel and double frame",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Retro salute",
+    "legs": "lifted heel",
+    "arms": "double frame",
+    "description": "Salute with hips cocked to the side. Heel lifted off the ground for extra hip tilt. Both hands framing the waist."
+  }
+}

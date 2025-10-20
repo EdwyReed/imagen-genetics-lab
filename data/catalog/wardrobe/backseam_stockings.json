@@ -1,0 +1,14 @@
+{
+  "id": "backseam_stockings",
+  "label": "Back-seam stockings",
+  "weight": 1.0,
+  "tags": [
+    "hosiery"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "hosiery",
+    "description": "Sheer stockings with center seam."
+  }
+}

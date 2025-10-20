@@ -1,0 +1,13 @@
+{
+  "id": "gloss_on_fabric",
+  "label": "Gloss on fabric",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Describe fabrics as glossy or satin."
+  }
+}

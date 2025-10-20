@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_satin_reflect_spark_rim",
+  "label": "Sugar-soft key with Satin reflector and spark rim",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Satin reflector",
+    "rim": "spark rim",
+    "description": "Large jelly-soft key hugging the front. Satin reflector placed near the hip line. Sparkling rim hugging the outer hip."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "bouquet_babybreath",
+  "label": "Baby's breath bouquet",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Tiny bouquet resting near the waist."
+  }
+}

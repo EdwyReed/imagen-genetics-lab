@@ -1,0 +1,16 @@
+{
+  "id": "lean_back_lip_bite_hand_on_hip",
+  "label": "Soft lean-back with lip bite (hand on hip)",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Soft lean-back",
+    "expression": "with lip bite",
+    "gesture": "hand on hip",
+    "description": "Leans back just enough to spotlight the hips. She teases a gentle bite of her lip, equal parts bashful and daring. Her free hand keeps one hand resting just above the hip bone. All focus lands on the hipline."
+  }
+}

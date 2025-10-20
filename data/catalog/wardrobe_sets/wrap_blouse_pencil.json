@@ -1,0 +1,18 @@
+{
+  "id": "wrap_blouse_pencil",
+  "label": "Wrap blouse and pencil skirt",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:satin_wrap_blouse",
+    "wardrobe:satin_pencil_skirt",
+    "wardrobe:pearl_belt",
+    "wardrobe:peep_toe_pumps"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Glossy wrap blouse tucked into pencil skirt with pearl belt."
+  }
+}

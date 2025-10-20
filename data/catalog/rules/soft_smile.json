@@ -1,0 +1,13 @@
+{
+  "id": "soft_smile",
+  "label": "Soft smile cue",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Default to soft smiles unless told otherwise."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "waist_up_low_angle",
+  "label": "Waist-up low angle",
+  "weight": 1.0,
+  "tags": [
+    "portrait",
+    "hip_focus"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Waist-up",
+    "angle": "low angle",
+    "description": "Keeps the hips centered at the lower third. Slight low angle that lengthens the legs and hips."
+  }
+}

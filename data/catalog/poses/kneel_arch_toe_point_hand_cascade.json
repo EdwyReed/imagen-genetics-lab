@@ -1,0 +1,16 @@
+{
+  "id": "kneel_arch_toe_point_hand_cascade",
+  "label": "Kneeling arch with pointed toes and cascading hand",
+  "weight": 1.0,
+  "tags": [
+    "standing"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Kneeling arch",
+    "legs": "pointed toes",
+    "arms": "cascading hand",
+    "description": "Kneel with lower back arched and hips pushed back. Toes pointed to elongate legs. Hand cascading along the hip."
+  }
+}

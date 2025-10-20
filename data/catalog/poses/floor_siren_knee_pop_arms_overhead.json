@@ -1,0 +1,16 @@
+{
+  "id": "floor_siren_knee_pop_arms_overhead",
+  "label": "Floor siren with bent knee and arms overhead",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Floor siren",
+    "legs": "bent knee",
+    "arms": "arms overhead",
+    "description": "Lay on side propped on elbow with hips stacked. One knee bent to drive the hip curve. Arms overhead stretching the torso."
+  }
+}

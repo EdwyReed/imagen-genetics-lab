@@ -1,0 +1,19 @@
+{
+  "id": "rose_quartz_jelly_gloss",
+  "label": "Rose quartz mist with jelly gloss sheen",
+  "weight": 1.0,
+  "tags": [
+    "studio",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "rose",
+      "quartz"
+    ],
+    "finish": "jelly gloss sheen",
+    "description": "Simple rose quartz gradient with Wet-look gleam hugging the subject outline."
+  }
+}

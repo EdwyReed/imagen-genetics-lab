@@ -1,0 +1,19 @@
+{
+  "id": "lavender_fog_floor_reflect",
+  "label": "Lavender fog glow with floor reflection",
+  "weight": 1.0,
+  "tags": [
+    "studio",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "lavender",
+      "cloud"
+    ],
+    "finish": "floor reflection",
+    "description": "Simple lavender fog gradient with A satin floor reflection fading near the knees."
+  }
+}

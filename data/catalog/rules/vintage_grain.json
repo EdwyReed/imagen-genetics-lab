@@ -1,0 +1,13 @@
+{
+  "id": "vintage_grain",
+  "label": "Vintage grain touch",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Apply subtle film grain without text."
+  }
+}

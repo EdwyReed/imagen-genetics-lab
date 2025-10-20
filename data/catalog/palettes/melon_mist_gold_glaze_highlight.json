@@ -1,0 +1,19 @@
+{
+  "id": "melon_mist_gold_glaze_highlight",
+  "label": "Melon mist gold with glaze highlight",
+  "weight": 1.0,
+  "tags": [
+    "semi_realism"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "melon",
+      "mint",
+      "pale gold"
+    ],
+    "accent": "glaze highlight",
+    "description": "Cooling melon with gold glints. finished with Glossy glaze accent."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "macaron_maven",
+  "label": "Macaron maven",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Elegant dessert expert with hip-swaying grace."
+  }
+}

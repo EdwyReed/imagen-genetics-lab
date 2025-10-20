@@ -1,0 +1,16 @@
+{
+  "id": "leaning_counter_toe_point_hand_cascade",
+  "label": "Leaning counter with pointed toes and cascading hand",
+  "weight": 1.0,
+  "tags": [
+    "standing"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Leaning counter",
+    "legs": "pointed toes",
+    "arms": "cascading hand",
+    "description": "Lean onto a counter while hips rest back. Toes pointed to elongate legs. Hand cascading along the hip."
+  }
+}

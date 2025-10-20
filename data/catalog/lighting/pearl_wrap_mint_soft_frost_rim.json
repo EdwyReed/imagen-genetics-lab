@@ -1,0 +1,16 @@
+{
+  "id": "pearl_wrap_mint_soft_frost_rim",
+  "label": "Pearl wrap key with Mint soft fill and frost rim",
+  "weight": 1.0,
+  "tags": [
+    "vintage"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Pearl wrap key",
+    "fill": "Mint soft fill",
+    "rim": "frost rim",
+    "description": "Pearl-toned wrap that adds wet shine. Minty fill balancing the jelly sheen. Cool frost rim for contrast."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "no_text",
+  "label": "No poster text",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Avoid lettering even in vintage frames."
+  }
+}

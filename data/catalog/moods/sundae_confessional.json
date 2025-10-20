@@ -1,0 +1,13 @@
+{
+  "id": "sundae_confessional",
+  "label": "Sundae confessional",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Like sharing secrets over sundaes."
+  }
+}

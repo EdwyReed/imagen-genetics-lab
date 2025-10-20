@@ -1,0 +1,15 @@
+{
+  "id": "button_front_skirt",
+  "label": "Button-front skirt",
+  "weight": 1.0,
+  "tags": [
+    "bottom",
+    "skirt"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "bottom",
+    "description": "Button row guiding the eye."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "cross_step_soft_laugh_hat_brim",
+  "label": "Cross-step with soft laugh (tipping brim)",
+  "weight": 1.0,
+  "tags": [
+    "sultry"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Cross-step",
+    "expression": "with soft laugh",
+    "gesture": "tipping brim",
+    "description": "Slides one leg across the other so the hips glide forward. She releases a soft laugh that keeps the mood light and sweet. Her free hand keeps tips a satin sunhat brim toward the camera. All focus lands on the hipline."
+  }
+}

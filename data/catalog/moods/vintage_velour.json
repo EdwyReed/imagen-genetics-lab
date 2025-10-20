@@ -1,0 +1,13 @@
+{
+  "id": "vintage_velour",
+  "label": "Vintage velour",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Velour-smooth vintage flirtation."
+  }
+}

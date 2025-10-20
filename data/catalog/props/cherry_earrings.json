@@ -1,0 +1,13 @@
+{
+  "id": "cherry_earrings",
+  "label": "Cherry earrings",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Cherry drops that sway with movement."
+  }
+}

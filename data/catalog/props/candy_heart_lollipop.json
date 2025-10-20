@@ -1,0 +1,13 @@
+{
+  "id": "candy_heart_lollipop",
+  "label": "Candy heart lollipop",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Heart-shaped lollipop catching glossy highlights."
+  }
+}

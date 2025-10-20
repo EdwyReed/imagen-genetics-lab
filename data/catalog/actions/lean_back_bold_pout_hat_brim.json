@@ -1,0 +1,16 @@
+{
+  "id": "lean_back_bold_pout_hat_brim",
+  "label": "Soft lean-back with bold pout (tipping brim)",
+  "weight": 1.0,
+  "tags": [
+    "tease"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Soft lean-back",
+    "expression": "with bold pout",
+    "gesture": "tipping brim",
+    "description": "Leans back just enough to spotlight the hips. She flaunts a glossy pout that gleams like candy glaze. Her free hand keeps tips a satin sunhat brim toward the camera. All focus lands on the hipline."
+  }
+}

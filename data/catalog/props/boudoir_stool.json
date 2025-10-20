@@ -1,0 +1,13 @@
+{
+  "id": "boudoir_stool",
+  "label": "Boudoir stool",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Low stool that keeps focus on hips."
+  }
+}

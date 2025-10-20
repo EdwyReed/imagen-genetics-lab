@@ -1,0 +1,19 @@
+{
+  "id": "strawberry_cream_misty_spark",
+  "label": "Strawberry cream wash with misty spark",
+  "weight": 1.0,
+  "tags": [
+    "soft",
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "rose",
+      "cream"
+    ],
+    "finish": "misty spark",
+    "description": "Simple faded strawberry cream gradient with Misty sparkle hugging the silhouette."
+  }
+}

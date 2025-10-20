@@ -1,0 +1,13 @@
+{
+  "id": "sunny_sass",
+  "label": "Sunny sass",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Warm sunshine attitude with a wink."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "wrap_dress_stockings",
+  "label": "Wrap dress with stockings",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:bow_wrap_dress",
+    "wardrobe:backseam_stockings",
+    "wardrobe:peep_toe_pumps"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Wrap dress with classic hosiery."
+  }
+}

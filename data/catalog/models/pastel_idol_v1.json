@@ -1,0 +1,15 @@
+{
+  "id": "pastel_idol_v1",
+  "label": "Pastel idol Version 1",
+  "weight": 1.0,
+  "tags": [
+    "anime"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "style_family": "anime",
+    "variant": "Version 1",
+    "description": "Idol-style anime render with candy palettes"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "id": "vintage_velvet_poster",
+  "stages": [
+    {
+      "stage_id": "poster_warm",
+      "cycles": 2,
+      "temperature": 0.24,
+      "style_profile": "vintage_velour",
+      "locks": {
+        "models": {"allow": ["poster_velvet_v1", "sepia_glam_v1", "film_blush_v1"]},
+        "characters": {"allow": ["poster_princess", "velvet_vixen"]},
+        "wardrobe_sets": {"allow": ["wiggle_dress_gloss", "classic_duo", "wiggle_stockings"]},
+        "backgrounds": {"allow": ["cocoa_vanilla_clean_gradient", "rose_quartz_clean_gradient"]},
+        "palettes": {"allow": ["vintage_coral_poster_grain", "amber_plum_satin_shadow"]},
+        "poses": {"allow": ["swaying_stand_heel_lift_double_frame", "perch_pose_toe_point_arms_overhead"]},
+        "camera": {"allow": ["three_quarter_side_slant", "full_body_fortyfive_spin"]},
+        "lighting": {"allow": ["pearl_wrap_satin_reflect_spark_rim", "butter_glow_satin_reflect_sunset_rim"]},
+        "props": {"allow": ["vinyl_record", "perfume_atomizer"]},
+        "moods": {"allow": ["vintage_velour", "starlet_sigh"]},
+        "actions": {"allow": ["hip_circle_bold_pout_hand_on_hip", "lean_back_shy_grin_fingers_in_hair"]}
+      },
+      "required_terms": [
+        "velvet film grain",
+        "hips front and center",
+        "poster lighting"
+      ],
+      "inject_rules": [
+        "vintage_grain",
+        "no_text",
+        "hips_center_stage"
+      ]
+    },
+    {
+      "stage_id": "poster_crescendo",
+      "cycles": 2,
+      "temperature": 0.22,
+      "style_profile": "vintage_velour",
+      "locks": {
+        "models": {"allow": ["poster_velvet_v2", "film_blush_v2", "retro_litho_v1"]},
+        "characters": {"allow": ["velour_valentine", "poster_princess"]},
+        "wardrobe_sets": {"allow": ["bow_wrap_dress_set", "wiggle_stockings", "pearl_trouser_set"]},
+        "backgrounds": {"allow": ["cocoa_vanilla_floor_reflect", "apricot_cloud_halo_glow"]},
+        "palettes": {"allow": ["vintage_coral_poster_grain", "amber_plum_glaze_highlight"]},
+        "poses": {"allow": ["perch_pose_heel_lift_double_frame", "floor_siren_toe_point_hand_cascade"]},
+        "camera": {"allow": ["three_quarter_high_perch", "hip_close_side_slant"]},
+        "lighting": {"allow": ["pearl_wrap_lavender_air_halo_rim", "butter_glow_peach_catch_frost_rim"]},
+        "props": {"allow": ["glitter_clutch", "vinyl_record", "perfume_atomizer"]},
+        "moods": {"allow": ["velvet_vulnerability", "starlet_sigh"]},
+        "actions": {"allow": ["hip_sway_bold_pout_fingers_in_hair", "hip_pop_shy_grin_hand_on_hip"]}
+      },
+      "required_terms": [
+        "no poster text",
+        "hips command the page",
+        "satin studio haze"
+      ],
+      "inject_rules": [
+        "vintage_grain",
+        "no_text",
+        "warm_light",
+        "hips_center_stage"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "marshmallow_pillow",
+  "label": "Marshmallow pillow",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Fluffy pillow to lean against."
+  }
+}

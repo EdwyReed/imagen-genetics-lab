@@ -1,0 +1,15 @@
+{
+  "id": "satin_mules",
+  "label": "Satin mules",
+  "weight": 1.0,
+  "tags": [
+    "footwear",
+    "mules"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "footwear",
+    "description": "Slip-on mules with satin sheen."
+  }
+}

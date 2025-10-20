@@ -1,0 +1,19 @@
+{
+  "id": "sunset_puff_sugar_spark",
+  "label": "Sunset puff with sugar spark",
+  "weight": 1.0,
+  "tags": [
+    "retro"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "apricot",
+      "petal",
+      "twilight"
+    ],
+    "accent": "sugar spark",
+    "description": "Sunset with puffed pastels. finished with Micro sugar sparkles."
+  }
+}

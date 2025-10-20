@@ -1,0 +1,13 @@
+{
+  "id": "sunny_showgirl",
+  "label": "Sunny showgirl",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Showgirl sparkle toned down by warmth."
+  }
+}

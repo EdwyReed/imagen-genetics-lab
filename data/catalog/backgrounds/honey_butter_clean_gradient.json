@@ -1,0 +1,18 @@
+{
+  "id": "honey_butter_clean_gradient",
+  "label": "Honey butter blush with clean gradient",
+  "weight": 1.0,
+  "tags": [
+    "minimal"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "honey",
+      "champagne"
+    ],
+    "finish": "clean gradient",
+    "description": "Simple honey butter gradient with Nothing but a clean gradient and a whisper of shine."
+  }
+}

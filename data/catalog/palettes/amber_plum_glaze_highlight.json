@@ -1,0 +1,19 @@
+{
+  "id": "amber_plum_glaze_highlight",
+  "label": "Amber plum with glaze highlight",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "amber",
+      "plum",
+      "cream"
+    ],
+    "accent": "glaze highlight",
+    "description": "Amber plum sundae. finished with Glossy glaze accent."
+  }
+}

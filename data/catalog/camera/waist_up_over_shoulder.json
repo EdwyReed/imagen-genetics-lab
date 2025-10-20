@@ -1,0 +1,15 @@
+{
+  "id": "waist_up_over_shoulder",
+  "label": "Waist-up over-shoulder",
+  "weight": 1.0,
+  "tags": [
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Waist-up",
+    "angle": "over-shoulder",
+    "description": "Keeps the hips centered at the lower third. Over-the-shoulder glance back at the camera."
+  }
+}

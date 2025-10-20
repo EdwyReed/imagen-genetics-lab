@@ -1,0 +1,19 @@
+{
+  "id": "butter_mauve_satin_shadow",
+  "label": "Butter mauve with satin shadow",
+  "weight": 1.0,
+  "tags": [
+    "warm"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "butter",
+      "mauve",
+      "ivory"
+    ],
+    "accent": "satin shadow",
+    "description": "Buttercream mauve glow. finished with Satin-soft low contrast shadow."
+  }
+}

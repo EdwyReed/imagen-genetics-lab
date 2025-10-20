@@ -1,0 +1,19 @@
+{
+  "id": "citrus_sorbet_clean_gradient",
+  "label": "Citrus sorbet haze with clean gradient",
+  "weight": 1.0,
+  "tags": [
+    "retro",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "citrus",
+      "vanilla"
+    ],
+    "finish": "clean gradient",
+    "description": "Simple citrus sorbet gradient with Nothing but a clean gradient and a whisper of shine."
+  }
+}

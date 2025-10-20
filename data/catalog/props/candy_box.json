@@ -1,0 +1,13 @@
+{
+  "id": "candy_box",
+  "label": "Candy sampler box",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Open candy box with bright centers."
+  }
+}

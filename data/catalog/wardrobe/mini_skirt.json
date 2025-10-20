@@ -1,9 +1,12 @@
 {
   "id": "mini_skirt",
-  "label": "Mini skirt",
+  "label": "Glossy mini skirt",
   "weight": 1.0,
-  "tags": ["bottom"],
+  "tags": ["bottom", "skirt"],
   "requires": [],
   "excludes": [],
-  "meta": {"slot": "bottom"}
+  "meta": {
+    "slot": "bottom",
+    "description": "High-waist mini skirt with mirror-shine finish that hugs the hips."
+  }
 }

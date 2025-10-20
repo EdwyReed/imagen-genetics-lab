@@ -1,0 +1,13 @@
+{
+  "id": "sugarcoated_stylist",
+  "label": "Sugarcoated stylist",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Stylish creative who loves accentuating hips."
+  }
+}

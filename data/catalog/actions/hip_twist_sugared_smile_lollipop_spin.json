@@ -1,0 +1,16 @@
+{
+  "id": "hip_twist_sugared_smile_lollipop_spin",
+  "label": "Hip twist with sugared smile (twirling lollipop)",
+  "weight": 1.0,
+  "tags": [
+    "flirty"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip twist",
+    "expression": "with sugared smile",
+    "gesture": "twirling lollipop",
+    "description": "Twists at the waist to show the hips from a teasing angle. She flashes a sugared smile that feels innocently indulgent. Her free hand keeps twirls a candy-bright lollipop near her smile. All focus lands on the hipline."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "lace_camisole",
+  "label": "Lace camisole",
+  "weight": 1.0,
+  "tags": [
+    "top",
+    "lace"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "top",
+    "description": "Delicate lace cami tucked in."
+  }
+}

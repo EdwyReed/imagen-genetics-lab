@@ -1,0 +1,19 @@
+{
+  "id": "apricot_cloud_powder_soft",
+  "label": "Apricot cloud with powder-soft diffusion",
+  "weight": 1.0,
+  "tags": [
+    "gloss",
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "apricot",
+      "pearl"
+    ],
+    "finish": "powder-soft diffusion",
+    "description": "Simple apricot cloud gradient with Powder-soft diffusion that keeps edges simple."
+  }
+}

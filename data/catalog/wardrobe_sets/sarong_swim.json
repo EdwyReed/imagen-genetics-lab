@@ -1,0 +1,18 @@
+{
+  "id": "sarong_swim",
+  "label": "Sarong swim tease",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:satin_wrap_blouse",
+    "wardrobe:satin_hotpants",
+    "wardrobe:ankle_scarf",
+    "wardrobe:satin_mules"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Sarong-inspired wrap over shorts."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "pillowtalk_poet",
+  "label": "Pillowtalk poet",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Soft-spoken muse with flirtatious prose."
+  }
+}

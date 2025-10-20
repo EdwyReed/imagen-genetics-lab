@@ -1,0 +1,13 @@
+{
+  "id": "macaron_plate",
+  "label": "Macaron plate",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Plate of macarons resting at the side."
+  }
+}

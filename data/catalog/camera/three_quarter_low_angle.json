@@ -1,0 +1,16 @@
+{
+  "id": "three_quarter_low_angle",
+  "label": "Three-quarter low angle",
+  "weight": 1.0,
+  "tags": [
+    "fashion",
+    "hip_focus"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Three-quarter",
+    "angle": "low angle",
+    "description": "Frames from head to mid-thigh for an easy hip emphasis. Slight low angle that lengthens the legs and hips."
+  }
+}

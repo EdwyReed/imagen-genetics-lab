@@ -1,0 +1,19 @@
+{
+  "id": "melon_mist_gold_satin_shadow",
+  "label": "Melon mist gold with satin shadow",
+  "weight": 1.0,
+  "tags": [
+    "retro"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "melon",
+      "mint",
+      "pale gold"
+    ],
+    "accent": "satin shadow",
+    "description": "Cooling melon with gold glints. finished with Satin-soft low contrast shadow."
+  }
+}

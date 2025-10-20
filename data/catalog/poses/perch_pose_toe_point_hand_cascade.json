@@ -1,0 +1,16 @@
+{
+  "id": "perch_pose_toe_point_hand_cascade",
+  "label": "Perched seat with pointed toes and cascading hand",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Perched seat",
+    "legs": "pointed toes",
+    "arms": "cascading hand",
+    "description": "Perch on a stool with hips angled forward. Toes pointed to elongate legs. Hand cascading along the hip."
+  }
+}

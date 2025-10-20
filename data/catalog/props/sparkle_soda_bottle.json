@@ -1,0 +1,13 @@
+{
+  "id": "sparkle_soda_bottle",
+  "label": "Sparkle soda bottle",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Vintage soda bottle with pastel fizz."
+  }
+}

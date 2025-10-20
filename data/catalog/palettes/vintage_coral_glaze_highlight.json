@@ -1,0 +1,19 @@
+{
+  "id": "vintage_coral_glaze_highlight",
+  "label": "Vintage coral with glaze highlight",
+  "weight": 1.0,
+  "tags": [
+    "semi_realism"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "coral",
+      "sepia",
+      "powder blue"
+    ],
+    "accent": "glaze highlight",
+    "description": "Vintage coral poster vibes. finished with Glossy glaze accent."
+  }
+}

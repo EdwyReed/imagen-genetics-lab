@@ -1,0 +1,15 @@
+{
+  "id": "highrise_shorts",
+  "label": "High-rise cuffed shorts",
+  "weight": 1.0,
+  "tags": [
+    "bottom",
+    "shorts"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "bottom",
+    "description": "Cuffed shorts accentuating legs."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "pearl_belt",
+  "label": "Pearl hip belt",
+  "weight": 1.0,
+  "tags": [
+    "accessory",
+    "belt"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "accessory",
+    "description": "Pearl belt resting across hips."
+  }
+}

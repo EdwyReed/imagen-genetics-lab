@@ -1,0 +1,13 @@
+{
+  "id": "anime_darling",
+  "label": "Anime darling",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Anime-flavored sweetheart with soft curves."
+  }
+}

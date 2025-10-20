@@ -1,0 +1,16 @@
+{
+  "id": "cross_leg_pop_knee_pop_double_frame",
+  "label": "Cross-leg pop with bent knee and double frame",
+  "weight": 1.0,
+  "tags": [
+    "stool"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Cross-leg pop",
+    "legs": "bent knee",
+    "arms": "double frame",
+    "description": "Legs crossed with hip popped outward. One knee bent to drive the hip curve. Both hands framing the waist."
+  }
+}

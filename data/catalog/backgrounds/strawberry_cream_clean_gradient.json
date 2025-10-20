@@ -1,0 +1,19 @@
+{
+  "id": "strawberry_cream_clean_gradient",
+  "label": "Strawberry cream wash with clean gradient",
+  "weight": 1.0,
+  "tags": [
+    "retro",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "rose",
+      "cream"
+    ],
+    "finish": "clean gradient",
+    "description": "Simple faded strawberry cream gradient with Nothing but a clean gradient and a whisper of shine."
+  }
+}

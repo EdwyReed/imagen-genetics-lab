@@ -1,0 +1,15 @@
+{
+  "id": "full_body_straight_on",
+  "label": "Full body straight-on",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Full body",
+    "angle": "straight-on",
+    "description": "Shows the whole silhouette without clutter. Straight-on view that lets the hips lead the shot."
+  }
+}

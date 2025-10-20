@@ -1,0 +1,16 @@
+{
+  "id": "hip_twist_shy_grin_hand_on_hip",
+  "label": "Hip twist with shy grin (hand on hip)",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip twist",
+    "expression": "with shy grin",
+    "gesture": "hand on hip",
+    "description": "Twists at the waist to show the hips from a teasing angle. She lets a shy, syrupy grin bloom across her lips. Her free hand keeps one hand resting just above the hip bone. All focus lands on the hipline."
+  }
+}

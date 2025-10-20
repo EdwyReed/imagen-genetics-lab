@@ -1,0 +1,13 @@
+{
+  "id": "pinup_posture",
+  "label": "Pin-up posture",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Call for straight spine and dramatic hips."
+  }
+}

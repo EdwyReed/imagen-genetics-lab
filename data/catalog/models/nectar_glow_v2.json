@@ -1,0 +1,15 @@
+{
+  "id": "nectar_glow_v2",
+  "label": "Nectar glow Version 2",
+  "weight": 1.0,
+  "tags": [
+    "semi-realism"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "style_family": "semi-realism",
+    "variant": "Version 2",
+    "description": "Honeyed semi-real look with luminous hips"
+  }
+}

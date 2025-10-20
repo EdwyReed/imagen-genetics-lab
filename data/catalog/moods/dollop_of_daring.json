@@ -1,0 +1,13 @@
+{
+  "id": "dollop_of_daring",
+  "label": "Dollop of daring",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Just a dollop of daring atop the sweetness."
+  }
+}

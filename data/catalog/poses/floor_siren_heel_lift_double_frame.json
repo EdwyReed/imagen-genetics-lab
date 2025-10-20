@@ -1,0 +1,16 @@
+{
+  "id": "floor_siren_heel_lift_double_frame",
+  "label": "Floor siren with lifted heel and double frame",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Floor siren",
+    "legs": "lifted heel",
+    "arms": "double frame",
+    "description": "Lay on side propped on elbow with hips stacked. Heel lifted off the ground for extra hip tilt. Both hands framing the waist."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "retro_romp",
+  "label": "Retro romp",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Playful retro romp energy."
+  }
+}

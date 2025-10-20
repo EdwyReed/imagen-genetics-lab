@@ -1,0 +1,13 @@
+{
+  "id": "heart_balloon",
+  "label": "Helium heart balloon",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Floating heart balloon brushing hips."
+  }
+}

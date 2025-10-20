@@ -1,0 +1,19 @@
+{
+  "id": "mint_mousse_jelly_gloss",
+  "label": "Mint mousse drift with jelly gloss sheen",
+  "weight": 1.0,
+  "tags": [
+    "retro",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "mint",
+      "foam"
+    ],
+    "finish": "jelly gloss sheen",
+    "description": "Simple mint mousse gradient with Wet-look gleam hugging the subject outline."
+  }
+}

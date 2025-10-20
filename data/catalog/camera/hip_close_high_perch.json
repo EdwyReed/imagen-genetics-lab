@@ -1,0 +1,15 @@
+{
+  "id": "hip_close_high_perch",
+  "label": "Hip-close crop high perch",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Hip-close crop",
+    "angle": "high perch",
+    "description": "Zooms near the hips and lower torso. Gentle overhead tilt that still keeps hips pronounced."
+  }
+}

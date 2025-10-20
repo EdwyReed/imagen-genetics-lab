@@ -1,0 +1,15 @@
+{
+  "id": "satin_pencil_skirt",
+  "label": "Satin pencil skirt",
+  "weight": 1.0,
+  "tags": [
+    "bottom",
+    "skirt"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "bottom",
+    "description": "Glossy pencil skirt hugging hips."
+  }
+}

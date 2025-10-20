@@ -1,0 +1,15 @@
+{
+  "id": "ankle_strap_heels",
+  "label": "Ankle-strap heels",
+  "weight": 1.0,
+  "tags": [
+    "footwear",
+    "heels"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "footwear",
+    "description": "Strappy heels showing off ankles."
+  }
+}

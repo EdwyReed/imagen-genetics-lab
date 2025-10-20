@@ -1,0 +1,13 @@
+{
+  "id": "sweet_expression",
+  "label": "Sweet expression first",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Expressions should feel sweet before daring."
+  }
+}

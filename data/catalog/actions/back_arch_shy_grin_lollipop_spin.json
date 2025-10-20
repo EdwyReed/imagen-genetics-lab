@@ -1,0 +1,16 @@
+{
+  "id": "back_arch_shy_grin_lollipop_spin",
+  "label": "Back arch with shy grin (twirling lollipop)",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Back arch",
+    "expression": "with shy grin",
+    "gesture": "twirling lollipop",
+    "description": "Arches the lower back to push hips forward with satin confidence. She lets a shy, syrupy grin bloom across her lips. Her free hand keeps twirls a candy-bright lollipop near her smile. All focus lands on the hipline."
+  }
+}

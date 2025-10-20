@@ -1,0 +1,15 @@
+{
+  "id": "waist_up_side_slant",
+  "label": "Waist-up side slant",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Waist-up",
+    "angle": "side slant",
+    "description": "Keeps the hips centered at the lower third. Angled from the side to highlight curvature."
+  }
+}

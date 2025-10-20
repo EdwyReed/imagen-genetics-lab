@@ -1,0 +1,16 @@
+{
+  "id": "swaying_stand_knee_pop_double_frame",
+  "label": "Swaying stand with bent knee and double frame",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Swaying stand",
+    "legs": "bent knee",
+    "arms": "double frame",
+    "description": "Weight shifted onto one leg with hips leading. One knee bent to drive the hip curve. Both hands framing the waist."
+  }
+}

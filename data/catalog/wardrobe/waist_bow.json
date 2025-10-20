@@ -1,0 +1,15 @@
+{
+  "id": "waist_bow",
+  "label": "Waist bow",
+  "weight": 1.0,
+  "tags": [
+    "accessory",
+    "belt"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "accessory",
+    "description": "Oversized bow perched on hip."
+  }
+}

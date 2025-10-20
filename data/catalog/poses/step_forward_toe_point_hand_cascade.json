@@ -1,0 +1,16 @@
+{
+  "id": "step_forward_toe_point_hand_cascade",
+  "label": "Step forward with pointed toes and cascading hand",
+  "weight": 1.0,
+  "tags": [
+    "standing"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Step forward",
+    "legs": "pointed toes",
+    "arms": "cascading hand",
+    "description": "One step forward while hips follow the stride. Toes pointed to elongate legs. Hand cascading along the hip."
+  }
+}

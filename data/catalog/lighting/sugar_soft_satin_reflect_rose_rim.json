@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_satin_reflect_rose_rim",
+  "label": "Sugar-soft key with Satin reflector and rose rim",
+  "weight": 1.0,
+  "tags": [
+    "anime_glow"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Satin reflector",
+    "rim": "rose rim",
+    "description": "Large jelly-soft key hugging the front. Satin reflector placed near the hip line. Rose rim light tracing the back hip."
+  }
+}

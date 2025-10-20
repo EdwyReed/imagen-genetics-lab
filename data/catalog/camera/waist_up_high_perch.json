@@ -1,0 +1,16 @@
+{
+  "id": "waist_up_high_perch",
+  "label": "Waist-up high perch",
+  "weight": 1.0,
+  "tags": [
+    "fashion",
+    "hip_focus"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Waist-up",
+    "angle": "high perch",
+    "description": "Keeps the hips centered at the lower third. Gentle overhead tilt that still keeps hips pronounced."
+  }
+}

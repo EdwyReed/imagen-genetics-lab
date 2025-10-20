@@ -1,0 +1,13 @@
+{
+  "id": "minty_muse",
+  "label": "Minty muse",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Cool-toned muse balancing innocence and allure."
+  }
+}

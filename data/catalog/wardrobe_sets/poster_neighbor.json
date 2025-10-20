@@ -1,0 +1,18 @@
+{
+  "id": "poster_neighbor",
+  "label": "Poster neighbor",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:pleated_peterpan",
+    "wardrobe:swing_circle_skirt",
+    "wardrobe:ribbon_choker",
+    "wardrobe:kitten_heels"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Poster-perfect neighborly ensemble."
+  }
+}

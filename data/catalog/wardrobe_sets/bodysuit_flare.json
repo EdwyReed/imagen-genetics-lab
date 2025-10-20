@@ -1,0 +1,18 @@
+{
+  "id": "bodysuit_flare",
+  "label": "Bodysuit with flare trousers",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:bubble_sleeve_bodysuit",
+    "wardrobe:sugarflare_trousers",
+    "wardrobe:pearl_belt",
+    "wardrobe:ankle_strap_heels"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Bodysuit tucked into flare trousers."
+  }
+}

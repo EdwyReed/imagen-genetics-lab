@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_sugared_smile_fingers_in_hair",
+  "label": "Hip sway with sugared smile (fingers in hair)",
+  "weight": 1.0,
+  "tags": [
+    "sweet"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with sugared smile",
+    "gesture": "fingers in hair",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She flashes a sugared smile that feels innocently indulgent. Her free hand keeps fingers combing slowly through soft curls. All focus lands on the hipline."
+  }
+}

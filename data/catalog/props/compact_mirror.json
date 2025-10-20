@@ -1,0 +1,13 @@
+{
+  "id": "compact_mirror",
+  "label": "Compact mirror",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Glossy compact reflecting hip curve."
+  }
+}

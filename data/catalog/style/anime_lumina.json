@@ -1,0 +1,17 @@
+{
+  "id": "anime_lumina",
+  "label": "Anime lumina sweetness",
+  "kind": "profile",
+  "system_prompt": "You are a stylist composing candy-colored anime pin-up key art with playful hip-forward posing.",
+  "required_terms": [
+    "anime linework",
+    "sparkling eyes",
+    "hips in focus"
+  ],
+  "weight": 1.0,
+  "tags": ["anime", "pinup"],
+  "meta": {
+    "finish": "cel-shaded gloss",
+    "palette_hint": "mint_cotton"
+  }
+}

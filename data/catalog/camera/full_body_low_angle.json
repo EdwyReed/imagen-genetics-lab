@@ -1,0 +1,15 @@
+{
+  "id": "full_body_low_angle",
+  "label": "Full body low angle",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Full body",
+    "angle": "low angle",
+    "description": "Shows the whole silhouette without clutter. Slight low angle that lengthens the legs and hips."
+  }
+}

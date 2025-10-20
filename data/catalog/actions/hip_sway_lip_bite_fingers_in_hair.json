@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_lip_bite_fingers_in_hair",
+  "label": "Hip sway with lip bite (fingers in hair)",
+  "weight": 1.0,
+  "tags": [
+    "sultry"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with lip bite",
+    "gesture": "fingers in hair",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She teases a gentle bite of her lip, equal parts bashful and daring. Her free hand keeps fingers combing slowly through soft curls. All focus lands on the hipline."
+  }
+}

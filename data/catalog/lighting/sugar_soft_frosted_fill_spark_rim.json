@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_frosted_fill_spark_rim",
+  "label": "Sugar-soft key with Frosted fill and spark rim",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Frosted fill",
+    "rim": "spark rim",
+    "description": "Large jelly-soft key hugging the front. Frosted fill light that polishes highlights. Sparkling rim hugging the outer hip."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "tie_front_blouse",
+  "label": "Tie-front blouse",
+  "weight": 1.0,
+  "tags": [
+    "top",
+    "knot"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "top",
+    "description": "Tie-front blouse knotted above waist."
+  }
+}

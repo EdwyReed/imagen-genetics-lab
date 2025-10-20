@@ -1,0 +1,17 @@
+{
+  "id": "vintage_velour",
+  "label": "Vintage velour poster",
+  "kind": "profile",
+  "system_prompt": "You are a stylist staging vintage poster-style photo art with velvety grain and hip-forward pin-up poise, without typography.",
+  "required_terms": [
+    "vintage poster lighting",
+    "velvet film grain",
+    "no text"
+  ],
+  "weight": 1.0,
+  "tags": ["vintage", "pinup"],
+  "meta": {
+    "finish": "velour grain",
+    "palette_hint": "vintage_coral"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "three_quarter_high_perch",
+  "label": "Three-quarter high perch",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Three-quarter",
+    "angle": "high perch",
+    "description": "Frames from head to mid-thigh for an easy hip emphasis. Gentle overhead tilt that still keeps hips pronounced."
+  }
+}

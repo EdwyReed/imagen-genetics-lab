@@ -1,0 +1,18 @@
+{
+  "id": "sunny_shortset",
+  "label": "Tie blouse and cuffed shorts",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:tie_front_blouse",
+    "wardrobe:highrise_shorts",
+    "wardrobe:heart_sunglasses",
+    "wardrobe:peep_toe_pumps"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Sunny short set with heart shades."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "warm_light",
+  "label": "Warm light bias",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Favor warm butter-toned light."
+  }
+}

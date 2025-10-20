@@ -1,0 +1,16 @@
+{
+  "id": "candy_beam_peach_catch_spark_rim",
+  "label": "Candy beam key with Peach catch fill and spark rim",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Candy beam key",
+    "fill": "Peach catch fill",
+    "rim": "spark rim",
+    "description": "Directional candy-color beam to trace curves. Peach catch light lifting the cheeks. Sparkling rim hugging the outer hip."
+  }
+}

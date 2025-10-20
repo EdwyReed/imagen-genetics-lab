@@ -1,0 +1,19 @@
+{
+  "id": "mint_cotton_sugar_spark",
+  "label": "Mint cotton with sugar spark",
+  "weight": 1.0,
+  "tags": [
+    "warm"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "mint",
+      "cotton candy",
+      "pearl"
+    ],
+    "accent": "sugar spark",
+    "description": "Mint cotton candy dream. finished with Micro sugar sparkles."
+  }
+}

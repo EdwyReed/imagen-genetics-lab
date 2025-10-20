@@ -1,0 +1,13 @@
+{
+  "id": "apricot_angel",
+  "label": "Apricot angel",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Sun-kissed apricot charm and playful innocence."
+  }
+}

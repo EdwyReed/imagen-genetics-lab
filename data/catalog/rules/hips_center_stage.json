@@ -1,0 +1,13 @@
+{
+  "id": "hips_center_stage",
+  "label": "Keep hips center stage",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Ensure prompts keep hips as the visual anchor."
+  }
+}

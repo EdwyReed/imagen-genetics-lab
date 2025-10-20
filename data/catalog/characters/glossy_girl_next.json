@@ -1,0 +1,13 @@
+{
+  "id": "glossy_girl_next",
+  "label": "Glossy girl-next-door",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Neighborly softness and high-gloss finish."
+  }
+}

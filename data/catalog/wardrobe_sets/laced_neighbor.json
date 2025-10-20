@@ -1,0 +1,18 @@
+{
+  "id": "laced_neighbor",
+  "label": "Lace cami and button skirt",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:lace_camisole",
+    "wardrobe:button_front_skirt",
+    "wardrobe:pearl_belt",
+    "wardrobe:kitten_heels"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Lace cami tucked into button skirt."
+  }
+}

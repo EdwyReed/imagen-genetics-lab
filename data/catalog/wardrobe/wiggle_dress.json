@@ -1,0 +1,14 @@
+{
+  "id": "wiggle_dress",
+  "label": "Wiggle dress",
+  "weight": 1.0,
+  "tags": [
+    "dress"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "dress",
+    "description": "Curve-hugging wiggle dress with sweetheart neckline."
+  }
+}

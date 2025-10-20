@@ -1,0 +1,15 @@
+{
+  "id": "full_body_fortyfive_spin",
+  "label": "Full body 45° spin",
+  "weight": 1.0,
+  "tags": [
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Full body",
+    "angle": "45° spin",
+    "description": "Shows the whole silhouette without clutter. Forty-five degree twist to trace the hip line."
+  }
+}

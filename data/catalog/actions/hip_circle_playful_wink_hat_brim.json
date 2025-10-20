@@ -1,0 +1,16 @@
+{
+  "id": "hip_circle_playful_wink_hat_brim",
+  "label": "Hip circle with playful wink (tipping brim)",
+  "weight": 1.0,
+  "tags": [
+    "sweet"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip circle",
+    "expression": "with playful wink",
+    "gesture": "tipping brim",
+    "description": "Traces a slow glossy circle with her hips, catching the studio gleam. She sends a playful wink that says she is in on the fun. Her free hand keeps tips a satin sunhat brim toward the camera. All focus lands on the hipline."
+  }
+}

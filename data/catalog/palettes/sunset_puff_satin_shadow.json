@@ -1,0 +1,19 @@
+{
+  "id": "sunset_puff_satin_shadow",
+  "label": "Sunset puff with satin shadow",
+  "weight": 1.0,
+  "tags": [
+    "cool"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "apricot",
+      "petal",
+      "twilight"
+    ],
+    "accent": "satin shadow",
+    "description": "Sunset with puffed pastels. finished with Satin-soft low contrast shadow."
+  }
+}

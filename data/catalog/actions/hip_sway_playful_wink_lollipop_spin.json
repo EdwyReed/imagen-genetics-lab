@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_playful_wink_lollipop_spin",
+  "label": "Hip sway with playful wink (twirling lollipop)",
+  "weight": 1.0,
+  "tags": [
+    "flirty"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with playful wink",
+    "gesture": "twirling lollipop",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She sends a playful wink that says she is in on the fun. Her free hand keeps twirls a candy-bright lollipop near her smile. All focus lands on the hipline."
+  }
+}

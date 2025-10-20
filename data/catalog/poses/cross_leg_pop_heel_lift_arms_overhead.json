@@ -1,0 +1,16 @@
+{
+  "id": "cross_leg_pop_heel_lift_arms_overhead",
+  "label": "Cross-leg pop with lifted heel and arms overhead",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Cross-leg pop",
+    "legs": "lifted heel",
+    "arms": "arms overhead",
+    "description": "Legs crossed with hip popped outward. Heel lifted off the ground for extra hip tilt. Arms overhead stretching the torso."
+  }
+}

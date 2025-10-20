@@ -1,0 +1,15 @@
+{
+  "id": "hip_close_low_angle",
+  "label": "Hip-close crop low angle",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Hip-close crop",
+    "angle": "low angle",
+    "description": "Zooms near the hips and lower torso. Slight low angle that lengthens the legs and hips."
+  }
+}

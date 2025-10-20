@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_sugared_smile_hat_brim",
+  "label": "Hip sway with sugared smile (tipping brim)",
+  "weight": 1.0,
+  "tags": [
+    "tease"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with sugared smile",
+    "gesture": "tipping brim",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She flashes a sugared smile that feels innocently indulgent. Her free hand keeps tips a satin sunhat brim toward the camera. All focus lands on the hipline."
+  }
+}

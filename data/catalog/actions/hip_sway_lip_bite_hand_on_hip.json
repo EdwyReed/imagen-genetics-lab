@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_lip_bite_hand_on_hip",
+  "label": "Hip sway with lip bite (hand on hip)",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with lip bite",
+    "gesture": "hand on hip",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She teases a gentle bite of her lip, equal parts bashful and daring. Her free hand keeps one hand resting just above the hip bone. All focus lands on the hipline."
+  }
+}

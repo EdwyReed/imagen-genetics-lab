@@ -1,9 +1,16 @@
 {
   "id": "classic_duo",
-  "label": "Classic top and skirt",
+  "label": "Bandeau and mini-sway",
   "weight": 1.0,
-  "tags": [],
-  "requires": ["wardrobe:bandeau_top", "wardrobe:mini_skirt"],
+  "tags": ["pinup"],
+  "requires": [
+    "wardrobe:bandeau_top",
+    "wardrobe:mini_skirt",
+    "wardrobe:pearl_belt",
+    "wardrobe:ankle_strap_heels"
+  ],
   "excludes": [],
-  "meta": {}
+  "meta": {
+    "description": "Glossy bandeau top with a mini skirt and pearl belt, perfect for a hips-first sway."
+  }
 }

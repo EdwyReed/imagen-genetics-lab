@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_bounce_creme_rose_rim",
+  "label": "Sugar-soft key with Cream bounce fill and rose rim",
+  "weight": 1.0,
+  "tags": [
+    "anime_glow"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Cream bounce fill",
+    "rim": "rose rim",
+    "description": "Large jelly-soft key hugging the front. Cream bounce to keep shadows gentle. Rose rim light tracing the back hip."
+  }
+}

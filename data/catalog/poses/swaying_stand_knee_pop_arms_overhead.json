@@ -1,0 +1,16 @@
+{
+  "id": "swaying_stand_knee_pop_arms_overhead",
+  "label": "Swaying stand with bent knee and arms overhead",
+  "weight": 1.0,
+  "tags": [
+    "floor"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Swaying stand",
+    "legs": "bent knee",
+    "arms": "arms overhead",
+    "description": "Weight shifted onto one leg with hips leading. One knee bent to drive the hip curve. Arms overhead stretching the torso."
+  }
+}
