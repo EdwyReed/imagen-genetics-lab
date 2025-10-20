@@ -1,0 +1,46 @@
+[
+  {
+    "id": "model_ruby",
+    "desc": "ruby-haired muse with freckles and spirited grin",
+    "attributes": {
+      "sexuality": 0.58,
+      "nudity": 0.26,
+      "routine": 0.62,
+      "artistic": 0.76,
+      "era": {"1960s": 0.5, "1990s": 0.3}
+    }
+  },
+  {
+    "id": "model_violet",
+    "desc": "violet bob cut with cat-eye liner and glitter lashes",
+    "attributes": {
+      "sexuality": 0.67,
+      "nudity": 0.32,
+      "routine": 0.4,
+      "artistic": 0.84,
+      "era": {"1980s": 0.6, "2000s": 0.2}
+    }
+  },
+  {
+    "id": "model_honey",
+    "desc": "honey blonde waves, warm bronze glow, dimpled smile",
+    "attributes": {
+      "sexuality": 0.54,
+      "nudity": 0.24,
+      "routine": 0.68,
+      "artistic": 0.78,
+      "era": {"1950s": 0.6, "1970s": 0.3}
+    }
+  },
+  {
+    "id": "model_charcoal",
+    "desc": "charcoal curls with bold brows and confident gaze",
+    "attributes": {
+      "sexuality": 0.62,
+      "nudity": 0.28,
+      "routine": 0.55,
+      "artistic": 0.81,
+      "era": {"1960s": 0.5, "1980s": 0.3}
+    }
+  }
+]

@@ -1,0 +1,148 @@
+{
+  "angles": [
+    {
+      "id": "angle_eye_level",
+      "desc": "eye-level angle celebrating symmetry",
+      "ratio": "3:4",
+      "attributes": {
+        "sexuality": 0.52,
+        "nudity": 0.24,
+        "routine": 0.68,
+        "artistic": 0.74,
+        "era": {"1950s": 0.5, "1960s": 0.3}
+      }
+    },
+    {
+      "id": "angle_low_glam",
+      "desc": "low glamour angle elongating the legs",
+      "ratio": "9:16",
+      "attributes": {
+        "sexuality": 0.7,
+        "nudity": 0.4,
+        "routine": 0.36,
+        "artistic": 0.82,
+        "era": {"1970s": 0.4, "1980s": 0.4}
+      }
+    },
+    {
+      "id": "angle_topdown",
+      "desc": "top-down tease highlighting vintage set",
+      "ratio": "1:1",
+      "attributes": {
+        "sexuality": 0.6,
+        "nudity": 0.32,
+        "routine": 0.44,
+        "artistic": 0.79,
+        "era": {"1960s": 0.4, "1990s": 0.3}
+      }
+    }
+  ],
+  "framing": [
+    {
+      "id": "frame_medium_full",
+      "desc": "medium-full framing with airy headroom",
+      "ratio": "3:4",
+      "attributes": {
+        "sexuality": 0.54,
+        "nudity": 0.26,
+        "routine": 0.63,
+        "artistic": 0.72,
+        "era": {"1960s": 0.5, "1990s": 0.2}
+      }
+    },
+    {
+      "id": "frame_closeup",
+      "desc": "closeup croppping to shoulders and face",
+      "ratio": "4:5",
+      "attributes": {
+        "sexuality": 0.58,
+        "nudity": 0.22,
+        "routine": 0.58,
+        "artistic": 0.8,
+        "era": {"1950s": 0.5, "1980s": 0.3}
+      }
+    },
+    {
+      "id": "frame_wide_story",
+      "desc": "wide narrative framing that reveals props",
+      "ratio": "16:9",
+      "attributes": {
+        "sexuality": 0.48,
+        "nudity": 0.18,
+        "routine": 0.75,
+        "artistic": 0.77,
+        "era": {"1970s": 0.4, "1980s": 0.3}
+      }
+    }
+  ],
+  "lenses": [
+    {
+      "id": "lens_50mm",
+      "desc": "50mm watercolor emulation for natural proportions",
+      "attributes": {
+        "sexuality": 0.53,
+        "nudity": 0.22,
+        "routine": 0.68,
+        "artistic": 0.78,
+        "era": {"1950s": 0.5, "1960s": 0.3}
+      }
+    },
+    {
+      "id": "lens_35mm_story",
+      "desc": "35mm storytelling perspective with subtle distortion",
+      "attributes": {
+        "sexuality": 0.56,
+        "nudity": 0.24,
+        "routine": 0.7,
+        "artistic": 0.82,
+        "era": {"1960s": 0.4, "1970s": 0.3}
+      }
+    },
+    {
+      "id": "lens_85mm_glam",
+      "desc": "85mm glamour compression with satin bokeh",
+      "attributes": {
+        "sexuality": 0.68,
+        "nudity": 0.36,
+        "routine": 0.42,
+        "artistic": 0.86,
+        "era": {"1980s": 0.6, "1990s": 0.2}
+      }
+    }
+  ],
+  "depth": [
+    {
+      "id": "depth_soft_glow",
+      "desc": "soft depth of field with glowing highlights",
+      "attributes": {
+        "sexuality": 0.58,
+        "nudity": 0.3,
+        "routine": 0.52,
+        "artistic": 0.88,
+        "era": {"1960s": 0.5, "1980s": 0.3}
+      }
+    },
+    {
+      "id": "depth_crisp_detail",
+      "desc": "crisp detail for fashion illustration",
+      "attributes": {
+        "sexuality": 0.48,
+        "nudity": 0.18,
+        "routine": 0.74,
+        "artistic": 0.76,
+        "era": {"1950s": 0.5, "1990s": 0.3}
+      }
+    },
+    {
+      "id": "depth_chromatic_whirl",
+      "desc": "chromatic whirl bokeh swirling around subject",
+      "attributes": {
+        "sexuality": 0.64,
+        "nudity": 0.34,
+        "routine": 0.38,
+        "artistic": 0.9,
+        "era": {"1980s": 0.6, "2000s": 0.2}
+      }
+    }
+  ]
+}
