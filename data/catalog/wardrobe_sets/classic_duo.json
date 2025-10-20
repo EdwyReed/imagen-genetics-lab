@@ -1,0 +1,9 @@
+{
+  "id": "classic_duo",
+  "label": "Classic top and skirt",
+  "weight": 1.0,
+  "tags": [],
+  "requires": ["wardrobe:bandeau_top", "wardrobe:mini_skirt"],
+  "excludes": [],
+  "meta": {}
+}

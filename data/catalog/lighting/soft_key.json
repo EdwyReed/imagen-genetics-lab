@@ -1,0 +1,9 @@
+{
+  "id": "soft_key",
+  "label": "Soft key light",
+  "weight": 1.0,
+  "tags": ["studio"],
+  "requires": [],
+  "excludes": [],
+  "meta": {"temperature": "warm"}
+}

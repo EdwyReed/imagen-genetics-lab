@@ -1,0 +1,9 @@
+{
+  "id": "bandeau_top",
+  "label": "Bandeau top",
+  "weight": 1.0,
+  "tags": ["top"],
+  "requires": [],
+  "excludes": [],
+  "meta": {"slot": "top"}
+}

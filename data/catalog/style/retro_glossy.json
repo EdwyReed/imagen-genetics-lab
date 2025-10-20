@@ -1,0 +1,10 @@
+{
+  "id": "retro_glossy",
+  "label": "Retro glossy",
+  "kind": "profile",
+  "system_prompt": "You are a stylist crafting retro-futuristic glossy portraits.",
+  "required_terms": ["retro", "glossy finish"],
+  "weight": 1.0,
+  "tags": ["profile"],
+  "meta": {"palette_hint": "neon"}
+}

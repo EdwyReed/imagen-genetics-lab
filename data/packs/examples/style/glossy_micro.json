@@ -1,0 +1,10 @@
+{
+  "id": "glossy_micro",
+  "label": "Glossy microtexture",
+  "kind": "token",
+  "weight": 1.0,
+  "tags": ["micro"],
+  "requires": [],
+  "excludes": [],
+  "meta": {"prompt": "Add micro-reflective glossy accents."}
+}

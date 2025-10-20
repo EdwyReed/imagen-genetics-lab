@@ -1,0 +1,9 @@
+{
+  "id": "hip_sway",
+  "label": "Hip sway pose",
+  "weight": 1.0,
+  "tags": ["dynamic"],
+  "requires": [],
+  "excludes": [],
+  "meta": {}
+}

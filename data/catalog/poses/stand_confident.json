@@ -1,0 +1,9 @@
+{
+  "id": "stand_confident",
+  "label": "Confident stance",
+  "weight": 1.0,
+  "tags": ["standing"],
+  "requires": [],
+  "excludes": [],
+  "meta": {}
+}

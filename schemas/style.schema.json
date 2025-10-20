@@ -1,0 +1,41 @@
+{
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["id", "label", "kind", "system_prompt", "required_terms"],
+      "properties": {
+        "id": {"type": "string"},
+        "label": {"type": "string"},
+        "kind": {"const": "profile"},
+        "system_prompt": {"type": "string"},
+        "required_terms": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "meta": {"type": "object"},
+        "tags": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "weight": {"type": ["number", "integer"]}
+      },
+      "additionalProperties": true
+    },
+    {
+      "type": "object",
+      "required": ["id", "label", "kind"],
+      "properties": {
+        "id": {"type": "string"},
+        "label": {"type": "string"},
+        "kind": {"const": "token"},
+        "meta": {"type": "object"},
+        "tags": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "weight": {"type": ["number", "integer"]}
+      },
+      "additionalProperties": true
+    }
+  ]
+}

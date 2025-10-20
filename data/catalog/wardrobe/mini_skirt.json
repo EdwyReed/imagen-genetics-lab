@@ -1,0 +1,9 @@
+{
+  "id": "mini_skirt",
+  "label": "Mini skirt",
+  "weight": 1.0,
+  "tags": ["bottom"],
+  "requires": [],
+  "excludes": [],
+  "meta": {"slot": "bottom"}
+}

@@ -1,7 +1,0 @@
-{
-  "caption_length": {
-    "min_words": 22,
-    "max_words": 58
-  },
-  "required_terms": ["illustration", "watercolor", "glossy", "paper", "pastel"]
-}

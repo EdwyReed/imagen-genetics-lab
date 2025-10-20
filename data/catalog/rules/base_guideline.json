@@ -1,0 +1,9 @@
+{
+  "id": "base_guideline",
+  "label": "Base composition guideline",
+  "weight": 1.0,
+  "tags": [],
+  "requires": [],
+  "excludes": [],
+  "meta": {"prompt": "Balance composition with gentle contrast."}
+}
