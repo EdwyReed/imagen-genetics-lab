@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "required": ["id", "label"],
+  "properties": {
+    "id": {"type": "string"},
+    "label": {"type": "string"},
+    "weight": {"type": ["number", "integer"]},
+    "tags": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": false
+    },
+    "requires": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[a-z_]+:[a-zA-Z0-9_-]+$"}
+    },
+    "excludes": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[a-z_]+:[a-zA-Z0-9_-]+$"}
+    },
+    "meta": {"type": "object"}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,9 @@
+{
+  "id": "minimal",
+  "label": "No props",
+  "weight": 1.0,
+  "tags": [],
+  "requires": [],
+  "excludes": [],
+  "meta": {}
+}

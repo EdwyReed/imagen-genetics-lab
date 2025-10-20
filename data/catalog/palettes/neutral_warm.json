@@ -1,0 +1,9 @@
+{
+  "id": "neutral_warm",
+  "label": "Neutral warm palette",
+  "weight": 1.0,
+  "tags": ["warm"],
+  "requires": [],
+  "excludes": [],
+  "meta": {"tones": ["beige", "apricot"]}
+}

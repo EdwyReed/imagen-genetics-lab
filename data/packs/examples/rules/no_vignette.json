@@ -1,0 +1,9 @@
+{
+  "id": "no_vignette",
+  "label": "No vignette",
+  "weight": 1.0,
+  "tags": ["compliance"],
+  "requires": [],
+  "excludes": [],
+  "meta": {"hard": true, "prompt": "Avoid vignette or border darkening."}
+}

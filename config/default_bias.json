@@ -1,33 +1,4 @@
 {
-  "weights": {
-    "global": {
-      "artistic": 0.7
-    },
-    "pose": {
-      "sexuality": 0.6,
-      "nudity": 0.35,
-      "era": {
-        "1960s": 0.6,
-        "1980s": 0.4
-      }
-    },
-    "wardrobe": {
-      "sexuality": 0.55,
-      "nudity": 0.3,
-      "era": {
-        "1950s": 0.5,
-        "1980s": 0.4
-      }
-    },
-    "background": {
-      "routine": 0.65,
-      "era": {
-        "1950s": 0.5,
-        "1970s": 0.3
-      }
-    },
-    "lighting": {
-      "artistic": 0.85
-    }
-  }
+  "weights": {},
+  "locks": {}
 }

@@ -1,0 +1,9 @@
+{
+  "id": "lead_muse",
+  "label": "Lead muse",
+  "weight": 1.0,
+  "tags": ["default"],
+  "requires": [],
+  "excludes": [],
+  "meta": {"description": "Primary subject"}
+}

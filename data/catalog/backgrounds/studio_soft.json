@@ -1,0 +1,9 @@
+{
+  "id": "studio_soft",
+  "label": "Soft studio backdrop",
+  "weight": 1.0,
+  "tags": ["indoor"],
+  "requires": [],
+  "excludes": [],
+  "meta": {"description": "Neutral gradient backdrop"}
+}

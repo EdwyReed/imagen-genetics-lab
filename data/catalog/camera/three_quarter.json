@@ -1,0 +1,9 @@
+{
+  "id": "three_quarter",
+  "label": "Three-quarter portrait",
+  "weight": 1.0,
+  "tags": ["portrait"],
+  "requires": [],
+  "excludes": [],
+  "meta": {"framing": "waist"}
+}

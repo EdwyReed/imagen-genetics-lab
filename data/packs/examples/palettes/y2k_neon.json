@@ -1,0 +1,9 @@
+{
+  "id": "y2k_neon",
+  "label": "Y2K neon",
+  "weight": 1.0,
+  "tags": ["neon"],
+  "requires": [],
+  "excludes": [],
+  "meta": {"tones": ["magenta", "cyan", "chrome"]}
+}

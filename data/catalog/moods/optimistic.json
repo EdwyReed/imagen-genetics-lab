@@ -1,0 +1,9 @@
+{
+  "id": "optimistic",
+  "label": "Optimistic",
+  "weight": 1.0,
+  "tags": ["positive"],
+  "requires": [],
+  "excludes": [],
+  "meta": {}
+}

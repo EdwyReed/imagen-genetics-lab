@@ -1,0 +1,9 @@
+{
+  "id": "bandeau_set",
+  "label": "Bandeau club set",
+  "weight": 1.0,
+  "tags": ["club"],
+  "requires": ["wardrobe:bandeau_top", "wardrobe:mini_skirt"],
+  "excludes": [],
+  "meta": {"style": "y2k"}
+}

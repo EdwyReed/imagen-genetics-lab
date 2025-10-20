@@ -1,0 +1,9 @@
+{
+  "id": "idle_smile",
+  "label": "Relaxed smile",
+  "weight": 1.0,
+  "tags": ["neutral"],
+  "requires": [],
+  "excludes": [],
+  "meta": {}
+}

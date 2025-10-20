@@ -1,0 +1,9 @@
+{
+  "id": "sdxl_base",
+  "label": "SDXL base model",
+  "weight": 1.0,
+  "tags": ["base"],
+  "requires": [],
+  "excludes": [],
+  "meta": {"version": "1.0"}
+}
