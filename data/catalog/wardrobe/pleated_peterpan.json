@@ -1,0 +1,15 @@
+{
+  "id": "pleated_peterpan",
+  "label": "Pleated Peter Pan blouse",
+  "weight": 1.0,
+  "tags": [
+    "top",
+    "collar"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "top",
+    "description": "Peter Pan collar with gentle pleats."
+  }
+}

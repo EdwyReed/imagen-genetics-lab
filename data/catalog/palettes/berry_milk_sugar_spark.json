@@ -1,0 +1,19 @@
+{
+  "id": "berry_milk_sugar_spark",
+  "label": "Berry milk with sugar spark",
+  "weight": 1.0,
+  "tags": [
+    "semi_realism"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "raspberry",
+      "milk",
+      "powder"
+    ],
+    "accent": "sugar spark",
+    "description": "Milkshake berry mix. finished with Micro sugar sparkles."
+  }
+}

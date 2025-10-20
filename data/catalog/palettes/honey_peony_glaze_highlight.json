@@ -1,0 +1,19 @@
+{
+  "id": "honey_peony_glaze_highlight",
+  "label": "Honey peony with glaze highlight",
+  "weight": 1.0,
+  "tags": [
+    "retro"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "honey",
+      "peony",
+      "champagne"
+    ],
+    "accent": "glaze highlight",
+    "description": "Peony kissed honey. finished with Glossy glaze accent."
+  }
+}

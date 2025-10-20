@@ -1,0 +1,19 @@
+{
+  "id": "blueberry_custard_halo_glow",
+  "label": "Blueberry custard with halo glow",
+  "weight": 1.0,
+  "tags": [
+    "soft",
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "blueberry",
+      "cream"
+    ],
+    "finish": "halo glow",
+    "description": "Simple blueberry custard gradient with A thin halo glow right behind the hip line."
+  }
+}

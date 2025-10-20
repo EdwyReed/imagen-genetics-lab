@@ -1,0 +1,15 @@
+{
+  "id": "ruffle_mini",
+  "label": "Ruffle mini skirt",
+  "weight": 1.0,
+  "tags": [
+    "bottom",
+    "skirt"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "bottom",
+    "description": "Ruffled hem flirting with thighs."
+  }
+}

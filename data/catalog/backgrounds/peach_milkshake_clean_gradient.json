@@ -1,0 +1,19 @@
+{
+  "id": "peach_milkshake_clean_gradient",
+  "label": "Peach milkshake fade with clean gradient",
+  "weight": 1.0,
+  "tags": [
+    "retro",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "peach",
+      "melon"
+    ],
+    "finish": "clean gradient",
+    "description": "Simple peach into pale melon gradient with Nothing but a clean gradient and a whisper of shine."
+  }
+}

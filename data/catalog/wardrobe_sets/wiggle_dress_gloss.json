@@ -1,0 +1,17 @@
+{
+  "id": "wiggle_dress_gloss",
+  "label": "Wiggle dress glam",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:wiggle_dress",
+    "wardrobe:pearl_belt",
+    "wardrobe:ankle_strap_heels"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Classic wiggle dress with pearl belt."
+  }
+}

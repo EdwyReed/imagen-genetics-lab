@@ -1,0 +1,16 @@
+{
+  "id": "full_body_high_perch",
+  "label": "Full body high perch",
+  "weight": 1.0,
+  "tags": [
+    "portrait",
+    "hip_focus"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Full body",
+    "angle": "high perch",
+    "description": "Shows the whole silhouette without clutter. Gentle overhead tilt that still keeps hips pronounced."
+  }
+}

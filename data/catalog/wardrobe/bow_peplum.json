@@ -1,0 +1,15 @@
+{
+  "id": "bow_peplum",
+  "label": "Bow peplum blouse",
+  "weight": 1.0,
+  "tags": [
+    "top",
+    "peplum"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "top",
+    "description": "Peplum hem that flares over hips."
+  }
+}

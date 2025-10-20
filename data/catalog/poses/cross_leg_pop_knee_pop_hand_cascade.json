@@ -1,0 +1,16 @@
+{
+  "id": "cross_leg_pop_knee_pop_hand_cascade",
+  "label": "Cross-leg pop with bent knee and cascading hand",
+  "weight": 1.0,
+  "tags": [
+    "standing"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Cross-leg pop",
+    "legs": "bent knee",
+    "arms": "cascading hand",
+    "description": "Legs crossed with hip popped outward. One knee bent to drive the hip curve. Hand cascading along the hip."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "leaning_counter_toe_point_double_frame",
+  "label": "Leaning counter with pointed toes and double frame",
+  "weight": 1.0,
+  "tags": [
+    "stool"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Leaning counter",
+    "legs": "pointed toes",
+    "arms": "double frame",
+    "description": "Lean onto a counter while hips rest back. Toes pointed to elongate legs. Both hands framing the waist."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "simple_backdrops",
+  "label": "Simple backdrops",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Restrict backgrounds to gradients or minimal props."
+  }
+}

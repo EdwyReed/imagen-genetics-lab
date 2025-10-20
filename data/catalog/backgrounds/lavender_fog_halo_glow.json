@@ -1,0 +1,19 @@
+{
+  "id": "lavender_fog_halo_glow",
+  "label": "Lavender fog glow with halo glow",
+  "weight": 1.0,
+  "tags": [
+    "gloss",
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "lavender",
+      "cloud"
+    ],
+    "finish": "halo glow",
+    "description": "Simple lavender fog gradient with A thin halo glow right behind the hip line."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "kitten_heels",
+  "label": "Kitten heels",
+  "weight": 1.0,
+  "tags": [
+    "footwear",
+    "heels"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "footwear",
+    "description": "Comfort kitten heels for neighborly vibe."
+  }
+}

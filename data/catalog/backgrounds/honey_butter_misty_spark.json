@@ -1,0 +1,19 @@
+{
+  "id": "honey_butter_misty_spark",
+  "label": "Honey butter blush with misty spark",
+  "weight": 1.0,
+  "tags": [
+    "gloss",
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "honey",
+      "champagne"
+    ],
+    "finish": "misty spark",
+    "description": "Simple honey butter gradient with Misty sparkle hugging the silhouette."
+  }
+}

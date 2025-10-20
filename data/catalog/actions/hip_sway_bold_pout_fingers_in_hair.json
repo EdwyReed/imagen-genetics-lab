@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_bold_pout_fingers_in_hair",
+  "label": "Hip sway with bold pout (fingers in hair)",
+  "weight": 1.0,
+  "tags": [
+    "sweet"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with bold pout",
+    "gesture": "fingers in hair",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She flaunts a glossy pout that gleams like candy glaze. Her free hand keeps fingers combing slowly through soft curls. All focus lands on the hipline."
+  }
+}

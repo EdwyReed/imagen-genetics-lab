@@ -1,0 +1,16 @@
+{
+  "id": "swaying_stand_toe_point_double_frame",
+  "label": "Swaying stand with pointed toes and double frame",
+  "weight": 1.0,
+  "tags": [
+    "stool"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Swaying stand",
+    "legs": "pointed toes",
+    "arms": "double frame",
+    "description": "Weight shifted onto one leg with hips leading. Toes pointed to elongate legs. Both hands framing the waist."
+  }
+}

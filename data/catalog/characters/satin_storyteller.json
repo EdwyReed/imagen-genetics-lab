@@ -1,0 +1,13 @@
+{
+  "id": "satin_storyteller",
+  "label": "Satin storyteller",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Narrative-driven flirt with satin notes."
+  }
+}

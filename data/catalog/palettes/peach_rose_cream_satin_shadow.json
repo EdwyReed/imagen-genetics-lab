@@ -1,0 +1,19 @@
+{
+  "id": "peach_rose_cream_satin_shadow",
+  "label": "Peach rose cream with satin shadow",
+  "weight": 1.0,
+  "tags": [
+    "cool"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "peach",
+      "rose",
+      "cream"
+    ],
+    "accent": "satin shadow",
+    "description": "Soft dessert trio. finished with Satin-soft low contrast shadow."
+  }
+}

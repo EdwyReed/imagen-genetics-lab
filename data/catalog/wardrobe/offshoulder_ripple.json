@@ -1,0 +1,15 @@
+{
+  "id": "offshoulder_ripple",
+  "label": "Off-shoulder ripple top",
+  "weight": 1.0,
+  "tags": [
+    "top",
+    "offshoulder"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "top",
+    "description": "Rippled off-shoulder neckline."
+  }
+}

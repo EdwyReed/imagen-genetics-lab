@@ -1,0 +1,13 @@
+{
+  "id": "peachy_pinup",
+  "label": "Peachy pin-up",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Peach-forward glamour with a wink."
+  }
+}

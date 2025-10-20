@@ -1,0 +1,15 @@
+{
+  "id": "peep_toe_pumps",
+  "label": "Peep-toe pumps",
+  "weight": 1.0,
+  "tags": [
+    "footwear",
+    "heels"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "footwear",
+    "description": "Classic pumps with gloss."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "blooming_confidence",
+  "label": "Blooming confidence",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Confidence blooming like a retro pin-up poster."
+  }
+}

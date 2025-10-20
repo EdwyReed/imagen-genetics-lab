@@ -1,0 +1,13 @@
+{
+  "id": "neighborly_muse",
+  "label": "Neighborly muse",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Girl-next-door spark with coy polish."
+  }
+}

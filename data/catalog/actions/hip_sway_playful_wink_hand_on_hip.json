@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_playful_wink_hand_on_hip",
+  "label": "Hip sway with playful wink (hand on hip)",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with playful wink",
+    "gesture": "hand on hip",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She sends a playful wink that says she is in on the fun. Her free hand keeps one hand resting just above the hip bone. All focus lands on the hipline."
+  }
+}

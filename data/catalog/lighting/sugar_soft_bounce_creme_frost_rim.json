@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_bounce_creme_frost_rim",
+  "label": "Sugar-soft key with Cream bounce fill and frost rim",
+  "weight": 1.0,
+  "tags": [
+    "vintage"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Cream bounce fill",
+    "rim": "frost rim",
+    "description": "Large jelly-soft key hugging the front. Cream bounce to keep shadows gentle. Cool frost rim for contrast."
+  }
+}

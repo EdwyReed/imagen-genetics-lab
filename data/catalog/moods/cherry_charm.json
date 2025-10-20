@@ -1,0 +1,13 @@
+{
+  "id": "cherry_charm",
+  "label": "Cherry charm",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Cherry-bright charm with gentle provocation."
+  }
+}

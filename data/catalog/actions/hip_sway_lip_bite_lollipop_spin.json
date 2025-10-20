@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_lip_bite_lollipop_spin",
+  "label": "Hip sway with lip bite (twirling lollipop)",
+  "weight": 1.0,
+  "tags": [
+    "flirty"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with lip bite",
+    "gesture": "twirling lollipop",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She teases a gentle bite of her lip, equal parts bashful and daring. Her free hand keeps twirls a candy-bright lollipop near her smile. All focus lands on the hipline."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "pearl_wrap_lavender_air_halo_rim",
+  "label": "Pearl wrap key with Lavender air fill and halo rim",
+  "weight": 1.0,
+  "tags": [
+    "studio",
+    "gloss"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Pearl wrap key",
+    "fill": "Lavender air fill",
+    "rim": "halo rim",
+    "description": "Pearl-toned wrap that adds wet shine. Lavender-tinted fill smoothing skin. Slim halo rim hugging the silhouette."
+  }
+}

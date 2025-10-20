@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_bounce_creme_butterfly_rim",
+  "label": "Sugar-soft key with Cream bounce fill and butterfly rim",
+  "weight": 1.0,
+  "tags": [
+    "semi_realism"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Cream bounce fill",
+    "rim": "butterfly rim",
+    "description": "Large jelly-soft key hugging the front. Cream bounce to keep shadows gentle. Soft butterfly rim meeting above the shoulders."
+  }
+}

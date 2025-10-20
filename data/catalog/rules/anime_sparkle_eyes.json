@@ -1,0 +1,13 @@
+{
+  "id": "anime_sparkle_eyes",
+  "label": "Anime sparkle eyes",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Add eye sparkles for anime moods."
+  }
+}

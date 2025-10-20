@@ -1,0 +1,19 @@
+{
+  "id": "berry_milk_satin_shadow",
+  "label": "Berry milk with satin shadow",
+  "weight": 1.0,
+  "tags": [
+    "anime"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "raspberry",
+      "milk",
+      "powder"
+    ],
+    "accent": "satin shadow",
+    "description": "Milkshake berry mix. finished with Satin-soft low contrast shadow."
+  }
+}

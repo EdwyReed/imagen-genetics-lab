@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_shy_grin_hat_brim",
+  "label": "Hip sway with shy grin (tipping brim)",
+  "weight": 1.0,
+  "tags": [
+    "sultry"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with shy grin",
+    "gesture": "tipping brim",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She lets a shy, syrupy grin bloom across her lips. Her free hand keeps tips a satin sunhat brim toward the camera. All focus lands on the hipline."
+  }
+}

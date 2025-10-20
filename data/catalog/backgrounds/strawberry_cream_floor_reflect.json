@@ -1,0 +1,18 @@
+{
+  "id": "strawberry_cream_floor_reflect",
+  "label": "Strawberry cream wash with floor reflection",
+  "weight": 1.0,
+  "tags": [
+    "minimal"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "rose",
+      "cream"
+    ],
+    "finish": "floor reflection",
+    "description": "Simple faded strawberry cream gradient with A satin floor reflection fading near the knees."
+  }
+}

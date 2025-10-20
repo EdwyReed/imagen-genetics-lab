@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_bold_pout_lollipop_spin",
+  "label": "Hip sway with bold pout (twirling lollipop)",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with bold pout",
+    "gesture": "twirling lollipop",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She flaunts a glossy pout that gleams like candy glaze. Her free hand keeps twirls a candy-bright lollipop near her smile. All focus lands on the hipline."
+  }
+}

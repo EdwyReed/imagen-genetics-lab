@@ -1,0 +1,13 @@
+{
+  "id": "satin_selfassured",
+  "label": "Satin self-assured",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Self-assured but silky demeanor."
+  }
+}

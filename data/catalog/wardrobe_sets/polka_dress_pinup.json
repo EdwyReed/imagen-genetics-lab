@@ -1,0 +1,17 @@
+{
+  "id": "polka_dress_pinup",
+  "label": "Polka pin-up",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:retro_polka_dress",
+    "wardrobe:satin_gloves",
+    "wardrobe:ankle_strap_heels"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Polka dots with gloves and straps."
+  }
+}

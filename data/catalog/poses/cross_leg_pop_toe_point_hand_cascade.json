@@ -1,0 +1,16 @@
+{
+  "id": "cross_leg_pop_toe_point_hand_cascade",
+  "label": "Cross-leg pop with pointed toes and cascading hand",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Cross-leg pop",
+    "legs": "pointed toes",
+    "arms": "cascading hand",
+    "description": "Legs crossed with hip popped outward. Toes pointed to elongate legs. Hand cascading along the hip."
+  }
+}

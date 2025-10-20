@@ -1,0 +1,16 @@
+{
+  "id": "pearl_wrap_frosted_fill_butterfly_rim",
+  "label": "Pearl wrap key with Frosted fill and butterfly rim",
+  "weight": 1.0,
+  "tags": [
+    "semi_realism"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Pearl wrap key",
+    "fill": "Frosted fill",
+    "rim": "butterfly rim",
+    "description": "Pearl-toned wrap that adds wet shine. Frosted fill light that polishes highlights. Soft butterfly rim meeting above the shoulders."
+  }
+}

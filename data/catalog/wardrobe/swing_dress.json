@@ -1,0 +1,14 @@
+{
+  "id": "swing_dress",
+  "label": "Swing dress",
+  "weight": 1.0,
+  "tags": [
+    "dress"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "dress",
+    "description": "Swing dress with cinched waist and flaring hips."
+  }
+}

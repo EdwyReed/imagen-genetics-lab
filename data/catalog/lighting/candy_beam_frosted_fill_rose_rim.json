@@ -1,0 +1,16 @@
+{
+  "id": "candy_beam_frosted_fill_rose_rim",
+  "label": "Candy beam key with Frosted fill and rose rim",
+  "weight": 1.0,
+  "tags": [
+    "anime_glow"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Candy beam key",
+    "fill": "Frosted fill",
+    "rim": "rose rim",
+    "description": "Directional candy-color beam to trace curves. Frosted fill light that polishes highlights. Rose rim light tracing the back hip."
+  }
+}

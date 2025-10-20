@@ -1,0 +1,13 @@
+{
+  "id": "jellybean_jester",
+  "label": "Jellybean jester",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Playful jokester with pastel punch."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "melon_mist_gold_poster_grain",
+  "label": "Melon mist gold with poster grain",
+  "weight": 1.0,
+  "tags": [
+    "cool"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "melon",
+      "mint",
+      "pale gold"
+    ],
+    "accent": "poster grain",
+    "description": "Cooling melon with gold glints. finished with Light vintage poster grain."
+  }
+}

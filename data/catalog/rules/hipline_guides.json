@@ -1,0 +1,13 @@
+{
+  "id": "hipline_guides",
+  "label": "Hipline guiding pose",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Ask for poses that guide the eye along the hipline."
+  }
+}

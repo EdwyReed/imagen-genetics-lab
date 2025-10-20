@@ -1,0 +1,16 @@
+{
+  "id": "candy_beam_mint_soft_sunset_rim",
+  "label": "Candy beam key with Mint soft fill and sunset rim",
+  "weight": 1.0,
+  "tags": [
+    "soft"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Candy beam key",
+    "fill": "Mint soft fill",
+    "rim": "sunset rim",
+    "description": "Directional candy-color beam to trace curves. Minty fill balancing the jelly sheen. Warm sunset rim behind the subject."
+  }
+}

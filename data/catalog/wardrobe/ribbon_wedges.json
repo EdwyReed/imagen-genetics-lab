@@ -1,0 +1,15 @@
+{
+  "id": "ribbon_wedges",
+  "label": "Ribbon wedges",
+  "weight": 1.0,
+  "tags": [
+    "footwear",
+    "wedges"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "footwear",
+    "description": "Wedges tied with ribbons."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "sugar_soft_bounce_creme_halo_rim",
+  "label": "Sugar-soft key with Cream bounce fill and halo rim",
+  "weight": 1.0,
+  "tags": [
+    "studio",
+    "gloss"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Cream bounce fill",
+    "rim": "halo rim",
+    "description": "Large jelly-soft key hugging the front. Cream bounce to keep shadows gentle. Slim halo rim hugging the silhouette."
+  }
+}

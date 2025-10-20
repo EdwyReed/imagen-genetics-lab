@@ -1,0 +1,19 @@
+{
+  "id": "soda_fizz_poster_grain",
+  "label": "Soda fizz with poster grain",
+  "weight": 1.0,
+  "tags": [
+    "cool"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "cherry soda",
+      "vanilla",
+      "sky"
+    ],
+    "accent": "poster grain",
+    "description": "Cherry vanilla soda fizz. finished with Light vintage poster grain."
+  }
+}

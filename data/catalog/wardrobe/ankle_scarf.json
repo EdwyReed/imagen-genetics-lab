@@ -1,0 +1,15 @@
+{
+  "id": "ankle_scarf",
+  "label": "Ankle scarf",
+  "weight": 1.0,
+  "tags": [
+    "accessory",
+    "ankle"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "accessory",
+    "description": "Small scarf tied at ankle."
+  }
+}

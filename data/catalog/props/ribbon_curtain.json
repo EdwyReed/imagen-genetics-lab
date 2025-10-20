@@ -1,0 +1,13 @@
+{
+  "id": "ribbon_curtain",
+  "label": "Ribbon curtain",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Simple ribbon strands framing hips."
+  }
+}

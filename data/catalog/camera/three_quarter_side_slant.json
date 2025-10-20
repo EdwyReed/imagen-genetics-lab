@@ -1,0 +1,15 @@
+{
+  "id": "three_quarter_side_slant",
+  "label": "Three-quarter side slant",
+  "weight": 1.0,
+  "tags": [
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Three-quarter",
+    "angle": "side slant",
+    "description": "Frames from head to mid-thigh for an easy hip emphasis. Angled from the side to highlight curvature."
+  }
+}

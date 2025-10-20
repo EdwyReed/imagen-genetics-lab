@@ -1,0 +1,13 @@
+{
+  "id": "poster_princess",
+  "label": "Poster princess",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Poster-inspired heroine with bold hips."
+  }
+}

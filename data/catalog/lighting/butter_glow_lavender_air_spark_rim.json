@@ -1,0 +1,16 @@
+{
+  "id": "butter_glow_lavender_air_spark_rim",
+  "label": "Butter glow key with Lavender air fill and spark rim",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Butter glow key",
+    "fill": "Lavender air fill",
+    "rim": "spark rim",
+    "description": "Butter-yellow glow that kisses the hips. Lavender-tinted fill smoothing skin. Sparkling rim hugging the outer hip."
+  }
+}

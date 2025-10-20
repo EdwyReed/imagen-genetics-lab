@@ -1,0 +1,19 @@
+{
+  "id": "sunset_puff_glaze_highlight",
+  "label": "Sunset puff with glaze highlight",
+  "weight": 1.0,
+  "tags": [
+    "cool"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "apricot",
+      "petal",
+      "twilight"
+    ],
+    "accent": "glaze highlight",
+    "description": "Sunset with puffed pastels. finished with Glossy glaze accent."
+  }
+}

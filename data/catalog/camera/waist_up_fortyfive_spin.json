@@ -1,0 +1,15 @@
+{
+  "id": "waist_up_fortyfive_spin",
+  "label": "Waist-up 45° spin",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Waist-up",
+    "angle": "45° spin",
+    "description": "Keeps the hips centered at the lower third. Forty-five degree twist to trace the hip line."
+  }
+}

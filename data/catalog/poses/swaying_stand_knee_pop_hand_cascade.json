@@ -1,0 +1,16 @@
+{
+  "id": "swaying_stand_knee_pop_hand_cascade",
+  "label": "Swaying stand with bent knee and cascading hand",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Swaying stand",
+    "legs": "bent knee",
+    "arms": "cascading hand",
+    "description": "Weight shifted onto one leg with hips leading. One knee bent to drive the hip curve. Hand cascading along the hip."
+  }
+}

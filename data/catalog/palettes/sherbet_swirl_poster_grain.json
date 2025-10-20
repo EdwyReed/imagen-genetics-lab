@@ -1,0 +1,19 @@
+{
+  "id": "sherbet_swirl_poster_grain",
+  "label": "Sherbet swirl with poster grain",
+  "weight": 1.0,
+  "tags": [
+    "retro"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "sherbet",
+      "cream",
+      "cantaloupe"
+    ],
+    "accent": "poster grain",
+    "description": "Swirling sherbet hues. finished with Light vintage poster grain."
+  }
+}

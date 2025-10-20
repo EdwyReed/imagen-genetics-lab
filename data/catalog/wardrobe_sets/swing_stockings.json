@@ -1,0 +1,17 @@
+{
+  "id": "swing_stockings",
+  "label": "Swing dress with stockings",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:swing_dress",
+    "wardrobe:lace_thighhighs",
+    "wardrobe:platform_maryjanes"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Swing dress and lace thigh-highs."
+  }
+}

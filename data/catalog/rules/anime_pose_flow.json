@@ -1,0 +1,13 @@
+{
+  "id": "anime_pose_flow",
+  "label": "Anime pose flow",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Encourage flowing limbs like anime key art."
+  }
+}

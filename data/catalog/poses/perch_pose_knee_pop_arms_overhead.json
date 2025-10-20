@@ -1,0 +1,16 @@
+{
+  "id": "perch_pose_knee_pop_arms_overhead",
+  "label": "Perched seat with bent knee and arms overhead",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Perched seat",
+    "legs": "bent knee",
+    "arms": "arms overhead",
+    "description": "Perch on a stool with hips angled forward. One knee bent to drive the hip curve. Arms overhead stretching the torso."
+  }
+}

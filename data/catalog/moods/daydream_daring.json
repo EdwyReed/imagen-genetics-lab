@@ -1,0 +1,13 @@
+{
+  "id": "daydream_daring",
+  "label": "Daydream daring",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Dreamy but daring presence."
+  }
+}

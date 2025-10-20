@@ -1,0 +1,19 @@
+{
+  "id": "strawberry_cream_powder_soft",
+  "label": "Strawberry cream wash with powder-soft diffusion",
+  "weight": 1.0,
+  "tags": [
+    "gloss",
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "rose",
+      "cream"
+    ],
+    "finish": "powder-soft diffusion",
+    "description": "Simple faded strawberry cream gradient with Powder-soft diffusion that keeps edges simple."
+  }
+}

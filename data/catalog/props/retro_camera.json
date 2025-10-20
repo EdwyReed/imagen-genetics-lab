@@ -1,0 +1,13 @@
+{
+  "id": "retro_camera",
+  "label": "Retro snapshot camera",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Vintage camera held at the hip."
+  }
+}

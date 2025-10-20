@@ -1,0 +1,15 @@
+{
+  "id": "anime_spark_v2",
+  "label": "Anime spark Version 2",
+  "weight": 1.0,
+  "tags": [
+    "anime"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "style_family": "anime",
+    "variant": "Version 2",
+    "description": "Shōjo-inspired sparkle with soft shading"
+  }
+}

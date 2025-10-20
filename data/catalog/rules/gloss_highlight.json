@@ -1,0 +1,13 @@
+{
+  "id": "gloss_highlight",
+  "label": "Emphasize glossy highlights",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Call for wet-look highlights along curves."
+  }
+}

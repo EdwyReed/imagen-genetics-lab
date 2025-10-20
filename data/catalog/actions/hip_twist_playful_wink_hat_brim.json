@@ -1,0 +1,16 @@
+{
+  "id": "hip_twist_playful_wink_hat_brim",
+  "label": "Hip twist with playful wink (tipping brim)",
+  "weight": 1.0,
+  "tags": [
+    "sweet"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip twist",
+    "expression": "with playful wink",
+    "gesture": "tipping brim",
+    "description": "Twists at the waist to show the hips from a teasing angle. She sends a playful wink that says she is in on the fun. Her free hand keeps tips a satin sunhat brim toward the camera. All focus lands on the hipline."
+  }
+}

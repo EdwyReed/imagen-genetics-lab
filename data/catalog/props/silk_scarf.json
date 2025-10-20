@@ -1,0 +1,13 @@
+{
+  "id": "silk_scarf",
+  "label": "Silk polka-dot scarf",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Polka-dot scarf draped loosely."
+  }
+}

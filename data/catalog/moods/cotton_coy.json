@@ -1,0 +1,13 @@
+{
+  "id": "cotton_coy",
+  "label": "Cotton-candy coy",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "A coy sweetness like spun sugar flirting with the camera."
+  }
+}

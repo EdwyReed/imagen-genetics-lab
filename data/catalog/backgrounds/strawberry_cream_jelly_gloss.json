@@ -1,0 +1,19 @@
+{
+  "id": "strawberry_cream_jelly_gloss",
+  "label": "Strawberry cream wash with jelly gloss sheen",
+  "weight": 1.0,
+  "tags": [
+    "studio",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "rose",
+      "cream"
+    ],
+    "finish": "jelly gloss sheen",
+    "description": "Simple faded strawberry cream gradient with Wet-look gleam hugging the subject outline."
+  }
+}

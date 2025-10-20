@@ -1,0 +1,15 @@
+{
+  "id": "gelatin_glamour_v1",
+  "label": "Gelatin glamour Version 1",
+  "weight": 1.0,
+  "tags": [
+    "semi-realism"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "style_family": "semi-realism",
+    "variant": "Version 1",
+    "description": "Semi-realistic jelly sheen pin-up render"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "bodysuit_shortset",
+  "label": "Bodysuit and cuffed shorts",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:bubble_sleeve_bodysuit",
+    "wardrobe:highrise_shorts",
+    "wardrobe:waist_bow",
+    "wardrobe:ankle_strap_heels"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Bodysuit tucked into cuffed shorts."
+  }
+}

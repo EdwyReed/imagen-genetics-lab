@@ -1,9 +1,12 @@
 {
   "id": "bandeau_top",
-  "label": "Bandeau top",
+  "label": "Satin bandeau top",
   "weight": 1.0,
-  "tags": ["top"],
+  "tags": ["top", "strapless"],
   "requires": [],
   "excludes": [],
-  "meta": {"slot": "top"}
+  "meta": {
+    "slot": "top",
+    "description": "Strapless satin bandeau hugging the bust with a candy-gloss sheen."
+  }
 }

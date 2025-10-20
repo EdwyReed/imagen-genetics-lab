@@ -1,0 +1,19 @@
+{
+  "id": "peach_rose_cream_poster_grain",
+  "label": "Peach rose cream with poster grain",
+  "weight": 1.0,
+  "tags": [
+    "anime"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "peach",
+      "rose",
+      "cream"
+    ],
+    "accent": "poster grain",
+    "description": "Soft dessert trio. finished with Light vintage poster grain."
+  }
+}

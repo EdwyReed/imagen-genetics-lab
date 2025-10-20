@@ -1,0 +1,258 @@
+{
+  "id": "anime_coquette_triptych",
+  "stages": [
+    {
+      "stage_id": "pastel_intro",
+      "cycles": 2,
+      "temperature": 0.35,
+      "style_profile": "anime_lumina",
+      "locks": {
+        "models": {
+          "allow": [
+            "anime_spark_v1",
+            "pastel_idol_v1"
+          ]
+        },
+        "characters": {
+          "allow": [
+            "anime_darling",
+            "minty_muse",
+            "neighborly_muse"
+          ]
+        },
+        "wardrobe_sets": {
+          "allow": [
+            "cardigan_skort",
+            "neighborly_shortset"
+          ]
+        },
+        "backgrounds": {
+          "allow": [
+            "bubblegum_sky_jelly_gloss",
+            "mint_mousse_misty_spark"
+          ]
+        },
+        "palettes": {
+          "allow": [
+            "mint_cotton_glaze_highlight",
+            "blush_mint_sugar_spark"
+          ]
+        },
+        "poses": {
+          "allow": [
+            "step_forward_toe_point_arms_overhead",
+            "cross_leg_pop_heel_lift_double_frame"
+          ]
+        },
+        "camera": {
+          "allow": [
+            "waist_up_over_shoulder",
+            "hip_close_high_perch"
+          ]
+        },
+        "lighting": {
+          "allow": [
+            "candy_beam_bounce_creme_frost_rim",
+            "candy_beam_lavender_air_butterfly_rim"
+          ]
+        },
+        "props": {
+          "allow": [
+            "bubble_blower",
+            "sunhat"
+          ]
+        },
+        "moods": {
+          "allow": [
+            "sparkler_soft",
+            "neighborly_flirt"
+          ]
+        },
+        "actions": {
+          "allow": [
+            "hip_twist_playful_wink_hat_brim",
+            "hip_circle_sugared_smile_fingers_in_hair"
+          ]
+        }
+      },
+      "required_terms": [
+        "anime linework",
+        "sparkling hip highlight",
+        "cotton-candy breeze"
+      ],
+      "inject_rules": [
+        "anime_sparkle_eyes",
+        "clean_palette",
+        "sweet_expression"
+      ]
+    },
+    {
+      "stage_id": "glitter_duet",
+      "cycles": 2,
+      "temperature": 0.38,
+      "style_profile": "anime_lumina",
+      "locks": {
+        "models": {
+          "allow": [
+            "anime_spark_v2",
+            "pastel_idol_v2"
+          ]
+        },
+        "characters": {
+          "allow": [
+            "sundae_starlet",
+            "anime_darling"
+          ]
+        },
+        "wardrobe_sets": {
+          "allow": [
+            "halter_skirt_combo",
+            "bodysuit_shortset"
+          ]
+        },
+        "backgrounds": {
+          "allow": [
+            "bubblegum_sky_clean_gradient",
+            "mint_mousse_clean_gradient"
+          ]
+        },
+        "palettes": {
+          "allow": [
+            "soda_fizz_sugar_spark",
+            "mint_cotton_satin_shadow"
+          ]
+        },
+        "poses": {
+          "allow": [
+            "swaying_stand_toe_point_double_frame",
+            "retro_salute_heel_lift_double_frame"
+          ]
+        },
+        "camera": {
+          "allow": [
+            "three_quarter_high_perch",
+            "hip_close_side_slant"
+          ]
+        },
+        "lighting": {
+          "allow": [
+            "sugar_soft_frosted_fill_sunset_rim",
+            "candy_beam_mint_soft_sunset_rim"
+          ]
+        },
+        "props": {
+          "allow": [
+            "sparkler_star",
+            "bubble_blower"
+          ]
+        },
+        "moods": {
+          "allow": [
+            "sparkle_serene",
+            "twinkle_tease"
+          ]
+        },
+        "actions": {
+          "allow": [
+            "hip_circle_playful_wink_hat_brim",
+            "dip_sway_soft_laugh_hat_brim"
+          ]
+        }
+      },
+      "required_terms": [
+        "glittering hips",
+        "anime sparkle",
+        "duet-style posing"
+      ],
+      "inject_rules": [
+        "anime_pose_flow",
+        "anime_sparkle_eyes",
+        "prop_at_hip"
+      ]
+    },
+    {
+      "stage_id": "idol_finale",
+      "cycles": 1,
+      "temperature": 0.33,
+      "style_profile": "anime_lumina",
+      "locks": {
+        "models": {
+          "allow": [
+            "pastel_idol_v2",
+            "chibi_coquette_v1"
+          ]
+        },
+        "characters": {
+          "allow": [
+            "anime_darling",
+            "minty_muse"
+          ]
+        },
+        "wardrobe_sets": {
+          "allow": [
+            "sunny_shortset",
+            "peplum_capri"
+          ]
+        },
+        "backgrounds": {
+          "allow": [
+            "peach_milkshake_powder_soft",
+            "mint_mousse_clean_gradient"
+          ]
+        },
+        "palettes": {
+          "allow": [
+            "mint_cotton_sugar_spark",
+            "peach_rose_cream_satin_shadow"
+          ]
+        },
+        "poses": {
+          "allow": [
+            "perch_pose_knee_pop_arms_overhead",
+            "step_forward_heel_lift_hand_cascade"
+          ]
+        },
+        "camera": {
+          "allow": [
+            "full_body_low_angle",
+            "hip_close_straight_on"
+          ]
+        },
+        "lighting": {
+          "allow": [
+            "candy_beam_peach_catch_spark_rim",
+            "sugar_soft_mint_soft_butterfly_rim"
+          ]
+        },
+        "props": {
+          "allow": [
+            "sparkle_soda_bottle",
+            "heart_balloon"
+          ]
+        },
+        "moods": {
+          "allow": [
+            "sparkler_soft",
+            "twinkle_tease"
+          ]
+        },
+        "actions": {
+          "allow": [
+            "dip_sway_playful_wink_fingers_in_hair",
+            "hip_circle_shy_grin_hand_on_hip"
+          ]
+        }
+      },
+      "required_terms": [
+        "idol encore",
+        "hips center frame",
+        "bubblegum gloss"
+      ],
+      "inject_rules": [
+        "anime_sparkle_eyes",
+        "clean_palette",
+        "soft_smile"
+      ]
+    }
+  ]
+}

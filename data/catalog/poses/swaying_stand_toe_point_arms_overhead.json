@@ -1,0 +1,16 @@
+{
+  "id": "swaying_stand_toe_point_arms_overhead",
+  "label": "Swaying stand with pointed toes and arms overhead",
+  "weight": 1.0,
+  "tags": [
+    "floor"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Swaying stand",
+    "legs": "pointed toes",
+    "arms": "arms overhead",
+    "description": "Weight shifted onto one leg with hips leading. Toes pointed to elongate legs. Arms overhead stretching the torso."
+  }
+}

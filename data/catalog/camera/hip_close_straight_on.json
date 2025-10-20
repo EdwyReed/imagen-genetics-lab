@@ -1,0 +1,15 @@
+{
+  "id": "hip_close_straight_on",
+  "label": "Hip-close crop straight-on",
+  "weight": 1.0,
+  "tags": [
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Hip-close crop",
+    "angle": "straight-on",
+    "description": "Zooms near the hips and lower torso. Straight-on view that lets the hips lead the shot."
+  }
+}

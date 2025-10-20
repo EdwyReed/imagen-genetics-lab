@@ -1,0 +1,15 @@
+{
+  "id": "hip_close_fortyfive_spin",
+  "label": "Hip-close crop 45° spin",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Hip-close crop",
+    "angle": "45° spin",
+    "description": "Zooms near the hips and lower torso. Forty-five degree twist to trace the hip line."
+  }
+}

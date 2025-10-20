@@ -1,0 +1,19 @@
+{
+  "id": "soda_fizz_sugar_spark",
+  "label": "Soda fizz with sugar spark",
+  "weight": 1.0,
+  "tags": [
+    "warm"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "cherry soda",
+      "vanilla",
+      "sky"
+    ],
+    "accent": "sugar spark",
+    "description": "Cherry vanilla soda fizz. finished with Micro sugar sparkles."
+  }
+}

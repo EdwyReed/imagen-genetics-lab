@@ -1,0 +1,19 @@
+{
+  "id": "lavender_fog_misty_spark",
+  "label": "Lavender fog glow with misty spark",
+  "weight": 1.0,
+  "tags": [
+    "pastel",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "lavender",
+      "cloud"
+    ],
+    "finish": "misty spark",
+    "description": "Simple lavender fog gradient with Misty sparkle hugging the silhouette."
+  }
+}

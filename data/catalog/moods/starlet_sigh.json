@@ -1,0 +1,13 @@
+{
+  "id": "starlet_sigh",
+  "label": "Starlet sigh",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "A starlet's sigh that draws attention to her curves."
+  }
+}

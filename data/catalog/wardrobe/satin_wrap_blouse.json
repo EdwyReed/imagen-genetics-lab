@@ -1,0 +1,15 @@
+{
+  "id": "satin_wrap_blouse",
+  "label": "Satin wrap blouse",
+  "weight": 1.0,
+  "tags": [
+    "top",
+    "wrap"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "top",
+    "description": "Blousy wrap top tied above the hips."
+  }
+}

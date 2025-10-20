@@ -1,0 +1,19 @@
+{
+  "id": "lavender_fog_clean_gradient",
+  "label": "Lavender fog glow with clean gradient",
+  "weight": 1.0,
+  "tags": [
+    "retro",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "lavender",
+      "cloud"
+    ],
+    "finish": "clean gradient",
+    "description": "Simple lavender fog gradient with Nothing but a clean gradient and a whisper of shine."
+  }
+}

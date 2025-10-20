@@ -1,0 +1,19 @@
+{
+  "id": "peach_rose_cream_glaze_highlight",
+  "label": "Peach rose cream with glaze highlight",
+  "weight": 1.0,
+  "tags": [
+    "warm"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "peach",
+      "rose",
+      "cream"
+    ],
+    "accent": "glaze highlight",
+    "description": "Soft dessert trio. finished with Glossy glaze accent."
+  }
+}

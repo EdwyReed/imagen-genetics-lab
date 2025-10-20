@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_sugared_smile_lollipop_spin",
+  "label": "Hip sway with sugared smile (twirling lollipop)",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with sugared smile",
+    "gesture": "twirling lollipop",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She flashes a sugared smile that feels innocently indulgent. Her free hand keeps twirls a candy-bright lollipop near her smile. All focus lands on the hipline."
+  }
+}

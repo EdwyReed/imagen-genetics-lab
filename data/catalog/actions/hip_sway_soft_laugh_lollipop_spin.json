@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_soft_laugh_lollipop_spin",
+  "label": "Hip sway with soft laugh (twirling lollipop)",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with soft laugh",
+    "gesture": "twirling lollipop",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She releases a soft laugh that keeps the mood light and sweet. Her free hand keeps twirls a candy-bright lollipop near her smile. All focus lands on the hipline."
+  }
+}

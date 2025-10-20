@@ -1,0 +1,18 @@
+{
+  "id": "pearl_trouser_set",
+  "label": "Pearl trouser set",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:satin_wrap_blouse",
+    "wardrobe:sugarflare_trousers",
+    "wardrobe:pearl_belt",
+    "wardrobe:satin_mules"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Pearl belt tying blouse and trousers."
+  }
+}

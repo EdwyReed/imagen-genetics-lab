@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_lavender_air_butterfly_rim",
+  "label": "Sugar-soft key with Lavender air fill and butterfly rim",
+  "weight": 1.0,
+  "tags": [
+    "semi_realism"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Lavender air fill",
+    "rim": "butterfly rim",
+    "description": "Large jelly-soft key hugging the front. Lavender-tinted fill smoothing skin. Soft butterfly rim meeting above the shoulders."
+  }
+}

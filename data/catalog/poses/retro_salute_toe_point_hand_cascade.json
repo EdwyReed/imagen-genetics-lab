@@ -1,0 +1,16 @@
+{
+  "id": "retro_salute_toe_point_hand_cascade",
+  "label": "Retro salute with pointed toes and cascading hand",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Retro salute",
+    "legs": "pointed toes",
+    "arms": "cascading hand",
+    "description": "Salute with hips cocked to the side. Toes pointed to elongate legs. Hand cascading along the hip."
+  }
+}

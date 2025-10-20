@@ -1,0 +1,15 @@
+{
+  "id": "chibi_coquette_v2",
+  "label": "Chibi coquette Version 2",
+  "weight": 1.0,
+  "tags": [
+    "anime"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "style_family": "anime",
+    "variant": "Version 2",
+    "description": "Stylized chibi proportions with hip emphasis"
+  }
+}

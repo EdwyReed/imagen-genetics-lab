@@ -1,0 +1,16 @@
+{
+  "id": "butter_glow_mint_soft_rose_rim",
+  "label": "Butter glow key with Mint soft fill and rose rim",
+  "weight": 1.0,
+  "tags": [
+    "anime_glow"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Butter glow key",
+    "fill": "Mint soft fill",
+    "rim": "rose rim",
+    "description": "Butter-yellow glow that kisses the hips. Minty fill balancing the jelly sheen. Rose rim light tracing the back hip."
+  }
+}

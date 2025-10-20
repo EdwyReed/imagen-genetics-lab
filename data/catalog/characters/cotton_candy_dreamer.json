@@ -1,0 +1,13 @@
+{
+  "id": "cotton_candy_dreamer",
+  "label": "Cotton candy dreamer",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Dreamy sweetness that invites a smile."
+  }
+}

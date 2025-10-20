@@ -1,0 +1,19 @@
+{
+  "id": "bubblegum_sky_clean_gradient",
+  "label": "Bubblegum sky with clean gradient",
+  "weight": 1.0,
+  "tags": [
+    "soft",
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "bubblegum",
+      "sky"
+    ],
+    "finish": "clean gradient",
+    "description": "Simple bubblegum sky gradient with Nothing but a clean gradient and a whisper of shine."
+  }
+}

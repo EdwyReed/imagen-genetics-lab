@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_soft_laugh_hand_on_hip",
+  "label": "Hip sway with soft laugh (hand on hip)",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with soft laugh",
+    "gesture": "hand on hip",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She releases a soft laugh that keeps the mood light and sweet. Her free hand keeps one hand resting just above the hip bone. All focus lands on the hipline."
+  }
+}

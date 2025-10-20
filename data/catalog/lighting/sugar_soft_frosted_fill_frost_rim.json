@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_frosted_fill_frost_rim",
+  "label": "Sugar-soft key with Frosted fill and frost rim",
+  "weight": 1.0,
+  "tags": [
+    "vintage"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Frosted fill",
+    "rim": "frost rim",
+    "description": "Large jelly-soft key hugging the front. Frosted fill light that polishes highlights. Cool frost rim for contrast."
+  }
+}

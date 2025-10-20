@@ -1,0 +1,13 @@
+{
+  "id": "glitter_clutch",
+  "label": "Glitter clutch",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Mini clutch sparkling at hip level."
+  }
+}

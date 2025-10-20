@@ -1,0 +1,17 @@
+{
+  "id": "candy_beam_satin_reflect_halo_rim",
+  "label": "Candy beam key with Satin reflector and halo rim",
+  "weight": 1.0,
+  "tags": [
+    "studio",
+    "gloss"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Candy beam key",
+    "fill": "Satin reflector",
+    "rim": "halo rim",
+    "description": "Directional candy-color beam to trace curves. Satin reflector placed near the hip line. Slim halo rim hugging the silhouette."
+  }
+}

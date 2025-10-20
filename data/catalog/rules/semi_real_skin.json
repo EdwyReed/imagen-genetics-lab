@@ -1,0 +1,13 @@
+{
+  "id": "semi_real_skin",
+  "label": "Semi-real skin sheen",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Describe skin as semi-real with jelly gleam."
+  }
+}

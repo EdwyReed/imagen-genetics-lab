@@ -1,0 +1,13 @@
+{
+  "id": "sparkler_star",
+  "label": "Sparkler star",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Small sparkler shaped like a star."
+  }
+}

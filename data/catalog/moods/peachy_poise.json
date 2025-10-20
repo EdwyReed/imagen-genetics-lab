@@ -1,0 +1,13 @@
+{
+  "id": "peachy_poise",
+  "label": "Peachy poise",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Polished poise with peachy sweetness."
+  }
+}

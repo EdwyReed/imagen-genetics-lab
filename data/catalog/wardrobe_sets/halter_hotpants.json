@@ -1,0 +1,18 @@
+{
+  "id": "halter_hotpants",
+  "label": "Halter and hot pants",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:halter_glow",
+    "wardrobe:satin_hotpants",
+    "wardrobe:ankle_scarf",
+    "wardrobe:platform_maryjanes"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Halter top with ultra-gloss shorts."
+  }
+}

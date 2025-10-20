@@ -1,0 +1,13 @@
+{
+  "id": "butterscotch_belle",
+  "label": "Butterscotch belle",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Caramel-sweet confidence."
+  }
+}

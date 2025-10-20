@@ -1,0 +1,19 @@
+{
+  "id": "cocoa_vanilla_floor_reflect",
+  "label": "Cocoa vanilla with floor reflection",
+  "weight": 1.0,
+  "tags": [
+    "studio",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "cocoa",
+      "vanilla"
+    ],
+    "finish": "floor reflection",
+    "description": "Simple cocoa vanilla gradient with A satin floor reflection fading near the knees."
+  }
+}

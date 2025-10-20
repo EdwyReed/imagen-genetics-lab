@@ -1,0 +1,19 @@
+{
+  "id": "sherbet_swirl_glaze_highlight",
+  "label": "Sherbet swirl with glaze highlight",
+  "weight": 1.0,
+  "tags": [
+    "anime"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "sherbet",
+      "cream",
+      "cantaloupe"
+    ],
+    "accent": "glaze highlight",
+    "description": "Swirling sherbet hues. finished with Glossy glaze accent."
+  }
+}

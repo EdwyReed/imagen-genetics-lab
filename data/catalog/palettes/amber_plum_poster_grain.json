@@ -1,0 +1,19 @@
+{
+  "id": "amber_plum_poster_grain",
+  "label": "Amber plum with poster grain",
+  "weight": 1.0,
+  "tags": [
+    "semi_realism"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "amber",
+      "plum",
+      "cream"
+    ],
+    "accent": "poster grain",
+    "description": "Amber plum sundae. finished with Light vintage poster grain."
+  }
+}

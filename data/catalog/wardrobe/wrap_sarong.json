@@ -1,0 +1,15 @@
+{
+  "id": "wrap_sarong",
+  "label": "Wrap sarong",
+  "weight": 1.0,
+  "tags": [
+    "bottom",
+    "wrap"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "bottom",
+    "description": "Wrap sarong knotted at hip."
+  }
+}

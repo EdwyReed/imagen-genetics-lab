@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_satin_reflect_butterfly_rim",
+  "label": "Sugar-soft key with Satin reflector and butterfly rim",
+  "weight": 1.0,
+  "tags": [
+    "semi_realism"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Satin reflector",
+    "rim": "butterfly rim",
+    "description": "Large jelly-soft key hugging the front. Satin reflector placed near the hip line. Soft butterfly rim meeting above the shoulders."
+  }
+}

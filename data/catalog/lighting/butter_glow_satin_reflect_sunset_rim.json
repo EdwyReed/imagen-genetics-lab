@@ -1,0 +1,16 @@
+{
+  "id": "butter_glow_satin_reflect_sunset_rim",
+  "label": "Butter glow key with Satin reflector and sunset rim",
+  "weight": 1.0,
+  "tags": [
+    "soft"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Butter glow key",
+    "fill": "Satin reflector",
+    "rim": "sunset rim",
+    "description": "Butter-yellow glow that kisses the hips. Satin reflector placed near the hip line. Warm sunset rim behind the subject."
+  }
+}

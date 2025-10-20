@@ -1,0 +1,16 @@
+{
+  "id": "lean_back_soft_laugh_fingers_in_hair",
+  "label": "Soft lean-back with soft laugh (fingers in hair)",
+  "weight": 1.0,
+  "tags": [
+    "sultry"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Soft lean-back",
+    "expression": "with soft laugh",
+    "gesture": "fingers in hair",
+    "description": "Leans back just enough to spotlight the hips. She releases a soft laugh that keeps the mood light and sweet. Her free hand keeps fingers combing slowly through soft curls. All focus lands on the hipline."
+  }
+}

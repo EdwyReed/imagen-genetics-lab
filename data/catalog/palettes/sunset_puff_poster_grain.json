@@ -1,0 +1,19 @@
+{
+  "id": "sunset_puff_poster_grain",
+  "label": "Sunset puff with poster grain",
+  "weight": 1.0,
+  "tags": [
+    "warm"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "apricot",
+      "petal",
+      "twilight"
+    ],
+    "accent": "poster grain",
+    "description": "Sunset with puffed pastels. finished with Light vintage poster grain."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "slip_dress_glow",
+  "label": "Slip dress glow",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:satin_slip_dress",
+    "wardrobe:ribbon_choker",
+    "wardrobe:satin_mules"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Satin slip with ribbon choker."
+  }
+}

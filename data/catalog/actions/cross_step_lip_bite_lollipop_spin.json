@@ -1,0 +1,16 @@
+{
+  "id": "cross_step_lip_bite_lollipop_spin",
+  "label": "Cross-step with lip bite (twirling lollipop)",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Cross-step",
+    "expression": "with lip bite",
+    "gesture": "twirling lollipop",
+    "description": "Slides one leg across the other so the hips glide forward. She teases a gentle bite of her lip, equal parts bashful and daring. Her free hand keeps twirls a candy-bright lollipop near her smile. All focus lands on the hipline."
+  }
+}

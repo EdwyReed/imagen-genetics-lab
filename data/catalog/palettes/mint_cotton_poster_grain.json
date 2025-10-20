@@ -1,0 +1,19 @@
+{
+  "id": "mint_cotton_poster_grain",
+  "label": "Mint cotton with poster grain",
+  "weight": 1.0,
+  "tags": [
+    "cool"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "mint",
+      "cotton candy",
+      "pearl"
+    ],
+    "accent": "poster grain",
+    "description": "Mint cotton candy dream. finished with Light vintage poster grain."
+  }
+}

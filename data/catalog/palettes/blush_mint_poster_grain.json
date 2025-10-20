@@ -1,0 +1,19 @@
+{
+  "id": "blush_mint_poster_grain",
+  "label": "Blush mint with poster grain",
+  "weight": 1.0,
+  "tags": [
+    "anime"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "blush",
+      "mint",
+      "opal"
+    ],
+    "accent": "poster grain",
+    "description": "Blush and mint harmony. finished with Light vintage poster grain."
+  }
+}

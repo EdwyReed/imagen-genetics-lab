@@ -1,0 +1,19 @@
+{
+  "id": "mint_cotton_glaze_highlight",
+  "label": "Mint cotton with glaze highlight",
+  "weight": 1.0,
+  "tags": [
+    "retro"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "mint",
+      "cotton candy",
+      "pearl"
+    ],
+    "accent": "glaze highlight",
+    "description": "Mint cotton candy dream. finished with Glossy glaze accent."
+  }
+}

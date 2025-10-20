@@ -1,0 +1,15 @@
+{
+  "id": "manga_muse_v2",
+  "label": "Manga muse Version 2",
+  "weight": 1.0,
+  "tags": [
+    "anime"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "style_family": "anime",
+    "variant": "Version 2",
+    "description": "Manga lines softened with pastel washes"
+  }
+}

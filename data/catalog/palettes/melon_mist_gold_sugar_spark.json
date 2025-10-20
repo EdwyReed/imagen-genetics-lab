@@ -1,0 +1,19 @@
+{
+  "id": "melon_mist_gold_sugar_spark",
+  "label": "Melon mist gold with sugar spark",
+  "weight": 1.0,
+  "tags": [
+    "anime"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "melon",
+      "mint",
+      "pale gold"
+    ],
+    "accent": "sugar spark",
+    "description": "Cooling melon with gold glints. finished with Micro sugar sparkles."
+  }
+}

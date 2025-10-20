@@ -1,0 +1,14 @@
+{
+  "id": "tea_length_dress",
+  "label": "Tea-length twirl dress",
+  "weight": 1.0,
+  "tags": [
+    "dress"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "dress",
+    "description": "Tea-length twirl with sweetheart vibe."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "butter_mauve_sugar_spark",
+  "label": "Butter mauve with sugar spark",
+  "weight": 1.0,
+  "tags": [
+    "cool"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "butter",
+      "mauve",
+      "ivory"
+    ],
+    "accent": "sugar spark",
+    "description": "Buttercream mauve glow. finished with Micro sugar sparkles."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "poster_velvet_v2",
+  "label": "Poster velvet Version 2",
+  "weight": 1.0,
+  "tags": [
+    "vintage"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "style_family": "vintage",
+    "variant": "Version 2",
+    "description": "Vintage poster grain with velvety tones"
+  }
+}

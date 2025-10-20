@@ -1,0 +1,16 @@
+{
+  "id": "leaning_counter_knee_pop_arms_overhead",
+  "label": "Leaning counter with bent knee and arms overhead",
+  "weight": 1.0,
+  "tags": [
+    "floor"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Leaning counter",
+    "legs": "bent knee",
+    "arms": "arms overhead",
+    "description": "Lean onto a counter while hips rest back. One knee bent to drive the hip curve. Arms overhead stretching the torso."
+  }
+}

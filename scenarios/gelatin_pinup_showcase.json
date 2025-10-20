@@ -1,0 +1,259 @@
+{
+  "id": "gelatin_pinup_showcase",
+  "stages": [
+    {
+      "stage_id": "syrup_warmup",
+      "cycles": 2,
+      "temperature": 0.28,
+      "style_profile": "gelatin_glamour",
+      "locks": {
+        "models": {
+          "allow": [
+            "gelatin_glamour_v1",
+            "gelatin_glamour_v2"
+          ]
+        },
+        "characters": {
+          "allow": [
+            "sundae_starlet",
+            "peachy_pinup",
+            "neighborly_muse"
+          ]
+        },
+        "wardrobe_sets": {
+          "allow": [
+            "wrap_blouse_pencil",
+            "wiggle_dress_gloss",
+            "classic_duo"
+          ]
+        },
+        "backgrounds": {
+          "allow": [
+            "peach_milkshake_jelly_gloss",
+            "honey_butter_clean_gradient"
+          ]
+        },
+        "palettes": {
+          "allow": [
+            "peach_rose_cream_glaze_highlight",
+            "honey_peony_satin_shadow"
+          ]
+        },
+        "poses": {
+          "allow": [
+            "cross_leg_pop_toe_point_double_frame",
+            "swaying_stand_knee_pop_hand_cascade"
+          ]
+        },
+        "camera": {
+          "allow": [
+            "three_quarter_straight_on",
+            "waist_up_low_angle"
+          ]
+        },
+        "lighting": {
+          "allow": [
+            "sugar_soft_bounce_creme_halo_rim",
+            "sugar_soft_lavender_air_spark_rim"
+          ]
+        },
+        "props": {
+          "allow": [
+            "candy_heart_lollipop",
+            "glitter_clutch"
+          ]
+        },
+        "moods": {
+          "allow": [
+            "cotton_coy",
+            "honeyed_tease"
+          ]
+        },
+        "actions": {
+          "allow": [
+            "hip_sway_sugared_smile_hand_on_hip",
+            "hip_pop_playful_wink_lollipop_spin"
+          ]
+        }
+      },
+      "required_terms": [
+        "glossy hips",
+        "dessert-toned studio",
+        "soft candy perfume"
+      ],
+      "inject_rules": [
+        "hips_center_stage",
+        "gloss_on_fabric",
+        "simple_backdrops"
+      ]
+    },
+    {
+      "stage_id": "candy_spin",
+      "cycles": 2,
+      "temperature": 0.32,
+      "style_profile": "gelatin_glamour",
+      "locks": {
+        "models": {
+          "allow": [
+            "gelatin_glamour_v2",
+            "jelly_luxe_v1"
+          ]
+        },
+        "characters": {
+          "allow": [
+            "velvet_vixen",
+            "sugarcoated_stylist"
+          ]
+        },
+        "wardrobe_sets": {
+          "allow": [
+            "bodysuit_flare",
+            "halter_hotpants"
+          ]
+        },
+        "backgrounds": {
+          "allow": [
+            "bubblegum_sky_jelly_gloss",
+            "sunset_sherbet_misty_spark"
+          ]
+        },
+        "palettes": {
+          "allow": [
+            "sherbet_swirl_glaze_highlight",
+            "soda_fizz_sugar_spark"
+          ]
+        },
+        "poses": {
+          "allow": [
+            "retro_salute_knee_pop_arms_overhead",
+            "step_forward_heel_lift_double_frame"
+          ]
+        },
+        "camera": {
+          "allow": [
+            "three_quarter_fortyfive_spin",
+            "hip_close_low_angle"
+          ]
+        },
+        "lighting": {
+          "allow": [
+            "butter_glow_bounce_creme_butterfly_rim",
+            "butter_glow_mint_soft_rose_rim"
+          ]
+        },
+        "props": {
+          "allow": [
+            "sparkle_soda_bottle",
+            "retro_camera"
+          ]
+        },
+        "moods": {
+          "allow": [
+            "sparkle_serene",
+            "retro_romp"
+          ]
+        },
+        "actions": {
+          "allow": [
+            "hip_circle_playful_wink_hat_brim",
+            "hip_twist_soft_laugh_hand_on_hip"
+          ]
+        }
+      },
+      "required_terms": [
+        "hips forward",
+        "wet-look highlights",
+        "flirty soda-shop energy"
+      ],
+      "inject_rules": [
+        "hips_forward",
+        "gloss_highlight",
+        "clean_palette"
+      ]
+    },
+    {
+      "stage_id": "peach_twirl",
+      "cycles": 1,
+      "temperature": 0.26,
+      "style_profile": "gelatin_glamour",
+      "locks": {
+        "models": {
+          "allow": [
+            "nectar_glow_v1",
+            "gelatin_glamour_v1"
+          ]
+        },
+        "characters": {
+          "allow": [
+            "peachy_pinup",
+            "apricot_angel"
+          ]
+        },
+        "wardrobe_sets": {
+          "allow": [
+            "swing_dress_vintage",
+            "wrap_sarong_set"
+          ]
+        },
+        "backgrounds": {
+          "allow": [
+            "apricot_cloud_powder_soft",
+            "mint_mousse_clean_gradient"
+          ]
+        },
+        "palettes": {
+          "allow": [
+            "mint_cotton_satin_shadow",
+            "peach_rose_cream_sugar_spark"
+          ]
+        },
+        "poses": {
+          "allow": [
+            "perch_pose_toe_point_arms_overhead",
+            "swaying_stand_heel_lift_hand_cascade"
+          ]
+        },
+        "camera": {
+          "allow": [
+            "waist_up_over_shoulder",
+            "full_body_straight_on"
+          ]
+        },
+        "lighting": {
+          "allow": [
+            "pearl_wrap_satin_reflect_spark_rim",
+            "pearl_wrap_mint_soft_frost_rim"
+          ]
+        },
+        "props": {
+          "allow": [
+            "bouquet_babybreath",
+            "macaron_plate"
+          ]
+        },
+        "moods": {
+          "allow": [
+            "peachy_poise",
+            "velvet_vulnerability"
+          ]
+        },
+        "actions": {
+          "allow": [
+            "lean_back_shy_grin_fingers_in_hair",
+            "dip_sway_sugared_smile_hat_brim"
+          ]
+        }
+      },
+      "required_terms": [
+        "twirling hips",
+        "satin-soft smiles",
+        "gentle dessert breeze"
+      ],
+      "inject_rules": [
+        "sweet_expression",
+        "warm_light",
+        "simple_props"
+      ]
+    }
+  ]
+}

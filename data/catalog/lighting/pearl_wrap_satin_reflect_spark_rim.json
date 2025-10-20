@@ -1,0 +1,16 @@
+{
+  "id": "pearl_wrap_satin_reflect_spark_rim",
+  "label": "Pearl wrap key with Satin reflector and spark rim",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Pearl wrap key",
+    "fill": "Satin reflector",
+    "rim": "spark rim",
+    "description": "Pearl-toned wrap that adds wet shine. Satin reflector placed near the hip line. Sparkling rim hugging the outer hip."
+  }
+}

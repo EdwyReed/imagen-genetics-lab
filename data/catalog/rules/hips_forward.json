@@ -1,0 +1,13 @@
+{
+  "id": "hips_forward",
+  "label": "Ask for hips forward",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Remind the model to angle hips toward camera."
+  }
+}

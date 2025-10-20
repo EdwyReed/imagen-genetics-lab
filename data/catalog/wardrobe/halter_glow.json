@@ -1,0 +1,15 @@
+{
+  "id": "halter_glow",
+  "label": "Halter glow top",
+  "weight": 1.0,
+  "tags": [
+    "top",
+    "halter"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "top",
+    "description": "Halter top with liquid sheen."
+  }
+}

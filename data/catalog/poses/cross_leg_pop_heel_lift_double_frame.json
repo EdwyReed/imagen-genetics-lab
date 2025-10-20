@@ -1,0 +1,16 @@
+{
+  "id": "cross_leg_pop_heel_lift_double_frame",
+  "label": "Cross-leg pop with lifted heel and double frame",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Cross-leg pop",
+    "legs": "lifted heel",
+    "arms": "double frame",
+    "description": "Legs crossed with hip popped outward. Heel lifted off the ground for extra hip tilt. Both hands framing the waist."
+  }
+}

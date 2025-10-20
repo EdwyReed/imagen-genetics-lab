@@ -1,0 +1,17 @@
+{
+  "id": "wiggle_stockings",
+  "label": "Wiggle dress stockings",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:wiggle_dress",
+    "wardrobe:fishnet_sparkle",
+    "wardrobe:ankle_strap_heels"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Wiggle dress with sparkle fishnets."
+  }
+}

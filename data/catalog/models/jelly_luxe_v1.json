@@ -1,0 +1,15 @@
+{
+  "id": "jelly_luxe_v1",
+  "label": "Jelly luxe Version 1",
+  "weight": 1.0,
+  "tags": [
+    "semi-realism"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "style_family": "semi-realism",
+    "variant": "Version 1",
+    "description": "High-gloss semi-real render with wet textures"
+  }
+}

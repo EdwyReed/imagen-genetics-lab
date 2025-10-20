@@ -1,0 +1,15 @@
+{
+  "id": "bubble_sleeve_bodysuit",
+  "label": "Bubble sleeve bodysuit",
+  "weight": 1.0,
+  "tags": [
+    "top",
+    "bodysuit"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "top",
+    "description": "Bodysuit with bubble sleeves emphasizing hips."
+  }
+}

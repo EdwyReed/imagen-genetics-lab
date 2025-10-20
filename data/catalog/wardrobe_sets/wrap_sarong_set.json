@@ -1,0 +1,18 @@
+{
+  "id": "wrap_sarong_set",
+  "label": "Sarong sweetness",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:satin_wrap_blouse",
+    "wardrobe:wrap_sarong",
+    "wardrobe:waist_bow",
+    "wardrobe:satin_mules"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Wrap blouse tied with sarong."
+  }
+}

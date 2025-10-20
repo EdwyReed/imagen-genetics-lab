@@ -1,0 +1,17 @@
+{
+  "id": "swing_dress_vintage",
+  "label": "Swing dress vintage",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:swing_dress",
+    "wardrobe:satin_gloves",
+    "wardrobe:platform_maryjanes"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Vintage swing with gloves."
+  }
+}

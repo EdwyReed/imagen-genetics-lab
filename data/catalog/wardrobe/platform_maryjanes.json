@@ -1,0 +1,15 @@
+{
+  "id": "platform_maryjanes",
+  "label": "Platform Mary Janes",
+  "weight": 1.0,
+  "tags": [
+    "footwear",
+    "heels"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "footwear",
+    "description": "Mary Janes with playful platform."
+  }
+}

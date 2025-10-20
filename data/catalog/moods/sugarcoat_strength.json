@@ -1,0 +1,13 @@
+{
+  "id": "sugarcoat_strength",
+  "label": "Sugarcoat strength",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Strength hidden under sugared charm."
+  }
+}

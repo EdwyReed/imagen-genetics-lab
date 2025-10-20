@@ -1,0 +1,19 @@
+{
+  "id": "citrus_sorbet_floor_reflect",
+  "label": "Citrus sorbet haze with floor reflection",
+  "weight": 1.0,
+  "tags": [
+    "retro",
+    "simple"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "citrus",
+      "vanilla"
+    ],
+    "finish": "floor reflection",
+    "description": "Simple citrus sorbet gradient with A satin floor reflection fading near the knees."
+  }
+}

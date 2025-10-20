@@ -1,0 +1,16 @@
+{
+  "id": "step_forward_heel_lift_double_frame",
+  "label": "Step forward with lifted heel and double frame",
+  "weight": 1.0,
+  "tags": [
+    "stool"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Step forward",
+    "legs": "lifted heel",
+    "arms": "double frame",
+    "description": "One step forward while hips follow the stride. Heel lifted off the ground for extra hip tilt. Both hands framing the waist."
+  }
+}

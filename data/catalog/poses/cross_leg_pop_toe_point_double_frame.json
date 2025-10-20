@@ -1,0 +1,16 @@
+{
+  "id": "cross_leg_pop_toe_point_double_frame",
+  "label": "Cross-leg pop with pointed toes and double frame",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Cross-leg pop",
+    "legs": "pointed toes",
+    "arms": "double frame",
+    "description": "Legs crossed with hip popped outward. Toes pointed to elongate legs. Both hands framing the waist."
+  }
+}

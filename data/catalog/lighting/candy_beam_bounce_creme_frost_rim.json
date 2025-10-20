@@ -1,0 +1,16 @@
+{
+  "id": "candy_beam_bounce_creme_frost_rim",
+  "label": "Candy beam key with Cream bounce fill and frost rim",
+  "weight": 1.0,
+  "tags": [
+    "vintage"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Candy beam key",
+    "fill": "Cream bounce fill",
+    "rim": "frost rim",
+    "description": "Directional candy-color beam to trace curves. Cream bounce to keep shadows gentle. Cool frost rim for contrast."
+  }
+}

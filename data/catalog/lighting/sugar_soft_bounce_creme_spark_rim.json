@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_bounce_creme_spark_rim",
+  "label": "Sugar-soft key with Cream bounce fill and spark rim",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Cream bounce fill",
+    "rim": "spark rim",
+    "description": "Large jelly-soft key hugging the front. Cream bounce to keep shadows gentle. Sparkling rim hugging the outer hip."
+  }
+}

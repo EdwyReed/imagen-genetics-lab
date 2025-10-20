@@ -1,0 +1,16 @@
+{
+  "id": "hip_close_side_slant",
+  "label": "Hip-close crop side slant",
+  "weight": 1.0,
+  "tags": [
+    "portrait",
+    "hip_focus"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Hip-close crop",
+    "angle": "side slant",
+    "description": "Zooms near the hips and lower torso. Angled from the side to highlight curvature."
+  }
+}

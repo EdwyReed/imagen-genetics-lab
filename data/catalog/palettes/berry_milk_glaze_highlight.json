@@ -1,0 +1,19 @@
+{
+  "id": "berry_milk_glaze_highlight",
+  "label": "Berry milk with glaze highlight",
+  "weight": 1.0,
+  "tags": [
+    "retro"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "raspberry",
+      "milk",
+      "powder"
+    ],
+    "accent": "glaze highlight",
+    "description": "Milkshake berry mix. finished with Glossy glaze accent."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "film_blush_v2",
+  "label": "Film blush Version 2",
+  "weight": 1.0,
+  "tags": [
+    "vintage"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "style_family": "vintage",
+    "variant": "Version 2",
+    "description": "Film grain blush with satin highlights"
+  }
+}

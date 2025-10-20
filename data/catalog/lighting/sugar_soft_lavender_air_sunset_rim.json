@@ -1,0 +1,16 @@
+{
+  "id": "sugar_soft_lavender_air_sunset_rim",
+  "label": "Sugar-soft key with Lavender air fill and sunset rim",
+  "weight": 1.0,
+  "tags": [
+    "soft"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "key": "Sugar-soft key",
+    "fill": "Lavender air fill",
+    "rim": "sunset rim",
+    "description": "Large jelly-soft key hugging the front. Lavender-tinted fill smoothing skin. Warm sunset rim behind the subject."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "blush_mint_sugar_spark",
+  "label": "Blush mint with sugar spark",
+  "weight": 1.0,
+  "tags": [
+    "retro"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "blush",
+      "mint",
+      "opal"
+    ],
+    "accent": "sugar spark",
+    "description": "Blush and mint harmony. finished with Micro sugar sparkles."
+  }
+}

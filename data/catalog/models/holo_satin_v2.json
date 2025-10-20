@@ -1,0 +1,15 @@
+{
+  "id": "holo_satin_v2",
+  "label": "Holo satin Version 2",
+  "weight": 1.0,
+  "tags": [
+    "semi-realism"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "style_family": "semi-realism",
+    "variant": "Version 2",
+    "description": "Holographic satin finish, slick and juicy"
+  }
+}

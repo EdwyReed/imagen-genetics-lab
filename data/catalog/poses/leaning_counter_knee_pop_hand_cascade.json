@@ -1,0 +1,16 @@
+{
+  "id": "leaning_counter_knee_pop_hand_cascade",
+  "label": "Leaning counter with bent knee and cascading hand",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Leaning counter",
+    "legs": "bent knee",
+    "arms": "cascading hand",
+    "description": "Lean onto a counter while hips rest back. One knee bent to drive the hip curve. Hand cascading along the hip."
+  }
+}

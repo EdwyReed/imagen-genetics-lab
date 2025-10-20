@@ -1,0 +1,16 @@
+{
+  "id": "leaning_counter_heel_lift_double_frame",
+  "label": "Leaning counter with lifted heel and double frame",
+  "weight": 1.0,
+  "tags": [
+    "stool"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Leaning counter",
+    "legs": "lifted heel",
+    "arms": "double frame",
+    "description": "Lean onto a counter while hips rest back. Heel lifted off the ground for extra hip tilt. Both hands framing the waist."
+  }
+}

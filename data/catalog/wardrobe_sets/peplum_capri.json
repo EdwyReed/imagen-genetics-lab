@@ -1,0 +1,18 @@
+{
+  "id": "peplum_capri",
+  "label": "Peplum and capris",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [
+    "wardrobe:bow_peplum",
+    "wardrobe:belted_capris",
+    "wardrobe:ribbon_choker",
+    "wardrobe:ribbon_wedges"
+  ],
+  "excludes": [],
+  "meta": {
+    "description": "Peplum top with cinched capris."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "cropped_cardigan",
+  "label": "Cropped cardigan",
+  "weight": 1.0,
+  "tags": [
+    "top",
+    "cardigan"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "top",
+    "description": "Snug cardigan fastened at bust."
+  }
+}

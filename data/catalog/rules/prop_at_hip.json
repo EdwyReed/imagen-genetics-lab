@@ -1,0 +1,13 @@
+{
+  "id": "prop_at_hip",
+  "label": "Prop near hip",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "If props appear, place them by the hips."
+  }
+}

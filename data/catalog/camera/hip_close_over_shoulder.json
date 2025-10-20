@@ -1,0 +1,16 @@
+{
+  "id": "hip_close_over_shoulder",
+  "label": "Hip-close crop over-shoulder",
+  "weight": 1.0,
+  "tags": [
+    "fashion",
+    "hip_focus"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Hip-close crop",
+    "angle": "over-shoulder",
+    "description": "Zooms near the hips and lower torso. Over-the-shoulder glance back at the camera."
+  }
+}

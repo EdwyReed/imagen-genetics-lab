@@ -1,0 +1,13 @@
+{
+  "id": "bubblegum_bard",
+  "label": "Bubblegum bard",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "description": "Storytelling sweetheart with candy flair."
+  }
+}

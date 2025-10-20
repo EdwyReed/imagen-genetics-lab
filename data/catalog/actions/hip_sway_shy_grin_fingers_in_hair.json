@@ -1,0 +1,16 @@
+{
+  "id": "hip_sway_shy_grin_fingers_in_hair",
+  "label": "Hip sway with shy grin (fingers in hair)",
+  "weight": 1.0,
+  "tags": [
+    "tease"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip sway",
+    "expression": "with shy grin",
+    "gesture": "fingers in hair",
+    "description": "Rolls hips slowly side to side, drawing every highlight across the curves. She lets a shy, syrupy grin bloom across her lips. Her free hand keeps fingers combing slowly through soft curls. All focus lands on the hipline."
+  }
+}

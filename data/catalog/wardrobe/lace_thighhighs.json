@@ -1,0 +1,14 @@
+{
+  "id": "lace_thighhighs",
+  "label": "Lace thigh-highs",
+  "weight": 1.0,
+  "tags": [
+    "hosiery"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "hosiery",
+    "description": "Lace tops hugging thighs."
+  }
+}

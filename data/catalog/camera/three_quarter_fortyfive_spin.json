@@ -1,0 +1,15 @@
+{
+  "id": "three_quarter_fortyfive_spin",
+  "label": "Three-quarter 45° spin",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "framing": "Three-quarter",
+    "angle": "45° spin",
+    "description": "Frames from head to mid-thigh for an easy hip emphasis. Forty-five degree twist to trace the hip line."
+  }
+}

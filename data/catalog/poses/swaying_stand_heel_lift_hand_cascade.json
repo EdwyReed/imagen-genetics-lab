@@ -1,0 +1,16 @@
+{
+  "id": "swaying_stand_heel_lift_hand_cascade",
+  "label": "Swaying stand with lifted heel and cascading hand",
+  "weight": 1.0,
+  "tags": [
+    "standing"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Swaying stand",
+    "legs": "lifted heel",
+    "arms": "cascading hand",
+    "description": "Weight shifted onto one leg with hips leading. Heel lifted off the ground for extra hip tilt. Hand cascading along the hip."
+  }
+}

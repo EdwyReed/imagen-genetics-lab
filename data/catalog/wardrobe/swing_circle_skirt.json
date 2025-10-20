@@ -1,0 +1,15 @@
+{
+  "id": "swing_circle_skirt",
+  "label": "Swing circle skirt",
+  "weight": 1.0,
+  "tags": [
+    "bottom",
+    "skirt"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "bottom",
+    "description": "High-waist circle skirt twirling."
+  }
+}

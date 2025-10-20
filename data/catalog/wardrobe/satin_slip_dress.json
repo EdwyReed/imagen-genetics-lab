@@ -1,0 +1,15 @@
+{
+  "id": "satin_slip_dress",
+  "label": "Satin slip dress",
+  "weight": 1.0,
+  "tags": [
+    "dress",
+    "slip"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "slot": "dress",
+    "description": "Satin slip with jelly sheen."
+  }
+}

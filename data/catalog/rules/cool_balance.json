@@ -1,0 +1,13 @@
+{
+  "id": "cool_balance",
+  "label": "Cool balance",
+  "weight": 1.0,
+  "tags": [
+    "pinup"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "prompt": "Balance warmth with a minty fill."
+  }
+}
