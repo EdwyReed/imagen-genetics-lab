@@ -1,0 +1,16 @@
+{
+  "id": "perch_pose_knee_pop_double_frame",
+  "label": "Perched seat with knee pop and double frame",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Perched seat",
+    "legs": "knee pop",
+    "arms": "double frame",
+    "description": "Perched on a stool with one knee popped forward to sharpen the hipline while both hands frame the waist for a poster-ready silhouette."
+  }
+}

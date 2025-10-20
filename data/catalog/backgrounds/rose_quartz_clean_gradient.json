@@ -1,0 +1,19 @@
+{
+  "id": "rose_quartz_clean_gradient",
+  "label": "Rose quartz sheen with clean gradient",
+  "weight": 1.0,
+  "tags": [
+    "soft",
+    "studio"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "colors": [
+      "rose",
+      "quartz"
+    ],
+    "finish": "clean gradient",
+    "description": "Petal-pink rose quartz gradient with a clear studio fade that flatters velvety poster lighting."
+  }
+}

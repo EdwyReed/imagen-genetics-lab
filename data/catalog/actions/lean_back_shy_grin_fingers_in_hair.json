@@ -1,0 +1,16 @@
+{
+  "id": "lean_back_shy_grin_fingers_in_hair",
+  "label": "Lean back with shy grin (fingers in hair)",
+  "weight": 1.0,
+  "tags": [
+    "sweet"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Lean back",
+    "expression": "with shy grin",
+    "gesture": "fingers in hair",
+    "description": "She leans back just enough to spotlight the hip curve, offering a shy grin while fingertips toy with her hair for a bashful yet inviting finish."
+  }
+}

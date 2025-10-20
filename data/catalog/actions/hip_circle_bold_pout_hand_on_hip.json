@@ -1,0 +1,16 @@
+{
+  "id": "hip_circle_bold_pout_hand_on_hip",
+  "label": "Hip circle with bold pout (hand on hip)",
+  "weight": 1.0,
+  "tags": [
+    "confident"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip circle",
+    "expression": "with bold pout",
+    "gesture": "hand on hip",
+    "description": "Slow, controlled hip circles trace a full loop of the pelvis while a bold pout sells poster glamour and one hand anchors at the hip for emphasis."
+  }
+}

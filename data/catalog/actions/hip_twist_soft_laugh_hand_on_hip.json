@@ -1,0 +1,16 @@
+{
+  "id": "hip_twist_soft_laugh_hand_on_hip",
+  "label": "Hip twist with soft laugh (hand on hip)",
+  "weight": 1.0,
+  "tags": [
+    "playful"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "movement": "Hip twist",
+    "expression": "with soft laugh",
+    "gesture": "hand on hip",
+    "description": "She twists her hips from side to side, letting the motion ripple through the waist while a soft laugh brightens the pose and one hand rests at the hip for polish."
+  }
+}

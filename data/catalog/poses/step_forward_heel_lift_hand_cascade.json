@@ -1,0 +1,16 @@
+{
+  "id": "step_forward_heel_lift_hand_cascade",
+  "label": "Step forward with lifted heel and hand cascade",
+  "weight": 1.0,
+  "tags": [
+    "dynamic"
+  ],
+  "requires": [],
+  "excludes": [],
+  "meta": {
+    "base": "Step forward",
+    "legs": "lifted heel",
+    "arms": "hand cascade",
+    "description": "Stepping forward with the back heel lifted to angle the hips while hands cascade down one side, guiding the viewer along the curves."
+  }
+}
