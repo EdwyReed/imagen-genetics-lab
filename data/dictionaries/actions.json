@@ -10,5 +10,35 @@
     "description": "reading a leather notebook while leaning on a railing",
     "mood": ["thoughtful", "calm"],
     "summary": "reading a notebook, thoughtful and calm"
+  },
+  {
+    "id": "action_sugar_popsicle_tease",
+    "description": "slowly savoring a dripping popsicle while maintaining unwavering eye contact",
+    "mood": ["flirty", "charged"],
+    "summary": "popsicle savoring with direct flirtatious gaze"
+  },
+  {
+    "id": "action_bubblegum_play",
+    "description": "blowing a giant bubble then twirling the gum strand around one finger with a giggle",
+    "mood": ["mischievous", "bubbly"],
+    "summary": "playful bubblegum teasing with twirled strand"
+  },
+  {
+    "id": "action_candy_rain_floor",
+    "description": "tossing handfuls of wrapped candy into the air before sprawling into the cascade",
+    "mood": ["joyful", "extravagant"],
+    "summary": "reveling in a shower of candy with exuberant sprawl"
+  },
+  {
+    "id": "action_lingerie_strap_snap",
+    "description": "hooking a finger under a swimsuit strap and letting it snap back with",
+    "mood": ["teasing", "confident"],
+    "summary": "snapping swimsuit strap with confident tease"
+  },
+  {
+    "id": "action_sleepy_sugar_glow",
+    "description": "stretching languidly on a bed of plush pillows, skin glistening as if dusted with sugar",
+    "mood": ["drowsy", "tender"],
+    "summary": "languid sugar-dusted stretch among plush pillows"
   }
 ]

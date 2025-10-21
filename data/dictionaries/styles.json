@@ -12,5 +12,40 @@
     "palette": "cool neutrals",
     "background": "minimalist studio backdrop",
     "summary": "soft studio lighting with cool neutral palette"
+  },
+  {
+    "id": "style_sugar_trouble_gloss",
+    "lighting": "sticky candy-gloss lighting that halos cheeks and lips like a lollipop sheen",
+    "palette": "pastel strawberry, creamy peach, mint and caramel",
+    "background": "candy shop window with syrupy reflections",
+    "summary": "candy idol gloss lighting with warm pastel sweets palette"
+  },
+  {
+    "id": "style_cherry_pop_neon",
+    "lighting": "80s neon rim lights with reflective floor spill",
+    "palette": "cherry red, electric fuchsia, aqua and violet",
+    "background": "bubblegum arcade drenched in neon",
+    "summary": "80s neon pop lighting with saturated cherry palette"
+  },
+  {
+    "id": "style_cotton_kiss_soft",
+    "lighting": "morning cotton-candy glow filtering through sheer curtains",
+    "palette": "powder pink, vanilla cream, sky blue",
+    "background": "pastel bedroom piled with plush pillows",
+    "summary": "soft morning glow with airy cotton-candy palette"
+  },
+  {
+    "id": "style_poolside_glitter",
+    "lighting": "wet studio bounce mixed with poolside reflections",
+    "palette": "sorbet orange, lagoon teal, glossy nude",
+    "background": "pool deck with chrome railings and candy-colored floaties",
+    "summary": "poolside wet-look lighting with sorbet accent palette"
+  },
+  {
+    "id": "sticker_set",
+    "lighting": "flat graphic lighting",
+    "palette": "vibrant colors with white outlines",
+    "background": "blank white background, no props, no decoration, only character with outline",
+    "summary": "flat sticker-style lighting with vibrant outlined palette"
   }
 ]

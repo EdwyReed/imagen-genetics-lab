@@ -28,5 +28,65 @@
     "traits": ["focused", "creative"],
     "sfw": true,
     "summary": "Mateo, lean man with short tousled black hair, hazel eyes and olive skin"
+  },
+  {
+    "id": "char_sugar_trouble_core",
+    "name": "Maya \"Sugar Trouble\" Flores",
+    "age": 21,
+    "gender": "female",
+    "appearance": {
+      "hair": {"color": "bubblegum pink", "length": "long", "style": "high ponytail"},
+      "eye_color": "honey brown",
+      "skin_tone": "warm peach"
+    },
+    "body_type": "soft curvy",
+    "traits": ["playful", "flirtatious", "sugar-obsessed"],
+    "sfw": false,
+    "summary": "Maya \"Sugar Trouble\" Flores, curvy candy idol with long bubblegum pink ponytail, honey-brown eyes and warm peach skin"
+  },
+  {
+    "id": "char_cherry_girl",
+    "name": "Cherry Girl",
+    "age": 22,
+    "gender": "female",
+    "appearance": {
+      "hair": { "color": "bright cherry red", "length": "long", "style": "loose with bangs" },
+      "eye_color": "blue",
+      "skin_tone": "fair with a pink blush"
+    },
+    "body_type": "slim",
+    "traits": ["sweet", "playful", "stylish", "cherry stem on head"],
+    "sfw": true,
+    "summary": "A cute, sweet adult woman with long deep-red hair and blue eyes, with a cherry stem growing out of her head with a single leaf, no real cherries should present on image."
+  },
+  {
+    "id": "char_cotton_kiss_muse",
+    "name": "Emi \"Cotton Kiss\" Park",
+    "age": 20,
+    "gender": "female",
+    "appearance": {
+      "hair": {"color": "pastel lavender", "length": "long", "style": "soft curls"},
+      "eye_color": "mint green",
+      "skin_tone": "porcelain"
+    },
+    "body_type": "petite",
+    "traits": ["innocent", "dreamy", "gentle"],
+    "sfw": true,
+    "summary": "Emi \"Cotton Kiss\" Park, petite daydreamer with long pastel lavender curls, mint-green eyes and porcelain skin"
+  },
+  {
+    "id": "char_sugar_siren_glow",
+    "name": "Rosa \"Sugar Siren\" Delgado",
+    "age": 26,
+    "gender": "female",
+    "appearance": {
+      "hair": {"color": "molten caramel", "length": "long", "style": "sleek with syrup gloss"},
+      "eye_color": "molasses brown",
+      "skin_tone": "bronzed"
+    },
+    "body_type": "voluptuous",
+    "traits": ["magnetic", "sultry", "poised"],
+    "sfw": false,
+    "summary": "Rosa \"Sugar Siren\" Delgado, voluptuous performer with sleek caramel hair, molasses-brown eyes and bronzed skin"
   }
 ]

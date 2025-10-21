@@ -188,7 +188,7 @@ def enforce_once(
         return base_caption
     enforce_system = (
         system_prompt
-        + "\n\nRewrite the caption naturally (18–60 words) and include the missing words: "
+        + "\n\nRewrite the caption naturally (~200 words) and include the missing words: "
         + ", ".join(missing)
         + ". Keep it one or two sentences."
     )

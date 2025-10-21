@@ -10,5 +10,35 @@
     "primary": "tailored camel coat over a charcoal turtleneck",
     "extras": ["dark denim", "chelsea boots"],
     "summary": "camel coat layering with charcoal turtleneck, denim and chelsea boots"
+  },
+  {
+    "id": "clothes_sugar_trouble_tee",
+    "primary": "clingy pastel crop tee with gloss \"Sweet Trouble\" print",
+    "extras": ["mint ruffle mini-skirt", "lace-trim ankle socks", "patent roller skates"],
+    "summary": "clingy candy idol tee with ruffle mini and glossy skate accessories"
+  },
+  {
+    "id": "clothes_cotton_kiss_lounge",
+    "primary": "sheer chiffon babydoll top with satin bow",
+    "extras": ["matching tap shorts", "powder blue cardigan slipping off shoulder", "plush heart pillow prop"],
+    "summary": "airy cotton-candy lounge set with sheer babydoll and plush heart pillow"
+  },
+  {
+    "id": "clothes_cherry_pop_neon",
+    "primary": "high-waist latex bikini in cherry red",
+    "extras": ["neon leg warmers", "mirror-finish roller boots", "heart-shaped visor"],
+    "summary": "cherry red latex swim set with neon leg warmers and visor"
+  },
+  {
+    "id": "clothes_sugar_siren_lingerie",
+    "primary": "peach satin corset with sheer panels and boning",
+    "extras": ["garter belt with caramel lace stockings", "crystal drop choker", "sticky glossed lips"],
+    "summary": "peach satin corset lingerie with caramel lace stockings and crystal choker"
+  },
+  {
+    "id": "clothes_bubble_trouble_casual",
+    "primary": "striped knot-front tee damp with syrupy sheen",
+    "extras": ["denim shorts with heart patches", "gumdrop bead bracelets", "lollipop microphone prop"],
+    "summary": "striped knot tee with heart-patched shorts and candy accessories"
   }
 ]

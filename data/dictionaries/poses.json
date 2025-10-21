@@ -12,5 +12,40 @@
     "camera_angle": "slightly above",
     "framing": "mid",
     "summary": "three-quarter turn, slightly high angle, mid framing"
+  },
+  {
+    "id": "pose_candy_window_kneel",
+    "description": "kneeling on a window seat, shoulders rolled forward, licking a melting popsicle",
+    "camera_angle": "eye-level",
+    "framing": "three-quarter",
+    "summary": "kneeling window-seat pose with forward shoulders and popsicle prop"
+  },
+  {
+    "id": "pose_floor_sprawl_sweets",
+    "description": "lying on polished floor amid scattered candies, hair fanned with syrupy highlights",
+    "camera_angle": "top-down",
+    "framing": "full",
+    "summary": "top-down full-body sprawl across candy-strewn floor"
+  },
+  {
+    "id": "pose_roller_low_angle",
+    "description": "low-angle shot with one leg extended toward camera in roller skates, hips cocked and lips parted",
+    "camera_angle": "low angle",
+    "framing": "full",
+    "summary": "low-angle roller pose with extended leg and parted lips"
+  },
+  {
+    "id": "pose_heart_pillow_tease",
+    "description": "sitting cross-legged hugging a heart pillow while thumb hooks lingerie waistband",
+    "camera_angle": "slightly above",
+    "framing": "mid",
+    "summary": "cross-legged heart pillow pose with teasing waistband pull"
+  },
+  {
+    "id": "pose_gum_bubble_close",
+    "description": "close-up three-quarter view blowing a gum bubble, fingers at collar tugging fabric",
+    "camera_angle": "eye-level",
+    "framing": "close",
+    "summary": "close three-quarter bubblegum tease with collar tug"
   }
 ]

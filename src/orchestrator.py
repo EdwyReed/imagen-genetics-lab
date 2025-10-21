@@ -79,9 +79,6 @@ def _fallback_caption(payload: Dict[str, object]) -> str:
     if mood:
         parts.append(f"evoking {mood}")
     caption = ", ".join(parts)
-    words = caption.split()
-    if len(words) > 60:
-        caption = " ".join(words[:60])
     return caption
 
 

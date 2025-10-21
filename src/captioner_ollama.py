@@ -51,8 +51,6 @@ def build_payload(options: Dict[str, Dict[str, object]], required_terms: List[st
 
 def _normalize_caption(text: str) -> str:
     words = text.strip().split()
-    if len(words) > 60:
-        words = words[:60]
     return " ".join(words)
 
 

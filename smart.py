@@ -52,7 +52,8 @@ HERE = Path(__file__).resolve().parent
 SUPER_JSON = HERE / "jelly-pin-up.json"
 DB_PATH = HERE / "scores.sqlite"
 
-REQUIRED_STYLE_TERMS = ["illustration", "watercolor", "glossy", "paper", "pastel"]
+# REQUIRED_STYLE_TERMS = ["illustration", "watercolor", "glossy", "paper", "pastel"]
+REQUIRED_STYLE_TERMS = []
 
 
 # ---------------- EXIF ----------------
@@ -217,7 +218,7 @@ def short_readable(meta: dict) -> str:
 def build_struct(data: dict, sfw_level: float, temperature: float, template_id: str | None = None):
   style = data.get("style_controller", {})
   rules = data.get("rules", {})
-  bounds = rules.get("caption_length", {"min_words": 18, "max_words": 48})
+  bounds = rules.get("caption_length", {"min_words": 18, "max_words": 200})
 
   palette = pick(data["palettes"])
   lighting = pick(data["lighting_presets"])
@@ -692,7 +693,7 @@ def run_plain(outdir="output", model_imagen="imagen-3.0-generate-002", person_mo
       continue
 
     bounds = s["caption_bounds"];
-    final_prompt = enforce_bounds(cap, bounds.get("min_words", 18), bounds.get("max_words", 60))
+    final_prompt = enforce_bounds(cap, bounds.get("min_words", 18), bounds.get("max_words", 200))
 
     try:
       resp = imagen_call(client, model_imagen, final_prompt, aspect, per_cycle, person_mode)
@@ -860,7 +861,7 @@ def run_evolve(outdir="output", model_imagen="imagen-3.0-generate-002", person_m
         continue
 
       bounds = s["caption_bounds"];
-      final_prompt = enforce_bounds(cap, bounds.get("min_words", 18), bounds.get("max_words", 60))
+      final_prompt = enforce_bounds(cap, bounds.get("min_words", 18), bounds.get("max_words", 200))
 
       try:
         resp = imagen_call(client, model_imagen, final_prompt, aspect, 1, person_mode)
