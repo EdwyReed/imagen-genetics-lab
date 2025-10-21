@@ -1,24 +1,1620 @@
 [
   {
-    "id": "pose_full_body_front",
-    "description": "full-body, front-facing, relaxed stance",
-    "camera_angle": "eye-level",
-    "framing": "full",
-    "summary": "full-body front view at eye level"
-  },
-  {
-    "id": "pose_three_quarter_turn",
-    "description": "three-quarter turn with weight on back leg",
-    "camera_angle": "slightly above",
-    "framing": "mid",
-    "summary": "three-quarter turn, slightly high angle, mid framing"
-  },
-  {
     "id": "pose_candy_window_kneel",
     "description": "kneeling on a window seat, shoulders rolled forward, licking a melting popsicle",
     "camera_angle": "eye-level",
     "framing": "three-quarter",
     "summary": "kneeling window-seat pose with forward shoulders and popsicle prop"
+  },
+  {
+    "id": "pose_dynamic_001",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs shot at eye level for direct connection, set on a mirrored studio floor.",
+    "camera_angle": "eye-level",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer floor"
+  },
+  {
+    "id": "pose_dynamic_002",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs captured from a gentle overhead tilt, set across a velvet chaise.",
+    "camera_angle": "slightly above",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer chaise"
+  },
+  {
+    "id": "pose_dynamic_003",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs captured from just below the waistline, set inside a laundromat aisle.",
+    "camera_angle": "slightly below",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer aisle"
+  },
+  {
+    "id": "pose_dynamic_004",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs framed from a dramatic low angle, set beside a pool edge.",
+    "camera_angle": "low angle",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer edge"
+  },
+  {
+    "id": "pose_dynamic_005",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs seen from directly overhead, set under a rainfall shower.",
+    "camera_angle": "top-down",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer shower"
+  },
+  {
+    "id": "pose_dynamic_006",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs viewed from behind with shoulders turning, set on a spiral staircase.",
+    "camera_angle": "from behind",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer staircase"
+  },
+  {
+    "id": "pose_dynamic_007",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs captured from the floor with limbs stretching upward, set against a floor-to-ceiling window.",
+    "camera_angle": "worm's-eye",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer window"
+  },
+  {
+    "id": "pose_dynamic_008",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs filmed from a sweeping aerial perspective, set on a plush rug surrounded by candles.",
+    "camera_angle": "bird's-eye",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer candles"
+  },
+  {
+    "id": "pose_dynamic_009",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs shot with a stylized dutch tilt, set within a graffiti alley.",
+    "camera_angle": "dutch tilt",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer alley"
+  },
+  {
+    "id": "pose_dynamic_010",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs captured with a fisheye exaggerating proportions, set over a kitchen island.",
+    "camera_angle": "fisheye",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer island"
+  },
+  {
+    "id": "pose_dynamic_011",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs shot at eye level for direct connection, set beneath hanging jungle plants.",
+    "camera_angle": "eye-level",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer plants"
+  },
+  {
+    "id": "pose_dynamic_012",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs captured from a gentle overhead tilt, set within a boxing ring.",
+    "camera_angle": "slightly above",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer ring"
+  },
+  {
+    "id": "pose_dynamic_013",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs captured from just below the waistline, set on a rooftop helipad.",
+    "camera_angle": "slightly below",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer helipad"
+  },
+  {
+    "id": "pose_dynamic_014",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs framed from a dramatic low angle, set inside a vintage car.",
+    "camera_angle": "low angle",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer car"
+  },
+  {
+    "id": "pose_dynamic_015",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs seen from directly overhead, set atop a grand piano.",
+    "camera_angle": "top-down",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer piano"
+  },
+  {
+    "id": "pose_dynamic_016",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs viewed from behind with shoulders turning, set inside a giant birdcage prop.",
+    "camera_angle": "from behind",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer prop"
+  },
+  {
+    "id": "pose_dynamic_017",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs captured from the floor with limbs stretching upward, set in a photo booth.",
+    "camera_angle": "worm's-eye",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer booth"
+  },
+  {
+    "id": "pose_dynamic_018",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs filmed from a sweeping aerial perspective, set on a sandy shoreline.",
+    "camera_angle": "bird's-eye",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer shoreline"
+  },
+  {
+    "id": "pose_dynamic_019",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs shot with a stylized dutch tilt, set at the edge of a diving board.",
+    "camera_angle": "dutch tilt",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer board"
+  },
+  {
+    "id": "pose_dynamic_020",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs captured with a fisheye exaggerating proportions, set beneath a skylight.",
+    "camera_angle": "fisheye",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer skylight"
+  },
+  {
+    "id": "pose_dynamic_021",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs shot at eye level for direct connection, set in front of a neon wall.",
+    "camera_angle": "eye-level",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer wall"
+  },
+  {
+    "id": "pose_dynamic_022",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs captured from a gentle overhead tilt, set inside a washer door frame.",
+    "camera_angle": "slightly above",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer frame"
+  },
+  {
+    "id": "pose_dynamic_023",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs captured from just below the waistline, set halfway down a ladder.",
+    "camera_angle": "slightly below",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer ladder"
+  },
+  {
+    "id": "pose_dynamic_024",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs framed from a dramatic low angle, set on an ottoman piled with cushions.",
+    "camera_angle": "low angle",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer cushions"
+  },
+  {
+    "id": "pose_dynamic_025",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hands tracing along outer thighs seen from directly overhead, set against a ballet barre.",
+    "camera_angle": "top-down",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hands tracing along outer barre"
+  },
+  {
+    "id": "pose_dynamic_026",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband viewed from behind with shoulders turning, set on a mirrored studio floor.",
+    "camera_angle": "from behind",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a floor"
+  },
+  {
+    "id": "pose_dynamic_027",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband captured from the floor with limbs stretching upward, set across a velvet chaise.",
+    "camera_angle": "worm's-eye",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a chaise"
+  },
+  {
+    "id": "pose_dynamic_028",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband filmed from a sweeping aerial perspective, set inside a laundromat aisle.",
+    "camera_angle": "bird's-eye",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a aisle"
+  },
+  {
+    "id": "pose_dynamic_029",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband shot with a stylized dutch tilt, set beside a pool edge.",
+    "camera_angle": "dutch tilt",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a edge"
+  },
+  {
+    "id": "pose_dynamic_030",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband captured with a fisheye exaggerating proportions, set under a rainfall shower.",
+    "camera_angle": "fisheye",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a shower"
+  },
+  {
+    "id": "pose_dynamic_031",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband shot at eye level for direct connection, set on a spiral staircase.",
+    "camera_angle": "eye-level",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a staircase"
+  },
+  {
+    "id": "pose_dynamic_032",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband captured from a gentle overhead tilt, set against a floor-to-ceiling window.",
+    "camera_angle": "slightly above",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a window"
+  },
+  {
+    "id": "pose_dynamic_033",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband captured from just below the waistline, set on a plush rug surrounded by candles.",
+    "camera_angle": "slightly below",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a candles"
+  },
+  {
+    "id": "pose_dynamic_034",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband framed from a dramatic low angle, set within a graffiti alley.",
+    "camera_angle": "low angle",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a alley"
+  },
+  {
+    "id": "pose_dynamic_035",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband seen from directly overhead, set over a kitchen island.",
+    "camera_angle": "top-down",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a island"
+  },
+  {
+    "id": "pose_dynamic_036",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband viewed from behind with shoulders turning, set beneath hanging jungle plants.",
+    "camera_angle": "from behind",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a plants"
+  },
+  {
+    "id": "pose_dynamic_037",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband captured from the floor with limbs stretching upward, set within a boxing ring.",
+    "camera_angle": "worm's-eye",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a ring"
+  },
+  {
+    "id": "pose_dynamic_038",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband filmed from a sweeping aerial perspective, set on a rooftop helipad.",
+    "camera_angle": "bird's-eye",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a helipad"
+  },
+  {
+    "id": "pose_dynamic_039",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband shot with a stylized dutch tilt, set inside a vintage car.",
+    "camera_angle": "dutch tilt",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a car"
+  },
+  {
+    "id": "pose_dynamic_040",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband captured with a fisheye exaggerating proportions, set atop a grand piano.",
+    "camera_angle": "fisheye",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a piano"
+  },
+  {
+    "id": "pose_dynamic_041",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband shot at eye level for direct connection, set inside a giant birdcage prop.",
+    "camera_angle": "eye-level",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a prop"
+  },
+  {
+    "id": "pose_dynamic_042",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband captured from a gentle overhead tilt, set in a photo booth.",
+    "camera_angle": "slightly above",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a booth"
+  },
+  {
+    "id": "pose_dynamic_043",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband captured from just below the waistline, set on a sandy shoreline.",
+    "camera_angle": "slightly below",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a shoreline"
+  },
+  {
+    "id": "pose_dynamic_044",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband framed from a dramatic low angle, set at the edge of a diving board.",
+    "camera_angle": "low angle",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a board"
+  },
+  {
+    "id": "pose_dynamic_045",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband seen from directly overhead, set beneath a skylight.",
+    "camera_angle": "top-down",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a skylight"
+  },
+  {
+    "id": "pose_dynamic_046",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband viewed from behind with shoulders turning, set in front of a neon wall.",
+    "camera_angle": "from behind",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a wall"
+  },
+  {
+    "id": "pose_dynamic_047",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband captured from the floor with limbs stretching upward, set inside a washer door frame.",
+    "camera_angle": "worm's-eye",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a frame"
+  },
+  {
+    "id": "pose_dynamic_048",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband filmed from a sweeping aerial perspective, set halfway down a ladder.",
+    "camera_angle": "bird's-eye",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a ladder"
+  },
+  {
+    "id": "pose_dynamic_049",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband shot with a stylized dutch tilt, set on an ottoman piled with cushions.",
+    "camera_angle": "dutch tilt",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a cushions"
+  },
+  {
+    "id": "pose_dynamic_050",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with fingers hooked into a waistband captured with a fisheye exaggerating proportions, set against a ballet barre.",
+    "camera_angle": "fisheye",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor fingers hooked into a barre"
+  },
+  {
+    "id": "pose_dynamic_051",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed shot at eye level for direct connection, set on a mirrored studio floor.",
+    "camera_angle": "eye-level",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes floor"
+  },
+  {
+    "id": "pose_dynamic_052",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed captured from a gentle overhead tilt, set across a velvet chaise.",
+    "camera_angle": "slightly above",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes chaise"
+  },
+  {
+    "id": "pose_dynamic_053",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed captured from just below the waistline, set inside a laundromat aisle.",
+    "camera_angle": "slightly below",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes aisle"
+  },
+  {
+    "id": "pose_dynamic_054",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed framed from a dramatic low angle, set beside a pool edge.",
+    "camera_angle": "low angle",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes edge"
+  },
+  {
+    "id": "pose_dynamic_055",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed seen from directly overhead, set under a rainfall shower.",
+    "camera_angle": "top-down",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes shower"
+  },
+  {
+    "id": "pose_dynamic_056",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed viewed from behind with shoulders turning, set on a spiral staircase.",
+    "camera_angle": "from behind",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes staircase"
+  },
+  {
+    "id": "pose_dynamic_057",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed captured from the floor with limbs stretching upward, set against a floor-to-ceiling window.",
+    "camera_angle": "worm's-eye",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes window"
+  },
+  {
+    "id": "pose_dynamic_058",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed filmed from a sweeping aerial perspective, set on a plush rug surrounded by candles.",
+    "camera_angle": "bird's-eye",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes candles"
+  },
+  {
+    "id": "pose_dynamic_059",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed shot with a stylized dutch tilt, set within a graffiti alley.",
+    "camera_angle": "dutch tilt",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes alley"
+  },
+  {
+    "id": "pose_dynamic_060",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed captured with a fisheye exaggerating proportions, set over a kitchen island.",
+    "camera_angle": "fisheye",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes island"
+  },
+  {
+    "id": "pose_dynamic_061",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed shot at eye level for direct connection, set beneath hanging jungle plants.",
+    "camera_angle": "eye-level",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes plants"
+  },
+  {
+    "id": "pose_dynamic_062",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed captured from a gentle overhead tilt, set within a boxing ring.",
+    "camera_angle": "slightly above",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes ring"
+  },
+  {
+    "id": "pose_dynamic_063",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed captured from just below the waistline, set on a rooftop helipad.",
+    "camera_angle": "slightly below",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes helipad"
+  },
+  {
+    "id": "pose_dynamic_064",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed framed from a dramatic low angle, set inside a vintage car.",
+    "camera_angle": "low angle",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes car"
+  },
+  {
+    "id": "pose_dynamic_065",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed seen from directly overhead, set atop a grand piano.",
+    "camera_angle": "top-down",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes piano"
+  },
+  {
+    "id": "pose_dynamic_066",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed viewed from behind with shoulders turning, set inside a giant birdcage prop.",
+    "camera_angle": "from behind",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes prop"
+  },
+  {
+    "id": "pose_dynamic_067",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed captured from the floor with limbs stretching upward, set in a photo booth.",
+    "camera_angle": "worm's-eye",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes booth"
+  },
+  {
+    "id": "pose_dynamic_068",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed filmed from a sweeping aerial perspective, set on a sandy shoreline.",
+    "camera_angle": "bird's-eye",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes shoreline"
+  },
+  {
+    "id": "pose_dynamic_069",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed shot with a stylized dutch tilt, set at the edge of a diving board.",
+    "camera_angle": "dutch tilt",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes board"
+  },
+  {
+    "id": "pose_dynamic_070",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed captured with a fisheye exaggerating proportions, set beneath a skylight.",
+    "camera_angle": "fisheye",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes skylight"
+  },
+  {
+    "id": "pose_dynamic_071",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed shot at eye level for direct connection, set in front of a neon wall.",
+    "camera_angle": "eye-level",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes wall"
+  },
+  {
+    "id": "pose_dynamic_072",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed captured from a gentle overhead tilt, set inside a washer door frame.",
+    "camera_angle": "slightly above",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes frame"
+  },
+  {
+    "id": "pose_dynamic_073",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed captured from just below the waistline, set halfway down a ladder.",
+    "camera_angle": "slightly below",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes ladder"
+  },
+  {
+    "id": "pose_dynamic_074",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed framed from a dramatic low angle, set on an ottoman piled with cushions.",
+    "camera_angle": "low angle",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes cushions"
+  },
+  {
+    "id": "pose_dynamic_075",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with head tilted with eyes closed seen from directly overhead, set against a ballet barre.",
+    "camera_angle": "top-down",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor head tilted with eyes barre"
+  },
+  {
+    "id": "pose_dynamic_076",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh viewed from behind with shoulders turning, set on a mirrored studio floor.",
+    "camera_angle": "from behind",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh floor"
+  },
+  {
+    "id": "pose_dynamic_077",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh captured from the floor with limbs stretching upward, set across a velvet chaise.",
+    "camera_angle": "worm's-eye",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh chaise"
+  },
+  {
+    "id": "pose_dynamic_078",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh filmed from a sweeping aerial perspective, set inside a laundromat aisle.",
+    "camera_angle": "bird's-eye",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh aisle"
+  },
+  {
+    "id": "pose_dynamic_079",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh shot with a stylized dutch tilt, set beside a pool edge.",
+    "camera_angle": "dutch tilt",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh edge"
+  },
+  {
+    "id": "pose_dynamic_080",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh captured with a fisheye exaggerating proportions, set under a rainfall shower.",
+    "camera_angle": "fisheye",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh shower"
+  },
+  {
+    "id": "pose_dynamic_081",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh shot at eye level for direct connection, set on a spiral staircase.",
+    "camera_angle": "eye-level",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh staircase"
+  },
+  {
+    "id": "pose_dynamic_082",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh captured from a gentle overhead tilt, set against a floor-to-ceiling window.",
+    "camera_angle": "slightly above",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh window"
+  },
+  {
+    "id": "pose_dynamic_083",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh captured from just below the waistline, set on a plush rug surrounded by candles.",
+    "camera_angle": "slightly below",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh candles"
+  },
+  {
+    "id": "pose_dynamic_084",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh framed from a dramatic low angle, set within a graffiti alley.",
+    "camera_angle": "low angle",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh alley"
+  },
+  {
+    "id": "pose_dynamic_085",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh seen from directly overhead, set over a kitchen island.",
+    "camera_angle": "top-down",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh island"
+  },
+  {
+    "id": "pose_dynamic_086",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh viewed from behind with shoulders turning, set beneath hanging jungle plants.",
+    "camera_angle": "from behind",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh plants"
+  },
+  {
+    "id": "pose_dynamic_087",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh captured from the floor with limbs stretching upward, set within a boxing ring.",
+    "camera_angle": "worm's-eye",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh ring"
+  },
+  {
+    "id": "pose_dynamic_088",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh filmed from a sweeping aerial perspective, set on a rooftop helipad.",
+    "camera_angle": "bird's-eye",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh helipad"
+  },
+  {
+    "id": "pose_dynamic_089",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh shot with a stylized dutch tilt, set inside a vintage car.",
+    "camera_angle": "dutch tilt",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh car"
+  },
+  {
+    "id": "pose_dynamic_090",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh captured with a fisheye exaggerating proportions, set atop a grand piano.",
+    "camera_angle": "fisheye",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh piano"
+  },
+  {
+    "id": "pose_dynamic_091",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh shot at eye level for direct connection, set inside a giant birdcage prop.",
+    "camera_angle": "eye-level",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh prop"
+  },
+  {
+    "id": "pose_dynamic_092",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh captured from a gentle overhead tilt, set in a photo booth.",
+    "camera_angle": "slightly above",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh booth"
+  },
+  {
+    "id": "pose_dynamic_093",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh captured from just below the waistline, set on a sandy shoreline.",
+    "camera_angle": "slightly below",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh shoreline"
+  },
+  {
+    "id": "pose_dynamic_094",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh framed from a dramatic low angle, set at the edge of a diving board.",
+    "camera_angle": "low angle",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh board"
+  },
+  {
+    "id": "pose_dynamic_095",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh seen from directly overhead, set beneath a skylight.",
+    "camera_angle": "top-down",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh skylight"
+  },
+  {
+    "id": "pose_dynamic_096",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh viewed from behind with shoulders turning, set in front of a neon wall.",
+    "camera_angle": "from behind",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh wall"
+  },
+  {
+    "id": "pose_dynamic_097",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh captured from the floor with limbs stretching upward, set inside a washer door frame.",
+    "camera_angle": "worm's-eye",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh frame"
+  },
+  {
+    "id": "pose_dynamic_098",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh filmed from a sweeping aerial perspective, set halfway down a ladder.",
+    "camera_angle": "bird's-eye",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh ladder"
+  },
+  {
+    "id": "pose_dynamic_099",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh shot with a stylized dutch tilt, set on an ottoman piled with cushions.",
+    "camera_angle": "dutch tilt",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh cushions"
+  },
+  {
+    "id": "pose_dynamic_100",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with mouth parted mid-laugh captured with a fisheye exaggerating proportions, set against a ballet barre.",
+    "camera_angle": "fisheye",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor mouth parted mid laugh barre"
+  },
+  {
+    "id": "pose_dynamic_101",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist shot at eye level for direct connection, set on a mirrored studio floor.",
+    "camera_angle": "eye-level",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one floor"
+  },
+  {
+    "id": "pose_dynamic_102",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist captured from a gentle overhead tilt, set across a velvet chaise.",
+    "camera_angle": "slightly above",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one chaise"
+  },
+  {
+    "id": "pose_dynamic_103",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist captured from just below the waistline, set inside a laundromat aisle.",
+    "camera_angle": "slightly below",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one aisle"
+  },
+  {
+    "id": "pose_dynamic_104",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist framed from a dramatic low angle, set beside a pool edge.",
+    "camera_angle": "low angle",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one edge"
+  },
+  {
+    "id": "pose_dynamic_105",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist seen from directly overhead, set under a rainfall shower.",
+    "camera_angle": "top-down",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one shower"
+  },
+  {
+    "id": "pose_dynamic_106",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist viewed from behind with shoulders turning, set on a spiral staircase.",
+    "camera_angle": "from behind",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one staircase"
+  },
+  {
+    "id": "pose_dynamic_107",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist captured from the floor with limbs stretching upward, set against a floor-to-ceiling window.",
+    "camera_angle": "worm's-eye",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one window"
+  },
+  {
+    "id": "pose_dynamic_108",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist filmed from a sweeping aerial perspective, set on a plush rug surrounded by candles.",
+    "camera_angle": "bird's-eye",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one candles"
+  },
+  {
+    "id": "pose_dynamic_109",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist shot with a stylized dutch tilt, set within a graffiti alley.",
+    "camera_angle": "dutch tilt",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one alley"
+  },
+  {
+    "id": "pose_dynamic_110",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist captured with a fisheye exaggerating proportions, set over a kitchen island.",
+    "camera_angle": "fisheye",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one island"
+  },
+  {
+    "id": "pose_dynamic_111",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist shot at eye level for direct connection, set beneath hanging jungle plants.",
+    "camera_angle": "eye-level",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one plants"
+  },
+  {
+    "id": "pose_dynamic_112",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist captured from a gentle overhead tilt, set within a boxing ring.",
+    "camera_angle": "slightly above",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one ring"
+  },
+  {
+    "id": "pose_dynamic_113",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist captured from just below the waistline, set on a rooftop helipad.",
+    "camera_angle": "slightly below",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one helipad"
+  },
+  {
+    "id": "pose_dynamic_114",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist framed from a dramatic low angle, set inside a vintage car.",
+    "camera_angle": "low angle",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one car"
+  },
+  {
+    "id": "pose_dynamic_115",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist seen from directly overhead, set atop a grand piano.",
+    "camera_angle": "top-down",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one piano"
+  },
+  {
+    "id": "pose_dynamic_116",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist viewed from behind with shoulders turning, set inside a giant birdcage prop.",
+    "camera_angle": "from behind",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one prop"
+  },
+  {
+    "id": "pose_dynamic_117",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist captured from the floor with limbs stretching upward, set in a photo booth.",
+    "camera_angle": "worm's-eye",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one booth"
+  },
+  {
+    "id": "pose_dynamic_118",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist filmed from a sweeping aerial perspective, set on a sandy shoreline.",
+    "camera_angle": "bird's-eye",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one shoreline"
+  },
+  {
+    "id": "pose_dynamic_119",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist shot with a stylized dutch tilt, set at the edge of a diving board.",
+    "camera_angle": "dutch tilt",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one board"
+  },
+  {
+    "id": "pose_dynamic_120",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist captured with a fisheye exaggerating proportions, set beneath a skylight.",
+    "camera_angle": "fisheye",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one skylight"
+  },
+  {
+    "id": "pose_dynamic_121",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist shot at eye level for direct connection, set in front of a neon wall.",
+    "camera_angle": "eye-level",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one wall"
+  },
+  {
+    "id": "pose_dynamic_122",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist captured from a gentle overhead tilt, set inside a washer door frame.",
+    "camera_angle": "slightly above",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one frame"
+  },
+  {
+    "id": "pose_dynamic_123",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist captured from just below the waistline, set halfway down a ladder.",
+    "camera_angle": "slightly below",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one ladder"
+  },
+  {
+    "id": "pose_dynamic_124",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist framed from a dramatic low angle, set on an ottoman piled with cushions.",
+    "camera_angle": "low angle",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one cushions"
+  },
+  {
+    "id": "pose_dynamic_125",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with hair gathered in one fist seen from directly overhead, set against a ballet barre.",
+    "camera_angle": "top-down",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor hair gathered in one barre"
+  },
+  {
+    "id": "pose_dynamic_126",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens viewed from behind with shoulders turning, set on a mirrored studio floor.",
+    "camera_angle": "from behind",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against floor"
+  },
+  {
+    "id": "pose_dynamic_127",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens captured from the floor with limbs stretching upward, set across a velvet chaise.",
+    "camera_angle": "worm's-eye",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against chaise"
+  },
+  {
+    "id": "pose_dynamic_128",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens filmed from a sweeping aerial perspective, set inside a laundromat aisle.",
+    "camera_angle": "bird's-eye",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against aisle"
+  },
+  {
+    "id": "pose_dynamic_129",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens shot with a stylized dutch tilt, set beside a pool edge.",
+    "camera_angle": "dutch tilt",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against edge"
+  },
+  {
+    "id": "pose_dynamic_130",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens captured with a fisheye exaggerating proportions, set under a rainfall shower.",
+    "camera_angle": "fisheye",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against shower"
+  },
+  {
+    "id": "pose_dynamic_131",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens shot at eye level for direct connection, set on a spiral staircase.",
+    "camera_angle": "eye-level",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against staircase"
+  },
+  {
+    "id": "pose_dynamic_132",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens captured from a gentle overhead tilt, set against a floor-to-ceiling window.",
+    "camera_angle": "slightly above",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against window"
+  },
+  {
+    "id": "pose_dynamic_133",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens captured from just below the waistline, set on a plush rug surrounded by candles.",
+    "camera_angle": "slightly below",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against candles"
+  },
+  {
+    "id": "pose_dynamic_134",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens framed from a dramatic low angle, set within a graffiti alley.",
+    "camera_angle": "low angle",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against alley"
+  },
+  {
+    "id": "pose_dynamic_135",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens seen from directly overhead, set over a kitchen island.",
+    "camera_angle": "top-down",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against island"
+  },
+  {
+    "id": "pose_dynamic_136",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens viewed from behind with shoulders turning, set beneath hanging jungle plants.",
+    "camera_angle": "from behind",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against plants"
+  },
+  {
+    "id": "pose_dynamic_137",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens captured from the floor with limbs stretching upward, set within a boxing ring.",
+    "camera_angle": "worm's-eye",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against ring"
+  },
+  {
+    "id": "pose_dynamic_138",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens filmed from a sweeping aerial perspective, set on a rooftop helipad.",
+    "camera_angle": "bird's-eye",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against helipad"
+  },
+  {
+    "id": "pose_dynamic_139",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens shot with a stylized dutch tilt, set inside a vintage car.",
+    "camera_angle": "dutch tilt",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against car"
+  },
+  {
+    "id": "pose_dynamic_140",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens captured with a fisheye exaggerating proportions, set atop a grand piano.",
+    "camera_angle": "fisheye",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against piano"
+  },
+  {
+    "id": "pose_dynamic_141",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens shot at eye level for direct connection, set inside a giant birdcage prop.",
+    "camera_angle": "eye-level",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against prop"
+  },
+  {
+    "id": "pose_dynamic_142",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens captured from a gentle overhead tilt, set in a photo booth.",
+    "camera_angle": "slightly above",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against booth"
+  },
+  {
+    "id": "pose_dynamic_143",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens captured from just below the waistline, set on a sandy shoreline.",
+    "camera_angle": "slightly below",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against shoreline"
+  },
+  {
+    "id": "pose_dynamic_144",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens framed from a dramatic low angle, set at the edge of a diving board.",
+    "camera_angle": "low angle",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against board"
+  },
+  {
+    "id": "pose_dynamic_145",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens seen from directly overhead, set beneath a skylight.",
+    "camera_angle": "top-down",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against skylight"
+  },
+  {
+    "id": "pose_dynamic_146",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens viewed from behind with shoulders turning, set in front of a neon wall.",
+    "camera_angle": "from behind",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against wall"
+  },
+  {
+    "id": "pose_dynamic_147",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens captured from the floor with limbs stretching upward, set inside a washer door frame.",
+    "camera_angle": "worm's-eye",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against frame"
+  },
+  {
+    "id": "pose_dynamic_148",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens filmed from a sweeping aerial perspective, set halfway down a ladder.",
+    "camera_angle": "bird's-eye",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against ladder"
+  },
+  {
+    "id": "pose_dynamic_149",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens shot with a stylized dutch tilt, set on an ottoman piled with cushions.",
+    "camera_angle": "dutch tilt",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against cushions"
+  },
+  {
+    "id": "pose_dynamic_150",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with one hand pressing against the lens captured with a fisheye exaggerating proportions, set against a ballet barre.",
+    "camera_angle": "fisheye",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor one hand pressing against barre"
+  },
+  {
+    "id": "pose_dynamic_151",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket shot at eye level for direct connection, set on a mirrored studio floor.",
+    "camera_angle": "eye-level",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a floor"
+  },
+  {
+    "id": "pose_dynamic_152",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket captured from a gentle overhead tilt, set across a velvet chaise.",
+    "camera_angle": "slightly above",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a chaise"
+  },
+  {
+    "id": "pose_dynamic_153",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket captured from just below the waistline, set inside a laundromat aisle.",
+    "camera_angle": "slightly below",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a aisle"
+  },
+  {
+    "id": "pose_dynamic_154",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket framed from a dramatic low angle, set beside a pool edge.",
+    "camera_angle": "low angle",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a edge"
+  },
+  {
+    "id": "pose_dynamic_155",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket seen from directly overhead, set under a rainfall shower.",
+    "camera_angle": "top-down",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a shower"
+  },
+  {
+    "id": "pose_dynamic_156",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket viewed from behind with shoulders turning, set on a spiral staircase.",
+    "camera_angle": "from behind",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a staircase"
+  },
+  {
+    "id": "pose_dynamic_157",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket captured from the floor with limbs stretching upward, set against a floor-to-ceiling window.",
+    "camera_angle": "worm's-eye",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a window"
+  },
+  {
+    "id": "pose_dynamic_158",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket filmed from a sweeping aerial perspective, set on a plush rug surrounded by candles.",
+    "camera_angle": "bird's-eye",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a candles"
+  },
+  {
+    "id": "pose_dynamic_159",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket shot with a stylized dutch tilt, set within a graffiti alley.",
+    "camera_angle": "dutch tilt",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a alley"
+  },
+  {
+    "id": "pose_dynamic_160",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket captured with a fisheye exaggerating proportions, set over a kitchen island.",
+    "camera_angle": "fisheye",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a island"
+  },
+  {
+    "id": "pose_dynamic_161",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket shot at eye level for direct connection, set beneath hanging jungle plants.",
+    "camera_angle": "eye-level",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a plants"
+  },
+  {
+    "id": "pose_dynamic_162",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket captured from a gentle overhead tilt, set within a boxing ring.",
+    "camera_angle": "slightly above",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a ring"
+  },
+  {
+    "id": "pose_dynamic_163",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket captured from just below the waistline, set on a rooftop helipad.",
+    "camera_angle": "slightly below",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a helipad"
+  },
+  {
+    "id": "pose_dynamic_164",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket framed from a dramatic low angle, set inside a vintage car.",
+    "camera_angle": "low angle",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a car"
+  },
+  {
+    "id": "pose_dynamic_165",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket seen from directly overhead, set atop a grand piano.",
+    "camera_angle": "top-down",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a piano"
+  },
+  {
+    "id": "pose_dynamic_166",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket viewed from behind with shoulders turning, set inside a giant birdcage prop.",
+    "camera_angle": "from behind",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a prop"
+  },
+  {
+    "id": "pose_dynamic_167",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket captured from the floor with limbs stretching upward, set in a photo booth.",
+    "camera_angle": "worm's-eye",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a booth"
+  },
+  {
+    "id": "pose_dynamic_168",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket filmed from a sweeping aerial perspective, set on a sandy shoreline.",
+    "camera_angle": "bird's-eye",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a shoreline"
+  },
+  {
+    "id": "pose_dynamic_169",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket shot with a stylized dutch tilt, set at the edge of a diving board.",
+    "camera_angle": "dutch tilt",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a board"
+  },
+  {
+    "id": "pose_dynamic_170",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket captured with a fisheye exaggerating proportions, set beneath a skylight.",
+    "camera_angle": "fisheye",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a skylight"
+  },
+  {
+    "id": "pose_dynamic_171",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket shot at eye level for direct connection, set in front of a neon wall.",
+    "camera_angle": "eye-level",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a wall"
+  },
+  {
+    "id": "pose_dynamic_172",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket captured from a gentle overhead tilt, set inside a washer door frame.",
+    "camera_angle": "slightly above",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a frame"
+  },
+  {
+    "id": "pose_dynamic_173",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket captured from just below the waistline, set halfway down a ladder.",
+    "camera_angle": "slightly below",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a ladder"
+  },
+  {
+    "id": "pose_dynamic_174",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket framed from a dramatic low angle, set on an ottoman piled with cushions.",
+    "camera_angle": "low angle",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a cushions"
+  },
+  {
+    "id": "pose_dynamic_175",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with shoulders draped in a loose jacket seen from directly overhead, set against a ballet barre.",
+    "camera_angle": "top-down",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor shoulders draped in a barre"
+  },
+  {
+    "id": "pose_dynamic_176",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon viewed from behind with shoulders turning, set on a mirrored studio floor.",
+    "camera_angle": "from behind",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with floor"
+  },
+  {
+    "id": "pose_dynamic_177",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon captured from the floor with limbs stretching upward, set across a velvet chaise.",
+    "camera_angle": "worm's-eye",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with chaise"
+  },
+  {
+    "id": "pose_dynamic_178",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon filmed from a sweeping aerial perspective, set inside a laundromat aisle.",
+    "camera_angle": "bird's-eye",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with aisle"
+  },
+  {
+    "id": "pose_dynamic_179",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon shot with a stylized dutch tilt, set beside a pool edge.",
+    "camera_angle": "dutch tilt",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with edge"
+  },
+  {
+    "id": "pose_dynamic_180",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon captured with a fisheye exaggerating proportions, set under a rainfall shower.",
+    "camera_angle": "fisheye",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with shower"
+  },
+  {
+    "id": "pose_dynamic_181",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon shot at eye level for direct connection, set on a spiral staircase.",
+    "camera_angle": "eye-level",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with staircase"
+  },
+  {
+    "id": "pose_dynamic_182",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon captured from a gentle overhead tilt, set against a floor-to-ceiling window.",
+    "camera_angle": "slightly above",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with window"
+  },
+  {
+    "id": "pose_dynamic_183",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon captured from just below the waistline, set on a plush rug surrounded by candles.",
+    "camera_angle": "slightly below",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with candles"
+  },
+  {
+    "id": "pose_dynamic_184",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon framed from a dramatic low angle, set within a graffiti alley.",
+    "camera_angle": "low angle",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with alley"
+  },
+  {
+    "id": "pose_dynamic_185",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon seen from directly overhead, set over a kitchen island.",
+    "camera_angle": "top-down",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with island"
+  },
+  {
+    "id": "pose_dynamic_186",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon viewed from behind with shoulders turning, set beneath hanging jungle plants.",
+    "camera_angle": "from behind",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with plants"
+  },
+  {
+    "id": "pose_dynamic_187",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon captured from the floor with limbs stretching upward, set within a boxing ring.",
+    "camera_angle": "worm's-eye",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with ring"
+  },
+  {
+    "id": "pose_dynamic_188",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon filmed from a sweeping aerial perspective, set on a rooftop helipad.",
+    "camera_angle": "bird's-eye",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with helipad"
+  },
+  {
+    "id": "pose_dynamic_189",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon shot with a stylized dutch tilt, set inside a vintage car.",
+    "camera_angle": "dutch tilt",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with car"
+  },
+  {
+    "id": "pose_dynamic_190",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon captured with a fisheye exaggerating proportions, set atop a grand piano.",
+    "camera_angle": "fisheye",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with piano"
+  },
+  {
+    "id": "pose_dynamic_191",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon shot at eye level for direct connection, set inside a giant birdcage prop.",
+    "camera_angle": "eye-level",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with prop"
+  },
+  {
+    "id": "pose_dynamic_192",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon captured from a gentle overhead tilt, set in a photo booth.",
+    "camera_angle": "slightly above",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with booth"
+  },
+  {
+    "id": "pose_dynamic_193",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon captured from just below the waistline, set on a sandy shoreline.",
+    "camera_angle": "slightly below",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with shoreline"
+  },
+  {
+    "id": "pose_dynamic_194",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon framed from a dramatic low angle, set at the edge of a diving board.",
+    "camera_angle": "low angle",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with board"
+  },
+  {
+    "id": "pose_dynamic_195",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon seen from directly overhead, set beneath a skylight.",
+    "camera_angle": "top-down",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with skylight"
+  },
+  {
+    "id": "pose_dynamic_196",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon viewed from behind with shoulders turning, set in front of a neon wall.",
+    "camera_angle": "from behind",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with wall"
+  },
+  {
+    "id": "pose_dynamic_197",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon captured from the floor with limbs stretching upward, set inside a washer door frame.",
+    "camera_angle": "worm's-eye",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with frame"
+  },
+  {
+    "id": "pose_dynamic_198",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon filmed from a sweeping aerial perspective, set halfway down a ladder.",
+    "camera_angle": "bird's-eye",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with ladder"
+  },
+  {
+    "id": "pose_dynamic_199",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon shot with a stylized dutch tilt, set on an ottoman piled with cushions.",
+    "camera_angle": "dutch tilt",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with cushions"
+  },
+  {
+    "id": "pose_dynamic_200",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with ankles bound together with ribbon captured with a fisheye exaggerating proportions, set against a ballet barre.",
+    "camera_angle": "fisheye",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor ankles bound together with barre"
+  },
+  {
+    "id": "pose_dynamic_201",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically shot at eye level for direct connection, set on a mirrored studio floor.",
+    "camera_angle": "eye-level",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically on floor"
+  },
+  {
+    "id": "pose_dynamic_202",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically captured from a gentle overhead tilt, set across a velvet chaise.",
+    "camera_angle": "slightly above",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically across chaise"
+  },
+  {
+    "id": "pose_dynamic_203",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically captured from just below the waistline, set inside a laundromat aisle.",
+    "camera_angle": "slightly below",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically inside aisle"
+  },
+  {
+    "id": "pose_dynamic_204",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically framed from a dramatic low angle, set beside a pool edge.",
+    "camera_angle": "low angle",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically beside edge"
+  },
+  {
+    "id": "pose_dynamic_205",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically seen from directly overhead, set under a rainfall shower.",
+    "camera_angle": "top-down",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically under shower"
+  },
+  {
+    "id": "pose_dynamic_206",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically viewed from behind with shoulders turning, set on a spiral staircase.",
+    "camera_angle": "from behind",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically on staircase"
+  },
+  {
+    "id": "pose_dynamic_207",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically captured from the floor with limbs stretching upward, set against a floor-to-ceiling window.",
+    "camera_angle": "worm's-eye",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically against window"
+  },
+  {
+    "id": "pose_dynamic_208",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically filmed from a sweeping aerial perspective, set on a plush rug surrounded by candles.",
+    "camera_angle": "bird's-eye",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically on candles"
+  },
+  {
+    "id": "pose_dynamic_209",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically shot with a stylized dutch tilt, set within a graffiti alley.",
+    "camera_angle": "dutch tilt",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically within alley"
+  },
+  {
+    "id": "pose_dynamic_210",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically captured with a fisheye exaggerating proportions, set over a kitchen island.",
+    "camera_angle": "fisheye",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically over island"
+  },
+  {
+    "id": "pose_dynamic_211",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically shot at eye level for direct connection, set beneath hanging jungle plants.",
+    "camera_angle": "eye-level",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically beneath plants"
+  },
+  {
+    "id": "pose_dynamic_212",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically captured from a gentle overhead tilt, set within a boxing ring.",
+    "camera_angle": "slightly above",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically within ring"
+  },
+  {
+    "id": "pose_dynamic_213",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically captured from just below the waistline, set on a rooftop helipad.",
+    "camera_angle": "slightly below",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically on helipad"
+  },
+  {
+    "id": "pose_dynamic_214",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically framed from a dramatic low angle, set inside a vintage car.",
+    "camera_angle": "low angle",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically inside car"
+  },
+  {
+    "id": "pose_dynamic_215",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically seen from directly overhead, set atop a grand piano.",
+    "camera_angle": "top-down",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically atop piano"
+  },
+  {
+    "id": "pose_dynamic_216",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically viewed from behind with shoulders turning, set inside a giant birdcage prop.",
+    "camera_angle": "from behind",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically inside prop"
+  },
+  {
+    "id": "pose_dynamic_217",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically captured from the floor with limbs stretching upward, set in a photo booth.",
+    "camera_angle": "worm's-eye",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically in booth"
+  },
+  {
+    "id": "pose_dynamic_218",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically filmed from a sweeping aerial perspective, set on a sandy shoreline.",
+    "camera_angle": "bird's-eye",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically on shoreline"
+  },
+  {
+    "id": "pose_dynamic_219",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically shot with a stylized dutch tilt, set at the edge of a diving board.",
+    "camera_angle": "dutch tilt",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically at board"
+  },
+  {
+    "id": "pose_dynamic_220",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically captured with a fisheye exaggerating proportions, set beneath a skylight.",
+    "camera_angle": "fisheye",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically beneath skylight"
+  },
+  {
+    "id": "pose_dynamic_221",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically shot at eye level for direct connection, set in front of a neon wall.",
+    "camera_angle": "eye-level",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically in wall"
+  },
+  {
+    "id": "pose_dynamic_222",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically captured from a gentle overhead tilt, set inside a washer door frame.",
+    "camera_angle": "slightly above",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically inside frame"
+  },
+  {
+    "id": "pose_dynamic_223",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically captured from just below the waistline, set halfway down a ladder.",
+    "camera_angle": "slightly below",
+    "framing": "detail",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically halfway ladder"
+  },
+  {
+    "id": "pose_dynamic_224",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically framed from a dramatic low angle, set on an ottoman piled with cushions.",
+    "camera_angle": "low angle",
+    "framing": "panoramic",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically on cushions"
+  },
+  {
+    "id": "pose_dynamic_225",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with toes pointed dramatically seen from directly overhead, set against a ballet barre.",
+    "camera_angle": "top-down",
+    "framing": "full",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor toes pointed dramatically against barre"
+  },
+  {
+    "id": "pose_dynamic_226",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with back illuminated by rim light viewed from behind with shoulders turning, set on a mirrored studio floor.",
+    "camera_angle": "from behind",
+    "framing": "three-quarter",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor back illuminated by rim floor"
+  },
+  {
+    "id": "pose_dynamic_227",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with back illuminated by rim light captured from the floor with limbs stretching upward, set across a velvet chaise.",
+    "camera_angle": "worm's-eye",
+    "framing": "mid",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor back illuminated by rim chaise"
+  },
+  {
+    "id": "pose_dynamic_228",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with back illuminated by rim light filmed from a sweeping aerial perspective, set inside a laundromat aisle.",
+    "camera_angle": "bird's-eye",
+    "framing": "knee-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor back illuminated by rim aisle"
+  },
+  {
+    "id": "pose_dynamic_229",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with back illuminated by rim light shot with a stylized dutch tilt, set beside a pool edge.",
+    "camera_angle": "dutch tilt",
+    "framing": "waist-up",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor back illuminated by rim edge"
+  },
+  {
+    "id": "pose_dynamic_230",
+    "description": "standing contrapposto with one hip hiked and toe skimming the floor with back illuminated by rim light captured with a fisheye exaggerating proportions, set under a rainfall shower.",
+    "camera_angle": "fisheye",
+    "framing": "close",
+    "summary": "standing contrapposto with one hip hiked and toe skimming the floor back illuminated by rim shower"
   },
   {
     "id": "pose_floor_sprawl_sweets",
@@ -28,11 +1624,18 @@
     "summary": "top-down full-body sprawl across candy-strewn floor"
   },
   {
-    "id": "pose_roller_low_angle",
-    "description": "low-angle shot with one leg extended toward camera in roller skates, hips cocked and lips parted",
-    "camera_angle": "low angle",
+    "id": "pose_full_body_front",
+    "description": "full-body, front-facing, relaxed stance",
+    "camera_angle": "eye-level",
     "framing": "full",
-    "summary": "low-angle roller pose with extended leg and parted lips"
+    "summary": "full-body front view at eye level"
+  },
+  {
+    "id": "pose_gum_bubble_close",
+    "description": "close-up three-quarter view blowing a gum bubble, fingers at collar tugging fabric",
+    "camera_angle": "eye-level",
+    "framing": "close",
+    "summary": "close three-quarter bubblegum tease with collar tug"
   },
   {
     "id": "pose_heart_pillow_tease",
@@ -42,10 +1645,17 @@
     "summary": "cross-legged heart pillow pose with teasing waistband pull"
   },
   {
-    "id": "pose_gum_bubble_close",
-    "description": "close-up three-quarter view blowing a gum bubble, fingers at collar tugging fabric",
-    "camera_angle": "eye-level",
-    "framing": "close",
-    "summary": "close three-quarter bubblegum tease with collar tug"
+    "id": "pose_roller_low_angle",
+    "description": "low-angle shot with one leg extended toward camera in roller skates, hips cocked and lips parted",
+    "camera_angle": "low angle",
+    "framing": "full",
+    "summary": "low-angle roller pose with extended leg and parted lips"
+  },
+  {
+    "id": "pose_three_quarter_turn",
+    "description": "three-quarter turn with weight on back leg",
+    "camera_angle": "slightly above",
+    "framing": "mid",
+    "summary": "three-quarter turn, slightly high angle, mid framing"
   }
 ]
