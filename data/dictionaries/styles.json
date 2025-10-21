@@ -1,24 +1,1550 @@
 [
   {
-    "id": "style_natural_outdoor",
-    "lighting": "natural outdoor lighting",
-    "palette": "earthy pastels",
-    "background": "sunlit botanical garden",
-    "summary": "natural outdoor lighting with earthy pastel palette"
+    "id": "sticker_set",
+    "lighting": "flat graphic lighting",
+    "palette": "vibrant colors with white outlines",
+    "background": "blank white background, no props, no decoration, only character with outline",
+    "summary": "flat sticker-style lighting with vibrant outlined palette"
   },
   {
-    "id": "style_studio_soft",
-    "lighting": "soft studio key light",
-    "palette": "cool neutrals",
-    "background": "minimalist studio backdrop",
-    "summary": "soft studio lighting with cool neutral palette"
+    "id": "style_atlas_001",
+    "lighting": "diffused skylight filtered through gauze panels; wide-lens exaggeration elongates limbs",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with wide lens exaggeration elongates limbs against infinite cyclorama with chrome cubes"
   },
   {
-    "id": "style_sugar_trouble_gloss",
-    "lighting": "sticky candy-gloss lighting that halos cheeks and lips like a lollipop sheen",
-    "palette": "pastel strawberry, creamy peach, mint and caramel",
-    "background": "candy shop window with syrupy reflections",
-    "summary": "candy idol gloss lighting with warm pastel sweets palette"
+    "id": "style_atlas_002",
+    "lighting": "diffused skylight filtered through gauze panels; compressed telephoto framing sculpts curves",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with compressed telephoto framing sculpts curves against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_003",
+    "lighting": "diffused skylight filtered through gauze panels; tilted horizon adds kinetic motion",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with tilted horizon adds kinetic motion against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_004",
+    "lighting": "diffused skylight filtered through gauze panels; diorama scale shift miniaturizes environment",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with diorama scale shift miniaturizes environment against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_005",
+    "lighting": "diffused skylight filtered through gauze panels; fisheye bend wraps scene into a sphere",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with fisheye bend wraps scene into a sphere against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_006",
+    "lighting": "diffused skylight filtered through gauze panels; macro crop focuses on glossed textures",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with macro crop focuses on glossed textures against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_007",
+    "lighting": "diffused skylight filtered through gauze panels; architectural vanishing lines converge behind subject",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with architectural vanishing lines converge behind subject against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_008",
+    "lighting": "diffused skylight filtered through gauze panels; split-tone overlay emulates retro print",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with split tone overlay emulates retro print against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_009",
+    "lighting": "diffused skylight filtered through gauze panels; anamorphic flare streaks along the frame",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with anamorphic flare streaks along the frame against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_010",
+    "lighting": "diffused skylight filtered through gauze panels; 360 panorama collage stitches perspectives",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with 360 panorama collage stitches perspectives against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_011",
+    "lighting": "diffused skylight filtered through gauze panels; Dutch tilt amplifies tension",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with Dutch tilt amplifies tension against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_012",
+    "lighting": "diffused skylight filtered through gauze panels; top-down orthographic flattening",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with top down orthographic flattening against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_013",
+    "lighting": "diffused skylight filtered through gauze panels; mirrored kaleidoscope reflections",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with mirrored kaleidoscope reflections against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_014",
+    "lighting": "diffused skylight filtered through gauze panels; under-cranked motion blur smears highlights",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with under cranked motion blur smears highlights against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_015",
+    "lighting": "diffused skylight filtered through gauze panels; lensbaby selective focus blurs edges",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with lensbaby selective focus blurs edges against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_016",
+    "lighting": "diffused skylight filtered through gauze panels; vogue collage layering cuts silhouettes",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with vogue collage layering cuts silhouettes against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_017",
+    "lighting": "diffused skylight filtered through gauze panels; double exposure silhouette reveals pattern",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with double exposure silhouette reveals pattern against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_018",
+    "lighting": "diffused skylight filtered through gauze panels; split-diopter keeps foreground and background sharp",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with split diopter keeps foreground and background sharp against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_019",
+    "lighting": "diffused skylight filtered through gauze panels; circular vignette centers the pose",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with circular vignette centers the pose against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_020",
+    "lighting": "diffused skylight filtered through gauze panels; overcranked shutter freezes cascading fabric",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "infinite cyclorama with chrome cubes",
+    "summary": "diffused skylight filtered through gauze panels with overcranked shutter freezes cascading fabric against infinite cyclorama with chrome cubes"
+  },
+  {
+    "id": "style_atlas_021",
+    "lighting": "diffused skylight filtered through gauze panels; wide-lens exaggeration elongates limbs",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with wide lens exaggeration elongates limbs against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_022",
+    "lighting": "diffused skylight filtered through gauze panels; compressed telephoto framing sculpts curves",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with compressed telephoto framing sculpts curves against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_023",
+    "lighting": "diffused skylight filtered through gauze panels; tilted horizon adds kinetic motion",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with tilted horizon adds kinetic motion against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_024",
+    "lighting": "diffused skylight filtered through gauze panels; diorama scale shift miniaturizes environment",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with diorama scale shift miniaturizes environment against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_025",
+    "lighting": "diffused skylight filtered through gauze panels; fisheye bend wraps scene into a sphere",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with fisheye bend wraps scene into a sphere against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_026",
+    "lighting": "diffused skylight filtered through gauze panels; macro crop focuses on glossed textures",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with macro crop focuses on glossed textures against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_027",
+    "lighting": "diffused skylight filtered through gauze panels; architectural vanishing lines converge behind subject",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with architectural vanishing lines converge behind subject against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_028",
+    "lighting": "diffused skylight filtered through gauze panels; split-tone overlay emulates retro print",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with split tone overlay emulates retro print against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_029",
+    "lighting": "diffused skylight filtered through gauze panels; anamorphic flare streaks along the frame",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with anamorphic flare streaks along the frame against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_030",
+    "lighting": "diffused skylight filtered through gauze panels; 360 panorama collage stitches perspectives",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with 360 panorama collage stitches perspectives against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_031",
+    "lighting": "diffused skylight filtered through gauze panels; Dutch tilt amplifies tension",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with Dutch tilt amplifies tension against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_032",
+    "lighting": "diffused skylight filtered through gauze panels; top-down orthographic flattening",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with top down orthographic flattening against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_033",
+    "lighting": "diffused skylight filtered through gauze panels; mirrored kaleidoscope reflections",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with mirrored kaleidoscope reflections against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_034",
+    "lighting": "diffused skylight filtered through gauze panels; under-cranked motion blur smears highlights",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with under cranked motion blur smears highlights against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_035",
+    "lighting": "diffused skylight filtered through gauze panels; lensbaby selective focus blurs edges",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with lensbaby selective focus blurs edges against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_036",
+    "lighting": "diffused skylight filtered through gauze panels; vogue collage layering cuts silhouettes",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with vogue collage layering cuts silhouettes against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_037",
+    "lighting": "diffused skylight filtered through gauze panels; double exposure silhouette reveals pattern",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with double exposure silhouette reveals pattern against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_038",
+    "lighting": "diffused skylight filtered through gauze panels; split-diopter keeps foreground and background sharp",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with split diopter keeps foreground and background sharp against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_039",
+    "lighting": "diffused skylight filtered through gauze panels; circular vignette centers the pose",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with circular vignette centers the pose against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_040",
+    "lighting": "diffused skylight filtered through gauze panels; overcranked shutter freezes cascading fabric",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "rooftop cityscape viewed through fisheye glass",
+    "summary": "diffused skylight filtered through gauze panels with overcranked shutter freezes cascading fabric against rooftop cityscape viewed through fisheye glass"
+  },
+  {
+    "id": "style_atlas_041",
+    "lighting": "diffused skylight filtered through gauze panels; wide-lens exaggeration elongates limbs",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with wide lens exaggeration elongates limbs against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_042",
+    "lighting": "diffused skylight filtered through gauze panels; compressed telephoto framing sculpts curves",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with compressed telephoto framing sculpts curves against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_043",
+    "lighting": "diffused skylight filtered through gauze panels; tilted horizon adds kinetic motion",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with tilted horizon adds kinetic motion against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_044",
+    "lighting": "diffused skylight filtered through gauze panels; diorama scale shift miniaturizes environment",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with diorama scale shift miniaturizes environment against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_045",
+    "lighting": "diffused skylight filtered through gauze panels; fisheye bend wraps scene into a sphere",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with fisheye bend wraps scene into a sphere against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_046",
+    "lighting": "diffused skylight filtered through gauze panels; macro crop focuses on glossed textures",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with macro crop focuses on glossed textures against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_047",
+    "lighting": "diffused skylight filtered through gauze panels; architectural vanishing lines converge behind subject",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with architectural vanishing lines converge behind subject against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_048",
+    "lighting": "diffused skylight filtered through gauze panels; split-tone overlay emulates retro print",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with split tone overlay emulates retro print against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_049",
+    "lighting": "diffused skylight filtered through gauze panels; anamorphic flare streaks along the frame",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with anamorphic flare streaks along the frame against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_050",
+    "lighting": "diffused skylight filtered through gauze panels; 360 panorama collage stitches perspectives",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with 360 panorama collage stitches perspectives against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_051",
+    "lighting": "diffused skylight filtered through gauze panels; Dutch tilt amplifies tension",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with Dutch tilt amplifies tension against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_052",
+    "lighting": "diffused skylight filtered through gauze panels; top-down orthographic flattening",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with top down orthographic flattening against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_053",
+    "lighting": "diffused skylight filtered through gauze panels; mirrored kaleidoscope reflections",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with mirrored kaleidoscope reflections against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_054",
+    "lighting": "diffused skylight filtered through gauze panels; under-cranked motion blur smears highlights",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with under cranked motion blur smears highlights against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_055",
+    "lighting": "diffused skylight filtered through gauze panels; lensbaby selective focus blurs edges",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with lensbaby selective focus blurs edges against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_056",
+    "lighting": "diffused skylight filtered through gauze panels; vogue collage layering cuts silhouettes",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with vogue collage layering cuts silhouettes against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_057",
+    "lighting": "diffused skylight filtered through gauze panels; double exposure silhouette reveals pattern",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with double exposure silhouette reveals pattern against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_058",
+    "lighting": "diffused skylight filtered through gauze panels; split-diopter keeps foreground and background sharp",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with split diopter keeps foreground and background sharp against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_059",
+    "lighting": "diffused skylight filtered through gauze panels; circular vignette centers the pose",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with circular vignette centers the pose against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_060",
+    "lighting": "diffused skylight filtered through gauze panels; overcranked shutter freezes cascading fabric",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "floating staircase inside a greenhouse",
+    "summary": "diffused skylight filtered through gauze panels with overcranked shutter freezes cascading fabric against floating staircase inside a greenhouse"
+  },
+  {
+    "id": "style_atlas_061",
+    "lighting": "diffused skylight filtered through gauze panels; wide-lens exaggeration elongates limbs",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with wide lens exaggeration elongates limbs against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_062",
+    "lighting": "diffused skylight filtered through gauze panels; compressed telephoto framing sculpts curves",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with compressed telephoto framing sculpts curves against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_063",
+    "lighting": "diffused skylight filtered through gauze panels; tilted horizon adds kinetic motion",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with tilted horizon adds kinetic motion against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_064",
+    "lighting": "diffused skylight filtered through gauze panels; diorama scale shift miniaturizes environment",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with diorama scale shift miniaturizes environment against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_065",
+    "lighting": "diffused skylight filtered through gauze panels; fisheye bend wraps scene into a sphere",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with fisheye bend wraps scene into a sphere against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_066",
+    "lighting": "diffused skylight filtered through gauze panels; macro crop focuses on glossed textures",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with macro crop focuses on glossed textures against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_067",
+    "lighting": "diffused skylight filtered through gauze panels; architectural vanishing lines converge behind subject",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with architectural vanishing lines converge behind subject against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_068",
+    "lighting": "diffused skylight filtered through gauze panels; split-tone overlay emulates retro print",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with split tone overlay emulates retro print against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_069",
+    "lighting": "diffused skylight filtered through gauze panels; anamorphic flare streaks along the frame",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with anamorphic flare streaks along the frame against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_070",
+    "lighting": "diffused skylight filtered through gauze panels; 360 panorama collage stitches perspectives",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with 360 panorama collage stitches perspectives against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_071",
+    "lighting": "diffused skylight filtered through gauze panels; Dutch tilt amplifies tension",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with Dutch tilt amplifies tension against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_072",
+    "lighting": "diffused skylight filtered through gauze panels; top-down orthographic flattening",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with top down orthographic flattening against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_073",
+    "lighting": "diffused skylight filtered through gauze panels; mirrored kaleidoscope reflections",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with mirrored kaleidoscope reflections against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_074",
+    "lighting": "diffused skylight filtered through gauze panels; under-cranked motion blur smears highlights",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with under cranked motion blur smears highlights against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_075",
+    "lighting": "diffused skylight filtered through gauze panels; lensbaby selective focus blurs edges",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with lensbaby selective focus blurs edges against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_076",
+    "lighting": "diffused skylight filtered through gauze panels; vogue collage layering cuts silhouettes",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with vogue collage layering cuts silhouettes against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_077",
+    "lighting": "diffused skylight filtered through gauze panels; double exposure silhouette reveals pattern",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with double exposure silhouette reveals pattern against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_078",
+    "lighting": "diffused skylight filtered through gauze panels; split-diopter keeps foreground and background sharp",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with split diopter keeps foreground and background sharp against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_079",
+    "lighting": "diffused skylight filtered through gauze panels; circular vignette centers the pose",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with circular vignette centers the pose against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_080",
+    "lighting": "diffused skylight filtered through gauze panels; overcranked shutter freezes cascading fabric",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "desert salt flat stretching to horizon",
+    "summary": "diffused skylight filtered through gauze panels with overcranked shutter freezes cascading fabric against desert salt flat stretching to horizon"
+  },
+  {
+    "id": "style_atlas_081",
+    "lighting": "diffused skylight filtered through gauze panels; wide-lens exaggeration elongates limbs",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with wide lens exaggeration elongates limbs against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_082",
+    "lighting": "diffused skylight filtered through gauze panels; compressed telephoto framing sculpts curves",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with compressed telephoto framing sculpts curves against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_083",
+    "lighting": "diffused skylight filtered through gauze panels; tilted horizon adds kinetic motion",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with tilted horizon adds kinetic motion against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_084",
+    "lighting": "diffused skylight filtered through gauze panels; diorama scale shift miniaturizes environment",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with diorama scale shift miniaturizes environment against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_085",
+    "lighting": "diffused skylight filtered through gauze panels; fisheye bend wraps scene into a sphere",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with fisheye bend wraps scene into a sphere against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_086",
+    "lighting": "diffused skylight filtered through gauze panels; macro crop focuses on glossed textures",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with macro crop focuses on glossed textures against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_087",
+    "lighting": "diffused skylight filtered through gauze panels; architectural vanishing lines converge behind subject",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with architectural vanishing lines converge behind subject against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_088",
+    "lighting": "diffused skylight filtered through gauze panels; split-tone overlay emulates retro print",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with split tone overlay emulates retro print against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_089",
+    "lighting": "diffused skylight filtered through gauze panels; anamorphic flare streaks along the frame",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with anamorphic flare streaks along the frame against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_090",
+    "lighting": "diffused skylight filtered through gauze panels; 360 panorama collage stitches perspectives",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with 360 panorama collage stitches perspectives against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_091",
+    "lighting": "diffused skylight filtered through gauze panels; Dutch tilt amplifies tension",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with Dutch tilt amplifies tension against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_092",
+    "lighting": "diffused skylight filtered through gauze panels; top-down orthographic flattening",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with top down orthographic flattening against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_093",
+    "lighting": "diffused skylight filtered through gauze panels; mirrored kaleidoscope reflections",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with mirrored kaleidoscope reflections against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_094",
+    "lighting": "diffused skylight filtered through gauze panels; under-cranked motion blur smears highlights",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with under cranked motion blur smears highlights against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_095",
+    "lighting": "diffused skylight filtered through gauze panels; lensbaby selective focus blurs edges",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with lensbaby selective focus blurs edges against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_096",
+    "lighting": "diffused skylight filtered through gauze panels; vogue collage layering cuts silhouettes",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with vogue collage layering cuts silhouettes against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_097",
+    "lighting": "diffused skylight filtered through gauze panels; double exposure silhouette reveals pattern",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with double exposure silhouette reveals pattern against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_098",
+    "lighting": "diffused skylight filtered through gauze panels; split-diopter keeps foreground and background sharp",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with split diopter keeps foreground and background sharp against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_099",
+    "lighting": "diffused skylight filtered through gauze panels; circular vignette centers the pose",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with circular vignette centers the pose against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_100",
+    "lighting": "diffused skylight filtered through gauze panels; overcranked shutter freezes cascading fabric",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "candy-striped diner booth",
+    "summary": "diffused skylight filtered through gauze panels with overcranked shutter freezes cascading fabric against candy striped diner booth"
+  },
+  {
+    "id": "style_atlas_101",
+    "lighting": "diffused skylight filtered through gauze panels; wide-lens exaggeration elongates limbs",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with wide lens exaggeration elongates limbs against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_102",
+    "lighting": "diffused skylight filtered through gauze panels; compressed telephoto framing sculpts curves",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with compressed telephoto framing sculpts curves against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_103",
+    "lighting": "diffused skylight filtered through gauze panels; tilted horizon adds kinetic motion",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with tilted horizon adds kinetic motion against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_104",
+    "lighting": "diffused skylight filtered through gauze panels; diorama scale shift miniaturizes environment",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with diorama scale shift miniaturizes environment against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_105",
+    "lighting": "diffused skylight filtered through gauze panels; fisheye bend wraps scene into a sphere",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with fisheye bend wraps scene into a sphere against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_106",
+    "lighting": "diffused skylight filtered through gauze panels; macro crop focuses on glossed textures",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with macro crop focuses on glossed textures against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_107",
+    "lighting": "diffused skylight filtered through gauze panels; architectural vanishing lines converge behind subject",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with architectural vanishing lines converge behind subject against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_108",
+    "lighting": "diffused skylight filtered through gauze panels; split-tone overlay emulates retro print",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with split tone overlay emulates retro print against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_109",
+    "lighting": "diffused skylight filtered through gauze panels; anamorphic flare streaks along the frame",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with anamorphic flare streaks along the frame against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_110",
+    "lighting": "diffused skylight filtered through gauze panels; 360 panorama collage stitches perspectives",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with 360 panorama collage stitches perspectives against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_111",
+    "lighting": "diffused skylight filtered through gauze panels; Dutch tilt amplifies tension",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with Dutch tilt amplifies tension against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_112",
+    "lighting": "diffused skylight filtered through gauze panels; top-down orthographic flattening",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with top down orthographic flattening against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_113",
+    "lighting": "diffused skylight filtered through gauze panels; mirrored kaleidoscope reflections",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with mirrored kaleidoscope reflections against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_114",
+    "lighting": "diffused skylight filtered through gauze panels; under-cranked motion blur smears highlights",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with under cranked motion blur smears highlights against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_115",
+    "lighting": "diffused skylight filtered through gauze panels; lensbaby selective focus blurs edges",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with lensbaby selective focus blurs edges against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_116",
+    "lighting": "diffused skylight filtered through gauze panels; vogue collage layering cuts silhouettes",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with vogue collage layering cuts silhouettes against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_117",
+    "lighting": "diffused skylight filtered through gauze panels; double exposure silhouette reveals pattern",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with double exposure silhouette reveals pattern against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_118",
+    "lighting": "diffused skylight filtered through gauze panels; split-diopter keeps foreground and background sharp",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with split diopter keeps foreground and background sharp against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_119",
+    "lighting": "diffused skylight filtered through gauze panels; circular vignette centers the pose",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with circular vignette centers the pose against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_120",
+    "lighting": "diffused skylight filtered through gauze panels; overcranked shutter freezes cascading fabric",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "submerged aquarium tunnel",
+    "summary": "diffused skylight filtered through gauze panels with overcranked shutter freezes cascading fabric against submerged aquarium tunnel"
+  },
+  {
+    "id": "style_atlas_121",
+    "lighting": "diffused skylight filtered through gauze panels; wide-lens exaggeration elongates limbs",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with wide lens exaggeration elongates limbs against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_122",
+    "lighting": "diffused skylight filtered through gauze panels; compressed telephoto framing sculpts curves",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with compressed telephoto framing sculpts curves against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_123",
+    "lighting": "diffused skylight filtered through gauze panels; tilted horizon adds kinetic motion",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with tilted horizon adds kinetic motion against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_124",
+    "lighting": "diffused skylight filtered through gauze panels; diorama scale shift miniaturizes environment",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with diorama scale shift miniaturizes environment against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_125",
+    "lighting": "diffused skylight filtered through gauze panels; fisheye bend wraps scene into a sphere",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with fisheye bend wraps scene into a sphere against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_126",
+    "lighting": "diffused skylight filtered through gauze panels; macro crop focuses on glossed textures",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with macro crop focuses on glossed textures against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_127",
+    "lighting": "diffused skylight filtered through gauze panels; architectural vanishing lines converge behind subject",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with architectural vanishing lines converge behind subject against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_128",
+    "lighting": "diffused skylight filtered through gauze panels; split-tone overlay emulates retro print",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with split tone overlay emulates retro print against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_129",
+    "lighting": "diffused skylight filtered through gauze panels; anamorphic flare streaks along the frame",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with anamorphic flare streaks along the frame against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_130",
+    "lighting": "diffused skylight filtered through gauze panels; 360 panorama collage stitches perspectives",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with 360 panorama collage stitches perspectives against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_131",
+    "lighting": "diffused skylight filtered through gauze panels; Dutch tilt amplifies tension",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with Dutch tilt amplifies tension against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_132",
+    "lighting": "diffused skylight filtered through gauze panels; top-down orthographic flattening",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with top down orthographic flattening against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_133",
+    "lighting": "diffused skylight filtered through gauze panels; mirrored kaleidoscope reflections",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with mirrored kaleidoscope reflections against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_134",
+    "lighting": "diffused skylight filtered through gauze panels; under-cranked motion blur smears highlights",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with under cranked motion blur smears highlights against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_135",
+    "lighting": "diffused skylight filtered through gauze panels; lensbaby selective focus blurs edges",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with lensbaby selective focus blurs edges against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_136",
+    "lighting": "diffused skylight filtered through gauze panels; vogue collage layering cuts silhouettes",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with vogue collage layering cuts silhouettes against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_137",
+    "lighting": "diffused skylight filtered through gauze panels; double exposure silhouette reveals pattern",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with double exposure silhouette reveals pattern against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_138",
+    "lighting": "diffused skylight filtered through gauze panels; split-diopter keeps foreground and background sharp",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with split diopter keeps foreground and background sharp against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_139",
+    "lighting": "diffused skylight filtered through gauze panels; circular vignette centers the pose",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with circular vignette centers the pose against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_140",
+    "lighting": "diffused skylight filtered through gauze panels; overcranked shutter freezes cascading fabric",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "art deco hotel lobby",
+    "summary": "diffused skylight filtered through gauze panels with overcranked shutter freezes cascading fabric against art deco hotel lobby"
+  },
+  {
+    "id": "style_atlas_141",
+    "lighting": "diffused skylight filtered through gauze panels; wide-lens exaggeration elongates limbs",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with wide lens exaggeration elongates limbs against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_142",
+    "lighting": "diffused skylight filtered through gauze panels; compressed telephoto framing sculpts curves",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with compressed telephoto framing sculpts curves against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_143",
+    "lighting": "diffused skylight filtered through gauze panels; tilted horizon adds kinetic motion",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with tilted horizon adds kinetic motion against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_144",
+    "lighting": "diffused skylight filtered through gauze panels; diorama scale shift miniaturizes environment",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with diorama scale shift miniaturizes environment against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_145",
+    "lighting": "diffused skylight filtered through gauze panels; fisheye bend wraps scene into a sphere",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with fisheye bend wraps scene into a sphere against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_146",
+    "lighting": "diffused skylight filtered through gauze panels; macro crop focuses on glossed textures",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with macro crop focuses on glossed textures against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_147",
+    "lighting": "diffused skylight filtered through gauze panels; architectural vanishing lines converge behind subject",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with architectural vanishing lines converge behind subject against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_148",
+    "lighting": "diffused skylight filtered through gauze panels; split-tone overlay emulates retro print",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with split tone overlay emulates retro print against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_149",
+    "lighting": "diffused skylight filtered through gauze panels; anamorphic flare streaks along the frame",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with anamorphic flare streaks along the frame against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_150",
+    "lighting": "diffused skylight filtered through gauze panels; 360 panorama collage stitches perspectives",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with 360 panorama collage stitches perspectives against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_151",
+    "lighting": "diffused skylight filtered through gauze panels; Dutch tilt amplifies tension",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with Dutch tilt amplifies tension against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_152",
+    "lighting": "diffused skylight filtered through gauze panels; top-down orthographic flattening",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with top down orthographic flattening against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_153",
+    "lighting": "diffused skylight filtered through gauze panels; mirrored kaleidoscope reflections",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with mirrored kaleidoscope reflections against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_154",
+    "lighting": "diffused skylight filtered through gauze panels; under-cranked motion blur smears highlights",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with under cranked motion blur smears highlights against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_155",
+    "lighting": "diffused skylight filtered through gauze panels; lensbaby selective focus blurs edges",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with lensbaby selective focus blurs edges against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_156",
+    "lighting": "diffused skylight filtered through gauze panels; vogue collage layering cuts silhouettes",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with vogue collage layering cuts silhouettes against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_157",
+    "lighting": "diffused skylight filtered through gauze panels; double exposure silhouette reveals pattern",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with double exposure silhouette reveals pattern against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_158",
+    "lighting": "diffused skylight filtered through gauze panels; split-diopter keeps foreground and background sharp",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with split diopter keeps foreground and background sharp against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_159",
+    "lighting": "diffused skylight filtered through gauze panels; circular vignette centers the pose",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with circular vignette centers the pose against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_160",
+    "lighting": "diffused skylight filtered through gauze panels; overcranked shutter freezes cascading fabric",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "warehouse runway with fog curtain",
+    "summary": "diffused skylight filtered through gauze panels with overcranked shutter freezes cascading fabric against warehouse runway with fog curtain"
+  },
+  {
+    "id": "style_atlas_161",
+    "lighting": "diffused skylight filtered through gauze panels; wide-lens exaggeration elongates limbs",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with wide lens exaggeration elongates limbs against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_162",
+    "lighting": "diffused skylight filtered through gauze panels; compressed telephoto framing sculpts curves",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with compressed telephoto framing sculpts curves against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_163",
+    "lighting": "diffused skylight filtered through gauze panels; tilted horizon adds kinetic motion",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with tilted horizon adds kinetic motion against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_164",
+    "lighting": "diffused skylight filtered through gauze panels; diorama scale shift miniaturizes environment",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with diorama scale shift miniaturizes environment against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_165",
+    "lighting": "diffused skylight filtered through gauze panels; fisheye bend wraps scene into a sphere",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with fisheye bend wraps scene into a sphere against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_166",
+    "lighting": "diffused skylight filtered through gauze panels; macro crop focuses on glossed textures",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with macro crop focuses on glossed textures against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_167",
+    "lighting": "diffused skylight filtered through gauze panels; architectural vanishing lines converge behind subject",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with architectural vanishing lines converge behind subject against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_168",
+    "lighting": "diffused skylight filtered through gauze panels; split-tone overlay emulates retro print",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with split tone overlay emulates retro print against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_169",
+    "lighting": "diffused skylight filtered through gauze panels; anamorphic flare streaks along the frame",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with anamorphic flare streaks along the frame against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_170",
+    "lighting": "diffused skylight filtered through gauze panels; 360 panorama collage stitches perspectives",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with 360 panorama collage stitches perspectives against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_171",
+    "lighting": "diffused skylight filtered through gauze panels; Dutch tilt amplifies tension",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with Dutch tilt amplifies tension against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_172",
+    "lighting": "diffused skylight filtered through gauze panels; top-down orthographic flattening",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with top down orthographic flattening against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_173",
+    "lighting": "diffused skylight filtered through gauze panels; mirrored kaleidoscope reflections",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with mirrored kaleidoscope reflections against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_174",
+    "lighting": "diffused skylight filtered through gauze panels; under-cranked motion blur smears highlights",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with under cranked motion blur smears highlights against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_175",
+    "lighting": "diffused skylight filtered through gauze panels; lensbaby selective focus blurs edges",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with lensbaby selective focus blurs edges against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_176",
+    "lighting": "diffused skylight filtered through gauze panels; vogue collage layering cuts silhouettes",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with vogue collage layering cuts silhouettes against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_177",
+    "lighting": "diffused skylight filtered through gauze panels; double exposure silhouette reveals pattern",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with double exposure silhouette reveals pattern against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_178",
+    "lighting": "diffused skylight filtered through gauze panels; split-diopter keeps foreground and background sharp",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with split diopter keeps foreground and background sharp against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_179",
+    "lighting": "diffused skylight filtered through gauze panels; circular vignette centers the pose",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with circular vignette centers the pose against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_180",
+    "lighting": "diffused skylight filtered through gauze panels; overcranked shutter freezes cascading fabric",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "mirror maze with repeating reflections",
+    "summary": "diffused skylight filtered through gauze panels with overcranked shutter freezes cascading fabric against mirror maze with repeating reflections"
+  },
+  {
+    "id": "style_atlas_181",
+    "lighting": "diffused skylight filtered through gauze panels; wide-lens exaggeration elongates limbs",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with wide lens exaggeration elongates limbs against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_182",
+    "lighting": "diffused skylight filtered through gauze panels; compressed telephoto framing sculpts curves",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with compressed telephoto framing sculpts curves against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_183",
+    "lighting": "diffused skylight filtered through gauze panels; tilted horizon adds kinetic motion",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with tilted horizon adds kinetic motion against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_184",
+    "lighting": "diffused skylight filtered through gauze panels; diorama scale shift miniaturizes environment",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with diorama scale shift miniaturizes environment against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_185",
+    "lighting": "diffused skylight filtered through gauze panels; fisheye bend wraps scene into a sphere",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with fisheye bend wraps scene into a sphere against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_186",
+    "lighting": "diffused skylight filtered through gauze panels; macro crop focuses on glossed textures",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with macro crop focuses on glossed textures against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_187",
+    "lighting": "diffused skylight filtered through gauze panels; architectural vanishing lines converge behind subject",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with architectural vanishing lines converge behind subject against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_188",
+    "lighting": "diffused skylight filtered through gauze panels; split-tone overlay emulates retro print",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with split tone overlay emulates retro print against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_189",
+    "lighting": "diffused skylight filtered through gauze panels; anamorphic flare streaks along the frame",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with anamorphic flare streaks along the frame against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_190",
+    "lighting": "diffused skylight filtered through gauze panels; 360 panorama collage stitches perspectives",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with 360 panorama collage stitches perspectives against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_191",
+    "lighting": "diffused skylight filtered through gauze panels; Dutch tilt amplifies tension",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with Dutch tilt amplifies tension against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_192",
+    "lighting": "diffused skylight filtered through gauze panels; top-down orthographic flattening",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with top down orthographic flattening against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_193",
+    "lighting": "diffused skylight filtered through gauze panels; mirrored kaleidoscope reflections",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with mirrored kaleidoscope reflections against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_194",
+    "lighting": "diffused skylight filtered through gauze panels; under-cranked motion blur smears highlights",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with under cranked motion blur smears highlights against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_195",
+    "lighting": "diffused skylight filtered through gauze panels; lensbaby selective focus blurs edges",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with lensbaby selective focus blurs edges against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_196",
+    "lighting": "diffused skylight filtered through gauze panels; vogue collage layering cuts silhouettes",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with vogue collage layering cuts silhouettes against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_197",
+    "lighting": "diffused skylight filtered through gauze panels; double exposure silhouette reveals pattern",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with double exposure silhouette reveals pattern against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_198",
+    "lighting": "diffused skylight filtered through gauze panels; split-diopter keeps foreground and background sharp",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with split diopter keeps foreground and background sharp against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_199",
+    "lighting": "diffused skylight filtered through gauze panels; circular vignette centers the pose",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with circular vignette centers the pose against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_200",
+    "lighting": "diffused skylight filtered through gauze panels; overcranked shutter freezes cascading fabric",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "tropical boardwalk at sunset",
+    "summary": "diffused skylight filtered through gauze panels with overcranked shutter freezes cascading fabric against tropical boardwalk at sunset"
+  },
+  {
+    "id": "style_atlas_201",
+    "lighting": "diffused skylight filtered through gauze panels; wide-lens exaggeration elongates limbs",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with wide lens exaggeration elongates limbs against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_202",
+    "lighting": "diffused skylight filtered through gauze panels; compressed telephoto framing sculpts curves",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with compressed telephoto framing sculpts curves against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_203",
+    "lighting": "diffused skylight filtered through gauze panels; tilted horizon adds kinetic motion",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with tilted horizon adds kinetic motion against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_204",
+    "lighting": "diffused skylight filtered through gauze panels; diorama scale shift miniaturizes environment",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with diorama scale shift miniaturizes environment against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_205",
+    "lighting": "diffused skylight filtered through gauze panels; fisheye bend wraps scene into a sphere",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with fisheye bend wraps scene into a sphere against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_206",
+    "lighting": "diffused skylight filtered through gauze panels; macro crop focuses on glossed textures",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with macro crop focuses on glossed textures against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_207",
+    "lighting": "diffused skylight filtered through gauze panels; architectural vanishing lines converge behind subject",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with architectural vanishing lines converge behind subject against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_208",
+    "lighting": "diffused skylight filtered through gauze panels; split-tone overlay emulates retro print",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with split tone overlay emulates retro print against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_209",
+    "lighting": "diffused skylight filtered through gauze panels; anamorphic flare streaks along the frame",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with anamorphic flare streaks along the frame against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_210",
+    "lighting": "diffused skylight filtered through gauze panels; 360 panorama collage stitches perspectives",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with 360 panorama collage stitches perspectives against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_211",
+    "lighting": "diffused skylight filtered through gauze panels; Dutch tilt amplifies tension",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with Dutch tilt amplifies tension against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_212",
+    "lighting": "diffused skylight filtered through gauze panels; top-down orthographic flattening",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with top down orthographic flattening against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_213",
+    "lighting": "diffused skylight filtered through gauze panels; mirrored kaleidoscope reflections",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with mirrored kaleidoscope reflections against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_214",
+    "lighting": "diffused skylight filtered through gauze panels; under-cranked motion blur smears highlights",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with under cranked motion blur smears highlights against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_215",
+    "lighting": "diffused skylight filtered through gauze panels; lensbaby selective focus blurs edges",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with lensbaby selective focus blurs edges against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_216",
+    "lighting": "diffused skylight filtered through gauze panels; vogue collage layering cuts silhouettes",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with vogue collage layering cuts silhouettes against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_217",
+    "lighting": "diffused skylight filtered through gauze panels; double exposure silhouette reveals pattern",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with double exposure silhouette reveals pattern against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_218",
+    "lighting": "diffused skylight filtered through gauze panels; split-diopter keeps foreground and background sharp",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with split diopter keeps foreground and background sharp against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_219",
+    "lighting": "diffused skylight filtered through gauze panels; circular vignette centers the pose",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with circular vignette centers the pose against retro laundromat aisle"
+  },
+  {
+    "id": "style_atlas_220",
+    "lighting": "diffused skylight filtered through gauze panels; overcranked shutter freezes cascading fabric",
+    "palette": "sun-bleached corals and seafoam",
+    "background": "retro laundromat aisle",
+    "summary": "diffused skylight filtered through gauze panels with overcranked shutter freezes cascading fabric against retro laundromat aisle"
   },
   {
     "id": "style_cherry_pop_neon",
@@ -35,6 +1561,13 @@
     "summary": "soft morning glow with airy cotton-candy palette"
   },
   {
+    "id": "style_natural_outdoor",
+    "lighting": "natural outdoor lighting",
+    "palette": "earthy pastels",
+    "background": "sunlit botanical garden",
+    "summary": "natural outdoor lighting with earthy pastel palette"
+  },
+  {
     "id": "style_poolside_glitter",
     "lighting": "wet studio bounce mixed with poolside reflections",
     "palette": "sorbet orange, lagoon teal, glossy nude",
@@ -42,10 +1575,17 @@
     "summary": "poolside wet-look lighting with sorbet accent palette"
   },
   {
-    "id": "sticker_set",
-    "lighting": "flat graphic lighting",
-    "palette": "vibrant colors with white outlines",
-    "background": "blank white background, no props, no decoration, only character with outline",
-    "summary": "flat sticker-style lighting with vibrant outlined palette"
+    "id": "style_studio_soft",
+    "lighting": "soft studio key light",
+    "palette": "cool neutrals",
+    "background": "minimalist studio backdrop",
+    "summary": "soft studio lighting with cool neutral palette"
+  },
+  {
+    "id": "style_sugar_trouble_gloss",
+    "lighting": "sticky candy-gloss lighting that halos cheeks and lips like a lollipop sheen",
+    "palette": "pastel strawberry, creamy peach, mint and caramel",
+    "background": "candy shop window with syrupy reflections",
+    "summary": "candy idol gloss lighting with warm pastel sweets palette"
   }
 ]
