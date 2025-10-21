@@ -1,9 +1,3 @@
-output/
-out/
-refs/
-.venv/
-.ipynb_checkpoints/
-.idea/
-*.sqlite
-*.jsonl
-*.env
+__pycache__/
+*.pyc
+out/*

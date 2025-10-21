@@ -1,0 +1,16 @@
+[
+  {
+    "id": "pose_full_body_front",
+    "description": "full-body, front-facing, relaxed stance",
+    "camera_angle": "eye-level",
+    "framing": "full",
+    "summary": "full-body front view at eye level"
+  },
+  {
+    "id": "pose_three_quarter_turn",
+    "description": "three-quarter turn with weight on back leg",
+    "camera_angle": "slightly above",
+    "framing": "mid",
+    "summary": "three-quarter turn, slightly high angle, mid framing"
+  }
+]

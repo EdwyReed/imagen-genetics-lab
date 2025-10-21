@@ -1,0 +1,14 @@
+[
+  {
+    "id": "clothes_denim_casual",
+    "primary": "fitted denim jacket over a white cotton tee",
+    "extras": ["charcoal chinos", "leather sneakers"],
+    "summary": "denim jacket with white tee, charcoal chinos and leather sneakers"
+  },
+  {
+    "id": "clothes_tailored_coat",
+    "primary": "tailored camel coat over a charcoal turtleneck",
+    "extras": ["dark denim", "chelsea boots"],
+    "summary": "camel coat layering with charcoal turtleneck, denim and chelsea boots"
+  }
+]

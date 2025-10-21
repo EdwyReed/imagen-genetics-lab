@@ -1,0 +1,32 @@
+[
+  {
+    "id": "char_anna_001",
+    "name": "Anna",
+    "age": 24,
+    "gender": "female",
+    "appearance": {
+      "hair": {"color": "chestnut", "length": "shoulder", "style": "wavy"},
+      "eye_color": "green",
+      "skin_tone": "light"
+    },
+    "body_type": "athletic",
+    "traits": ["confident", "curious"],
+    "sfw": true,
+    "summary": "Anna, athletic woman with chestnut wavy shoulder-length hair, green eyes and light skin"
+  },
+  {
+    "id": "char_mateo_001",
+    "name": "Mateo",
+    "age": 29,
+    "gender": "male",
+    "appearance": {
+      "hair": {"color": "black", "length": "short", "style": "tousled"},
+      "eye_color": "hazel",
+      "skin_tone": "olive"
+    },
+    "body_type": "lean",
+    "traits": ["focused", "creative"],
+    "sfw": true,
+    "summary": "Mateo, lean man with short tousled black hair, hazel eyes and olive skin"
+  }
+]
