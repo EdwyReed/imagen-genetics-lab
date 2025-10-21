@@ -1,0 +1,14 @@
+[
+  {
+    "id": "action_walking_confident",
+    "description": "walking confidently through a market street",
+    "mood": ["confident", "bright"],
+    "summary": "walking confidently with bright energy"
+  },
+  {
+    "id": "action_reading_notebook",
+    "description": "reading a leather notebook while leaning on a railing",
+    "mood": ["thoughtful", "calm"],
+    "summary": "reading a notebook, thoughtful and calm"
+  }
+]

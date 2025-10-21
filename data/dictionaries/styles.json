@@ -1,0 +1,16 @@
+[
+  {
+    "id": "style_natural_outdoor",
+    "lighting": "natural outdoor lighting",
+    "palette": "earthy pastels",
+    "background": "sunlit botanical garden",
+    "summary": "natural outdoor lighting with earthy pastel palette"
+  },
+  {
+    "id": "style_studio_soft",
+    "lighting": "soft studio key light",
+    "palette": "cool neutrals",
+    "background": "minimalist studio backdrop",
+    "summary": "soft studio lighting with cool neutral palette"
+  }
+]

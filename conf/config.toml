@@ -1,0 +1,44 @@
+[run]
+count = 4
+seed = 42
+out_dir = "out"
+
+[naming]
+zero_pad = 6
+
+[logging]
+level = "INFO"
+to_file = true
+
+[select]
+character_ids = []
+pose_ids = []
+action_ids = []
+style_ids = []
+clothes_ids = []
+
+[ollama]
+host = "http://localhost:11434"
+model = "llama3:8b-instruct"
+system_prompt_path = "conf/ollama_system_prompt.txt"
+temperature = 0.3
+top_p = 0.9
+timeout = 30
+
+[enforce]
+enabled = true
+required_terms = ["illustration", "watercolor", "glossy", "paper", "pastel"]
+max_rewrite = 1
+
+[imagen]
+model = "imagen-3.0-generate-002"
+variants = 2
+person_mode = "allow_adult"
+resolution = "1024x1024"
+safety_filter = "block_low_and_above"
+
+[scoring]
+enabled = false
+
+[cli]
+default_session_prefix = "session"
