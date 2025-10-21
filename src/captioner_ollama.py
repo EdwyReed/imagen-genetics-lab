@@ -98,6 +98,7 @@ class Captioner:
                 base_caption=caption,
                 temperature=max(0.1, self.config.temperature - 0.05),
                 seed=self.seed,
+                timeout=self.config.timeout,
             )
             rewrites += 1
             caption = _normalize_caption(caption)

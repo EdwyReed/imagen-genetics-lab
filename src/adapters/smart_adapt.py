@@ -3,14 +3,16 @@ from __future__ import annotations
 import os
 from typing import Any, Dict, Optional
 
+from ..ollama_client import enforce_once as _enforce_once_impl
+from ..ollama_client import ollama_generate as _ollama_generate_impl
+
 try:  # pragma: no cover - runtime dependency probe
-    from smart import enforce_once as _smart_enforce_once
-    from smart import imagen_call as _smart_imagen_call
-    from smart import ollama_generate as _smart_ollama_generate
+    from google import genai  # type: ignore
+    from google.genai import types  # type: ignore
 except ModuleNotFoundError as exc:  # pragma: no cover - optional dependency handling
-    _SMART_IMPORT_ERROR = exc
+    _GENAI_IMPORT_ERROR = exc
 else:
-    _SMART_IMPORT_ERROR = None
+    _GENAI_IMPORT_ERROR = None
 
 
 def ollama_generate(
@@ -23,9 +25,7 @@ def ollama_generate(
     timeout: int,
     seed: Optional[int],
 ) -> str:
-    if _SMART_IMPORT_ERROR is not None:
-        raise RuntimeError("smart.py dependencies are missing") from _SMART_IMPORT_ERROR
-    return _smart_ollama_generate(
+    return _ollama_generate_impl(
         url=host,
         model=model,
         system_prompt=system_prompt,
@@ -45,10 +45,9 @@ def enforce_once(
     base_caption: str,
     temperature: float,
     seed: Optional[int],
+    timeout: Optional[int] = None,
 ) -> str:
-    if _SMART_IMPORT_ERROR is not None:
-        raise RuntimeError("smart.py dependencies are missing") from _SMART_IMPORT_ERROR
-    return _smart_enforce_once(
+    return _enforce_once_impl(
         url=host,
         model=model,
         system_prompt=system_prompt,
@@ -56,6 +55,7 @@ def enforce_once(
         base_caption=base_caption,
         temperature=temperature,
         seed=seed,
+        timeout=timeout,
     )
 
 
@@ -67,12 +67,8 @@ def imagen_call(
     person_mode: str,
     safety_filter: str,
 ):
-    if _SMART_IMPORT_ERROR is not None:
-        raise RuntimeError("smart.py dependencies are missing") from _SMART_IMPORT_ERROR
-    try:
-        from google import genai  # type: ignore
-    except ModuleNotFoundError as exc:  # pragma: no cover - optional dependency
-        raise RuntimeError("google-genai package is required for Imagen generation") from exc
+    if _GENAI_IMPORT_ERROR is not None:
+        raise RuntimeError("google-genai package is required for Imagen generation") from _GENAI_IMPORT_ERROR
     api_key = os.getenv("IMAGEN_API_KEY")
     if not api_key:
         raise RuntimeError("IMAGEN_API_KEY environment variable is required for Imagen generation")
@@ -81,14 +77,15 @@ def imagen_call(
     if endpoint:
         client_kwargs["base_url"] = endpoint
     client = genai.Client(**client_kwargs)
-    return _smart_imagen_call(
-        client,
-        model_name=model,
-        prompt=caption,
+    config = types.GenerateImagesConfig(
+        number_of_images=variants,
         aspect_ratio=aspect_ratio,
-        variants=variants,
-        person_mode=person_mode,
+        person_generation=person_mode,
+        safety_filter_level=safety_filter or "block_low_and_above",
+        output_mime_type="image/jpeg",
+        guidance_scale=0.5,
     )
+    return client.models.generate_images(model=model, prompt=caption, config=config)
 
 
 __all__ = ["ollama_generate", "enforce_once", "imagen_call"]
