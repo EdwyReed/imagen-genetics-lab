@@ -20,7 +20,7 @@ clothes_ids = []
 [ollama]
 host = "http://127.0.0.1:11434"
 model = "qwen2.5:3b"
-system_prompt_path = "conf/ollama_system_prompt.txt"
+system_prompt_path = "conf/ollama_system_prompt_caption.txt"
 temperature = 0.3
 top_p = 0.9
 timeout = 30

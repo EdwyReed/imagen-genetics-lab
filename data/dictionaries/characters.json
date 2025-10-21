@@ -1,92 +1,308 @@
 [
   {
-    "id": "char_anna_001",
-    "name": "Anna",
-    "age": 24,
-    "gender": "female",
-    "appearance": {
-      "hair": {"color": "chestnut", "length": "shoulder", "style": "wavy"},
-      "eye_color": "green",
-      "skin_tone": "light"
-    },
-    "body_type": "athletic",
-    "traits": ["confident", "curious"],
-    "sfw": true,
-    "summary": "Anna, athletic woman with chestnut wavy shoulder-length hair, green eyes and light skin"
-  },
-  {
-    "id": "char_mateo_001",
-    "name": "Mateo",
-    "age": 29,
-    "gender": "male",
-    "appearance": {
-      "hair": {"color": "black", "length": "short", "style": "tousled"},
-      "eye_color": "hazel",
-      "skin_tone": "olive"
-    },
-    "body_type": "lean",
-    "traits": ["focused", "creative"],
-    "sfw": true,
-    "summary": "Mateo, lean man with short tousled black hair, hazel eyes and olive skin"
-  },
-  {
-    "id": "char_sugar_trouble_core",
-    "name": "Maya \"Sugar Trouble\" Flores",
-    "age": 21,
-    "gender": "female",
-    "appearance": {
-      "hair": {"color": "bubblegum pink", "length": "long", "style": "high ponytail"},
-      "eye_color": "honey brown",
-      "skin_tone": "warm peach"
-    },
-    "body_type": "soft curvy",
-    "traits": ["playful", "flirtatious", "sugar-obsessed"],
-    "sfw": false,
-    "summary": "Maya \"Sugar Trouble\" Flores, curvy candy idol with long bubblegum pink ponytail, honey-brown eyes and warm peach skin"
-  },
-  {
-    "id": "char_cherry_girl",
+    "id": "cherry_girl",
     "name": "Cherry Girl",
-    "age": 22,
-    "gender": "female",
-    "appearance": {
-      "hair": { "color": "bright cherry red", "length": "long", "style": "loose with bangs" },
-      "eye_color": "blue",
-      "skin_tone": "fair with a pink blush"
-    },
-    "body_type": "slim",
-    "traits": ["sweet", "playful", "stylish", "cherry stem on head"],
-    "sfw": true,
-    "summary": "A cute, sweet adult woman with long deep-red hair and blue eyes, with a cherry stem growing out of her head with a single leaf, no real cherries should present on image."
+    "description": "Sweet and flirty girl with cherry-red lips, glossy skin, and a stem-shaped hairpin. Radiates playful energy and candy charm.",
+    "summary": "playful candy girl with cherry motif"
   },
   {
-    "id": "char_cotton_kiss_muse",
-    "name": "Emi \"Cotton Kiss\" Park",
-    "age": 20,
-    "gender": "female",
-    "appearance": {
-      "hair": {"color": "pastel lavender", "length": "long", "style": "soft curls"},
-      "eye_color": "mint green",
-      "skin_tone": "porcelain"
-    },
-    "body_type": "petite",
-    "traits": ["innocent", "dreamy", "gentle"],
-    "sfw": true,
-    "summary": "Emi \"Cotton Kiss\" Park, petite daydreamer with long pastel lavender curls, mint-green eyes and porcelain skin"
+    "id": "cotton_kiss",
+    "name": "Cotton Kiss",
+    "description": "Soft pastel-haired girl whose hair resembles clouds of cotton candy. Always with a sugary smile and innocent gaze.",
+    "summary": "pastel pink cutie with cotton candy hair"
   },
   {
-    "id": "char_sugar_siren_glow",
-    "name": "Rosa \"Sugar Siren\" Delgado",
-    "age": 26,
-    "gender": "female",
-    "appearance": {
-      "hair": {"color": "molten caramel", "length": "long", "style": "sleek with syrup gloss"},
-      "eye_color": "molasses brown",
-      "skin_tone": "bronzed"
-    },
-    "body_type": "voluptuous",
-    "traits": ["magnetic", "sultry", "poised"],
-    "sfw": false,
-    "summary": "Rosa \"Sugar Siren\" Delgado, voluptuous performer with sleek caramel hair, molasses-brown eyes and bronzed skin"
+    "id": "sugar_trouble",
+    "name": "Sugar Trouble",
+    "description": "Wild troublemaker with bubblegum stuck in her hair and a mischievous wink. Neon streaks and lip gloss reflect chaos.",
+    "summary": "neon rebel girl with bubblegum and gloss"
+  },
+  {
+    "id": "slime_queen",
+    "name": "Slime Queen",
+    "description": "Fully transparent, gelatinous lady with inner sparkles drifting through her body. Constantly morphing, yet graceful and alluring.",
+    "summary": "transparent gelatinous fantasy woman"
+  },
+  {
+    "id": "honeydrop_model",
+    "name": "Honeydrop Model",
+    "description": "Golden-skinned model whose skin glows like dripping honey. Movements are slow and fluid, like sunlight caught in amber.",
+    "summary": "golden honey-glow skin elegant model"
+  },
+  {
+    "id": "bubble_foxie",
+    "name": "Bubble Foxie",
+    "description": "Cheeky pink-haired girl with fox ears and a translucent bubble-tail. Always posing, always teasing.",
+    "summary": "pink fox girl with bubble tail"
+  },
+  {
+    "id": "velvet_rose",
+    "name": "Velvet Rose",
+    "description": "Elegant gothic model in deep crimson tones, long gloves, and velvet chokers. Eyes like polished garnets.",
+    "summary": "gothic rose-inspired elegant girl"
+  },
+  {
+    "id": "milk_pearl",
+    "name": "Milk Pearl",
+    "description": "Pale silky-skinned beauty with iridescent eyes and smooth white hair. Feels both human and porcelain.",
+    "summary": "porcelain-white girl with pearl glow"
+  },
+  {
+    "id": "marshmallow_blossom",
+    "name": "Marshmallow Blossom",
+    "description": "Round-cheeked sweetheart with bouncing curls and eyes like melted sugar. Soft pink skirts and lace.",
+    "summary": "soft round-faced pastel sweetheart"
+  },
+  {
+    "id": "neon_siren",
+    "name": "Neon Siren",
+    "description": "Electric blue-haired digital muse with holographic makeup and glowing lines tracing her collarbones.",
+    "summary": "cyber neon girl with holographic skin"
+  },
+  {
+    "id": "lace_dreamer",
+    "name": "Lace Dreamer",
+    "description": "Dreamy girl always wrapped in lace and ruffles, eyes glazed as if lost in thoughts of love.",
+    "summary": "delicate romantic girl in lace"
+  },
+  {
+    "id": "midnight_doll",
+    "name": "Midnight Doll",
+    "description": "Porcelain-skinned night dweller with inky curls and star fragments in her pupils.",
+    "summary": "nocturnal doll with star eyes"
+  },
+  {
+    "id": "plushie_bloom",
+    "name": "Plushie Bloom",
+    "description": "Soft toy-like girl with oversized ribbons and velvety pastel outfit. Always hugging something.",
+    "summary": "toycore girl with plush aesthetic"
+  },
+  {
+    "id": "angelbyte",
+    "name": "Angelbyte",
+    "description": "Digital angel with glowing pixelated halo, translucent wings made of light grids, and calm smile.",
+    "summary": "cyber angel girl with pixel wings"
+  },
+  {
+    "id": "sakura_veil",
+    "name": "Sakura Veil",
+    "description": "Ethereal Japanese-inspired girl with petal hair and veil made of falling cherry blossoms.",
+    "summary": "cherry blossom ethereal maiden"
+  },
+  {
+    "id": "caramel_daze",
+    "name": "Caramel Daze",
+    "description": "Tanned cutie with honey eyes, glossy lips, and messy summer hair. Smells like sunscreen and caramel.",
+    "summary": "tanned summer girl with caramel glow"
+  },
+  {
+    "id": "frost_blossom",
+    "name": "Frost Blossom",
+    "description": "Icy-haired beauty with crystalline lashes and frost-like freckles. Soft but distant.",
+    "summary": "icy white-haired frosty maiden"
+  },
+  {
+    "id": "dollhouse_mist",
+    "name": "Dollhouse Mist",
+    "description": "Porcelain beauty with hollow eyes, faint blush, and faded ribbon around her neck.",
+    "summary": "haunted doll aesthetic girl"
+  },
+  {
+    "id": "sunset_dream",
+    "name": "Sunset Dream",
+    "description": "Warm gradient-haired beauty glowing like evening light. Eyes shift from orange to lavender.",
+    "summary": "sunset-colored soft dreamy girl"
+  },
+  {
+    "id": "angelic_tide",
+    "name": "Angelic Tide",
+    "description": "Seafoam-haired girl whose body shimmers like waves. Skin refracts faint rainbows.",
+    "summary": "iridescent ocean-inspired angel girl"
+  },
+  {
+    "id": "vapor_mirage",
+    "name": "Vapor Mirage",
+    "description": "Hazy beauty whose outlines blur like steam. Hair curls like vapor trails.",
+    "summary": "misty semi-transparent dreamy figure"
+  },
+  {
+    "id": "petal_saint",
+    "name": "Petal Saint",
+    "description": "Holy aura girl with soft light halo and floral embroidery covering her skin like tattoos.",
+    "summary": "floral halo saint-like girl"
+  },
+  {
+    "id": "bubble_goddess",
+    "name": "Bubble Goddess",
+    "description": "Celestial cutie encased in iridescent bubble spheres that float from her hair.",
+    "summary": "bubble-covered celestial muse"
+  },
+  {
+    "id": "ribbon_witch",
+    "name": "Ribbon Witch",
+    "description": "Sorceress whose ribbons float around her like living beings. Colorful, chaotic, elegant.",
+    "summary": "magic witch surrounded by living ribbons"
+  },
+  {
+    "id": "peach_glow",
+    "name": "Peach Glow",
+    "description": "Soft freckled girl with glowing peach-tinted skin. Always smiling softly.",
+    "summary": "peachy glow girl-next-door"
+  },
+  {
+    "id": "velvet_tempt",
+    "name": "Velvet Tempt",
+    "description": "Dark-skinned beauty in red velvet lingerie with piercing amber gaze.",
+    "summary": "sultry dark model with velvet tones"
+  },
+  {
+    "id": "holo_muse",
+    "name": "Holo Muse",
+    "description": "Holographic woman with shifting rainbow skin and refracted eyes. Moves like liquid light.",
+    "summary": "rainbow holographic liquid skin beauty"
+  },
+  {
+    "id": "paper_blossom",
+    "name": "Paper Blossom",
+    "description": "Girl made of folded paper petals and ink lines. Fragile yet expressive.",
+    "summary": "origami-inspired fragile girl"
+  },
+  {
+    "id": "minty_wave",
+    "name": "Minty Wave",
+    "description": "Energetic skater girl with seafoam hair and mint-green hoodie. Always mid-motion.",
+    "summary": "energetic mint-haired street girl"
+  },
+  {
+    "id": "silk_snare",
+    "name": "Silk Snare",
+    "description": "Tall model with long silk gloves and web-like strings around her. Hypnotic presence.",
+    "summary": "fashion bondage-inspired model"
+  },
+  {
+    "id": "daisy_dream",
+    "name": "Daisy Dream",
+    "description": "Sunny girl with daisy crown and freckles scattered like pollen.",
+    "summary": "bright daisy-themed innocent girl"
+  },
+  {
+    "id": "toffee_mistress",
+    "name": "Toffee Mistress",
+    "description": "Caramel-haired diva with golden chains and slow voice. Rich, decadent aura.",
+    "summary": "toffee-colored luxurious beauty"
+  },
+  {
+    "id": "moonveil",
+    "name": "Moonveil",
+    "description": "Pale spectral woman whose dress glows faintly like moonlight. Her pupils are lunar crescents.",
+    "summary": "moonlit ghostly maiden"
+  },
+  {
+    "id": "sugarbloom_angel",
+    "name": "Sugarbloom Angel",
+    "description": "Fairy-like girl covered in sugar crystal dust, wings sparkling like candy glass.",
+    "summary": "sparkling sugar fairy girl"
+  },
+  {
+    "id": "pixel_sakura",
+    "name": "Pixel Sakura",
+    "description": "Glitching pink-haired school idol with pixel trails following her movements.",
+    "summary": "idol girl with digital sakura glitch"
+  },
+  {
+    "id": "crystal_spine",
+    "name": "Crystal Spine",
+    "description": "Ethereal tall woman with crystal shards emerging from her back like wings.",
+    "summary": "fantasy crystal-bodied angelic woman"
+  },
+  {
+    "id": "noir_kitten",
+    "name": "Noir Kitten",
+    "description": "Sultry catgirl with velvet-black fur ears and golden eyes. Always smirking.",
+    "summary": "black catgirl with sultry charm"
+  },
+  {
+    "id": "angel_melt",
+    "name": "Angel Melt",
+    "description": "Blonde girl whose form seems to melt like wax under light, yet she smiles serenely.",
+    "summary": "melting angelic wax girl"
+  },
+  {
+    "id": "misty_fawn",
+    "name": "Misty Fawn",
+    "description": "Deer-horned forest girl with freckles and fog swirling around her shoulders.",
+    "summary": "gentle fawn girl surrounded by mist"
+  },
+  {
+    "id": "cottonbite",
+    "name": "Cottonbite",
+    "description": "Playful pastel girl with visible bite marks of candy-colored bruises. Sweet chaos.",
+    "summary": "bitten pastel girl, cute but wild"
+  },
+  {
+    "id": "glimmer_veil",
+    "name": "Glimmer Veil",
+    "description": "Bride-like figure with translucent gown and glowing tears of glass.",
+    "summary": "ethereal ghost bride aesthetic"
+  },
+  {
+    "id": "soda_splash",
+    "name": "Soda Splash",
+    "description": "Colorful fun girl with soda fizz around her hair, dressed in shiny vinyl.",
+    "summary": "carbonated pop girl, bright and playful"
+  },
+  {
+    "id": "rose_bloom",
+    "name": "Rose Bloom",
+    "description": "Mature beauty with rose tattoos that bloom under her skin when blushing.",
+    "summary": "romantic rose-tattooed woman"
+  },
+  {
+    "id": "honey_wisp",
+    "name": "Honey Wisp",
+    "description": "Tiny floating fairy made of honey threads, transparent wings shimmering gold.",
+    "summary": "miniature honey fairy"
+  },
+  {
+    "id": "starlit_veil",
+    "name": "Starlit Veil",
+    "description": "Celestial goddess with deep indigo hair filled with stars. Her gown reflects constellations.",
+    "summary": "star-haired cosmic woman"
+  },
+  {
+    "id": "pink_venom",
+    "name": "Pink Venom",
+    "description": "Glamorous punk girl with black latex gloves and pink poison dripping from lips.",
+    "summary": "punk poison girl with pink venom"
+  },
+  {
+    "id": "opal_dream",
+    "name": "Opal Dream",
+    "description": "Soft opalescent beauty whose body refracts light like gemstones.",
+    "summary": "opalescent skin dreamy girl"
+  },
+  {
+    "id": "lavender_bite",
+    "name": "Lavender Bite",
+    "description": "Shy but bold girl with lavender hair and fang-like teeth. Sweet yet dangerous.",
+    "summary": "lavender-haired girl with fangs"
+  },
+  {
+    "id": "shadow_belle",
+    "name": "Shadow Belle",
+    "description": "Dark-haired beauty whose shadow moves independently. Elegant and eerie.",
+    "summary": "gothic mysterious girl with living shadow"
+  },
+  {
+    "id": "strawberry_muse",
+    "name": "Strawberry Muse",
+    "description": "Cheerful girl with strawberry-shaped earrings and freckles like seeds.",
+    "summary": "cheerful strawberry-themed cutie"
+  },
+  {
+    "id": "pearl_fang",
+    "name": "Pearl Fang",
+    "description": "Elegant vampire with pale glow and pearl-teeth grin. Eternally beautiful.",
+    "summary": "vampire beauty with pearly fangs"
   }
 ]

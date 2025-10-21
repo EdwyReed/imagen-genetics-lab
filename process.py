@@ -2,14 +2,14 @@
 from pathlib import Path
 from PIL import Image, ImageOps
 
-SRC = Path("alpha")
-DST = Path("alpha_processed")
+SRC = Path("final/cherry-chan/2335077_training_data")
+DST = Path("final/cherry-chan/minimized")
 DST.mkdir(parents=True, exist_ok=True)
 
 # Соберём файлы и отсортируем по имени
 files = sorted([p for p in SRC.iterdir() if p.is_file()])
 
-i = 1
+i = 0
 for p in files:
     try:
         with Image.open(p) as im:
@@ -33,7 +33,7 @@ for p in files:
             elif im.mode != "RGB":
                 im = im.convert("RGB")
 
-            out_path = DST / f"{i}.jpg"
+            out_path = DST / f"{i:03d}.jpg"
             im.save(out_path, format="JPEG", quality=92, optimize=True)
             i += 1
     except Exception:

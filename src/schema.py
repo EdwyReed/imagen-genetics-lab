@@ -41,7 +41,7 @@ class SelectionConfig:
 class OllamaConfig:
     host: str = "http://localhost:11434"
     model: str = "llama3:8b-instruct"
-    system_prompt_path: Path = Path("conf/ollama_system_prompt.txt")
+    system_prompt_path: Path = Path("conf/ollama_system_prompt_caption.txt")
     temperature: float = 0.3
     top_p: float = 0.9
     timeout: int = 30

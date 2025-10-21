@@ -4,6 +4,7 @@ __pycache__/
 .idea/
 out/
 output/
+final/
 refs/
 *.sqlite
 *.jsonl
