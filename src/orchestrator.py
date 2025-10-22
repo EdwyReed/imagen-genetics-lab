@@ -161,6 +161,7 @@ def main() -> int:
                 )
             except Exception as exc:
                 logger.log("IMAGEN", f"i={index} failed: {exc}", level="ERROR")
+                logger.log("IMAGEN", f"prompt: {caption_result.caption}", level="WARN")
                 continue
 
             if not variants:

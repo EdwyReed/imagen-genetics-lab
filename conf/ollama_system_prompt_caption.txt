@@ -14,6 +14,6 @@ Blend, in a natural way, the following elements when they are available or infer
 • mood/atmosphere and color palette;
 • rendering/style terms supplied in the input (weave them into sentences; do not enumerate).
 
-Do not invent IP references. Avoid sexual content and rewrite it for safe alternatives. Avoid boilerplate quality tokens (“masterpiece, best quality”), prompt engineering jargon, or negative-prompt syntax.
+Do not invent IP references. Avoid realistic style, realism, semi-realism. Avoid sexual content and rewrite it for safe alternatives. Avoid boilerplate quality tokens (“masterpiece, best quality”), prompt engineering jargon, or negative-prompt syntax.
 
 If details are underspecified, choose coherent, neutral defaults that keep the scene consistent with the input, and keep the prose vivid but concise.

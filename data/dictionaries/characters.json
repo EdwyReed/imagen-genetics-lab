@@ -2,8 +2,8 @@
   {
     "id": "cherry_girl",
     "name": "Cherry Girl",
-    "description": "Sweet and flirty girl with cherry-red lips, glossy skin, and a stem-shaped hairpin. Radiates playful energy and candy charm.",
-    "summary": "playful candy girl with cherry motif"
+    "description": "Sweet and flirty woman with cherry-red lips, glossy skin, and a stem-shaped hairpin. Radiates playful energy and candy charm.",
+    "summary": "playful woman with cherry motif"
   },
   {
     "id": "cotton_kiss",
@@ -304,5 +304,11 @@
     "name": "Pearl Fang",
     "description": "Elegant vampire with pale glow and pearl-teeth grin. Eternally beautiful.",
     "summary": "vampire beauty with pearly fangs"
+  },
+  {
+    "id": "pinup_watercolor_muse",
+    "name": "Watercolor Pin-Up Muse",
+    "description": "Classic pin-up sweetheart designed for watercolor: soft curves, playful confidence, coy glances; glossy lips, subtle blush, delicate lashes. Hair styled in soft waves or a loose scarf bow. Reads as charming and flirty without explicitness—meant to shine through gentle washes, controlled edges, and paper texture.",
+    "summary": "playful classic pin-up tailored for watercolor"
   }
 ]

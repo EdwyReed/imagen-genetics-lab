@@ -698,5 +698,12 @@
     "palette": "pastel strawberry, creamy peach, mint and caramel",
     "background": "candy shop window with syrupy reflections",
     "summary": "candy idol gloss lighting with warm pastel sweets palette"
+  },
+  {
+    "id": "pinup_watercolor_hotpress",
+    "lighting": "soft frontal key with warm rim; gentle paper bounce; no harsh speculars",
+    "palette": "peach-ivory skin tones, carmine blush accents, muted teal shadow notes, sepia line accents",
+    "background": "off-white hot-press paper look with subtle grain; minimal negative space",
+    "summary": "controlled pin-up watercolor on hot-press paper with clean edges and soft blooms"
   }
 ]
