@@ -701,9 +701,23 @@
   },
   {
     "id": "pinup_watercolor_hotpress",
-    "lighting": "soft frontal key with warm rim; gentle paper bounce; no harsh speculars",
+    "lighting": "soft frontal key with warm rim; gentle paper bounce; harsh speculars",
     "palette": "peach-ivory skin tones, carmine blush accents, muted teal shadow notes, sepia line accents",
-    "background": "off-white hot-press paper look with subtle grain; minimal negative space",
+    "background": "off-white hot-press paper look with subtle grain",
     "summary": "controlled pin-up watercolor on hot-press paper with clean edges and soft blooms"
+  },
+  {
+    "id": "pinup_watercolor_jellyart",
+    "lighting": "soft frontal key + warm rim; multiple wet specular pops; micro-highlights on curves; gloss catchlights; gentle paper bounce",
+    "palette": "peach-ivory skin with high-value jelly highlights; carmine blush pops; muted teal shadow washes; sepia line accents; occasional pure white specular dots",
+    "background": "off-white hot-press paper with light sizing sheen; subtle puddle blooms and edge-darkening halos to emphasize wet gloss",
+    "summary": "ultra-gloss watercolor pin-up on hot-press paper: wet sheen, jelly-like translucency, crisp specular dots and soft blooms"
+  },
+  {
+    "id": "pinup_watercolor_supergloss",
+    "lighting": "high-key frontal key + twin warm rims; dense wet specular constellations; crisp catchlights on lips and curves; grazing side light to reveal micro-relief; gentle paper bounce with soft bloom around highlights",
+    "palette": "peach-ivory skin with pearlescent high-value whites; transparent carmine blush pops; teal-cyan cool shadow washes; sepia micro-line accents; occasional pure white gouache dots for speculars",
+    "background": "off-white hot-press paper with visible sizing sheen; puddle blooms and edge-darkening halos; selective lifted highlights (masking-fluid pickup) to amplify gloss",
+    "summary": "ultra-gloss, jelly-shine watercolor pin-up on hot-press paper: wet sheen, specular constellations, soft blooms, clean controlled edges"
   }
 ]
